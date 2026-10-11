@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Policy | Job Utsav - Website Cookies & Tracking Info</title>
+    <meta name="description" content="Learn how Job Utsav uses cookies and similar technologies to improve user experience, website performance, and analytics.">
+    <meta name="keywords" content="cookie policy, website cookies, browser cookies, tracking technology, job utsav cookies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jobutsav.com/cookie-policy.html">
+    <link rel="icon" href="jobutsav-logo-transparent.png" sizes="192x192" type="image/png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cookie Policy | Job Utsav">
+    <meta property="og:description" content="Understand how cookies are used to enhance your browsing experience on Job Utsav.">
+    <meta property="og:url" content="https://jobutsav.com/cookie-policy.html">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cookie Policy | Job Utsav">
+    <meta name="twitter:description" content="Learn about cookies, analytics tools, and tracking technologies used by Job Utsav.">
+    
+
+    <style>
+      :root {
+        --orange: #f47b20;
+        --orange2: #ff8a2a;
+        --navy: #0b1a33;
+        --navy2: #102a43;
+        --teal: #0b3d3a;
+        --text: #0f172a;
+        --muted: #64748b;
+        --bg: #f6f7f9;
+        --card: #ffffff;
+        --border: rgba(15, 23, 42, 0.1);
+        --shadow: 0 18px 45px rgba(2, 6, 23, 0.1);
+        --container: 1120px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+      img { max-width: 100%; height: auto; display: block; }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; }
+      .container {
+        width: min(var(--container), calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 10px 30px rgba(2, 6, 23, 0.1);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 20px;
+        position: relative;
+        z-index: 1001;
+      }
+      .brand { display: flex; align-items: center; }
+      .logo-img {
+        height: 90px;
+        width: auto;
+        max-width: 210px;
+        object-fit: contain;
+        margin-right: 10px;
+      }
+      .nav a{
+        white-space: nowrap;
+    }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        justify-content: center;
+        flex: 1;
+      }
+      .nav a {
+        font-size: 14px;
+        color: #475569;
+        padding: 10px 8px;
+        border-radius: 10px;
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+      .nav a:hover { background: rgba(2, 6, 23, 0.04); }
+      .nav a.active {
+        color: var(--orange);
+        font-weight: 600;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        min-width: 210px;
+        justify-content: flex-end;
+      }
+      .btn {
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(2, 6, 23, 0.1);
+        background: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 18px rgba(2, 6, 23, 0.08);
+      }
+      .btn.primary {
+        border: none;
+        background: var(--orange);
+        color: #fff;
+        box-shadow: 0 14px 26px rgba(244, 123, 32, 0.24);
+      }
+      .btn.primary:hover { background: #ea6f12; }
+      .menuBtn {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid rgba(2, 6, 23, 0.12);
+        background: #fff;
+        cursor: pointer;
+        position: relative;
+        z-index: 1002;
+      }
+      .menuBtn span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #0f172a;
+        margin: 4px auto;
+        border-radius: 10px;
+        pointer-events: none;
+      }
+      .mobileNav {
+        display: none;
+        background: #fff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        z-index: 999;
+        border-bottom: 3px solid var(--orange);
+      }
+      .mobileNav.show { display: block; animation: slideDown 0.3s ease-out; }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .mobileNav a {
+        display: block;
+        padding: 12px 10px;
+        border-radius: 12px;
+        color: #475569;
+        font-size: 14px;
+      }
+      .mobileNav a:hover { background: rgba(2, 6, 23, 0.04); }
+      .mobileNav a.active {
+        color: var(--orange);
+        font-weight: 600;
+      }
+
+      main { padding-top: 110px; }
+      .legalHero {
+        background:
+          linear-gradient(135deg, rgba(7, 27, 46, 0.96), rgba(16, 42, 67, 0.94) 52%, rgba(11, 61, 58, 0.96)),
+          radial-gradient(circle at 20% 18%, rgba(244, 123, 32, 0.18), transparent 30%);
+        color: #fff;
+        padding: 58px 0 64px;
+      }
+      .legalHeroInner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 280px;
+        gap: 36px;
+        align-items: end;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        color: #ffd0ab;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        border-radius: 99px;
+        background: var(--orange2);
+      }
+      .legalHero h1 {
+        margin: 0 0 14px;
+        font-size: clamp(34px, 6vw, 58px);
+        line-height: 1.05;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+      .legalHero p {
+        max-width: 760px;
+        margin: 0;
+        color: rgba(255,255,255,.78);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+      .effectiveBox {
+        border: 1px solid rgba(255,255,255,.14);
+        background: rgba(255,255,255,.08);
+        padding: 18px;
+        border-radius: 14px;
+      }
+      .effectiveBox span {
+        display: block;
+        color: rgba(255,255,255,.62);
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .effectiveBox strong {
+        display: block;
+        color: #fff;
+        font-size: 20px;
+      }
+
+      .legalLayout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 30px;
+        align-items: start;
+        padding: 42px 0 64px;
+      }
+      .toc {
+        position: sticky;
+        top: 126px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: 0 14px 28px rgba(2, 6, 23, 0.06);
+        padding: 18px;
+      }
+      .toc h2 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        color: var(--navy);
+      }
+      .toc a {
+        display: block;
+        padding: 10px 0;
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        color: #475569;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .toc a:hover { color: var(--orange); }
+      .policyContent {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .policySection {
+        position: relative;
+        padding: 34px 38px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .policySection:last-child { border-bottom: none; }
+      .sectionNumber {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 38px;
+        height: 30px;
+        padding: 0 10px;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        background: rgba(244, 123, 32, 0.1);
+        color: var(--orange);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .policySection h2 {
+        margin: 0 0 12px;
+        font-size: 24px;
+        line-height: 1.25;
+        color: var(--navy);
+      }
+      .policySection p {
+        margin: 0 0 14px;
+        color: #475569;
+        font-size: 15px;
+        line-height: 1.85;
+      }
+      .policySection p:last-child { margin-bottom: 0; }
+      .policyList {
+        margin-top: 18px;
+        padding: 18px 20px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        border-radius: 12px;
+        background: #fafbfc;
+      }
+      .policyList h3 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        color: var(--navy2);
+      }
+      .policyList ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #475569;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .policyList li { padding-left: 4px; }
+      .policyList li::marker { color: var(--orange); }
+
+      footer {
+        background: linear-gradient(135deg, #071b2e 0%, #102a43 48%, #0b3d3a 100%);
+        color: rgba(255,255,255,.82);
+        padding: 56px 0 18px;
+      }
+      .footerGrid {
+        display: grid;
+        grid-template-columns: minmax(280px, 1.25fr) repeat(3, minmax(170px, 1fr));
+        gap: 28px;
+        align-items: start;
+        padding-bottom: 26px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      .footerBrand {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .footerLogo {
+        width: 165px;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+      }
+      .footerGrid h4 {
+        margin: 0 0 12px;
+        color: #fff;
+        font-size: 15px;
+      }
+      .footerGrid p, .footerGrid a, .footerGrid li {
+        font-size: 13px;
+        line-height: 1.8;
+        color: rgba(255,255,255,.78);
+      }
+      .footerGrid ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 8px;
+      }
+      .org a { color: #ff8a2a; }
+      .social-links {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .social-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transition: all 0.2s ease;
+      }
+      .social-icon:hover {
+        background: var(--orange);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+      .footerPhone {
+        font-weight: 700;
+        color: rgba(255,255,255,.85);
+      }
+      .footerSupportLink {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: rgba(255,255,255,.80);
+        transition: color .15s ease;
+      }
+      .footerSupportLink:hover,
+      .footerAboutLink:hover,
+      footer .comingSoonLink:hover,
+      .footerBottom a:hover {
+        color: var(--orange);
+      }
+      .footerSupportIcon {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .workingHours {
+        color: rgba(255,255,255,.55);
+        font-size: 12px;
+      }
+      .footerBottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: 14px;
+        font-size: 12px;
+        color: rgba(255,255,255,.60);
+      }
+      .footerBottomLinks {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .footerBottom a {
+        color: rgba(255,255,255,.70);
+      }
+      .footerBottom a.active {
+        color: #ff8a2a;
+        font-weight: 700;
+      }
+      .whatsapp-chat {
+        position: fixed;
+        bottom: 132px;
+        right: 25px;
+        width: 55px;
+        height: 55px;
+        background: #25D366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        transition: 0.3s ease;
+        z-index: 1000;
+        animation: pulse 2s infinite, waFloat 3.2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      }
+      @keyframes waFloat {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+      }
+      .whatsapp-chat img { width: 30px; height: 30px; }
+      .whatsapp-chat:hover { transform: translateY(-6px) scale(1.12); }
+
+      @media (max-width: 1024px) {
+        .nav, .topbar .actions { display: none; }
+        .menuBtn { display: block; }
+        .logo-img { height: 65px; }
+        main { padding-top: 95px; }
+      }
+      @media (max-width: 980px) {
+        .legalHeroInner,
+        .legalLayout {
+          grid-template-columns: 1fr;
+        }
+        .toc {
+          position: static;
+          order: 2;
+        }
+        .footerGrid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .container {
+          width: min(var(--container), calc(100% - 28px));
+        }
+        .topbar {
+          padding: 8px 0;
+        }
+        .logo-img {
+          height: 70px;
+          max-width: 170px;
+        }
+        .legalHero {
+          padding: 36px 0 42px;
+        }
+        .effectiveBox {
+          padding: 15px;
+        }
+        .legalLayout {
+          gap: 20px;
+          padding: 28px 0 44px;
+        }
+        .policySection {
+          padding: 26px 20px;
+        }
+        .policySection h2 {
+          font-size: 21px;
+        }
+        .footerGrid {
+          grid-template-columns: 1fr;
+        }
+        .footerLogo {
+          width: 140px;
+        }
+        .whatsapp-chat {
+          right: 15px;
+          bottom: 110px;
+        }
+      }
+    </style>
+    <script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+ {
+ "@type":"Question",
+ "name":"What are cookies?",
+ "acceptedAnswer":{
+ "@type":"Answer",
+ "text":"Cookies are small text files stored on your device that help websites remember user preferences and improve functionality."
+ }
+ },
+ {
+ "@type":"Question",
+ "name":"Can users disable cookies?",
+ "acceptedAnswer":{
+ "@type":"Answer",
+ "text":"Yes. Users can disable cookies through browser settings, though some website features may not function properly."
+ }
+ }
+ ]
+}
+</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="topbar">
+          <a class="brand" href="index.html">
+            <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="logo-img" />
+          </a>
+          <nav class="nav" aria-label="Primary navigation">
+            <a href="index.html">Home</a>
+            <a href="candidate.html">Candidates</a>
+            <a href="company.html">Companies</a>
+            <a href="college.html">Colleges</a>
+            <a href="sponsor.html">Sponsors</a>
+            <a href="aboutjobfair.html">Job Fair 2026</a>
+            <a href="about-us.html">About Us</a>
+          </nav>
+          <div class="actions">
+            <a class="btn" href="company.html">Hire Talent</a>
+            <a class="btn primary" href="candidate.html">Get Hired</a>
+          </div>
+          <button class="menuBtn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav" type="button">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <div class="mobileNav" id="mobileNav">
+          <a href="index.html">Home</a>
+          <a href="candidate.html">Candidates</a>
+          <a href="company.html">Companies</a>
+          <a href="college.html">Colleges</a>
+          <a href="sponsor.html">Sponsors</a>
+          <a href="aboutjobfair.html">Job Fair 2026</a>
+          <a href="about-us.html">About Us</a>
+          <div style="display: grid; gap: 10px; margin-top: 10px">
+            <a class="btn" href="company.html" style="width: 100%">Hire Talent</a>
+            <a class="btn primary" href="candidate.html" style="width: 100%">Get Hired</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="legalHero">
+        <div class="container legalHeroInner">
+          <div>
+            <div class="eyebrow">Legal Policy</div>
+            <h1>Cookie Policy</h1>
+            <p>This Cookie Policy explains how JobUtsav uses cookies and similar technologies to keep the website functional, secure, useful, and easier to navigate.</p>
+          </div>
+          <div class="effectiveBox">
+            <span>Effective Date</span>
+            <strong>July 2026</strong>
+          </div>
+        </div>
+      </section>
+
+      <div class="container legalLayout">
+        <aside class="toc" aria-label="Cookie Policy sections">
+          <h2>On this page</h2>
+          <a href="#section-1">What Are Cookies?</a>
+          <a href="#section-2">How We Use Cookies</a>
+          <a href="#section-3">Types of Cookies We Use</a>
+          <a href="#section-4">Third-Party Cookies</a>
+          <a href="#section-5">Managing Cookies</a>
+          <a href="#section-6">Updates to This Policy</a>
+          <a href="#section-7">Contact Information</a>
+        </aside>
+        <article class="policyContent">
+          
+        <section id="section-1" class="policySection">
+          <span class="sectionNumber">01</span>
+          <h2>What Are Cookies?</h2>
+          <p>Cookies are small text files stored on your computer, mobile device, or browser when you visit a website. They help websites remember user preferences, improve functionality, and understand how visitors interact with pages.</p>
+          
+        </section>
+
+        <section id="section-2" class="policySection">
+          <span class="sectionNumber">02</span>
+          <h2>How We Use Cookies</h2>
+          <p>JobUtsav uses cookies and similar technologies to improve the website experience and support recruitment-related services.</p>
+          
+          <div class="policyList">
+            <h3>We use cookies to</h3>
+            <ul>
+              <li>Improve website performance and loading behavior</li>
+              <li>Enhance user experience across pages</li>
+              <li>Analyze website traffic and engagement</li>
+              <li>Remember user preferences and settings</li>
+              <li>Maintain website security</li>
+              <li>Support registration, form submission, and login processes where applicable</li>
+              <li>Optimize job fair and event registration workflows</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="section-3" class="policySection">
+          <span class="sectionNumber">03</span>
+          <h2>Types of Cookies We Use</h2>
+          
+          
+          <div class="policyList">
+            <h3>Essential cookies</h3>
+            <ul>
+              <li>Required for core website functionality, security, session handling, and reliable form operations.</li>
+            </ul>
+          </div>
+
+          <div class="policyList">
+            <h3>Functional cookies</h3>
+            <ul>
+              <li>Help remember preferences such as selected city, form choices, or user settings where available.</li>
+            </ul>
+          </div>
+
+          <div class="policyList">
+            <h3>Performance cookies</h3>
+            <ul>
+              <li>Help us understand website speed, usage patterns, and areas where performance can be improved.</li>
+            </ul>
+          </div>
+
+          <div class="policyList">
+            <h3>Analytics cookies</h3>
+            <ul>
+              <li>Provide statistical information about visitor behavior, traffic sources, popular pages, and engagement.</li>
+            </ul>
+          </div>
+
+          <div class="policyList">
+            <h3>Marketing cookies</h3>
+            <ul>
+              <li>May be used to deliver relevant promotional content, event updates, or advertisements where permitted by law and consent preferences.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="section-4" class="policySection">
+          <span class="sectionNumber">04</span>
+          <h2>Third-Party Cookies</h2>
+          <p>Some cookies may be placed by third-party services used for analytics, embedded content, advertising, communication tools, or website infrastructure. These third parties may process data according to their own policies.</p>
+          
+        </section>
+
+        <section id="section-5" class="policySection">
+          <span class="sectionNumber">05</span>
+          <h2>Managing Cookies</h2>
+          <p>Users can accept, reject, delete, or disable cookies through browser settings. Most browsers allow you to manage cookie preferences from their privacy or security settings.</p>
+          <p>If cookies are disabled, some website features, forms, registrations, or user experience improvements may not function properly.</p>
+          
+        </section>
+
+        <section id="section-6" class="policySection">
+          <span class="sectionNumber">06</span>
+          <h2>Updates to This Policy</h2>
+          <p>This Cookie Policy may be updated periodically to reflect changes in technology, law, or business practices. Any updates will be posted on this page with a revised effective date.</p>
+          
+        </section>
+
+        <section id="section-7" class="policySection">
+          <span class="sectionNumber">07</span>
+          <h2>Contact Information</h2>
+          <p>For questions about this Cookie Policy, please contact JobUtsav through the contact information provided on JobUtsav.com.</p>
+          
+        </section>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footerGrid">
+          <div class="footerBrand">
+            <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="footerLogo" />
+            <div>
+              <h4 style="margin:0 0 8px;">JobUtsav</h4>
+              <p style="margin:0;">India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.</p>
+              <div style="height:14px"></div>
+              <h4 style="margin:0 0 10px; font-size: 13px; color: #fff;">FOLLOW US</h4>
+              <div class="social-links">
+                <a href="https://www.instagram.com/job_utsav?igsh=MXJ6NGwwbmRkMjAxdg==" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/showcase/jobutsav/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/share/p/1LahracPNq/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              </div>
+              <div style="height:20px"></div>
+              <p class="org" style="margin:0;">
+                <b style="color:#fff;">ORGANIZED BY</b><br>
+                <a href="https://shikshit.in/">Shikshit.in</a><br>
+                <a href="https://internboot.com/">InternBoot.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4>About Us</h4>
+            <ul> 
+          <li><a class="footerAboutLink" href="ourcommitee.html">Organizing Committee</a></li>
+              <li><a class="footerAboutLink" href="past.html">Past Activities</a></li>
+              <li><a class="footerAboutLink" href="awards.html">Awards &amp; Recognition</a></li>
+              <li><a class="footerAboutLink" href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Upcoming Cities</h4>
+            <ul>
+              <li>Greater Noida - July 13-14</li>
+              <li><a class="comingSoonLink" data-city="Mumbai" href="index.html#alertForm">Mumbai - Coming Soon</a></li>
+              <li><a class="comingSoonLink" data-city="Bangalore" href="index.html#alertForm">Bangalore - Coming Soon</a></li>
+              <li><a class="comingSoonLink" data-city="Hyderabad" href="index.html#alertForm">Hyderabad - Coming Soon</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Contact Us</h4>
+            <ul>
+              <li>C Block, Phase 2, Essential Oil association of India, Noida Uttar Pradesh</li>
+              <li><a class="footerPhone" data-support-phone="918882866024" href="tel:+918882866024">+91 8882866024</a></li>
+              <li><a class="footerSupportLink footerWhatsapp" data-support-phone="918882866024" href="https://wa.me/918882866024?text=Hello%20I%20need%20support" target="_blank" rel="noopener"><img class="footerSupportIcon" src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"</a>Whatsapp support</li>
+              <li class="workingHours">Mon - Sat | 10:00 AM - 7:00 PM</li>
+           
+            </ul>
+          </div>
+        </div>
+
+        <div class="footerBottom">
+          <div>&copy; <span id="year"></span> JobUtsav. All rights reserved.</div>
+          <div class="footerBottomLinks">
+            <a href="privacy-policy.html">Privacy Policy</a>
+        <a class="active" href="cookie-policy.html">Cookie Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/918882866024?text=Hello%20I%20need%20support" class="whatsapp-chat" target="_blank" rel="noopener" aria-label="WhatsApp Support">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+    </a>
+
+    <script>
+      (function () {
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const header = document.querySelector('header');
+
+        if (menuBtn && mobileNav) {
+          menuBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+            mobileNav.classList.toggle('show');
+            document.body.style.overflow = mobileNav.classList.contains('show') ? 'hidden' : '';
+          });
+
+          mobileNav.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+              mobileNav.classList.remove('show');
+              menuBtn.setAttribute('aria-expanded', 'false');
+              document.body.style.overflow = '';
+            });
+          });
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!header) return;
+          header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+      })();
+    </script>
+  </body>
+</html>
+

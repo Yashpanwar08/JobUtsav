@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobUtsav Alert Registration</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        background: #f4f7fb;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .registration-container {
+        width: 100%;
+        max-width: 650px;
+        background: #fff;
+        border-radius: 18px;
+        padding: 35px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+      }
+      .registration-header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .registration-header h1 {
+        font-size: 30px;
+        color: #111827;
+        margin-bottom: 10px;
+      }
+      .registration-header p {
+        color: #6b7280;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-group.full-width {
+        grid-column: span 2;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #374151;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #ff6b00;
+        box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.12);
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        background: #ff6b00;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-top: 28px;
+      }
+      .submit-btn:hover {
+        background: #e55d00;
+        transform: translateY(-2px);
+      }
+      .success-message {
+        display: none;
+        margin-top: 20px;
+        background: #ecfdf5;
+        color: #065f46;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 600;
+      }
+      @media (max-width: 768px) {
+        .registration-container {
+          padding: 25px 20px;
+        }
+        .registration-header h1 {
+          font-size: 24px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-group.full-width {
+          grid-column: span 1;
+        }
+        input,
+        select,
+        textarea {
+          font-size: 14px;
+          padding: 13px;
+        }
+        .submit-btn {
+          font-size: 15px;
+        }
+      }
+      @media (max-width: 480px) {
+        body {
+          padding: 12px;
+        }
+        .registration-container {
+          border-radius: 14px;
+          padding: 20px 16px;
+        }
+        .registration-header h1 {
+          font-size: 22px;
+        }
+        .registration-header p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="registration-container">
+      <div class="registration-header">
+        <h1>"" Register for City Alerts</h1>
+        <p>
+          Be the first to know when JobUtsav comes to your city. Get updates on
+          WhatsApp and email instantly.
+        </p>
+      </div>
+      <form id="registrationForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input
+              type="tel"
+              placeholder="10-digit number"
+              maxlength="10"
+              required
+            />
+          </div>
+          <div class="form-group full-width">
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div class="form-group full-width">
+            <label>Select City</label>
+            <select required>
+              <option value="">-- Select Your City --</option>
+              <option>Mumbai</option>
+              <option>Bangalore</option>
+              <option>Hyderabad</option>
+              <option>Chennai</option>
+              <option>Pune</option>
+              <option>Kolkata</option>
+              <option>Ahmedabad</option>
+              <option>Delhi</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label>Message (Optional)</label>
+            <textarea
+              placeholder="Write your message here..."
+            ></textarea>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">
+          Register Now ->
+        </button>
+        <div class="success-message" id="successMessage">
+           Registration Successful! We'll notify you soon.
+        </div>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("registrationForm");
+      const successMessage = document.getElementById("successMessage");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        successMessage.style.display = "block";
+        form.reset();
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 4000);
+      });
+    </script>
+    <script src="alert-modal.js"></script>`n</body>
+</html>

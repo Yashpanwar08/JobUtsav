@@ -1,0 +1,1809 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Candidates | JobUtsav Style</title>
+  <link rel="icon" href="jobutsav-logo-transparent.png" sizes="192x192" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --orange:#f47b20;
+      --orange2:#ff8a2a;
+      --bg:#f6f7f9;
+      --text:#0f172a;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --border: rgba(15,23,42,.10);
+      --shadow: 0 18px 45px rgba(2,6,23,.10);
+      --shadowSoft: 0 12px 28px rgba(2,6,23,.10);
+      --navy2:#0b1a33;
+      --navy3:#0e2142;
+      --container: 1120px;
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin:0 auto;
+    }
+    /* ===== STICKY & RESPONSIVE HEADER ===== */
+    header {
+      position: fixed; /* Keep it pinned to the top */
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      transition: all 0.3s ease;
+    }
+    /* Prevent content from being hidden under the fixed header */
+    main {
+      padding-top: 110px; 
+    }
+    /* Mobile Nav Drawer Styling (Synced with Awards/Company) */
+    .mobileNav {
+      display: none;
+      background: #fff;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      z-index: 999;
+      border-bottom: 3px solid var(--orange);
+    }
+    .mobileNav.show {
+      display: block !important;
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+/* Breakpoint Logic for Desktop Nav Removal */
+    @media (max-width: 1024px) {
+      .nav, .topbar .actions {
+        display: none !important; /* Forces text links to hide */
+      }
+      .menuBtn {
+        display: block !important; /* Forces hamburger to show */
+      }
+      .logo-img {
+        height: 65px !important; 
+      }
+      main {
+        padding-top: 90px;
+      }
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 10px 20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 170px;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:center;
+      flex:1;
+    }
+    .nav a{
+      font-size:14px;
+      color:#475569;
+      padding:10px 8px;
+      border-radius:10px;
+    }
+    .nav a:hover{ background: rgba(2,6,23,.04); }
+    .nav a.active{ color: var(--orange); font-weight:600; }
+    .actions{
+      display:flex;
+      gap:10px;
+      min-width: 210px;
+      justify-content:flex-end;
+    }
+    .btn{
+      height:40px;
+      padding:0 16px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.10);
+      background:#fff;
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+      transition:.15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 18px rgba(2,6,23,.08); }
+    .btn.primary{
+      border:none;
+      background: var(--orange);
+      color:#fff;
+      box-shadow: 0 14px 26px rgba(244,123,32,.24);
+    }
+    .btn.primary:hover{ background:#ea6f12; }
+    .menuBtn{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.12);
+      background:#fff;
+      cursor:pointer;
+    }
+    .menuBtn span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:#0f172a;
+      margin:4px auto;
+      border-radius:10px;
+    }
+    .mobileNav{
+      display:none;
+      padding:8px 0 14px;
+      border-top:1px solid rgba(15,23,42,.06);
+    }
+    .mobileNav a{
+      display:block;
+      padding:12px 10px;
+      border-radius:12px;
+      color:#475569;
+      font-size:14px;
+    }
+    .mobileNav a:hover{ background: rgba(2,6,23,.04); }
+    .mobileNav a.active{ color: var(--orange); font-weight:600; }
+    .mobileNav.show{ display:block; }
+    .logo-img{
+      height:90px;
+      width:auto;
+      margin-right:8px;
+    }
+    /* ===== Hero (Candidates) ===== */
+    .hero{
+      background: linear-gradient(0deg, var(--navy3), var(--navy2));
+      border-bottom:1px solid rgba(15,23,42,.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 400px at 70% 40%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(500px 300px at 35% 70%, rgba(255,255,255,.06), transparent 60%);
+      pointer-events:none;
+    }
+    .heroInner {
+      position: relative;
+      padding: 40px 0 60px;
+    }
+    /* Professional Grid Stacking */
+    @media (max-width: 980px) {
+      .heroGrid {
+        grid-template-columns: 1fr !important; /* Stack vertically */
+        text-align: center;
+        gap: 40px;
+      }
+      .heroBadge, .heroActions, .heroMeta {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .heroMedia {
+    margin-top: 30px !important; /* Separation from the text above */
+    max-width: 360px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  }
+      .hero h1 {
+        font-size: 38px !important; /* Large but readable */
+        line-height: 1.2;
+      }
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 26px;
+      align-items:center;
+    }
+    .hero h1{
+      margin:0;
+      color:#fff;
+      font-size: clamp(34px, 4.6vw, 62px);
+      line-height:1.06;
+      font-weight:800;
+      letter-spacing:-.6px;
+      max-width: 680px;
+    }
+    .hero p{
+      margin:14px 0 0;
+      color: rgba(255,255,255,.80);
+      font-size:14px;
+      line-height:1.9;
+      max-width: 640px;
+    }
+    /* ADDED: hero badge + actions + meta (to avoid blank look) */
+    .heroBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.88);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing:.2px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .heroActions{
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .heroBtn{
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 13px;
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      white-space: nowrap;
+      transition:.15s ease;
+    }
+    .heroBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .heroBtn.primary{
+      border:none;
+      background: var(--orange);
+      box-shadow: 0 16px 30px rgba(244,123,32,.22);
+    }
+    .heroBtn.primary:hover{ background:#ea6f12; }
+    .heroMeta{
+      margin-top: 16px;
+      display:flex;
+      gap: 16px;
+      flex-wrap:wrap;
+      color: rgba(255,255,255,.72);
+      font-weight: 700;
+      font-size: 12.5px;
+      align-items:center;
+    }
+    .heroMeta span{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 4px rgba(244,123,32,.18);
+    }
+    /* ADDED: right-side image card like awards hero */
+    .heroMedia{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+      position:relative;
+    }
+    .heroMedia img{
+      width:100%;
+      height: 260px;
+      object-fit: cover;
+      display:block;
+    }
+    .heroSticker{
+      position:absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--orange);
+      color:#fff;
+      font-weight: 900;
+      font-size: 12px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: 0 18px 34px rgba(244,123,32,.22);
+      line-height:1.15;
+      text-align:left;
+    }
+    .heroSticker small{
+      display:block;
+      opacity:.9;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .heroMediaBody{
+      padding: 14px 14px 16px;
+      color:#fff;
+    }
+    .heroMediaBody small{
+      display:block;
+      color: rgba(255,255,255,.60);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .heroMediaBody h3{
+      margin:0 0 10px;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing:-.2px;
+    }
+    .heroMediaRow{
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      color: rgba(255,255,255,.74);
+      font-size: 12.6px;
+      font-weight: 700;
+    }
+    /* ===== Main content layout (left content + right form) ===== */
+    section{ padding: 56px 0; }
+    .mutedSection{
+      background: var(--bg);
+      border-top:1px solid rgba(15,23,42,.06);
+      border-bottom:1px solid rgba(15,23,42,.06);
+    }
+    .contentGrid{
+      display:grid;
+      grid-template-columns: 1fr 440px;
+      gap: 26px;
+      align-items:start;
+    }
+    .blockTitle{
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .subText{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    /* Why Attend cards */
+    .whyGrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .infoCard{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.06);
+      border-radius: 16px;
+      box-shadow: var(--shadowSoft);
+      padding: 18px 16px;
+      min-height: 132px;
+    }
+    .infoCard .ic{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      margin-bottom:10px;
+      color: var(--orange);
+      background: rgba(244,123,32,.10);
+      border:1px solid rgba(244,123,32,.18);
+      font-weight:800;
+    }
+    .infoCard h4{
+      margin:0 0 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .infoCard p{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+    /* Who should attend list cards */
+    .whoList{
+      display:grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .whoItem{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.06);
+      border-radius: 16px;
+      box-shadow: var(--shadowSoft);
+      padding: 16px;
+      display:grid;
+      grid-template-columns: 46px 1fr;
+      gap: 12px;
+      align-items:start;
+    }
+    .whoIcon{
+      width:46px;
+      height:46px;
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      background: rgba(244,123,32,.10);
+      border:1px solid rgba(244,123,32,.18);
+      color: var(--orange);
+      font-weight: 900;
+    }
+    .whoItem h4{ margin:0 0 4px; font-size: 14px; }
+    .whoItem p{ margin:0; color: var(--muted); font-size: 12.8px; line-height: 1.8; }
+    /* FAQ */
+    .faq{
+      margin-top: 18px;
+      background:#fff;
+      border:1px solid rgba(15,23,42,.06);
+      border-radius: 16px;
+      box-shadow: var(--shadowSoft);
+      overflow:hidden;
+    }
+    .faq button{
+      width:100%;
+      text-align:left;
+      padding: 14px 16px;
+      border:none;
+      background:#fff;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      font-weight:700;
+      font-size: 13.5px;
+    }
+    .faq button:hover{ background: rgba(2,6,23,.02); }
+    .faq .ans{
+      padding: 0 16px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      display:none;
+    }
+    .faq .row{ border-top: 1px solid rgba(15,23,42,.06); }
+    .faq .row:first-child{ border-top:none; }
+    .chev{ color:#94a3b8; }
+    /* ===== RIGHT FORM ===== */
+    .form-wrapper{
+      position: sticky;
+      top: 96px;
+    }
+    .form-container{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .form-header{
+      text-align:center;
+      padding: 10px 8px 14px;
+      border-bottom: 1px solid rgba(15,23,42,.06);
+      margin-bottom: 14px;
+    }
+    .header-icon{
+      width:56px;
+      height:56px;
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      margin: 0 auto 10px;
+      background: rgba(244,123,32,.10);
+      border:1px solid rgba(244,123,32,.18);
+      color: var(--orange);
+      font-size: 20px;
+    }
+    .form-header h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .form-header p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+    .registration-form{ margin:0; }
+    .form-section{ padding: 12px 0 2px; }
+    .section-title{
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: #0f172a;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .section-title i{ color: var(--orange); }
+    .input-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .input-group{ display:grid; gap: 7px; }
+    .input-group label{
+      font-size: 12px;
+      font-weight: 700;
+      color: #111827;
+    }
+    .required{ color: #ef4444; }
+    .input-wrapper{ position:relative; }
+    .input-wrapper i{
+      position:absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 13px;
+      pointer-events:none;
+    }
+    .input-wrapper input{
+      width:100%;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid rgba(15,23,42,.14);
+      padding: 0 12px 0 36px;
+      outline:none;
+      font-size: 13px;
+      transition: .12s ease;
+      background:#fff;
+    }
+    .input-wrapper input:focus{
+      border-color: rgba(244,123,32,.75);
+      box-shadow: 0 0 0 4px rgba(244,123,32,.14);
+    }
+    .file-input-wrapper{ display:grid; gap: 8px; }
+    .file-input-wrapper input[type="file"]{ display:none; }
+    .file-label{
+      height: 44px;
+      border-radius: 10px;
+      border: 1px dashed rgba(15,23,42,.22);
+      background: rgba(2,6,23,.02);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      cursor:pointer;
+      font-weight: 700;
+      font-size: 12.5px;
+      color: #334155;
+      padding: 0 10px;
+      transition: .12s ease;
+      text-align:center;
+    }
+    .file-label:hover{
+      border-color: rgba(244,123,32,.55);
+      background: rgba(244,123,32,.06);
+    }
+    .file-label i{ color: var(--orange); }
+    .file-name{
+      font-size: 12px;
+      color: var(--muted);
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .submit-btn{
+      width:100%;
+      height: 46px;
+      border:none;
+      border-radius: 12px;
+      background: var(--orange);
+      color:#fff;
+      font-weight: 800;
+      font-size: 14px;
+      cursor:pointer;
+      box-shadow: 0 14px 26px rgba(244,123,32,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .submit-btn:hover{ background:#ea6f12; }
+        /* ===== Footer ===== */
+        /* Social Media Icons Styling */
+.social-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.05);
+  color: var(--navy);
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+.social-icon:hover {
+  background: var(--orange);
+  color: #fff;
+  transform: translateY(-3px);
+}
+/* Footer specific social styling */
+footer .social-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+footer .social-icon:hover {
+  background: var(--orange);
+}
+    footer{
+      background: linear-gradient(135deg, #063f46 0%, #0f172a 52%, #1f2937 100%);
+      color: rgba(255,255,255,.78);
+      padding: 56px 0 18px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 22px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footerBrand{
+      display:flex;
+      flex-direction: column;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .footerLogo{
+      width:160px;
+      height:auto;
+      border-radius: 12px;
+      box-shadow: 0 14px 26px rgba(0,0,0,.18);
+      flex: 0 0 auto;
+      object-fit: contain;
+      background: none;
+    }
+    .whatsapp-chat {
+      position: fixed;
+      bottom: 80px;
+      right: 25px;
+      width: 55px;
+      height: 55px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s ease;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70%  { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .whatsapp-chat img { width: 30px; height: 30px; }
+    .whatsapp-chat:hover { transform: scale(1.1); }
+  @media (max-width: 980px) {
+      .contentGrid {
+        grid-template-columns: 1fr !important; /* Stack form below content */
+      }
+      .form-wrapper {
+        position: relative !important; /* Remove sticky side-bar on mobile */
+        top: 0 !important;
+        margin-top: 30px;
+      }
+    }
+    @media (max-width: 640px) {
+  /* Restores the Heading Size for Mobile */
+  .hero-title {
+    font-size: 32px !important;
+    margin-top: 15px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+  }
+  /* Perfect Floating Button Stack */
+  .float-reg-btn {
+    right: 15px !important;
+    bottom: 95px !important; /* Higher to clear footer */
+    height: 46px !important;
+    box-shadow: 0 12px 24px rgba(244, 123, 32, 0.4) !important;
+  }
+  .whatsapp-chat {
+    right: 15px !important;
+    bottom: 160px !important; /* Sits perfectly above the Reg button */
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+    .footerGrid h4{
+      margin:0 0 12px;
+      color:#fff;
+      font-size:15px;
+    }
+    .footerGrid p, .footerGrid a, .footerGrid li{
+      font-size:13px;
+      line-height:1.8;
+      color: rgba(255,255,255,.74);
+    }
+    .footerGrid ul{ margin:0; padding:0; list-style:none; display:grid; gap:8px; }
+    .dotFooter{ color: var(--orange); margin-right:8px; font-weight:800; }
+    .org a{ color: var(--orange); }
+    .footerBottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+      padding-top:14px;
+      font-size:12px;
+      color: rgba(255,255,255,.60);
+    }
+    .footerBottom a{ color: rgba(255,255,255,.70); }
+    @media (max-width: 980px){
+      .footerGrid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .footerGrid{ grid-template-columns: 1fr; }
+    }
+    /* ===== Footer support polish ===== */
+    .footerPhone {
+      font-weight: 700;
+      color: rgba(255,255,255,.85) !important;
+    }
+    .footerSupportLink {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: rgba(255,255,255,.80) !important;
+      transition: color .15s ease;
+    }
+    .footerSupportLink:hover {
+      color: #fff !important;
+    }
+    .footerSupportIcon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .workingHours {
+      color: rgba(255,255,255,.55) !important;
+      font-size: 12px !important;
+    }
+    .footerAboutLink {
+      color: rgba(255,255,255,.74) !important;
+      transition: color .15s ease, padding-left .15s ease;
+    }
+    .footerAboutLink:hover,
+    .footerAboutLink:focus,
+    .footerAboutLink:active {
+      color: var(--orange) !important;
+      padding-left: 4px;
+    }
+    footer .comingSoonLink{
+      color: rgba(255,255,255,.74) !important;
+      transition: color .15s ease;
+    }
+    footer .comingSoonLink:hover,
+    footer .comingSoonLink:focus {
+      color: var(--orange) !important;
+    }
+    /* ===== JobUtsav Repair Overrides ===== */
+    .logo-img,
+    .hf-logo-img{
+      height:90px !important;
+      width:auto !important;
+      max-width:210px !important;
+      object-fit:contain !important;
+      margin-right:10px !important;
+    }
+    footer,
+    .site-footer{
+      background:linear-gradient(135deg, #071b2e 0%, #102a43 48%, #0b3d3a 100%) !important;
+      color:rgba(255,255,255,.82) !important;
+    }
+    footer .footerGrid,
+    .site-footer .footerGrid{
+      display:grid !important;
+      grid-template-columns:minmax(280px, 1.25fr) repeat(3, minmax(170px, 1fr)) !important;
+      gap:28px !important;
+      align-items:start !important;
+    }
+    footer .footerBrand,
+    .site-footer .footerBrand{
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:flex-start !important;
+      gap:12px !important;
+    }
+    footer .footerLogo,
+    .site-footer .footerLogo{
+      width:165px !important;
+      height:auto !important;
+      max-width:100% !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+      background:transparent !important;
+      object-fit:contain !important;
+      padding:0 !important;
+    }
+    footer h4,
+    .site-footer h4,
+    footer .footerGrid h4,
+    .site-footer .footerGrid h4{
+      color:#fff !important;
+    }
+    footer a,
+    footer p,
+    footer li,
+    .site-footer a,
+    .site-footer p,
+    .site-footer li{
+      color:rgba(255,255,255,.78) !important;
+    }
+    footer .org a,
+    .site-footer .org a{
+      color:#ff8a2a !important;
+    }
+    @media (max-width:980px){
+      footer .footerGrid,
+      .site-footer .footerGrid{
+        grid-template-columns:1fr 1fr !important;
+      }
+    }
+    @media (max-width:640px){
+      .logo-img,
+      .hf-logo-img{
+        height:70px !important;
+        max-width:170px !important;
+      }
+      footer .footerGrid,
+      .site-footer .footerGrid{
+        grid-template-columns:1fr !important;
+      }
+      footer .footerLogo,
+      .site-footer .footerLogo{
+        width:140px !important;
+      }
+    }
+    /* ===== Sponsor CTA repair ===== */
+    .heroActions{
+      display:flex !important;
+      gap:12px !important;
+      flex-wrap:wrap !important;
+      align-items:center !important;
+    }
+    .heroActions .heroBtn.primary,
+    a.heroBtn.primary[href="#inquiry"]{
+      display:inline-flex !important;
+      visibility:visible !important;
+      opacity:1 !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+    .whatsapp-chat{
+      bottom:152px !important;
+      animation: pulse 2s infinite, waFloat 3.2s ease-in-out infinite !important;
+    }
+    @keyframes waFloat{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-6px); }
+    }
+    .whatsapp-chat:hover{
+      transform: translateY(-6px) scale(1.12) !important;
+    }
+    @media (max-width:640px){
+      .whatsapp-chat{ bottom:132px !important; }
+    }
+  /* ===== Universal Card Hover Effects ===== */
+  .initiative-card, .kpiCard, .kpi, .aCard, .card.why, .plan,
+  .stepCard, .step, .statCard, .ac-stat, .stat-card, .mv-card,
+  .f-card, .team-card, .benefit, .benefitCard, .timeline-card,
+  .whyCard, .trustCard, .priceCard, .featureCard, .cardLike,
+  .hero-card, .ac-hero-card, .heroMedia,
+  .yatra .card, .time-box, .stat-item {
+    transition: transform 0.26s cubic-bezier(.2,.8,.2,1),
+                box-shadow 0.26s ease,
+                border-color 0.26s ease !important;
+    will-change: transform;
+  }
+  .initiative-card:hover, .kpiCard:hover, .kpi:hover, .aCard:hover,
+  .card.why:hover, .plan:hover, .stepCard:hover, .step:hover,
+  .statCard:hover, .ac-stat:hover, .stat-card:hover, .mv-card:hover,
+  .f-card:hover, .team-card:hover, .benefit:hover, .benefitCard:hover,
+  .timeline-card:hover, .whyCard:hover, .trustCard:hover,
+  .priceCard:hover, .featureCard:hover, .cardLike:hover,
+  .hero-card:hover, .ac-hero-card:hover, .heroMedia:hover {
+    transform: translateY(-7px) scale(1.02) !important;
+    box-shadow: 0 28px 56px rgba(2,6,23,.16) !important;
+    border-color: rgba(244,123,32,.30) !important;
+  }
+  .time-box:hover {
+    transform: translateY(-5px) scale(1.05) !important;
+    box-shadow: 0 20px 40px rgba(244,123,32,.20) !important;
+    border-color: rgba(244,123,32,.40) !important;
+  }
+  .stat-item:hover {
+    transform: translateY(-3px) !important;
+    background: rgba(244,123,32,.04) !important;
+  }
+  .plan.popular:hover {
+    transform: translateY(-11px) scale(1.02) !important;
+  }
+  /* =============================================
+     FLOATING CANDIDATE REGISTRATION CTA BUTTON
+  ============================================= */
+  .float-reg-btn {
+    position: fixed;
+    bottom: 50px;
+    right: 25px;
+    z-index: 1001;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #f47b20 0%, #ff9a3c 100%);
+    color: #fff;
+    font-family: Poppins, system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow:
+      0 8px 24px rgba(244,123,32,0.42),
+      0 2px 8px rgba(244,123,32,0.22);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    /* entrance animation */
+    animation: floatBtnIn 0.5s cubic-bezier(.22,1,.36,1) 0.4s both;
+  }
+  @keyframes floatBtnIn {
+    from { opacity:0; transform: translateY(14px) scale(0.92); }
+    to   { opacity:1; transform: translateY(0)    scale(1); }
+  }
+  .float-reg-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+      0 16px 36px rgba(244,123,32,0.46),
+      0 4px 12px rgba(244,123,32,0.28);
+    filter: brightness(1.06);
+  }
+  .float-reg-btn:active { transform: translateY(-1px) scale(1.01); }
+  .float-reg-btn .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    font-size: 12px;
+    transition: transform 0.18s ease;
+    flex-shrink: 0;
+  }
+  .float-reg-btn:hover .arrow { transform: translateX(3px); }
+  /* Position adjustments: sit below WhatsApp button */
+  /* WhatsApp is at bottom:152px (from override), this button at bottom:22px */
+  @media (max-width: 640px) {
+      /* Perfect Floating Button Stack */
+      .float-reg-btn {
+        right: 15px !important;
+        bottom: 85px !important; /* Sit above the footer */
+        height: 46px !important;
+        z-index: 1001;
+      }
+      .whatsapp-chat {
+        right: 15px !important;
+        bottom: 150px !important; /* Move higher to sit above Candidate button */
+        width: 50px !important;
+        height: 50px !important;
+        z-index: 1000;
+      }
+    }
+  /* =============================================
+     FAQ ACCORDION  -  FIXED & POLISHED
+  ============================================= */
+  .faq {
+    margin-top: 18px;
+    background: #fff;
+    border: 1px solid rgba(15,23,42,.07);
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(2,6,23,.08);
+    overflow: hidden;
+  }
+  /* Each row */
+  .faq .row {
+    border-top: 1px solid rgba(15,23,42,.06);
+    transition: background 0.2s ease;
+  }
+  .faq .row:first-child { border-top: none; }
+  .faq .row.open { background: rgba(244,123,32,.03); }
+  /* Question button */
+  .faq .q {
+    width: 100%;
+    text-align: left;
+    padding: 16px 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: Poppins, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: #0f172a;
+    transition: background 0.15s ease, color 0.15s ease;
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .faq .q:hover { background: rgba(244,123,32,.04); color: #f47b20; }
+  .faq .row.open .q {
+    color: #f47b20;
+    border-left-color: #f47b20;
+    background: rgba(244,123,32,.04);
+  }
+  /* Chevron icon */
+  .faq .q .chev {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(15,23,42,.05);
+    border: 1px solid rgba(15,23,42,.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #94a3b8;
+    transition: transform 0.28s cubic-bezier(.22,1,.36,1),
+                background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
+  }
+  .faq .row.open .q .chev {
+    transform: rotate(180deg);
+    background: rgba(244,123,32,.12);
+    border-color: rgba(244,123,32,.22);
+    color: #f47b20;
+  }
+  /* Answer panel  -  height-animated via max-height */
+  .faq .ans {
+    display: block !important;     /* override old display:none */
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 18px 0 21px;       /* left padding aligns with active border */
+    color: #6b7280;
+    font-size: 13.2px;
+    line-height: 1.82;
+    transition: max-height 0.34s cubic-bezier(.22,1,.36,1),
+                padding 0.28s ease,
+                opacity 0.28s ease;
+    opacity: 0;
+    border-left: 3px solid transparent;
+  }
+  .faq .row.open .ans {
+    max-height: 200px;
+    padding: 0 18px 16px 21px;
+    opacity: 1;
+    border-left-color: rgba(244,123,32,.25);
+  }
+  .ju-card-icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.2;
+}
+/* Class toggled by JavaScript on scroll */
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.1) !important;
+    }
+    /* ===== UPDATED BUTTON POSITIONING ===== */
+    @media (max-width: 768px) {
+      /* 1. Raise the "Candidate Registration" button */
+      #floatRegBtn {
+        display: inline-flex !important;
+        bottom: 100px !important; /* Raised from 85px to look better */
+        right: 15px !important;
+        z-index: 1001;
+      }
+      /* 2. Raise the WhatsApp icon proportionally higher */
+      .whatsapp-chat {
+        bottom: 165px !important; /* Raised from 150px to prevent overlap */
+        right: 15px !important;
+        width: 52px !important;
+        height: 52px !important;
+      }
+      /* 3. Form input stacking (kept from previous step) */
+      .input-row {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .input-row .input-group {
+        width: 100% !important;
+      }
+    }
+    @media (max-width: 640px) {
+      /* 1. Center the Hero Media Card */
+      .heroMedia {
+        margin: 30px auto 0 !important; /* 'auto' centers it horizontally */
+        width: 100% !important;
+        max-width: 340px !important;    /* Keeps it from touching the edges */
+        float: none !important;         /* Removes any lingering side-pulls */
+        display: block !important;
+      }
+      /* 2. Fix inner text alignment so it looks balanced */
+      .heroMediaBody {
+        text-align: center !important;
+        padding: 20px 15px !important;
+      }
+      .heroMediaRow {
+        justify-content: center !important; /* Centers the stats inside the card */
+        gap: 10px !important;
+      }
+    }
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="topbar">
+      <a class="brand" href="/">
+        <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="logo-img" />
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="about-us.html">About</a>
+        <a class="active" href="candidate.html">Candidates</a>
+        <a href="company.html">Companies</a>
+        <a href="college.html">Colleges</a>
+        <a href="sponsor.html">Sponsors</a>
+        <a href="aboutjobfair.html">Job Fair 2026</a>
+      </nav>
+      <div class="actions">
+        <a class="btn" href="company.html">Hire Talent</a>
+        <a class="btn primary" href="candidate.html">Get Hired</a>
+      </div>
+      <button class="menuBtn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobileNav" id="mobileNav">
+      <a href="/">Home</a>
+      <a href="about-us.html">About</a>
+      <a class="active" href="candidate.html">Candidates</a>
+      <a href="company.html">Companies</a>
+      <a href="college.html">Colleges</a>
+      <a href="sponsor.html">Sponsors</a>
+      <a href="aboutjobfair.html">Job Fair 2026</a>
+      <div style="display:grid; gap:10px; margin-top:10px;">
+        <a class="btn" href="company.html" style="width:100%;">Hire Talent</a>
+        <a class="btn primary" href="candidate.html" style="width:100%;">Get Hired</a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <!-- HERO (enhanced + right image added) -->
+  <section class="hero">
+    <div class="heroInner">
+  <div class="container">
+    <div class="heroGrid">
+      <div>
+        <div class="heroBadge">- India's Largest Monthly Career Festival</div>
+        <h1 class="hero-title">Your Next Big<br><span class="highlight">Opportunity Awaits</span></h1>
+        <p class="hero-description">
+          Meet multiple top employers in a single day. Free to attend, walk-in interviews, and on-the-spot offers.
+          Join India's biggest career festival.
+        </p>
+            <!-- ADDED: simple actions to reduce blank look -->
+            <div class="heroActions">
+              <a class="heroBtn primary" href="#registerForm">Register as Candidate <span style="opacity:.9;">-></span></a>
+              <a class="heroBtn" href="aboutjobfair.html">View Job Fair 2026</a>
+            </div>
+            <!-- ADDED: meta line like awards hero -->
+            <div class="heroMeta">
+              <span><i class="dot"></i> Priority Entry</span>
+              <span><i class="dot"></i> Walk-in Interviews</span>
+              <span><i class="dot"></i> Verified Recruiters</span>
+            </div>
+          </div>
+          <!-- ADDED: Right image card (you will change image path) -->
+          <aside class="heroMedia" aria-label="Event highlight card">
+            <!-- CHANGE IMAGE PATH HERE -->
+            <img src="images/cand.jpeg" alt="Job fair highlight image">
+            <!-- <div class="heroSticker"><small>MEGA JOB FAIR</small>2026</div> -->
+            <div class="heroMediaBody">
+              <small>FEATURED CITY</small>
+              <h3>Greater Noida - 1-2 June</h3>
+              <div class="heroMediaRow">
+                <span> 100+ Companies</span>
+                <span> 10,000+ Candidates</span>
+                <span>Fast Fast Shortlisting</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTENT + FORM -->
+  <section class="mutedSection">
+    <div class="container">
+      <div class="contentGrid">
+        <!-- LEFT CONTENT -->
+        <div>
+          <h2 class="blockTitle">Why Attend JobUtsav?</h2>
+          <div class="whyGrid">
+            <div class="infoCard">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <h4>Direct Interviews</h4>
+              <p>Skip the resume black hole. Meet hiring managers face-to-face and prove your worth instantly.</p>
+            </div>
+            <div class="infoCard">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+              <h4>Multiple Options</h4>
+              <p>Explore 50+ participating companies across IT, Finance, Marketing, Sales, and Operations under one roof.</p>
+            </div>
+            <div class="infoCard">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z"/></svg>
+              <h4>Instant Feedback</h4>
+              <p>Get immediate feedback on your profile and interview performance. Many candidates walk out with offer letters.</p>
+            </div>
+            <div class="infoCard">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8"/><path d="M8 8l8 8"/></svg>
+              <h4>100% Free</h4>
+              <p>JobUtsav is entirely free for all candidates. No hidden charges or registration fees ever.</p>
+            </div>
+          </div>
+          <div style="height:22px"></div>
+          <h2 class="blockTitle">Who Should Attend?</h2>
+          <div class="whoList">
+            <div class="whoItem">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <div>
+                <h4>Fresh Graduates</h4>
+                <p>Recent pass-outs looking for their first breakthrough in top companies with comprehensive training programs.</p>
+              </div>
+            </div>
+            <div class="whoItem">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-9m9 4h-9m9 4h-9M5 7h.01M5 11h.01M5 15h.01"/></svg>
+              <div>
+                <h4>Experienced Professionals</h4>
+                <p>Professionals with 1-10 years of experience seeking better roles, higher packages, or leadership positions.</p>
+              </div>
+            </div>
+            <div class="whoItem">
+              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 5h18M7 23l-4-4 4-4"/><path d="M21 19H3"/></svg>
+              <div>
+                <h4>Career Switchers</h4>
+                <p>Individuals looking to transition into new domains or industries with transferable skills.</p>
+              </div>
+            </div>
+          </div>
+          <div style="height:22px"></div>
+          <h2 class="blockTitle">Frequently Asked Questions</h2>
+          <div class="faq" id="faq">
+            <div class="row">
+              <button type="button" class="q">
+                <span>What should I bring to the event?</span>
+                <span class="chev">v</span>
+              </button>
+              <div class="ans">Bring your 5-10 Resume copies, a valid ID, and be ready for walk-in interviews.</div>
+            </div>
+            <div class="row">
+              <button type="button" class="q">
+                <span>Is there an entry fee?</span>
+                <span class="chev">v</span>
+              </button>
+              <div class="ans">No. Candidate entry is free. There are no hidden charges.</div>
+            </div>
+            <div class="row">
+              <button type="button" class="q">
+                <span>Do I need to register in advance?</span>
+                <span class="chev">v</span>
+              </button>
+              <div class="ans">Yes, Registration is recommended to get priority entry and faster check-in.</div>
+            </div>
+            <div class="row">
+              <button type="button" class="q">
+                <span>Can I apply for multiple companies?</span>
+                <span class="chev">v</span>
+              </button>
+              <div class="ans">Yes. You can meet and interview with multiple recruiters based on availability and eligibility.</div>
+            </div>
+          </div>
+        </div>
+       <!-- RIGHT FORM -->
+<div class="form-wrapper" id="registerForm">
+  <div class="form-container">
+    <div class="form-header">
+      <div class="header-icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <h2>Candidate Registration</h2>
+      <p>Join thousands of candidates finding their dream careers</p>
+    </div>
+    <!-- ✅ Corrected form with enctype -->
+    <form action="candidate_save.php" method="POST" enctype="multipart/form-data" class="registration-form">
+      <!-- Personal Information Section -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <i class="fas fa-user"></i>
+          Personal Information
+        </h3>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Full Name <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input type="text" name="name" placeholder="Enter your full name" minlength="2" pattern="[A-Za-z ]{2,}" title="Name should contain letters only" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Phone Number <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-phone"></i>
+              <input type="tel" name="phone" placeholder="Enter phone number" pattern="[0-9]{10}" inputmode="numeric" maxlength="10" required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            </div>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Email Address <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Password <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Create a password" minlength="6" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Education & Experience Section -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          Education & Experience
+        </h3>
+        <div class="input-row">
+          <div class="input-group">
+            <label>College Name <span class="required">*</span></label>
+            <div class="input-wrapper">
+              <i class="fas fa-university"></i>
+              <input type="text" name="college" placeholder="Enter college name" minlength="2" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Qualification</label>
+            <div class="input-wrapper">
+              <i class="fas fa-certificate"></i>
+              <input type="text" name="qualification" placeholder="e.g., B.Tech, MBA">
+            </div>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Experience</label>
+            <div class="input-wrapper">
+              <i class="fas fa-briefcase"></i>
+              <input type="text" name="experience" placeholder="e.g., 2 years, Fresher">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Preferred Industry</label>
+            <div class="input-wrapper">
+              <i class="fas fa-building"></i>
+              <input type="text" name="industry" placeholder="e.g., IT, Finance, Marketing">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Upload Section -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <i class="fas fa-file-upload"></i>
+          Upload Documents
+        </h3>
+        <div class="input-row">
+          <!-- Resume Upload -->
+          <div class="input-group">
+            <label>Resume Upload</label>
+            <div class="file-input-wrapper">
+              <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required onchange="showResumeName()">
+              <label for="resume" class="file-label">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Choose Resume (PDF, DOC)</span>
+              </label>
+              <span class="file-name" id="resumeName">No file chosen</span>
+              <p id="resumeStatus" style="color:green;font-weight:600;"></p>
+            </div>
+          </div>
+          <!-- Profile Picture Upload -->
+          <div class="input-group">
+            <label>Profile Picture</label>
+            <div class="file-input-wrapper">
+              <input type="file" name="profilePic" id="profilePic" accept="image/*" onchange="showPicName()">
+              <label for="profilePic" class="file-label">
+                <i class="fas fa-camera"></i>
+                <span>Choose Photo</span>
+              </label>
+              <span class="file-name" id="picName">No file chosen</span>
+              <p id="picStatus" style="color:green;font-weight:600;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ Scripts to show file name + success message -->
+      <script>
+        function showResumeName() {
+          const input = document.getElementById('resume');
+          const fileName = input.files.length ? input.files[0].name : 'No file chosen';
+          document.getElementById('resumeName').textContent = fileName;
+          document.getElementById('resumeStatus').textContent = input.files.length ? "Resume selected successfully!" : "";
+        }
+        function showPicName() {
+          const input = document.getElementById('profilePic');
+          const fileName = input.files.length ? input.files[0].name : 'No file chosen';
+          document.getElementById('picName').textContent = fileName;
+          document.getElementById('picStatus').textContent = input.files.length ? "Photo selected successfully!" : "";
+        }
+      </script>
+      <button type="submit" class="submit-btn">
+        <span>Register Now</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </form>
+  </div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footerGrid">
+      <div>
+        <div class="footerBrand">
+  <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="footerLogo" />
+  <div>
+    <h4 style="margin:0 0 8px;">JobUtsav</h4>
+    <p style="margin:0;">
+      India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.
+    </p>
+    <div style="height:14px"></div>
+    <!-- Added Social Links in Footer -->
+    <h4 style="margin:0 0 10px; font-size: 13px; color: #fff;">FOLLOW US</h4>
+    <div class="social-links">
+      <a href="https://www.instagram.com/job_utsav?igsh=MXJ6NGwwbmRkMjAxdg==" target="_blank" class="social-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.linkedin.com/showcase/jobutsav/" target="_blank" class="social-icon">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.facebook.com/share/p/1LahracPNq/" target="_blank" class="social-icon">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+    <div style="height:20px"></div>
+    <p class="org" style="margin:0;">
+      <b style="color:#fff;">ORGANIZED BY</b><br>
+      <a href="https://shikshit.in/">Shikshit.in</a><br>
+      <a href="https://internboot.com/">InternBoot.com</a>
+    </p>
+  </div>
+</div>
+      </div>
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a class="footerAboutLink" href="ourcommitee.html">Organizing Committee</a></li>
+          <li><a class="footerAboutLink" href="past.html">Past Activities</a></li>
+          <li><a class="footerAboutLink" href="awards.html">Awards &amp; Recognition</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Upcoming Cities</h4>
+        <ul>
+          <li>Greater Noida  -  June 1 - 2</li>
+          <li>Mumbai - Coming Soon</li>
+          <li>Bangalore - Coming Soon</li>
+          <li>Hyderabad - Coming Soon</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul>
+          <li>Location: C Block, Phase 2, Essential Oil association of India, Noida Uttar Pradesh</li>
+          <li><a class="footerPhone" data-support-phone="918882866024" href="tel:+918882866024">+91 8882866024</a></li>
+          <li><a class="footerSupportLink footerWhatsapp" data-support-phone="918882866024" href="https://wa.me/918882866024?text=Hello%20I%20need%20support" target="_blank" rel="noopener"><img class="footerSupportIcon" src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="whatsapp">WhatsApp Support</a></li>
+          <li class="workingHours">Mon - Sat | 10:00 AM - 7:00 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footerBottom">
+      <div> © <span id="year"></span> JobUtsav. All rights reserved.</div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- =============================================
+     FLOATING CANDIDATE REGISTRATION BUTTON
+     Sits below the WhatsApp icon
+============================================= -->
+<a href="#registerForm" class="float-reg-btn" id="floatRegBtn" aria-label="Go to Candidate Registration Form">
+  <span>Candidate Registration</span>
+  <span class="arrow">&#x2192;</span>
+</a>
+<a
+  href="https://wa.me/918882866024?text=Hello%20I%20need%20support"
+  class="whatsapp-chat"
+  target="_blank"
+>
+  <img
+    src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+    alt="WhatsApp"
+  />
+</a>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+  (function(){
+    document.querySelectorAll('.comingSoonLink').forEach(function(link){
+      link.addEventListener('click', function(e){
+        var overlay = document.getElementById('alertModalOverlay');
+        if (overlay) {
+          e.preventDefault();
+          overlay.classList.add('open');
+          var city = link.getAttribute('data-city');
+          var select = document.getElementById('alertCity');
+          if (city && select) select.value = city;
+          var first = document.getElementById('alertName');
+          if (first) setTimeout(function(){ first.focus(); }, 80);
+        }
+      });
+    });
+  })();
+</script>
+<script>
+  (function(){
+    var supportPhone = '918882866024';
+    var formattedPhone = '+91 ' + supportPhone.slice(2);
+    document.querySelectorAll('[data-support-phone]').forEach(function(el){
+      el.setAttribute('data-support-phone', supportPhone);
+      if (el.classList.contains('footerPhone')) {
+        el.textContent = formattedPhone;
+        el.href = 'tel:+' + supportPhone;
+      }
+      if (el.classList.contains('footerWhatsapp')) {
+        el.href = 'https://wa.me/' + supportPhone + '?text=Hello%20I%20need%20support';
+      }
+    });
+  })();
+</script>
+<script src="alert-modal.js"></script>
+<script>
+/* ===== Universal Count-Up (runs on every page) ===== */
+(function(){
+  function parseNum(str){
+    // returns { value: Number, suffix: String }
+    if(!str) return null;
+    var s = str.toString().trim();
+    // strip commas
+    var clean = s.replace(/,/g,'');
+    // detect suffix: anything after digits (like +, %, k, L, K)
+    var m = clean.match(/^([0-9]+(?:\.[0-9]+)?)(.*)$/);
+    if(!m) return null;
+    return { value: parseFloat(m[1]), suffix: m[2] || '' };
+  }
+  function formatNum(n, origSuffix, origText){
+    // preserve original formatting style
+    if(origText.indexOf(',') !== -1 && n >= 1000){
+      return n.toLocaleString('en-IN') + origSuffix;
+    }
+    return Math.floor(n) + origSuffix;
+  }
+  function easeOut(t){ return 1 - Math.pow(1-t, 3); }
+  function animateEl(el){
+    if(el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var origText = el.textContent.trim();
+    var parsed   = parseNum(origText);
+    if(!parsed || parsed.value === 0) return;
+    var target   = parsed.value;
+    var suffix   = parsed.suffix;
+    var duration = Math.min(2000, Math.max(800, target / 10));
+    var start    = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var cur = easeOut(p) * target;
+      el.textContent = formatNum(cur, suffix, origText);
+      if(p < 1) requestAnimationFrame(step);
+      else el.textContent = origText; // restore exact original
+    }
+    requestAnimationFrame(step);
+  }
+  // Selectors that contain stat numbers
+  var SELECTORS = [
+    '[data-count]',
+    '.ac-stat-num', '.stat-number .counter', '.counter-animated',
+    '.num', '.ac-yatra-stat b', '.stat-card h3',
+    '.stats-box .stat-item h2',
+    '.statsGrid .statCard .num',
+    '.kpiCard b', '.kpi b',
+    '.n',                      // About_jobfair stats
+    '.ac-hero-count',
+  ].join(',');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      // animate all number els inside this container
+      var els = entry.target.querySelectorAll ? 
+        entry.target.querySelectorAll(SELECTORS) : [];
+      // also check if target itself matches
+      Array.prototype.forEach.call(els, animateEl);
+      if(entry.target.matches && entry.target.matches(SELECTORS)){
+        animateEl(entry.target);
+      }
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.25 });
+  // Observe every section / stats container
+  document.querySelectorAll('section, .stats-box, .statsGrid, .kpiGrid, .ac-stats-grid, .stats-grid, .hero-stats, .stats, .ac-yatra-stats').forEach(function(el){
+    observer.observe(el);
+  });
+  // Also directly observe individual number elements not inside sections
+  document.querySelectorAll(SELECTORS).forEach(function(el){
+    observer.observe(el);
+  });
+})();
+</script>
+<script>
+/* =============================================
+   FAQ ACCORDION  -  Fixed & Accessible
+   - One item open at a time
+   - Smooth CSS max-height animation
+   - Keyboard (Enter/Space) support
+   - aria-expanded for accessibility
+============================================= */
+(function () {
+  var rows = document.querySelectorAll('.faq .row');
+  rows.forEach(function (row) {
+    var btn = row.querySelector('.q');
+    if (!btn) return;
+    // Set initial aria state
+    btn.setAttribute('aria-expanded', 'false');
+    var ans = row.querySelector('.ans');
+    if (ans) btn.setAttribute('aria-controls', ensureId(ans));
+    btn.addEventListener('click', function () {
+      var isOpen = row.classList.contains('open');
+      // Close all rows first
+      rows.forEach(function (r) {
+        r.classList.remove('open');
+        var b = r.querySelector('.q');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      // If it was closed, open it
+      if (!isOpen) {
+        row.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    // Keyboard: Enter / Space already fires click on <button>,
+    // but add explicit handler for completeness
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  });
+  /* Helper: ensure element has an id */
+  function ensureId(el) {
+    if (!el.id) el.id = 'faq-ans-' + Math.random().toString(36).slice(2, 7);
+    return el.id;
+  }
+})();
+</script>
+<script>
+/* =============================================
+   FLOATING REG BUTTON  -  Smooth Scroll
+============================================= */
+(function () {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const header = document.querySelector('header');
+  if (!menuBtn || !mobileNav) return;
+  // Toggle drawer and update accessibility state
+  menuBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+    menuBtn.setAttribute('aria-expanded', !isExpanded);
+    mobileNav.classList.toggle('show');
+  });
+  // Close drawer when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+      mobileNav.classList.remove('show');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  // Updated scroll listener for sticky shadow effect
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+  // Auto-close menu when a link is clicked
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('show');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>

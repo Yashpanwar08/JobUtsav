@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobUtsav - Job Fair</title>
+
+  <link rel="icon" href="logof.png" sizes="192x192" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --orange:#f47b20;
+      --orange2:#ff8a2a;
+
+      --navy:#0b1a33;
+      --navy2:#0e2142;
+
+      --text:#0f172a;
+      --muted:#64748b;
+
+      --bg:#f6f7f9;
+      --card:#ffffff;
+
+      --border: rgba(15,23,42,.10);
+      --shadow: 0 18px 45px rgba(2,6,23,.10);
+      --shadowSoft: 0 12px 28px rgba(2,6,23,.10);
+
+      --radius:18px;
+      --radius2:22px;
+
+      --container: 1120px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+    }
+    img{ max-width:100%; height:auto; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    button{ font-family:inherit; }
+
+    /* Utility */
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    /* ===== Header / Navbar ===== */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 1000;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 10px 20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+    }
+
+    .logo-img{
+      height:70px;
+      width:auto;
+      margin-right:8px;
+    }
+    .nav a{
+        white-space: nowrap;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:center;
+      flex:1;
+    }
+
+    .nav a{
+      font-size:14px;
+      color:#475569;
+      padding:10px 8px;
+      border-radius:10px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .nav a:hover{ background: rgba(2,6,23,.04); }
+    .nav a.active{ color: var(--orange); font-weight:600; }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      min-width: 210px;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      height:40px;
+      padding:0 16px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.10);
+      background:#fff;
+      font-weight:600;
+      font-size:13px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 18px rgba(2,6,23,.08);
+    }
+    .btn.primary{
+      border:none;
+      background: var(--orange);
+      color:#fff;
+      box-shadow: 0 14px 26px rgba(244,123,32,.24);
+    }
+    .btn.primary:hover{ background:#ea6f12; }
+
+    /* Mobile menu button */
+    .menuBtn{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      border:1px solid rgba(2,6,23,.12);
+      background:#fff;
+      cursor:pointer;
+    }
+    .menuBtn span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:#0f172a;
+      margin:4px auto;
+      border-radius:10px;
+    }
+
+    /* Mobile nav panel */
+    .mobileNav{
+      display:none;
+      padding:8px 0 14px;
+      border-top:1px solid rgba(15,23,42,.06);
+    }
+    .mobileNav a{
+      display:block;
+      padding:12px 10px;
+      border-radius:12px;
+      color:#475569;
+      font-size:14px;
+    }
+    .mobileNav a:hover{ background: rgba(2,6,23,.04); }
+    .mobileNav a.active{ color: var(--orange); font-weight:600; }
+    .mobileNav.show{ display:block; }
+
+    /* ===== HERO ===== */
+    .hero{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 22px auto 0;
+      display:flex;
+      gap:28px;
+      align-items:stretch;
+      padding: 12px 0 34px;
+    }
+
+    .hero-left{
+      flex: 1.15;
+      padding: 18px 0;
+    }
+
+    .hero-right{
+      flex: .85;
+      position: relative;
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background:#111827;
+    }
+
+    .hero-right img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      min-height: 420px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(244,123,32,.10);
+      border: 1px solid rgba(244,123,32,.18);
+      color:#7c2d12;
+      font-weight:700;
+      font-size:12px;
+      margin-bottom: 14px;
+    }
+
+    .hero-left h1{
+      margin: 0;
+      font-size: clamp(34px, 4.8vw, 64px);
+      line-height: 1.06;
+      letter-spacing: -.7px;
+      font-weight: 800;
+    }
+    .hero-left h1 span{
+      color: var(--orange);
+    }
+
+    .hero-left p{
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 560px;
+    }
+
+    .hero-buttons{
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-fill,
+    .btn-outline{
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    }
+
+    .btn-fill{
+      border:none;
+      background: var(--orange);
+      color:#fff;
+      box-shadow: 0 14px 26px rgba(244,123,32,.22);
+    }
+    .btn-fill:hover{ background:#ea6f12; transform: translateY(-1px); }
+
+    .btn-outline{
+      background:#fff;
+      color:#0f172a;
+      border: 1px solid rgba(2,6,23,.12);
+    }
+    .btn-outline:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 18px rgba(2,6,23,.08);
+    }
+
+    .large{
+      height: 50px;
+      padding: 0 20px;
+      border-radius: 14px;
+    }
+
+    .hero-info{
+      margin-top: 14px;
+      display:flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color:#334155;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    /* Overlay card on image */
+    .card-overlay{
+      position:absolute;
+      left: 16px;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(15,23,42,.78);
+      border: 1px solid rgba(255,255,255,.12);
+      color:#fff;
+      border-radius: 16px;
+      padding: 14px 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-overlay small{
+      display:block;
+      opacity:.8;
+      letter-spacing: .12em;
+      font-weight: 800;
+      font-size: 11px;
+    }
+
+    .card-overlay h3{
+      margin: 8px 0 10px;
+      font-size: 20px;
+      letter-spacing: -.2px;
+    }
+
+    .card-row{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: .92;
+      font-weight: 700;
+      font-size: 12.5px;
+    }
+
+    /* ===== COUNTDOWN SECTION (live timer) ===== */
+    .countdown-section{
+      padding: 0 0 34px;
+    }
+    .countdown-wrap{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      background: radial-gradient(800px 280px at 60% 40%, rgba(244,123,32,.10), transparent 60%),
+                  linear-gradient(135deg, rgba(244,123,32,.10), #ffffff);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 24px;
+      box-shadow: var(--shadowSoft);
+      padding: 22px;
+      display:flex;
+      gap: 22px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .countdown-left{
+      flex: 1.15;
+    }
+    .countdown-badge{
+      display:inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(244,123,32,.14);
+      border: 1px solid rgba(244,123,32,.22);
+      color:#7c2d12;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing:.06em;
+      margin-bottom: 12px;
+    }
+    .countdown-left h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .countdown-left p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .countdown-right{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      align-items:stretch;
+      min-width: 520px;
+    }
+    .time-box{
+      background:#fff;
+      border: 1px solid rgba(15,23,42,.12);
+      border-radius: 18px;
+      box-shadow: 0 14px 26px rgba(2,6,23,.08);
+      padding: 16px 12px;
+      text-align:center;
+    }
+    .time-num{
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing:-.2px;
+      color: var(--orange);
+      line-height:1;
+    }
+    .time-label{
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing:.14em;
+      text-transform: uppercase;
+      color:#64748b;
+    }
+    .countdown-note{
+      grid-column: 1 / -1;
+      text-align:center;
+      font-size: 18px;
+      font-weight: 800;
+      color:#334155;
+      padding-top: 8px;
+    }
+
+    /* ===== STATS SECTION ===== */
+    .stats-section{
+      padding: 12px 0 34px;
+      background:#fff;
+    }
+
+    .stats-box{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      background:#fff;
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 18px;
+      box-shadow: var(--shadowSoft);
+      display:flex;
+      align-items:stretch;
+      overflow:hidden;
+    }
+
+    .stat-item{
+      flex:1;
+      padding: 18px 16px;
+      text-align:center;
+    }
+
+    .stat-item .icon{
+      font-size: 20px;
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 10px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(244,123,32,.10);
+      border: 1px solid rgba(244,123,32,.18);
+    }
+
+    .stat-item h2{
+      margin: 0;
+      font-size: 24px;
+      letter-spacing:-.2px;
+      font-weight: 800;
+    }
+
+    .stat-item p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .divider{
+      width:1px;
+      background: rgba(15,23,42,.08);
+    }
+
+    .stat-item.location{
+      flex: 1.25;
+    }
+
+    /* ===== JOINT INITIATIVE ===== */
+    .initiative-section{
+      padding: 56px 0;
+      background: var(--bg);
+      border-top:1px solid rgba(15,23,42,.06);
+      border-bottom:1px solid rgba(15,23,42,.06);
+    }
+
+    .initiative-heading{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 0 auto 22px;
+      text-align:center;
+    }
+    .initiative-heading h2{
+      margin:0;
+      font-size: clamp(22px, 3vw, 34px);
+      letter-spacing:-.2px;
+    }
+    .initiative-heading p{
+      margin: 10px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .initiative-cards{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .initiative-card{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);
+      border-radius: 18px;
+      box-shadow: var(--shadowSoft);
+      padding: 18px 18px;
+    }
+
+    .brand-tag{
+      display:inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+      margin-bottom: 10px;
+    }
+    .brand-tag.blue{
+      background: rgba(59,130,246,.12);
+      border:1px solid rgba(59,130,246,.22);
+      color: #1d4ed8;
+    }
+    .brand-tag.orange{
+      background: rgba(244,123,32,.12);
+      border:1px solid rgba(244,123,32,.22);
+      color: #c2410c;
+    }
+
+    .initiative-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+    .initiative-card a{
+      display:inline-block;
+      margin-top: 10px;
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    /* ===== YATRA ===== */
+    .yatra{
+      padding: 64px 0;
+      background:#fff;
+    }
+
+    .yatra .container{
+      width:min(var(--container), calc(100% - 40px));
+    }
+
+    .yatra .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .yatra .top h1{
+      margin:0;
+      font-size: clamp(22px, 3.2vw, 34px);
+      letter-spacing:-.2px;
+    }
+    .yatra .top p{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .alert-btn{
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(2,6,23,.12);
+      background:#fff;
+      font-weight: 800;
+      cursor:pointer;
+      transition:.15s ease;
+      white-space:nowrap;
+    }
+    .alert-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 18px rgba(2,6,23,.08);
+    }
+
+    .yatra .grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .yatra .card{
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,42,.08);
+      background:#fff;
+      box-shadow: var(--shadowSoft);
+      padding: 16px 16px;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      min-height: 140px;
+    }
+    .yatra .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(2,6,23,.10);
+    }
+
+    .yatra .card .icon{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(2,6,23,.04);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .yatra .card .tag,
+    .yatra .card .coming{
+      display:inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      margin-bottom: 8px;
+    }
+    .yatra .card .coming{
+      background: rgba(2,6,23,.05);
+      border: 1px solid rgba(2,6,23,.08);
+      color: #334155;
+    }
+    .yatra .card.active{
+      border-color: rgba(244,123,32,.45);
+      box-shadow: 0 18px 40px rgba(244,123,32,.14);
+    }
+    .yatra .card.active .tag{
+      background: rgba(244,123,32,.12);
+      border: 1px solid rgba(244,123,32,.22);
+      color:#c2410c;
+    }
+
+    .yatra .card h3{
+      margin: 6px 0 6px;
+      font-size: 16px;
+      letter-spacing:-.2px;
+    }
+    .yatra .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* ===== CTA HERO (ju-hero) ===== */
+    .ju-hero{
+      background: linear-gradient(0deg, var(--navy2), var(--navy));
+      padding: 74px 0;
+    }
+    .ju-hero-inner{
+      width:min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+      text-align:center;
+      color:#fff;
+    }
+    .ju-title{
+      margin:0;
+      font-size: clamp(24px, 3.6vw, 40px);
+      letter-spacing:-.3px;
+      font-weight: 900;
+    }
+    .ju-subtitle{
+      margin: 12px auto 0;
+      max-width: 760px;
+      color: rgba(255,255,255,.82);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .ju-buttons{
+      margin-top: 22px;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .ju-btn{
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 14px;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .ju-primary{
+      border:none;
+      background: var(--orange);
+      color:#fff;
+      box-shadow: 0 16px 30px rgba(244,123,32,.22);
+    }
+    .ju-primary:hover{ background:#ea6f12; transform: translateY(-1px); }
+    .ju-outline{
+      background: transparent;
+      color:#fff;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .ju-outline:hover{
+      background: rgba(255,255,255,.08);
+      transform: translateY(-1px);
+    }
+
+    /* ===== Footer (same as previous pages) ===== */
+    .site-footer{
+      background: var(--navy);
+      color: rgba(255,255,255,.78);
+      padding: 56px 0 18px;
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 22px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    
+    /* Footer logo (desktop/default) */
+/* Same footer look as candidates.html */
+/* ===== Footer Brand (same as candidates.html style) ===== */
+.footerBrand{
+  display:flex;
+  flex-direction: column;   /* IMPORTANT: logo above text */
+  align-items:flex-start;
+  gap:12px;
+}
+
+/* Use this if your logo image is rectangular (best) */
+.footerLogo{
+  width: 140px;             /* looks like candidates footer */
+  height: auto;             /* keeps original rectangle shape */
+  border-radius: 12px;
+  box-shadow: 0 14px 26px rgba(0,0,0,.18);
+  flex: 0 0 auto;
+  object-fit: contain;
+  background: none;
+}
+
+/* Mobile */
+@media (max-width: 640px){
+  .footerLogo{
+    width: 120px;
+    height: auto;
+  }
+}
+    .footerGrid h4{
+      margin:0 0 12px;
+      color:#fff;
+      font-size:15px;
+    }
+    .footerGrid p, .footerGrid a, .footerGrid li{
+      font-size:13px;
+      line-height:1.8;
+      color: rgba(255,255,255,.74);
+    }
+    .footerGrid ul{ margin:0; padding:0; list-style:none; display:grid; gap:8px; }
+    .dot{
+      color: var(--orange);
+      margin-right:8px;
+      font-weight:800;
+    }
+    .org a{ color: var(--orange); }
+
+    .footerBottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+      padding-top:14px;
+      font-size:12px;
+      color: rgba(255,255,255,.60);
+    }
+    .footerBottom a{ color: rgba(255,255,255,.70); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px){
+      .hero{ gap: 20px; }
+      .yatra .grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 980px){
+      .nav, .actions{ display:none; }
+      .menuBtn{ display:inline-block; }
+
+      .hero{ flex-direction: column; }
+      .hero-right img{ min-height: 340px; }
+
+      .stats-box{ flex-wrap: wrap; }
+      .divider{ display:none; }
+      .stat-item{
+        flex: 1 1 50%;
+        border-top: 1px solid rgba(15,23,42,.08);
+      }
+      .stat-item:nth-child(1),
+      .stat-item:nth-child(3){
+        border-top: none;
+      }
+
+      .initiative-cards{ grid-template-columns: 1fr; }
+
+      .yatra .top{ flex-direction: column; align-items:flex-start; }
+      .yatra .grid{ grid-template-columns: repeat(2, 1fr); }
+
+      .footerGrid{ grid-template-columns: 1fr 1fr; }
+
+      /* Countdown responsive */
+      .countdown-wrap{
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .countdown-right{
+        min-width: unset;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 640px){
+      .container{ width:min(var(--container), calc(100% - 28px)); }
+      .topbar{ padding: 10px 12px; }
+      .logo-img{ height: 56px; }
+
+      .hero{
+        width:min(var(--container), calc(100% - 28px));
+        margin-top: 14px;
+      }
+      .hero-left{ padding: 10px 0; }
+      .hero-left p{ font-size: 13.5px; }
+
+      .btn-fill.large, .btn-outline.large{
+        width: 100%;
+        justify-content:center;
+      }
+
+      .hero-right img{ min-height: 260px; }
+      .card-overlay{
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 12px;
+      }
+      .card-overlay h3{ font-size: 18px; }
+
+      .stats-box{ width:min(var(--container), calc(100% - 28px)); }
+      .stat-item{ flex: 1 1 100%; border-top: 1px solid rgba(15,23,42,.08); }
+      .stat-item:first-child{ border-top: none; }
+
+      .initiative-heading,
+      .initiative-cards{
+        width:min(var(--container), calc(100% - 28px));
+      }
+
+      .yatra .container{ width:min(var(--container), calc(100% - 28px)); }
+      .yatra .grid{ grid-template-columns: 1fr; }
+
+      .ju-hero-inner{ width:min(var(--container), calc(100% - 28px)); }
+
+      .footerGrid{
+        grid-template-columns: 1fr;
+      }
+
+      /* Countdown on mobile */
+      .countdown-right{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .countdown-note{
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (same style/behavior as previous pages) -->
+  <header>
+    <div class="container">
+      <div class="topbar">
+
+        <!-- Logo -->
+        <a class="brand" href="index.html">
+          <img src="logof.png" alt="JobUtsav Logo" class="logo-img" />
+        </a>
+
+        <!-- Desktop Menu (NO dropdown) -->
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="active" href="index.html">Home</a>
+          <a href="about-us.html">About</a>
+          <a href="candidate.html">Candidates</a>
+          <a href="company.html">Companies</a>
+          <a href="college.html">Colleges</a>
+          <a href="sponsor.html">Sponsors</a>
+          <a href="aboutjobfair.html"> Job Fair 2026</a>
+        </nav>
+
+        <!-- Buttons -->
+        <div class="actions">
+          <a class="btn" href="company.html">Hire Talent</a>
+          <a class="btn primary" href="candidate.html">Get Hired</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="menuBtn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+
+      <!-- Mobile Menu (same as previous pages, works on click) -->
+      <div class="mobileNav" id="mobileNav">
+        <a class="active" href="index.html">Home</a>
+        <a href="about-us.html">About</a>
+        <a href="candidate.html">Candidates</a>
+        <a href="company.html">Companies</a>
+        <a href="college.html">Colleges</a>
+        <a href="sponsor.html">Sponsors</a>
+        <a href="aboutjobfair.html">Job Fair 2026</a>
+
+        <div style="display:grid; gap:10px; margin-top:10px;">
+          <a class="btn" href="company.html" style="width:100%;">Hire Talent</a>
+          <a class="btn primary" href="candidate.html" style="width:100%;">Get Hired</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO (unchanged content) -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="tag">• India's Largest Monthly Career Festival</div>
+      <h1>
+        Celebrate Your <br>
+        <span>Career Journey</span>
+      </h1>
+      <p>
+        JobUtsav brings thousands of job seekers and top companies together
+        every month in a new major city. Organized jointly by Shikshit.in and
+        InternBoot.com.
+      </p>
+      <div class="hero-buttons">
+        <a href="candidate.html">
+          <button class="btn-fill large">Register as Candidate →</button>
+        </a>
+        <a href="company.html">
+          <button class="btn-outline large">Register Your Company</button>
+        </a>
+      </div>
+      <div class="hero-info">
+        <span>🛡 Trusted Organizers</span>
+        <span>📍 Pan India</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img src="images/main.png" alt="Event">
+      <div class="card-overlay">
+        <small>FIRST DESTINATION</small>
+        <h3>Greater Noida</h3>
+        <div class="card-row">
+          <span>May 11–12</span>
+          <span>10,000+ Candidates</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN SECTION (added) -->
+  <section class="countdown-section" id="countdown">
+    <div class="countdown-wrap">
+      <div class="countdown-left">
+        <div class="countdown-badge">NEXT EVENT</div>
+        <h2>Greater Noida • 11–12 May 2026</h2>
+        <p>
+          Registrations close on <b>8 May 2026</b>. Secure your entry before the deadline.
+        </p>
+      </div>
+
+      <div class="countdown-right" aria-label="Countdown timer">
+        <div class="time-box">
+          <div class="time-num" id="cdDays">00</div>
+          <div class="time-label">DAYS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="cdHours">00</div>
+          <div class="time-label">HOURS</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="cdMinutes">00</div>
+          <div class="time-label">MINUTES</div>
+        </div>
+        <div class="time-box">
+          <div class="time-num" id="cdSeconds">00</div>
+          <div class="time-label">SECONDS</div>
+        </div>
+
+        <div class="countdown-note" id="cdNote">
+          Registration closes soon — don’t miss out.<br>
+          <a href="candidate.html" class="btn-fill">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS (unchanged content) -->
+  <section class="stats-section">
+    <div class="stats-box">
+      <div class="stat-item">
+        <!--<div class="icon">📍</div>-->
+         <div class="icon">↗</div>
+        <h2>2</h2>
+        <p>Days of Opportunity</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <div class="icon">🏢</div>
+        <h2>100+</h2>
+        <p>Companies Hiring</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item">
+        <div class="icon">👥</div>
+        <h2>10,000+</h2>
+        <p>Expected Candidates</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="stat-item location"> 
+          <div class="icon">📍</div>
+       <!--<div class="icon">↗</div>-->
+        <h2>Greater Noida</h2>
+        <p>First City — May 11–12</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- initiative-section (unchanged content) -->
+  <section class="initiative-section">
+    <div class="initiative-heading">
+      <h2>A Joint Initiative By Industry Leaders</h2>
+      <p>Backed by two of India's most trusted education and career platforms.</p>
+    </div>
+
+    <div class="initiative-cards">
+      <div class="initiative-card">
+        <div class="brand-tag blue">Shikshit.in</div>
+        <p>
+          Empowering Indian youth with accessible
+          education, skills training, and career guidance
+          since 2018.
+        </p>
+        <a href="https://www.shikshit.in" target="_blank">Visit Shikshit.in →</a>
+      </div>
+
+      <div class="initiative-card">
+        <div class="brand-tag orange">InternBoot.com</div>
+        <p>
+          India's fastest-growing platform connecting
+          students with high-impact internships and early
+          career opportunities.
+        </p>
+        <a href="https://www.internboot.com" target="_blank">Visit InternBoot.com →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- yatra (unchanged content) -->
+  <section class="yatra">
+    <div class="container">
+      <div class="top">
+        <div>
+          <h1>The JobUtsav Yatra</h1>
+          <p>We're traveling across the nation. Find JobUtsav in a city near you.</p>
+        </div>
+
+        <button class="alert-btn">Register for Alerts</button>
+      </div>
+
+      <!--<div class="grid">-->
+      <!--  <div class="card active">-->
+      <!--    <div class="icon">📅</div>-->
+      <!--    <span class="tag">FIRST EVENT</span>-->
+      <!--    <h3>Greater Noida</h3>-->
+      <!--    <p>📍 May 11–12, 2026</p>-->
+      <!--  </div>-->
+<div class="card active">
+  <div class="icon"><i class="fa fa-calendar"></i></div>
+  <span class="tag">FIRST EVENT</span>
+  <h3>Greater Noida</h3>
+  <p>📍 May 11–12, 2026</p>
+</div>
+
+        <div class="card">
+         <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Mumbai</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Bangalore</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Hyderabad</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+         <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Chennai</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+           <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Pune</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+         <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Kolkata</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="fa fa-calendar"></i></div>
+          <span class="coming">COMING SOON</span>
+          <h3>Ahmedabad</h3>
+          <p>📍 Dates to be announced</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA hero (unchanged) -->
+  <section class="ju-hero">
+    <div class="ju-hero-inner">
+      <h1 class="ju-title">Ready to Accelerate Your Journey?</h1>
+      <p class="ju-subtitle">
+        Whether you're looking for your dream job or searching for top talent,
+        JobUtsav is the place to be.
+      </p>
+
+      <div class="ju-buttons">
+        <a href="candidate.html"><button class="ju-btn ju-primary">I'm a Candidate</button></a>
+        <a href="company.html"><button class="ju-btn ju-outline">I'm Hiring</button></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footerGrid">
+        <div>
+          <div class="footerBrand">
+            <img src="logofooter.png" alt="JobUtsav Logo" class="footerLogo" />
+            <div>
+              <h4 style="margin:0 0 8px;">JobUtsav</h4>
+              <p style="margin:0;">
+                India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.
+              </p>
+              <div style="height:14px"></div>
+              <p class="org" style="margin:0;">
+                <b style="color:#fff;">ORGANIZED BY</b><br>
+                <a href="https://shikshit.in/">Shikshit.in</a><br>
+                <a href="https://internboot.com/">InternBoot.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4>About Us</h4>
+          <ul>
+            <li><a href="ourcommitee.html">Organizing Committee</a></li>
+            <li><a href="past.html">Past Activities</a></li>
+            <li><a href="awards.html">Awards & Recognition</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Upcoming Cities</h4>
+          <ul>
+            <li>Greater Noida — May 11–12</li>
+            <li>Mumbai — Coming Soon</li>
+            <li>Bangalore — Coming Soon</li>
+            <li>Hyderabad — Coming Soon</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact Us</h4>
+          <ul>
+            <li>📍C Block, Phase 2, Essential Oil association of India, Noida Uttar Pradesh</li>
+            <li>📞 +91 8882866024</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footerBottom">
+        <div>© <span id="year"></span> JobUtsav 2026. All rights reserved.</div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+          <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
