@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root{
       --orange:#f47b20;
@@ -187,23 +186,55 @@
       margin-right:8px;
     }
     /* ===== Hero (Candidates) ===== */
-    .hero{
-      background: linear-gradient(0deg, var(--navy3), var(--navy2));
-      border-bottom:1px solid rgba(15,23,42,.06);
-      position:relative;
-      overflow:hidden;
+    .hero {
+      background: radial-gradient(circle at 18% 25%, rgba(244, 123, 32, 0.14) 0%, transparent 45%),
+                  radial-gradient(circle at 82% 65%, rgba(37, 99, 235, 0.16) 0%, transparent 50%),
+                  linear-gradient(180deg, #071529 0%, #0c1e38 50%, #09172c 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
+
+    /* Ambient animated mesh glowing orbs in background */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
       background:
-        radial-gradient(900px 400px at 70% 40%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(500px 300px at 35% 70%, rgba(255,255,255,.06), transparent 60%);
-      pointer-events:none;
+        radial-gradient(circle at 30% 40%, rgba(244, 123, 32, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 75% 30%, rgba(59, 130, 246, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.09) 0%, transparent 50%);
+      pointer-events: none;
+      filter: blur(48px);
+      animation: heroOrbFloat 14s ease-in-out infinite alternate;
+      z-index: 0;
     }
+
+    /* Subtle geometric grid texture */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes heroOrbFloat {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.08) translate(-2%, 3%); }
+      100% { transform: scale(0.96) translate(3%, -2%); }
+    }
+
     .heroInner {
       position: relative;
-      padding: 40px 0 60px;
+      padding: 48px 0 68px;
+      z-index: 2;
     }
     /* Professional Grid Stacking */
     @media (max-width: 980px) {
@@ -237,146 +268,457 @@
       margin:0;
       color:#fff;
       font-size: clamp(34px, 4.6vw, 62px);
-      line-height:1.06;
+      line-height:1.08;
       font-weight:800;
       letter-spacing:-.6px;
       max-width: 680px;
     }
-    .hero p{
-      margin:14px 0 0;
-      color: rgba(255,255,255,.80);
-      font-size:14px;
-      line-height:1.9;
-      max-width: 640px;
+    /* =============================================
+       HERO HEADING WAVE EFFECT (Words & Letters Wave)
+    ============================================= */
+    .heroWaveHeading {
+      perspective: 1000px;
+      display: block;
     }
-    /* ADDED: hero badge + actions + meta (to avoid blank look) */
-    .heroBadge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 7px 14px;
+
+    .heroWaveHeading .wave-line {
+      display: inline-block;
+    }
+
+    .heroWaveHeading .wave-word {
+      display: inline-block;
+      white-space: nowrap;
+      margin-right: 0.28em;
+      animation: heroWordWave 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+      animation-delay: calc(var(--wi, 0) * 0.14s + 0.05s);
+    }
+
+    .heroWaveHeading .wave-word:last-child {
+      margin-right: 0;
+    }
+
+    .heroWaveHeading .wave-char {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+      animation: heroLetterWaveEntrance 1.1s cubic-bezier(0.2, 0.85, 0.3, 1) 1 both;
+      animation-delay: calc(var(--ci, 0) * 0.042s + 0.08s);
+      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  color 0.25s ease, 
+                  text-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    /* Highlight line ("Opportunity Awaits") gradient */
+    .heroWaveHeading .highlight .wave-char {
+      background: linear-gradient(135deg, #f47b20 0%, #ff8a2a 50%, #facc15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 16px rgba(244, 123, 32, 0.3));
+    }
+
+    /* Individual Character Hover Effect */
+    .heroWaveHeading .wave-char:hover {
+      transform: translateY(-16px) scale(1.22) rotate(-5deg) !important;
+      color: var(--orange, #f47b20) !important;
+      text-shadow: 0 10px 24px rgba(244, 123, 32, 0.6);
+    }
+
+    .heroWaveHeading .highlight .wave-char:hover {
+      background: linear-gradient(135deg, #ffffff 0%, #ffedd5 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      filter: drop-shadow(0 0 16px rgba(244, 123, 32, 0.85));
+    }
+
+    /* Entrance Wave Keyframes - Waves in strictly once */
+    @keyframes heroLetterWaveEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(48px) rotate(9deg) scale(0.78);
+        filter: blur(5px);
+      }
+      35% {
+        opacity: 0.75;
+        filter: blur(1px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-16px) rotate(-3.5deg) scale(1.08); /* Wave crest */
+        filter: blur(0);
+      }
+      80% {
+        transform: translateY(5px) rotate(1.2deg) scale(0.98); /* Wave trough */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroWordWave {
+      0% {
+        opacity: 0.3;
+        transform: translateY(22px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Respect users with reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .heroWaveHeading .wave-word,
+      .heroWaveHeading .wave-char {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+    .hero-description,
+    .hero p {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 15px;
+      line-height: 1.85;
+      max-width: 620px;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+    /* Luxury Hero Badge */
+    .heroBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.88);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing:.2px;
-      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 20px;
       width: fit-content;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      transition: all 0.3s ease;
     }
-    .heroActions{
-      margin-top: 18px;
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
+
+    .heroBadge:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(244, 123, 32, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(244, 123, 32, 0.18);
     }
-    .heroBtn{
-      height: 46px;
-      padding: 0 18px;
-      border-radius: 12px;
-      font-weight: 900;
-      font-size: 13px;
-      cursor:pointer;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+
+    .heroBadge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange, #f47b20);
+      box-shadow: 0 0 10px #f47b20, 0 0 0 3px rgba(244, 123, 32, 0.25);
+      display: inline-block;
+      animation: badgePulse 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.7; }
+    }
+
+    .heroActions {
+      margin-top: 26px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .heroBtn {
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 13.5px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 10px;
       white-space: nowrap;
-      transition:.15s ease;
+      transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     }
-    .heroBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
-    .heroBtn.primary{
-      border:none;
-      background: var(--orange);
-      box-shadow: 0 16px 30px rgba(244,123,32,.22);
+
+    .heroBtn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      color: #fff;
     }
-    .heroBtn.primary:hover{ background:#ea6f12; }
-    .heroMeta{
-      margin-top: 16px;
-      display:flex;
-      gap: 16px;
-      flex-wrap:wrap;
-      color: rgba(255,255,255,.72);
+
+    .heroBtn.primary {
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 14px;
       font-weight: 700;
+      font-size: 13.5px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      background: var(--orange, #f47b20);
+      box-shadow: 0 14px 30px rgba(244, 123, 32, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      color: #fff;
+    }
+
+    .heroBtn.primary span {
+      position: relative;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Circle expansion effect: changes color from orange to green on hover */
+    .heroBtn.primary::before {
+      content: '';
+      position: absolute;
+      top: var(--circle-y, 50%);
+      left: var(--circle-x, 50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, #22c55e 0%, #16a34a 70%, #15803d 100%);
+      transform: translate(-50%, -50%);
+      transition: width 0.55s cubic-bezier(0.25, 1, 0.5, 1), height 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heroBtn.primary:hover::before {
+      width: 380px;
+      height: 380px;
+    }
+
+    .heroBtn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(22, 163, 74, 0.44);
+    }
+
+    /* Shine effect from left to right */
+    .heroBtn.primary::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -130%;
+      width: 55%;
+      height: 220%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0.65) 50%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      animation: heroBtnShine 2.8s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes heroBtnShine {
+      0% {
+        left: -130%;
+      }
+      38%, 100% {
+        left: 170%;
+      }
+    }
+
+    .heroMeta {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 600;
       font-size: 12.5px;
-      align-items:center;
+      align-items: center;
     }
-    .heroMeta span{
-      display:inline-flex;
-      align-items:center;
+
+    .heroMeta span {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
-    .dot{
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 4px rgba(244,123,32,.18);
+
+    .heroMeta span:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #fff;
+      transform: translateY(-1px);
     }
-    /* ADDED: right-side image card like awards hero */
-    .heroMedia{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 18px;
-      overflow:hidden;
-      box-shadow: 0 18px 45px rgba(0,0,0,.25);
-      position:relative;
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981, 0 0 0 3px rgba(16, 185, 129, 0.22);
+      flex-shrink: 0;
     }
-    .heroMedia img{
-      width:100%;
-      height: 260px;
+
+    /* Right-side feature image card */
+    .heroMedia {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.5), 
+                  0 0 35px rgba(244, 123, 32, 0.12),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      position: relative;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s ease;
+    }
+
+    .heroMedia:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 35px 75px -10px rgba(0, 0, 0, 0.6), 
+                  0 0 45px rgba(244, 123, 32, 0.25),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(244, 123, 32, 0.38);
+    }
+
+    .heroMedia img {
+      width: 100%;
+      height: 270px;
       object-fit: cover;
-      display:block;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .heroSticker{
-      position:absolute;
+
+    .heroMedia:hover img {
+      transform: scale(1.06);
+    }
+
+    .heroSticker {
+      position: absolute;
       top: 14px;
       right: 14px;
-      background: var(--orange);
-      color:#fff;
-      font-weight: 900;
+      background: linear-gradient(135deg, #f47b20, #e06509);
+      color: #fff;
+      font-weight: 800;
       font-size: 12px;
       border-radius: 12px;
-      padding: 10px 12px;
-      box-shadow: 0 18px 34px rgba(244,123,32,.22);
-      line-height:1.15;
-      text-align:left;
+      padding: 8px 14px;
+      box-shadow: 0 10px 24px rgba(244, 123, 32, 0.35);
+      line-height: 1.15;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .heroSticker small{
-      display:block;
-      opacity:.9;
+
+    .heroSticker small {
+      display: block;
+      opacity: .9;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .heroMediaBody {
+      padding: 18px 20px 20px;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(12, 30, 56, 0.75) 0%, rgba(7, 21, 41, 0.95) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .heroMediaBody small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #f47b20;
       font-size: 11px;
       font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .heroMediaBody{
-      padding: 14px 14px 16px;
-      color:#fff;
-    }
-    .heroMediaBody small{
-      display:block;
-      color: rgba(255,255,255,.60);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing:.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .heroMediaBody h3{
-      margin:0 0 10px;
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing:-.2px;
+
+    .heroMediaBody small::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f47b20;
+      box-shadow: 0 0 8px #f47b20;
+      display: inline-block;
     }
-    .heroMediaRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      color: rgba(255,255,255,.74);
-      font-size: 12.6px;
-      font-weight: 700;
+
+    .heroMediaBody h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .heroMediaRow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .heroMediaRow span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .heroMediaRow span:hover {
+      background: rgba(244, 123, 32, 0.16);
+      border-color: rgba(244, 123, 32, 0.35);
+      color: #fff;
+      transform: translateY(-1px);
     }
     /* ===== Main content layout (left content + right form) ===== */
     section{ padding: 56px 0; }
@@ -402,73 +744,326 @@
       font-size: 14px;
       line-height: 1.8;
     }
-    /* Why Attend cards */
-    .whyGrid{
-      display:grid;
+    /* =============================================
+       WHY ATTEND JOBUTSAV - INTERACTIVE CARD DECK
+       - Gathered like playing cards by default
+       - Spreads smoothly on hover into 2x2 grid
+    ============================================= */
+    .whyHeaderRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .whyDeckBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748b;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      user-select: none;
+    }
+
+    .whyDeckBadge svg {
+      color: var(--orange, #f47b20);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .whyGrid:hover ~ * .whyDeckBadge,
+    .whyHeaderRow:hover .whyDeckBadge {
+      background: rgba(244, 123, 32, 0.08);
+      color: #f47b20;
+      border-color: rgba(244, 123, 32, 0.28);
+    }
+
+    .whyGrid {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      position: relative;
+      perspective: 1200px;
+      padding: 6px 4px 16px;
+      cursor: pointer;
     }
-    .infoCard{
-      background:#fff;
-      border:1px solid rgba(15,23,42,.06);
-      border-radius: 16px;
-      box-shadow: var(--shadowSoft);
-      padding: 18px 16px;
-      min-height: 132px;
+
+    .infoCard {
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      padding: 20px 18px;
+      min-height: 136px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.52s cubic-bezier(0.34, 1.35, 0.64, 1),
+                  box-shadow 0.4s ease,
+                  border-color 0.35s ease;
+      will-change: transform;
+      user-select: none;
     }
-    .infoCard .ic{
-      width:36px;
-      height:36px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      margin-bottom:10px;
-      color: var(--orange);
-      background: rgba(244,123,32,.10);
-      border:1px solid rgba(244,123,32,.18);
-      font-weight:800;
+
+    .infoCard .ic {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      color: var(--orange, #f47b20);
+      background: linear-gradient(135deg, rgba(244, 123, 32, 0.12), rgba(244, 123, 32, 0.04));
+      border: 1px solid rgba(244, 123, 32, 0.2);
+      transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 4px 12px rgba(244, 123, 32, 0.06);
+      flex-shrink: 0;
     }
-    .infoCard h4{
-      margin:0 0 6px;
-      font-size: 14px;
+
+    .infoCard .ic svg,
+    .infoCard .ic .ju-card-icon {
+      width: 22px;
+      height: 22px;
+      stroke: var(--orange, #f47b20);
+      fill: none;
+      stroke-width: 2.2;
+      transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .infoCard h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
       font-weight: 700;
+      color: #0f172a;
+      transition: color 0.28s ease;
+      letter-spacing: -0.2px;
     }
-    .infoCard p{
-      margin:0;
-      color: var(--muted);
-      font-size: 12.5px;
+
+    .infoCard p {
+      margin: 0;
+      color: var(--muted, #64748b);
+      font-size: 12.8px;
       line-height: 1.7;
     }
-    /* Who should attend list cards */
-    .whoList{
-      display:grid;
-      gap: 14px;
+
+    /* ---------------------------------------------
+       DEFAULT GATHERED STATE (Playing card stack)
+       Cards gather towards the center with realistic fan rotation
+    --------------------------------------------- */
+    .whyGrid .infoCard:nth-child(1) {
+      transform: translate(calc(50% + 8px), calc(50% + 8px)) rotate(-3deg);
+      z-index: 4;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.06);
+      transition-delay: 0.08s;
+    }
+
+    .whyGrid .infoCard:nth-child(2) {
+      transform: translate(calc(-50% - 8px + 10px), calc(50% + 8px + 6px)) rotate(4deg);
+      z-index: 3;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.11);
+      transition-delay: 0.05s;
+    }
+
+    .whyGrid .infoCard:nth-child(3) {
+      transform: translate(calc(50% + 8px - 14px), calc(-50% - 8px - 6px)) rotate(-7deg);
+      z-index: 2;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.09);
+      transition-delay: 0.02s;
+    }
+
+    .whyGrid .infoCard:nth-child(4) {
+      transform: translate(calc(-50% - 8px + 18px), calc(-50% - 8px - 10px)) rotate(8.5deg);
+      z-index: 1;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+      transition-delay: 0s;
+    }
+
+    /* ---------------------------------------------
+       SPREAD STATE (When hovered or toggled)
+       Cards spread smoothly to their 2x2 grid positions
+    --------------------------------------------- */
+    .whyGrid:hover .infoCard,
+    .whyGrid.is-spread .infoCard {
+      transform: translate(0, 0) rotate(0deg) !important;
+      z-index: 5;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    }
+
+    .whyGrid:hover .infoCard:nth-child(1),
+    .whyGrid.is-spread .infoCard:nth-child(1) {
+      transition-delay: 0s;
+    }
+    .whyGrid:hover .infoCard:nth-child(2),
+    .whyGrid.is-spread .infoCard:nth-child(2) {
+      transition-delay: 0.04s;
+    }
+    .whyGrid:hover .infoCard:nth-child(3),
+    .whyGrid.is-spread .infoCard:nth-child(3) {
+      transition-delay: 0.08s;
+    }
+    .whyGrid:hover .infoCard:nth-child(4),
+    .whyGrid.is-spread .infoCard:nth-child(4) {
+      transition-delay: 0.12s;
+    }
+
+    /* Individual Card Hover (when spread) */
+    .whyGrid .infoCard:hover {
+      transform: translateY(-8px) scale(1.03) rotate(0deg) !important;
+      z-index: 12 !important;
+      border-color: rgba(244, 123, 32, 0.4) !important;
+      box-shadow: 0 20px 38px rgba(15, 23, 42, 0.12), 0 0 0 2px rgba(244, 123, 32, 0.22) !important;
+    }
+
+    .whyGrid .infoCard:hover .ic {
+      background: linear-gradient(135deg, #f47b20, #e06509);
+      color: #ffffff;
+      border-color: #f47b20;
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 8px 20px rgba(244, 123, 32, 0.35);
+    }
+
+    .whyGrid .infoCard:hover .ic svg,
+    .whyGrid .infoCard:hover .ic .ju-card-icon {
+      stroke: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .whyGrid .infoCard:hover h4 {
+      color: #f47b20;
+    }
+    /* =============================================
+       WHO SHOULD ATTEND - MODERN INTERACTIVE CARDS
+    ============================================= */
+    .whoList {
+      display: grid;
+      gap: 16px;
       margin-top: 18px;
     }
-    .whoItem{
-      background:#fff;
-      border:1px solid rgba(15,23,42,.06);
-      border-radius: 16px;
-      box-shadow: var(--shadowSoft);
-      padding: 16px;
-      display:grid;
-      grid-template-columns: 46px 1fr;
-      gap: 12px;
-      align-items:start;
+    
+    .whoItem {
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      border-left: 4px solid transparent;
     }
-    .whoIcon{
-      width:46px;
-      height:46px;
-      border-radius: 50%;
-      display:grid;
-      place-items:center;
-      background: rgba(244,123,32,.10);
-      border:1px solid rgba(244,123,32,.18);
-      color: var(--orange);
-      font-weight: 900;
+
+    /* Ambient hover shine */
+    .whoItem::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(244, 123, 32, 0.05), transparent);
+      transition: left 0.6s ease;
+      pointer-events: none;
     }
-    .whoItem h4{ margin:0 0 4px; font-size: 14px; }
-    .whoItem p{ margin:0; color: var(--muted); font-size: 12.8px; line-height: 1.8; }
+
+    .whoItem:hover::before {
+      left: 100%;
+    }
+
+    .whoItem:hover {
+      transform: translateY(-3px) translateX(4px);
+      border-color: rgba(244, 123, 32, 0.28);
+      border-left-color: #f47b20;
+      background: linear-gradient(135deg, #ffffff 0%, rgba(244, 123, 32, 0.02) 100%);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(244, 123, 32, 0.08);
+    }
+
+    /* Modern Icon Badge */
+    .whoIcon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(244, 123, 32, 0.12), rgba(244, 123, 32, 0.04));
+      border: 1px solid rgba(244, 123, 32, 0.2);
+      color: #f47b20;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 4px 12px rgba(244, 123, 32, 0.06);
+    }
+
+    .whoIcon svg,
+    .whoIcon .ju-card-icon {
+      width: 22px;
+      height: 22px;
+      stroke: #f47b20;
+      fill: none;
+      stroke-width: 2.2;
+      transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .whoItem:hover .whoIcon {
+      background: linear-gradient(135deg, #f47b20, #e06509);
+      color: #ffffff;
+      border-color: #f47b20;
+      transform: scale(1.08) rotate(-4deg);
+      box-shadow: 0 8px 20px rgba(244, 123, 32, 0.35);
+    }
+
+    .whoItem:hover .whoIcon svg,
+    .whoItem:hover .whoIcon .ju-card-icon {
+      stroke: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Content Area */
+    .whoContent {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .whoItem h4 {
+      margin: 0 0 5px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      transition: color 0.25s ease;
+      letter-spacing: -0.2px;
+    }
+
+    .whoItem:hover h4 {
+      color: #f47b20;
+    }
+
+    .whoItem p {
+      margin: 0;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.75;
+      transition: color 0.25s ease;
+    }
+
+    .whoItem:hover p {
+      color: #475569;
+    }
+
     /* FAQ */
     .faq{
       margin-top: 18px;
@@ -1062,10 +1657,11 @@ footer .social-icon:hover {
   /* Each row */
   .faq .row {
     border-top: 1px solid rgba(15,23,42,.06);
-    transition: background 0.2s ease;
+    transition: background 0.25s ease;
   }
   .faq .row:first-child { border-top: none; }
-  .faq .row.open { background: rgba(244,123,32,.03); }
+  .faq .row.open,
+  .faq .row:hover { background: rgba(244,123,32,.03); }
   /* Question button */
   .faq .q {
     width: 100%;
@@ -1082,11 +1678,15 @@ footer .social-icon:hover {
     font-weight: 700;
     font-size: 13.5px;
     color: #0f172a;
-    transition: background 0.15s ease, color 0.15s ease;
     border-left: 3px solid transparent;
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
   }
-  .faq .q:hover { background: rgba(244,123,32,.04); color: #f47b20; }
+  .faq .q:hover,
+  .faq .row:hover .q {
+    background: rgba(244,123,32,.04);
+    color: #f47b20;
+    border-left-color: #f47b20;
+  }
   .faq .row.open .q {
     color: #f47b20;
     border-left-color: #f47b20;
@@ -1110,7 +1710,8 @@ footer .social-icon:hover {
                 color 0.2s ease,
                 border-color 0.2s ease;
   }
-  .faq .row.open .q .chev {
+  .faq .row.open .q .chev,
+  .faq .row:hover .q .chev {
     transform: rotate(180deg);
     background: rgba(244,123,32,.12);
     border-color: rgba(244,123,32,.22);
@@ -1131,8 +1732,9 @@ footer .social-icon:hover {
     opacity: 0;
     border-left: 3px solid transparent;
   }
-  .faq .row.open .ans {
-    max-height: 200px;
+  .faq .row.open .ans,
+  .faq .row:hover .ans {
+    max-height: 240px;
     padding: 0 18px 16px 21px;
     opacity: 1;
     border-left-color: rgba(244,123,32,.25);
@@ -1193,6 +1795,354 @@ footer .social-icon:hover {
         gap: 10px !important;
       }
     }
+/* ========================================================
+   CANDIDATE CAREER GROWTH - TABLE OF CONTENTS STYLING
+======================================================== */
+.candidate-growth {
+  max-width: 1240px;
+  margin: 60px auto 40px;
+  padding: 44px 36px;
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+.cg-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 36px;
+}
+
+.cg-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #f47b20;
+  background: rgba(244, 123, 32, 0.1);
+  border: 1px solid rgba(244, 123, 32, 0.2);
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.cg-main-title {
+  color: #0f172a;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+}
+
+.cg-subtitle {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Two Column Container */
+.cg-container {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* Sticky TOC Sidebar (Left Side) */
+.cg-toc-wrapper {
+  position: sticky;
+  top: 96px;
+  z-index: 10;
+}
+
+.cg-toc-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 20px;
+  padding: 22px 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cg-toc-card:hover {
+  box-shadow: 0 16px 36px rgba(244, 123, 32, 0.08);
+  border-color: rgba(244, 123, 32, 0.25);
+}
+
+.cg-toc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+}
+
+.cg-toc-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f47b20, #e06509);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(244, 123, 32, 0.3);
+}
+
+.cg-toc-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cg-toc-count {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Reading Progress Bar (Fills Green from 0 length as page scrolls down) */
+.cg-progress-bar {
+  width: 100%;
+  height: 5px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cg-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #22c55e 60%, #16a34a 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+  transition: width 0.08s ease-out, opacity 0.15s ease;
+  opacity: 0;
+}
+
+/* Navigation List */
+.cg-toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cg-toc-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #475569;
+  font-size: 13.5px;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  border-left: 3px solid transparent;
+}
+
+.cg-toc-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.cg-toc-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cg-toc-arrow {
+  font-size: 11px;
+  color: #94a3b8;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s ease;
+}
+
+/* Hover & Active States */
+.cg-toc-link:hover {
+  background: rgba(244, 123, 32, 0.08);
+  color: #f47b20;
+  transform: translateX(4px);
+}
+
+.cg-toc-link:hover .cg-toc-num {
+  background: #f47b20;
+  color: #ffffff;
+}
+
+.cg-toc-link:hover .cg-toc-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #f47b20;
+}
+
+.cg-toc-link.active {
+  background: rgba(244, 123, 32, 0.12);
+  color: #f47b20;
+  border-left-color: #f47b20;
+  font-weight: 700;
+}
+
+.cg-toc-link.active .cg-toc-num {
+  background: linear-gradient(135deg, #f47b20, #e06509);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(244, 123, 32, 0.35);
+}
+
+.cg-toc-link.active .cg-toc-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #f47b20;
+}
+
+.cg-toc-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 11.5px;
+}
+
+/* Right Content Column */
+.cg-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cg-section {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  padding: 30px 28px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  scroll-margin-top: 110px;
+  position: relative;
+}
+
+.cg-section:hover {
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+  border-color: rgba(244, 123, 32, 0.2);
+  transform: translateY(-2px);
+}
+
+.cg-section-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #f47b20;
+  background: rgba(244, 123, 32, 0.09);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.cg-section h3 {
+  font-size: 21px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 14px;
+  line-height: 1.35;
+}
+
+.cg-section p {
+  color: #475569;
+  font-size: 14.5px;
+  line-height: 1.75;
+  margin: 0 0 12px;
+}
+
+.cg-section p:last-child {
+  margin-bottom: 0;
+}
+
+.cg-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.cg-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.6;
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  transition: all 0.2s ease;
+}
+
+.cg-checklist li:hover {
+  background: rgba(244, 123, 32, 0.05);
+  border-color: rgba(244, 123, 32, 0.15);
+  transform: translateX(4px);
+}
+
+.cg-checklist li i {
+  color: #10b981;
+  font-size: 15px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .candidate-growth {
+    padding: 30px 20px;
+    margin: 40px 16px;
+  }
+  .cg-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .cg-toc-wrapper {
+    position: static;
+  }
+  .cg-main-title {
+    font-size: 26px;
+  }
+  .cg-section {
+    padding: 22px 20px;
+  }
+}
 </style>
 </head>
 <body>
@@ -1242,14 +2192,24 @@ footer .social-icon:hover {
     <div class="heroGrid">
       <div>
         <div class="heroBadge">- India's Largest Monthly Career Festival</div>
-        <h1 class="hero-title">Your Next Big<br><span class="highlight">Opportunity Awaits</span></h1>
+        <h1 class="hero-title heroWaveHeading" aria-label="Your Next Big Opportunity Awaits">
+          <span class="wave-line" aria-hidden="true">
+            <span class="wave-word" style="--wi:0;"><span class="wave-char" style="--ci:0;">Y</span><span class="wave-char" style="--ci:1;">o</span><span class="wave-char" style="--ci:2;">u</span><span class="wave-char" style="--ci:3;">r</span></span>
+            <span class="wave-word" style="--wi:1;"><span class="wave-char" style="--ci:4;">N</span><span class="wave-char" style="--ci:5;">e</span><span class="wave-char" style="--ci:6;">x</span><span class="wave-char" style="--ci:7;">t</span></span>
+            <span class="wave-word" style="--wi:2;"><span class="wave-char" style="--ci:8;">B</span><span class="wave-char" style="--ci:9;">i</span><span class="wave-char" style="--ci:10;">g</span></span>
+          </span><br>
+          <span class="wave-line highlight" aria-hidden="true">
+            <span class="wave-word" style="--wi:3;"><span class="wave-char" style="--ci:11;">O</span><span class="wave-char" style="--ci:12;">p</span><span class="wave-char" style="--ci:13;">p</span><span class="wave-char" style="--ci:14;">o</span><span class="wave-char" style="--ci:15;">r</span><span class="wave-char" style="--ci:16;">t</span><span class="wave-char" style="--ci:17;">u</span><span class="wave-char" style="--ci:18;">n</span><span class="wave-char" style="--ci:19;">i</span><span class="wave-char" style="--ci:20;">t</span><span class="wave-char" style="--ci:21;">y</span></span>
+            <span class="wave-word" style="--wi:4;"><span class="wave-char" style="--ci:22;">A</span><span class="wave-char" style="--ci:23;">w</span><span class="wave-char" style="--ci:24;">a</span><span class="wave-char" style="--ci:25;">i</span><span class="wave-char" style="--ci:26;">t</span><span class="wave-char" style="--ci:27;">s</span></span>
+          </span>
+        </h1>
         <p class="hero-description">
           Meet multiple top employers in a single day. Free to attend, walk-in interviews, and on-the-spot offers.
           Join India's biggest career festival.
         </p>
             <!-- ADDED: simple actions to reduce blank look -->
             <div class="heroActions">
-              <a class="heroBtn primary" href="#registerForm">Register as Candidate <span style="opacity:.9;">-></span></a>
+              <a class="heroBtn primary" href="#registerForm"><span>Register as Candidate</span> <span style="opacity:.9;">-></span></a>
               <a class="heroBtn" href="aboutjobfair.html">View Job Fair 2026</a>
             </div>
             <!-- ADDED: meta line like awards hero -->
@@ -1284,25 +2244,39 @@ footer .social-icon:hover {
       <div class="contentGrid">
         <!-- LEFT CONTENT -->
         <div>
-          <h2 class="blockTitle">Why Attend JobUtsav?</h2>
-          <div class="whyGrid">
+          <div class="whyHeaderRow">
+            <h2 class="blockTitle" style="margin-bottom:0;">Why Attend JobUtsav?</h2>
+            <span class="whyDeckBadge" title="Hover or tap to spread cards">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18"/></svg>
+              <span class="deckBadgeText">Hover to spread cards</span>
+            </span>
+          </div>
+          <div class="whyGrid" aria-label="Why Attend JobUtsav interactive cards">
             <div class="infoCard">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <div class="ic">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
               <h4>Direct Interviews</h4>
               <p>Skip the resume black hole. Meet hiring managers face-to-face and prove your worth instantly.</p>
             </div>
             <div class="infoCard">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+              <div class="ic">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+              </div>
               <h4>Multiple Options</h4>
               <p>Explore 50+ participating companies across IT, Finance, Marketing, Sales, and Operations under one roof.</p>
             </div>
             <div class="infoCard">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z"/></svg>
+              <div class="ic">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 10-13h-7l0-7z"/></svg>
+              </div>
               <h4>Instant Feedback</h4>
               <p>Get immediate feedback on your profile and interview performance. Many candidates walk out with offer letters.</p>
             </div>
             <div class="infoCard">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8"/><path d="M8 8l8 8"/></svg>
+              <div class="ic">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8l-8 8"/><path d="M8 8l8 8"/></svg>
+              </div>
               <h4>100% Free</h4>
               <p>JobUtsav is entirely free for all candidates. No hidden charges or registration fees ever.</p>
             </div>
@@ -1311,22 +2285,28 @@ footer .social-icon:hover {
           <h2 class="blockTitle">Who Should Attend?</h2>
           <div class="whoList">
             <div class="whoItem">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-              <div>
+              <div class="whoIcon">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="whoContent">
                 <h4>Fresh Graduates</h4>
                 <p>Recent pass-outs looking for their first breakthrough in top companies with comprehensive training programs.</p>
               </div>
             </div>
             <div class="whoItem">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-9m9 4h-9m9 4h-9M5 7h.01M5 11h.01M5 15h.01"/></svg>
-              <div>
+              <div class="whoIcon">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-9m9 4h-9m9 4h-9M5 7h.01M5 11h.01M5 15h.01"/></svg>
+              </div>
+              <div class="whoContent">
                 <h4>Experienced Professionals</h4>
                 <p>Professionals with 1-10 years of experience seeking better roles, higher packages, or leadership positions.</p>
               </div>
             </div>
             <div class="whoItem">
-              <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 5h18M7 23l-4-4 4-4"/><path d="M21 19H3"/></svg>
-              <div>
+              <div class="whoIcon">
+                <svg class="ju-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 5h18M7 23l-4-4 4-4"/><path d="M21 19H3"/></svg>
+              </div>
+              <div class="whoContent">
                 <h4>Career Switchers</h4>
                 <p>Individuals looking to transition into new domains or industries with transferable skills.</p>
               </div>
@@ -1512,6 +2492,122 @@ footer .social-icon:hover {
     </form>
   </div>
 </div>
+      </div>
+    </div>
+  </section>
+  <section class="candidate-growth" id="candidate-growth-section">
+    <div class="cg-header">
+      <span class="cg-pill"><i class="fas fa-graduation-cap"></i> Career Guidance</span>
+      <h2 class="cg-main-title">Candidate Career Growth &amp; Preparation</h2>
+      <p class="cg-subtitle">Everything you need to know to excel in interviews, prepare for hiring events, and accelerate your career journey.</p>
+    </div>
+
+    <div class="cg-container">
+      <!-- LEFT SIDE: Sticky Table of Contents -->
+      <aside class="cg-toc-wrapper">
+        <div class="cg-toc-card">
+          <div class="cg-toc-header">
+            <div class="cg-toc-icon"><i class="fas fa-list-check"></i></div>
+            <div>
+              <h4 class="cg-toc-title">Table of Contents</h4>
+              <span class="cg-toc-count">6 Topics • Quick Navigation</span>
+            </div>
+          </div>
+          <div class="cg-progress-bar"><div class="cg-progress-fill" id="cgProgressFill"></div></div>
+          
+          <nav class="cg-toc-nav" id="cgTocNav">
+            <a href="#cg-career-success" class="cg-toc-link active" data-target="cg-career-success">
+              <span class="cg-toc-num">01</span>
+              <span class="cg-toc-text">Preparing for Success</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+            <a href="#cg-job-fair-prep" class="cg-toc-link" data-target="cg-job-fair-prep">
+              <span class="cg-toc-num">02</span>
+              <span class="cg-toc-text">Job Fair Preparation</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+            <a href="#cg-valued-skills" class="cg-toc-link" data-target="cg-valued-skills">
+              <span class="cg-toc-num">03</span>
+              <span class="cg-toc-text">In-Demand Skills</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+            <a href="#cg-confidence" class="cg-toc-link" data-target="cg-confidence">
+              <span class="cg-toc-num">04</span>
+              <span class="cg-toc-text">Building Confidence</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+            <a href="#cg-continuous-learning" class="cg-toc-link" data-target="cg-continuous-learning">
+              <span class="cg-toc-num">05</span>
+              <span class="cg-toc-text">Continuous Learning</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+            <a href="#cg-opportunities" class="cg-toc-link" data-target="cg-opportunities">
+              <span class="cg-toc-num">06</span>
+              <span class="cg-toc-text">Industry Opportunities</span>
+              <i class="fas fa-chevron-right cg-toc-arrow"></i>
+            </a>
+          </nav>
+
+          <div class="cg-toc-footer">
+            <i class="fas fa-lightbulb"></i>
+            <span>Hover or click to navigate quickly</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT SIDE: Content Sections -->
+      <div class="cg-content">
+        <article class="cg-section" id="cg-career-success">
+          <span class="cg-section-badge">Topic 01</span>
+          <h3>Preparing for Career Success</h3>
+          <p>A successful career journey begins with preparation, confidence, and continuous learning. While educational qualifications are important, employers also evaluate communication skills, problem-solving abilities, teamwork, and adaptability during the hiring process.</p>
+          <p>Job fairs provide candidates with opportunities to interact directly with recruiters, understand industry expectations, and explore a variety of career paths. These events help job seekers gain valuable exposure to real-world recruitment practices and professional environments.</p>
+        </article>
+
+        <article class="cg-section" id="cg-job-fair-prep">
+          <span class="cg-section-badge">Topic 02</span>
+          <h3>How to Prepare Before Attending a Job Fair</h3>
+          <p>Thorough preparation sets you apart from the crowd. Follow these essential best practices before arriving at the venue:</p>
+          <ul class="cg-checklist">
+            <li><i class="fas fa-check-circle"></i> <span>Keep your resume updated with recent skills and achievements.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Research participating companies before attending.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Dress professionally in formal or business attire and arrive on time.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Prepare a short, engaging self-introduction (elevator pitch).</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Carry 5–10 printed copies of your resume and necessary certificates.</span></li>
+            <li><i class="fas fa-check-circle"></i> <span>Practice answering common interview questions with confidence.</span></li>
+          </ul>
+        </article>
+
+        <article class="cg-section" id="cg-valued-skills">
+          <span class="cg-section-badge">Topic 03</span>
+          <h3>Skills That Employers Value</h3>
+          <p>Modern employers look beyond academic qualifications. Communication skills, teamwork, critical thinking, leadership potential, and willingness to learn often play an important role in hiring decisions. Candidates who continuously improve these skills can increase their chances of career growth and long-term success.</p>
+        </article>
+
+        <article class="cg-section" id="cg-confidence">
+          <span class="cg-section-badge">Topic 04</span>
+          <h3>Building Professional Confidence</h3>
+          <p>Confidence helps candidates perform better during interviews and networking interactions. Participating in recruitment events allows individuals to improve communication abilities, gain interview experience, and better understand employer expectations.</p>
+        </article>
+
+        <article class="cg-section" id="cg-continuous-learning">
+          <span class="cg-section-badge">Topic 05</span>
+          <h3>Continuous Learning and Growth</h3>
+          <p>The job market continues to evolve as industries adopt new technologies and business practices. Candidates who invest in learning new skills, certifications, and industry knowledge often remain competitive and better prepared for future opportunities.</p>
+          <p>JobUtsav supports candidates by connecting them with employers, providing access to recruitment opportunities, and encouraging long-term professional development across various industries.</p>
+        </article>
+
+        <article class="cg-section" id="cg-opportunities">
+          <span class="cg-section-badge">Topic 06</span>
+          <h3>Career Opportunities Across Industries</h3>
+          <p>Job seekers attending JobUtsav events can explore opportunities across multiple industries including Information Technology, Finance, Banking, Healthcare, Education, Manufacturing, Retail, Logistics, Digital Marketing, Telecommunications, and Customer Support.</p>
+          <p>Different organizations participate with varying hiring requirements ranging from internships and entry-level roles to experienced and specialized positions. This diversity allows candidates to explore multiple career options in a single event.</p>
+          <p>Whether you are searching for your first job, planning a career transition, or seeking professional advancement, recruitment events provide valuable opportunities to connect with employers and understand current market trends.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
 <footer>
   <div class="container">
     <div class="footerGrid">
@@ -1603,153 +2699,105 @@ footer .social-icon:hover {
   />
 </a>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-<script>
-  (function(){
-    document.querySelectorAll('.comingSoonLink').forEach(function(link){
-      link.addEventListener('click', function(e){
-        var overlay = document.getElementById('alertModalOverlay');
-        if (overlay) {
-          e.preventDefault();
-          overlay.classList.add('open');
-          var city = link.getAttribute('data-city');
-          var select = document.getElementById('alertCity');
-          if (city && select) select.value = city;
-          var first = document.getElementById('alertName');
-          if (first) setTimeout(function(){ first.focus(); }, 80);
-        }
+/* ========================================================
+   CANDIDATE PAGE - UNIFIED SCRIPTS
+   - Dynamic Year & Support Phone updater
+   - Sticky Header & Mobile Nav Drawer
+   - FAQ Accordion (hover & click)
+   - Hero Button Cursor-tracking Effect
+   - Why Attend Card Deck Spread
+   - Table of Contents Navigation & Dynamic Reading Progress Bar
+======================================================== */
+(function () {
+  // 1. Dynamic Footer Year
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // 2. Support Phone Dynamic Formatting
+  var supportPhone = '918882866024';
+  var formattedPhone = '+91 ' + supportPhone.slice(2);
+  document.querySelectorAll('[data-support-phone]').forEach(function (el) {
+    el.setAttribute('data-support-phone', supportPhone);
+    if (el.classList.contains('footerPhone')) {
+      el.textContent = formattedPhone;
+      el.href = 'tel:+' + supportPhone;
+    }
+    if (el.classList.contains('footerWhatsapp')) {
+      el.href = 'https://wa.me/' + supportPhone + '?text=Hello%20I%20need%20support';
+    }
+  });
+
+  // 3. Sticky Header Shadow & Mobile Nav Drawer
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  var header = document.querySelector('header');
+
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileNav.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+        mobileNav.classList.remove('show');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('show');
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
-  })();
-</script>
-<script>
-  (function(){
-    var supportPhone = '918882866024';
-    var formattedPhone = '+91 ' + supportPhone.slice(2);
-    document.querySelectorAll('[data-support-phone]').forEach(function(el){
-      el.setAttribute('data-support-phone', supportPhone);
-      if (el.classList.contains('footerPhone')) {
-        el.textContent = formattedPhone;
-        el.href = 'tel:+' + supportPhone;
-      }
-      if (el.classList.contains('footerWhatsapp')) {
-        el.href = 'https://wa.me/' + supportPhone + '?text=Hello%20I%20need%20support';
-      }
-    });
-  })();
-</script>
-<script src="alert-modal.js"></script>
-<script>
-/* ===== Universal Count-Up (runs on every page) ===== */
-(function(){
-  function parseNum(str){
-    // returns { value: Number, suffix: String }
-    if(!str) return null;
-    var s = str.toString().trim();
-    // strip commas
-    var clean = s.replace(/,/g,'');
-    // detect suffix: anything after digits (like +, %, k, L, K)
-    var m = clean.match(/^([0-9]+(?:\.[0-9]+)?)(.*)$/);
-    if(!m) return null;
-    return { value: parseFloat(m[1]), suffix: m[2] || '' };
   }
-  function formatNum(n, origSuffix, origText){
-    // preserve original formatting style
-    if(origText.indexOf(',') !== -1 && n >= 1000){
-      return n.toLocaleString('en-IN') + origSuffix;
-    }
-    return Math.floor(n) + origSuffix;
+
+  // 4. FAQ Accordion Interaction
+  var faqRows = document.querySelectorAll('.faq .row');
+  function ensureId(el) {
+    if (!el.id) el.id = 'faq-ans-' + Math.random().toString(36).slice(2, 7);
+    return el.id;
   }
-  function easeOut(t){ return 1 - Math.pow(1-t, 3); }
-  function animateEl(el){
-    if(el.dataset.animated) return;
-    el.dataset.animated = '1';
-    var origText = el.textContent.trim();
-    var parsed   = parseNum(origText);
-    if(!parsed || parsed.value === 0) return;
-    var target   = parsed.value;
-    var suffix   = parsed.suffix;
-    var duration = Math.min(2000, Math.max(800, target / 10));
-    var start    = null;
-    function step(ts){
-      if(!start) start = ts;
-      var p = Math.min((ts - start) / duration, 1);
-      var cur = easeOut(p) * target;
-      el.textContent = formatNum(cur, suffix, origText);
-      if(p < 1) requestAnimationFrame(step);
-      else el.textContent = origText; // restore exact original
-    }
-    requestAnimationFrame(step);
-  }
-  // Selectors that contain stat numbers
-  var SELECTORS = [
-    '[data-count]',
-    '.ac-stat-num', '.stat-number .counter', '.counter-animated',
-    '.num', '.ac-yatra-stat b', '.stat-card h3',
-    '.stats-box .stat-item h2',
-    '.statsGrid .statCard .num',
-    '.kpiCard b', '.kpi b',
-    '.n',                      // About_jobfair stats
-    '.ac-hero-count',
-  ].join(',');
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting) return;
-      // animate all number els inside this container
-      var els = entry.target.querySelectorAll ? 
-        entry.target.querySelectorAll(SELECTORS) : [];
-      // also check if target itself matches
-      Array.prototype.forEach.call(els, animateEl);
-      if(entry.target.matches && entry.target.matches(SELECTORS)){
-        animateEl(entry.target);
-      }
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.25 });
-  // Observe every section / stats container
-  document.querySelectorAll('section, .stats-box, .statsGrid, .kpiGrid, .ac-stats-grid, .stats-grid, .hero-stats, .stats, .ac-yatra-stats').forEach(function(el){
-    observer.observe(el);
-  });
-  // Also directly observe individual number elements not inside sections
-  document.querySelectorAll(SELECTORS).forEach(function(el){
-    observer.observe(el);
-  });
-})();
-</script>
-<script>
-/* =============================================
-   FAQ ACCORDION  -  Fixed & Accessible
-   - One item open at a time
-   - Smooth CSS max-height animation
-   - Keyboard (Enter/Space) support
-   - aria-expanded for accessibility
-============================================= */
-(function () {
-  var rows = document.querySelectorAll('.faq .row');
-  rows.forEach(function (row) {
+  faqRows.forEach(function (row) {
     var btn = row.querySelector('.q');
     if (!btn) return;
-    // Set initial aria state
     btn.setAttribute('aria-expanded', 'false');
     var ans = row.querySelector('.ans');
     if (ans) btn.setAttribute('aria-controls', ensureId(ans));
+
+    row.addEventListener('mouseenter', function () {
+      faqRows.forEach(function (r) {
+        if (r !== row) {
+          r.classList.remove('open');
+          var b = r.querySelector('.q');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        }
+      });
+      row.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    });
+
+    row.addEventListener('mouseleave', function () {
+      row.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
     btn.addEventListener('click', function () {
       var isOpen = row.classList.contains('open');
-      // Close all rows first
-      rows.forEach(function (r) {
+      faqRows.forEach(function (r) {
         r.classList.remove('open');
         var b = r.querySelector('.q');
         if (b) b.setAttribute('aria-expanded', 'false');
       });
-      // If it was closed, open it
       if (!isOpen) {
         row.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
       }
     });
-    // Keyboard: Enter / Space already fires click on <button>,
-    // but add explicit handler for completeness
+
     btn.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -1757,52 +2805,151 @@ footer .social-icon:hover {
       }
     });
   });
-  /* Helper: ensure element has an id */
-  function ensureId(el) {
-    if (!el.id) el.id = 'faq-ans-' + Math.random().toString(36).slice(2, 7);
-    return el.id;
-  }
-})();
-</script>
-<script>
-/* =============================================
-   FLOATING REG BUTTON  -  Smooth Scroll
-============================================= */
-(function () {
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  const header = document.querySelector('header');
-  if (!menuBtn || !mobileNav) return;
-  // Toggle drawer and update accessibility state
-  menuBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-    menuBtn.setAttribute('aria-expanded', !isExpanded);
-    mobileNav.classList.toggle('show');
-  });
-  // Close drawer when clicking outside
-  document.addEventListener('click', function (event) {
-    if (!mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
-      mobileNav.classList.remove('show');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-  // Updated scroll listener for sticky shadow effect
-  window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-  // Auto-close menu when a link is clicked
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('show');
-      menuBtn.setAttribute('aria-expanded', 'false');
+
+  // 5. Hero Button Circular Expansion Effect Tracking
+  document.querySelectorAll('.heroBtn.primary').forEach(function (btn) {
+    btn.addEventListener('mousemove', function (e) {
+      var rect = this.getBoundingClientRect();
+      this.style.setProperty('--circle-x', (e.clientX - rect.left) + 'px');
+      this.style.setProperty('--circle-y', (e.clientY - rect.top) + 'px');
     });
   });
+
+  // 6. Why Attend Card Deck Interaction
+  var whyGrid = document.querySelector('.whyGrid');
+  var deckBadgeText = document.querySelector('.deckBadgeText');
+  if (whyGrid) {
+    whyGrid.addEventListener('click', function () {
+      this.classList.toggle('is-spread');
+      if (deckBadgeText) {
+        deckBadgeText.textContent = this.classList.contains('is-spread')
+          ? 'Cards spread (Click to gather)'
+          : 'Hover to spread cards';
+      }
+    });
+    whyGrid.addEventListener('mouseenter', function () {
+      if (deckBadgeText && !this.classList.contains('is-spread')) {
+        deckBadgeText.textContent = 'Cards spread';
+      }
+    });
+    whyGrid.addEventListener('mouseleave', function () {
+      if (deckBadgeText && !this.classList.contains('is-spread')) {
+        deckBadgeText.textContent = 'Hover to spread cards';
+      }
+    });
+  }
+
+  // 7. Table of Contents Smooth Click Navigation
+  var tocLinks = document.querySelectorAll('.cg-toc-link');
+  var sections = document.querySelectorAll('.cg-section');
+
+  if (tocLinks.length) {
+    tocLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var targetId = this.getAttribute('href').substring(1);
+        var targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          var offset = 96;
+          var bodyRect = document.body.getBoundingClientRect().top;
+          var elementRect = targetEl.getBoundingClientRect().top;
+          var offsetPosition = (elementRect - bodyRect) - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          tocLinks.forEach(function (l) { l.classList.remove('active'); });
+          this.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // 8. Table of Contents ScrollSpy (IntersectionObserver)
+  if (sections.length && 'IntersectionObserver' in window) {
+    var observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -55% 0px',
+      threshold: 0
+    };
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          tocLinks.forEach(function (link) {
+            if (link.getAttribute('data-target') === id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(function (sec) { observer.observe(sec); });
+  }
+
+  // 9. Table of Contents Dynamic Reading Progress Bar
+  // Starts from 0 length at Topic 01, and dynamically fills from left to right through Topic 06 (100%)
+  var progressFill = document.getElementById('cgProgressFill');
+  function updateProgress() {
+    if (!progressFill) return;
+    var sections = document.querySelectorAll('.cg-section');
+    if (!sections.length) return;
+
+    var readingOffset = 96;
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    var firstEl = sections[0];
+    var lastEl = sections[sections.length - 1];
+
+    var firstTop = firstEl.getBoundingClientRect().top + scrollY;
+    var lastTop = lastEl.getBoundingClientRect().top + scrollY;
+    var lastHeight = lastEl.offsetHeight || 300;
+
+    var startScroll = firstTop - readingOffset;
+    var endScroll = (lastTop - readingOffset) + Math.max(100, lastHeight * 0.8);
+    var totalDist = endScroll - startScroll;
+
+    var pct = 0;
+    if (scrollY <= startScroll) {
+      pct = 0;
+    } else if (scrollY >= endScroll) {
+      pct = 100;
+    } else if (totalDist > 0) {
+      pct = ((scrollY - startScroll) / totalDist) * 100;
+    }
+
+    pct = Math.min(100, Math.max(0, pct));
+    progressFill.style.width = pct + '%';
+    progressFill.style.opacity = pct > 0 ? '1' : '0';
+  }
+
+  // 10. Scroll Listeners for Progress Bar & Header Shadow
+  function onScroll() {
+    if (header) {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    updateProgress();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true });
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    onScroll();
+  } else {
+    document.addEventListener('DOMContentLoaded', onScroll);
+  }
+  onScroll();
 })();
 </script>
 </body>

@@ -1,6 +1,7 @@
 RewriteEngine On
 
-# Force HTTPS
+# Force HTTPS (exclude localhost for local development)
+RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
@@ -12,10 +13,9 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
 
-# HSTS Security Header
+# Security Headers
 <IfModule mod_headers.c>
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set X-Content-Type-Options "nosniff"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 </IfModule>
