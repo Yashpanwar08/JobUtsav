@@ -260,85 +260,795 @@
     .mobileNav a:hover{ background: rgba(2,6,23,.04); }
     .mobileNav a.active{ color: var(--orange); font-weight:600; }
     .mobileNav.show{ display:block; }
-    /* ===== Hero ===== */
-    .hero{
-      background:#fff;
-      padding: 60px 0 50px;
+    /* ===== Hero (Companies & Employers) ===== */
+    .hero {
+      background: radial-gradient(circle at 18% 25%, rgba(244, 123, 32, 0.16) 0%, transparent 45%),
+                  radial-gradient(circle at 82% 55%, rgba(37, 99, 235, 0.18) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.10) 0%, transparent 45%),
+                  linear-gradient(180deg, #071529 0%, #0c1e38 52%, #08162b 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
     }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items:center;
+
+    /* Ambient animated mesh glowing orbs in background */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(244, 123, 32, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 75% 30%, rgba(59, 130, 246, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+      filter: blur(52px);
+      animation: heroOrbFloat 14s ease-in-out infinite alternate;
+      z-index: 0;
     }
-    .heroPill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 14px;
-      border-radius:999px;
-      background: rgba(15,23,42,.04);
-      border: 1px solid rgba(15,23,42,.08);
-      font-size:12px;
-      font-weight:600;
-      margin-bottom:18px;
-      color:#334155;
+
+    /* Subtle geometric grid texture */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 45%, transparent 88%);
+      pointer-events: none;
+      z-index: 1;
     }
-    .hero h1{
-      margin:0;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height:1.06;
-      font-weight:800;
-      letter-spacing:-.6px;
+
+    @keyframes heroOrbFloat {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.08) translate(-2%, 3%); }
+      100% { transform: scale(0.96) translate(3%, -2%); }
     }
-    .hero h1 span{ color: var(--orange); }
-    .hero .heroDesc{
-      margin:18px 0 28px;
-      max-width: 520px;
-      color: var(--muted);
-      font-size:15px;
-      line-height:1.8;
+
+    .heroInner {
+      position: relative;
+      padding: 56px 0 48px;
+      z-index: 2;
     }
-    .heroCta{
-      height:48px;
-      padding:0 28px;
-      border:none;
-      border-radius:12px;
-      background: var(--orange);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-      cursor:pointer;
-      box-shadow: 0 16px 30px rgba(244,123,32,.22);
+
+    .heroGrid {
+      display: grid;
+      grid-template-columns: 1.06fr .94fr;
+      gap: 36px;
+      align-items: center;
     }
-    .heroCta:hover{ background:#ea6f12; }
-    /* Stats grid */
-    .statsGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
+
+    /* Luxury Hero Badge */
+    .heroBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 22px;
+      width: fit-content;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .heroBadge:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(244, 123, 32, 0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(244, 123, 32, 0.18);
+    }
+
+    .heroBadge .badgeDot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange, #f47b20);
+      box-shadow: 0 0 10px #f47b20, 0 0 0 3px rgba(244, 123, 32, 0.25);
+      display: inline-block;
+      animation: badgePulse 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    .heroBadge .badgeDivider {
+      opacity: 0.35;
+      font-weight: 300;
+    }
+
+    .heroBadge .badgeRole {
+      color: #fb923c;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.7; }
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(34px, 4.6vw, 56px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      max-width: 680px;
+    }
+
+    /* Wave Heading & Highlight Styles */
+    .heroWaveHeading {
+      perspective: 1000px;
+      display: block;
+    }
+
+    .heroWaveHeading .wave-line {
+      display: inline-block;
+    }
+
+    .heroWaveHeading .wave-word {
+      display: inline-block;
+      white-space: nowrap;
+      margin-right: 0.26em;
+      animation: heroWordWave 0.85s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+      animation-delay: calc(var(--wi, 0) * 0.12s + 0.05s);
+    }
+
+    .heroWaveHeading .wave-word:last-child {
+      margin-right: 0;
+    }
+
+    .heroWaveHeading .wave-char {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+      animation: heroLetterWaveEntrance 1.1s cubic-bezier(0.2, 0.85, 0.3, 1) 1 both;
+      animation-delay: calc(var(--ci, 0) * 0.035s + 0.08s);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  color 0.25s ease, 
+                  text-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .heroWaveHeading .highlight .wave-char {
+      background: linear-gradient(135deg, #f47b20 0%, #ff9d42 45%, #facc15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 16px rgba(244, 123, 32, 0.35));
+    }
+
+    .heroWaveHeading .wave-char:hover {
+      transform: translateY(-14px) scale(1.2) rotate(-4deg) !important;
+      color: var(--orange, #f47b20) !important;
+      text-shadow: 0 10px 24px rgba(244, 123, 32, 0.6);
+    }
+
+    .heroWaveHeading .highlight .wave-char:hover {
+      background: linear-gradient(135deg, #ffffff 0%, #ffedd5 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      filter: drop-shadow(0 0 18px rgba(244, 123, 32, 0.9));
+    }
+
+    @keyframes heroLetterWaveEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(42px) rotate(8deg) scale(0.8);
+        filter: blur(4px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateY(-12px) rotate(-3deg) scale(1.06);
+        filter: blur(0);
+      }
+      80% {
+        transform: translateY(4px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heroWordWave {
+      0% { opacity: 0.3; transform: translateY(20px); }
+      60% { transform: translateY(-4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heroWaveHeading .wave-word,
+      .heroWaveHeading .wave-char {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    .hero .heroDesc {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 15.5px;
+      line-height: 1.85;
+      max-width: 610px;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .heroActions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .heroBtn {
+      height: 50px;
+      padding: 0 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      white-space: nowrap;
+      transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      font-family: inherit;
+    }
+
+    .heroBtn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    .heroBtn.primary,
+    .heroCta {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      background: var(--orange, #f47b20);
+      box-shadow: 0 14px 30px rgba(244, 123, 32, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 14px;
+      height: 50px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+
+    .heroBtn.primary span,
+    .heroBtn.primary i,
+    .heroCta span,
+    .heroCta i {
+      position: relative;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .heroBtn.primary .arrow-icon,
+    .heroCta .arrow-icon {
+      transition: transform 0.25s ease;
+    }
+
+    .heroBtn.primary:hover .arrow-icon,
+    .heroCta:hover .arrow-icon {
+      transform: translateX(4px);
+    }
+
+    .heroBtn.primary::before,
+    .heroCta::before {
+      content: '';
+      position: absolute;
+      top: var(--circle-y, 50%);
+      left: var(--circle-x, 50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, #22c55e 0%, #16a34a 70%, #15803d 100%);
+      transform: translate(-50%, -50%);
+      transition: width 0.55s cubic-bezier(0.25, 1, 0.5, 1), height 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heroBtn.primary:hover::before,
+    .heroCta:hover::before {
+      width: 380px;
+      height: 380px;
+    }
+
+    .heroBtn.primary:hover,
+    .heroCta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(22, 163, 74, 0.44);
+    }
+
+    .heroBtn.primary::after,
+    .heroCta::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -130%;
+      width: 55%;
+      height: 220%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0.65) 50%,
+        rgba(255, 255, 255, 0.15) 80%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      animation: heroBtnShine 3s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes heroBtnShine {
+      0% { left: -130%; }
+      38%, 100% { left: 170%; }
+    }
+
+    .heroMeta {
+      margin-top: 26px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 600;
+      font-size: 12.5px;
+      align-items: center;
+    }
+
+    .heroMeta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .heroMeta span:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(244, 123, 32, 0.3);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .heroMeta .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .heroMeta .dot.green {
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981, 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+
+    .heroMeta .dot.orange {
+      background: #f47b20;
+      box-shadow: 0 0 8px #f47b20, 0 0 0 2px rgba(244, 123, 32, 0.25);
+    }
+
+    .heroMeta .dot.blue {
+      background: #3b82f6;
+      box-shadow: 0 0 8px #3b82f6, 0 0 0 2px rgba(59, 130, 246, 0.25);
+    }
+
+    /* Right Showcase Column */
+    .heroRight {
+      display: flex;
+      flex-direction: column;
       gap: 16px;
     }
-    .statCard{
-      padding: 22px 20px;
+
+    /* Visual Media Showcase Card */
+    .heroMediaCard {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.55),
+                  0 0 35px rgba(244, 123, 32, 0.12),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      position: relative;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s ease;
+    }
+
+    .heroMediaCard:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 65px -10px rgba(0, 0, 0, 0.65), 
+                  0 0 45px rgba(244, 123, 32, 0.22),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-color: rgba(244, 123, 32, 0.35);
+    }
+
+    .heroMediaWrapper {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+    }
+
+    .heroMediaWrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .heroMediaCard:hover .heroMediaWrapper img {
+      transform: scale(1.05);
+    }
+
+    .heroMediaOverlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 21, 41, 0.15) 0%, rgba(7, 21, 41, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    .heroSticker {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, #f47b20, #e06509);
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      border-radius: 10px;
+      padding: 7px 12px;
+      box-shadow: 0 8px 20px rgba(244, 123, 32, 0.35);
+      line-height: 1.2;
+      text-align: right;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      z-index: 2;
+    }
+
+    .heroSticker small {
+      display: block;
+      opacity: .92;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .liveTalentBadge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(11, 26, 51, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      font-weight: 700;
+      font-size: 11.5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      z-index: 2;
+    }
+
+    .liveTalentBadge .liveIndicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981, 0 0 0 2px rgba(16, 185, 129, 0.3);
+      animation: badgePulse 1.8s infinite ease-in-out;
+    }
+
+    .heroMediaBody {
+      padding: 16px 20px 18px;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(12, 30, 56, 0.90) 0%, rgba(7, 21, 41, 0.98) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .heroMediaHeaderRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .heroMediaBody small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #f47b20;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .heroMediaBody h3 {
+      margin: 0 0 10px;
+      font-size: 16.5px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .heroMediaRow {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .heroMediaRow span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 11.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .heroMediaRow span:hover {
+      background: rgba(244, 123, 32, 0.18);
+      border-color: rgba(244, 123, 32, 0.35);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Glassmorphism Stats Grid */
+    .heroStatsGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .heroStatCard {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.11);
       border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.06);
+      padding: 15px 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .statCard:nth-child(1){ background: rgba(255,237,213,.40); }
-    .statCard:nth-child(2){ background: rgba(254,249,195,.35); }
-    .statCard:nth-child(3){ background: rgba(219,234,254,.50); }
-    .statCard:nth-child(4){ background: rgba(226,232,240,.50); }
-    .statCard .num{
-      font-size: 34px;
-      font-weight:800;
-      letter-spacing:-.5px;
-      margin:0;
+
+    .heroStatCard::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(244, 123, 32, 0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .statCard:nth-child(1) .num,
-    .statCard:nth-child(2) .num{ color: var(--orange); }
-    .statCard .lbl{
+
+    .heroStatCard:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(244, 123, 32, 0.35);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 0 0 20px rgba(244, 123, 32, 0.15);
+    }
+
+    .heroStatCard:hover::before {
+      opacity: 1;
+    }
+
+    .heroStatTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .heroStatCard .num {
+      margin: 0;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .heroStatCard:nth-child(1) .num {
+      background: linear-gradient(135deg, #fff 40%, #ffedd5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .heroStatCard:nth-child(2) .num {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .heroStatCard:nth-child(3) .num {
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .heroStatCard:nth-child(4) .num {
+      background: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .heroStatIcon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f47b20;
+    }
+
+    .heroStatCard:nth-child(2) .heroStatIcon { color: #34d399; }
+    .heroStatCard:nth-child(3) .heroStatIcon { color: #60a5fa; }
+    .heroStatCard:nth-child(4) .heroStatIcon { color: #facc15; }
+
+    .heroStatCard .lbl {
       margin: 4px 0 0;
-      color: var(--muted);
-      font-size:13px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* Recruiter Brand Ticker / Logos Marquee */
+    .heroTickerWrapper {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 21, 41, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 18px 0;
+      overflow: hidden;
+    }
+
+    .heroTickerHeader {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .heroTickerHeader span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .heroTickerHeader i {
+      color: #f47b20;
+      font-size: 11px;
+    }
+
+    .heroTickerTrack {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+
+    .tickerSlide {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-shrink: 0;
+      animation: tickerScroll 30s linear infinite;
+      padding-right: 32px;
+    }
+
+    .heroTickerTrack:hover .tickerSlide {
+      animation-play-state: paused;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    .tickerItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      min-width: 95px;
+      padding: 5px 14px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      filter: grayscale(1) opacity(0.85);
+      transition: all 0.25s ease;
+    }
+
+    .tickerItem:hover {
+      filter: grayscale(0) opacity(1);
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(244, 123, 32, 0.25);
+    }
+
+    .tickerItem img {
+      max-height: 25px;
+      max-width: 85px;
+      object-fit: contain;
+      display: block;
     }
     /* ===== How it works ===== */
     section{ padding: 72px 0; }
@@ -369,7 +1079,9 @@
       gap: 22px;
       text-align:center;
     }
-    .step{}
+    .step{
+      position:relative;
+    }
     .stepNum{
       width:52px;
       height:52px;
@@ -392,6 +1104,135 @@
       color:var(--muted);
       font-size:13px;
       line-height:1.75;
+    }
+
+    /* ===== How It Works: Roll Opening Animation ===== */
+    #howItWorks {
+      --roll-duration: 1250ms;
+      --roll-stagger: 350ms;
+      --roll-fall: -40px;
+      --roll-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --step-radius: 16px;
+    }
+
+    /* Stagger indexes for left-to-right delay */
+    .stepsGrid .step:nth-child(1) { --i: 0; }
+    .stepsGrid .step:nth-child(2) { --i: 1; }
+    .stepsGrid .step:nth-child(3) { --i: 2; }
+    .stepsGrid .step:nth-child(4) { --i: 3; }
+
+    /* 1. Initial State (scoped to .js-animate so cards stay visible if JS fails) */
+    .js-animate .step {
+      opacity: 0;
+      transform: translateY(var(--roll-fall, -40px)) rotate(-2deg);
+      transform-origin: left center;
+      clip-path: inset(0 100% 0 0 round var(--step-radius, 16px));
+      transition:
+        opacity var(--roll-duration, 1250ms) var(--roll-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+        transform var(--roll-duration, 1250ms) var(--roll-ease, cubic-bezier(0.22, 1, 0.36, 1)),
+        clip-path var(--roll-duration, 1250ms) var(--roll-ease, cubic-bezier(0.22, 1, 0.36, 1));
+      transition-delay: calc(var(--i, 0) * var(--roll-stagger, 350ms));
+      will-change: transform, opacity, clip-path;
+      pointer-events: none;
+    }
+
+    /* 2. Visible State */
+    .js-animate .step.is-visible {
+      opacity: 1;
+      transform: none;
+      clip-path: inset(0 0 0 0 round var(--step-radius, 16px));
+      pointer-events: auto;
+    }
+
+    /* 4. Roll Edge: vertical strip with paper-roll gradient & soft shadow */
+    .js-animate .step::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 16px;
+      background: linear-gradient(
+        90deg,
+        rgba(15, 23, 42, 0.25) 0%,
+        rgba(255, 255, 255, 0.65) 45%,
+        rgba(15, 23, 42, 0.20) 100%
+      );
+      box-shadow:
+        2px 0 8px rgba(0, 0, 0, 0.16),
+        -2px 0 6px rgba(0, 0, 0, 0.10);
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 5;
+    }
+
+    .js-animate .step.is-visible::before {
+      animation: rollEdgeAnimation var(--roll-duration, 1250ms) var(--roll-ease, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+      animation-delay: calc(var(--i, 0) * var(--roll-stagger, 350ms));
+    }
+
+    @keyframes rollEdgeAnimation {
+      0% {
+        left: 0;
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
+      }
+      88% {
+        opacity: 1;
+      }
+      100% {
+        left: calc(100% - 16px);
+        opacity: 0;
+      }
+    }
+
+    /* 5. Card Content Fade Up (+160ms delay) */
+    .js-animate .step > * {
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity 650ms ease,
+        transform 650ms var(--roll-ease, cubic-bezier(0.22, 1, 0.36, 1));
+      transition-delay: calc(var(--i, 0) * var(--roll-stagger, 350ms) + 160ms);
+      will-change: transform, opacity;
+    }
+
+    .js-animate .step.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive: tablet & mobile adjustments */
+    @media (max-width: 980px) {
+      #howItWorks {
+        --roll-duration: 1000ms;
+        --roll-stagger: 180ms;
+        --roll-fall: -28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #howItWorks {
+        --roll-duration: 1000ms;
+        --roll-stagger: 0ms;
+        --roll-fall: -24px;
+      }
+    }
+
+    /* Accessibility: Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .js-animate .step,
+      .js-animate .step::before,
+      .js-animate .step > * {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+      }
     }
     /* ===== Registration + sidebar ===== */
     .regSection{
@@ -620,9 +1461,20 @@ footer .social-icon:hover {
       .heroGrid, .regGrid {
         grid-template-columns: 1fr !important; /* Stack columns */
         text-align: center;
+        gap: 36px !important;
       }
       .hero h1 { font-size: 36px; }
       .hero .heroDesc { margin: 18px auto 28px; }
+      .heroBadge, .heroActions, .heroMeta {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .heroRight {
+        max-width: 580px;
+        margin: 0 auto;
+        width: 100%;
+      }
       .trustSide { order: 2; } /* Put trust items below the form on mobile */
       .formCard { order: 1; }
       .stepsGrid {
@@ -941,76 +1793,294 @@ footer .social-icon:hover {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .company-growth-section{
-    max-width:1100px;
-    margin:50px auto;
-    padding:40px;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:0 4px 18px rgba(0,0,0,0.08);
-}
+    /* ===== Company Growth Section (Executive Design & Typography) ===== */
+    .company-growth-section {
+      max-width: 1200px;
+      margin: 64px auto;
+      padding: 56px 48px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 24px;
+      box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(0, 0, 0, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
 
-.company-growth-section h2{
-    color:#ff7a00;
-    font-size:32px;
-    text-align:center;
-    margin-bottom:20px;
-}
+    .company-growth-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 12%;
+      right: 12%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #f47b20, #ff9d42, transparent);
+      border-radius: 3px;
+    }
 
-.company-growth-section h3{
-    color:#222;
-    font-size:22px;
-    margin-top:30px;
-    margin-bottom:12px;
-}
+    .company-growth-section h2 {
+      color: #0f172a;
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.025em;
+      margin: 0 auto 28px;
+      line-height: 1.25;
+      max-width: 820px;
+      background: linear-gradient(135deg, #0f172a 30%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.company-growth-section p{
-    color:#555;
-    line-height:1.9;
-    text-align:justify;
-    margin-bottom:15px;
-}
+    .growth-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+    }
 
-.company-cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:18px;
-    margin-top:25px;
-}
+    .growth-lead {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #334155;
+      font-weight: 500;
+      margin: 0;
+      text-align: left;
+    }
 
-.company-card{
-    background:#fff8f2;
-    border-top:4px solid #ff7a00;
-    padding:18px;
-    border-radius:10px;
-}
+    .growth-sublead {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #64748b;
+      margin: 0;
+      text-align: left;
+    }
 
-.company-card h4{
-    color:#ff7a00;
-    margin-bottom:10px;
-}
+    .growth-block {
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      padding: 28px 32px;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
 
-.company-card p{
-    margin:0;
-    font-size:15px;
-}
+    .growth-challenges-block {
+      background: linear-gradient(135deg, #ffffff 0%, #fffbf7 100%);
+      border: 1px solid rgba(244, 123, 32, 0.18);
+      border-left: 4px solid #f47b20;
+      margin-bottom: 36px;
+      box-shadow: 0 6px 20px -6px rgba(244, 123, 32, 0.06);
+    }
 
-@media(max-width:768px){
+    .growth-challenges-block:hover {
+      border-color: rgba(244, 123, 32, 0.35);
+      box-shadow: 0 12px 28px -6px rgba(244, 123, 32, 0.12);
+    }
 
-.company-growth-section{
-padding:25px;
-margin:25px 15px;
-}
+    .growth-block-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
 
-.company-growth-section h2{
-font-size:28px;
-}
+    .growth-icon-pill {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(244, 123, 32, 0.12);
+      color: #f47b20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
 
-.company-growth-section h3{
-font-size:20px;
-}
+    .growth-block:hover .growth-icon-pill {
+      transform: scale(1.08);
+      background: #f47b20;
+      color: #ffffff;
+    }
 
-}
+    .growth-icon-pill svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .company-growth-section h3 {
+      color: #0f172a;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .growth-text-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .growth-text-pair p {
+      margin: 0;
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .growth-solution-note {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px dashed rgba(244, 123, 32, 0.35);
+      color: #1e293b !important;
+      font-weight: 500;
+    }
+
+    /* Cards */
+    .company-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 36px 0 40px;
+    }
+
+    .company-card {
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      padding: 26px 22px;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .company-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(244, 123, 32, 0.35);
+      box-shadow: 0 16px 32px -8px rgba(244, 123, 32, 0.16), 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      color: #f47b20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+
+    .card-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .company-card:hover .card-icon-wrap {
+      transform: scale(1.1) rotate(-3deg);
+      background: #f47b20;
+      color: #ffffff;
+    }
+
+    .company-card h4 {
+      color: #0f172a;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0 0 10px 0;
+      line-height: 1.35;
+      transition: color 0.25s ease;
+    }
+
+    .company-card:hover h4 {
+      color: #f47b20;
+    }
+
+    .company-card p {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* Dual Grid for Supporting Growth and Connections */
+    .growth-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .growth-dual-grid .growth-block {
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 18px;
+      padding: 30px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .growth-dual-grid .growth-block:hover {
+      border-color: rgba(244, 123, 32, 0.25);
+      box-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.06);
+    }
+
+    .growth-dual-grid .growth-block p {
+      color: #475569;
+      font-size: 14.5px;
+      line-height: 1.75;
+      margin: 0;
+      text-align: left;
+    }
+
+    @media (max-width: 980px) {
+      .company-growth-section {
+        padding: 40px 28px;
+        margin: 44px 16px;
+      }
+      .growth-overview {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .growth-text-pair {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .company-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .growth-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .company-growth-section {
+        padding: 30px 20px;
+        margin: 32px 12px;
+        border-radius: 18px;
+      }
+      .company-cards {
+        grid-template-columns: 1fr;
+      }
+      .growth-challenges-block {
+        padding: 22px 18px;
+      }
+      .growth-dual-grid .growth-block {
+        padding: 22px 18px;
+      }
+    }
 /* FAQ Section */
 
 .faq-section{
@@ -1027,6 +2097,88 @@ font-size:20px;
     color:#ff7a00;
     font-size:32px;
     margin-bottom:30px;
+}
+
+/* FAQ Word & Letter Wave Effects */
+.faq-section .faqWaveHeading {
+    perspective: 1000px;
+    display: block;
+    user-select: none;
+}
+
+.faq-section .faq-word {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 0.28em;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.faq-section .faq-word:last-child {
+    margin-right: 0;
+}
+
+.faq-section .faq-char {
+    display: inline-block;
+    will-change: transform, color, text-shadow;
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+                color 0.25s ease,
+                text-shadow 0.25s ease;
+    cursor: default;
+}
+
+/* Interactive Hover effect on letters */
+.faq-section .faq-char:hover {
+    transform: translateY(-9px) scale(1.22) rotate(-3deg) !important;
+    color: #e06600 !important;
+    text-shadow: 0 8px 22px rgba(244, 123, 32, 0.55);
+}
+
+/* Interactive Hover effect on words */
+.faq-section .faq-word:hover {
+    transform: translateY(-2px);
+}
+
+/* Scroll-triggered entrance wave when FAQ section comes into view */
+.faq-section.js-animate .faq-word {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--wi, 0) * 0.1s + 0.05s);
+}
+
+.faq-section.js-animate .faq-char {
+    opacity: 0;
+    transform: translateY(28px) rotate(6deg) scale(0.85);
+    filter: blur(2px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.85, 0.3, 1),
+                transform 0.9s cubic-bezier(0.2, 0.85, 0.3, 1),
+                filter 0.9s ease;
+    transition-delay: calc(var(--ci, 0) * 0.03s + 0.08s);
+}
+
+.faq-section.js-animate.is-visible .faq-word {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-section.js-animate.is-visible .faq-char {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+    filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-section.js-animate .faq-word,
+    .faq-section.js-animate .faq-char,
+    .faq-section .faq-char:hover,
+    .faq-section .faq-word:hover {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
 }
 
 .faq-section h3{
@@ -1104,44 +2256,157 @@ font-size:20px;
   </div>
 </header>
 <main>
-  <!-- Hero -->
+  <!-- Hero (Companies & Employers) -->
   <section class="hero">
-    <div class="container">
-      <div class="heroGrid">
-        <div>
-          <div class="heroPill">Companies For Employers & Recruiters</div>
-          <h1>Hire Top Talent at<br><span>Scale</span></h1>
-          <p class="heroDesc">
-            Stop waiting for resumes. Meet, interview, and hire hundreds of pre-screened candidates in a single day at JobUtsav.
-          </p>
-          <button class="heroCta" type="button"
-            onclick="document.getElementById('regForm').scrollIntoView({behavior:'smooth'})">
-            Book a Hiring Booth
-          </button>
+    <div class="heroInner">
+      <div class="container">
+        <div class="heroGrid">
+          <div>
+            <div class="heroBadge">
+              <span class="badgeDot"></span>
+              <span>MEGA RECRUITMENT EXPO 2026</span>
+              <span class="badgeDivider">|</span>
+              <span class="badgeRole">FOR RECRUITERS & HR LEADERS</span>
+            </div>
+            <h1 class="heroWaveHeading" aria-label="Hire Pre-Screened Top Talent at Scale">
+              <span class="wave-line" aria-hidden="true">
+                <span class="wave-word" style="--wi:0;"><span class="wave-char" style="--ci:0;">H</span><span class="wave-char" style="--ci:1;">i</span><span class="wave-char" style="--ci:2;">r</span><span class="wave-char" style="--ci:3;">e</span></span>
+                <span class="wave-word" style="--wi:1;"><span class="wave-char" style="--ci:4;">P</span><span class="wave-char" style="--ci:5;">r</span><span class="wave-char" style="--ci:6;">e</span><span class="wave-char" style="--ci:7;">-</span><span class="wave-char" style="--ci:8;">S</span><span class="wave-char" style="--ci:9;">c</span><span class="wave-char" style="--ci:10;">r</span><span class="wave-char" style="--ci:11;">e</span><span class="wave-char" style="--ci:12;">e</span><span class="wave-char" style="--ci:13;">n</span><span class="wave-char" style="--ci:14;">e</span><span class="wave-char" style="--ci:15;">d</span></span>
+                <span class="wave-word" style="--wi:2;"><span class="wave-char" style="--ci:16;">T</span><span class="wave-char" style="--ci:17;">o</span><span class="wave-char" style="--ci:18;">p</span></span>
+                <span class="wave-word" style="--wi:3;"><span class="wave-char" style="--ci:19;">T</span><span class="wave-char" style="--ci:20;">a</span><span class="wave-char" style="--ci:21;">l</span><span class="wave-char" style="--ci:22;">e</span><span class="wave-char" style="--ci:23;">n</span><span class="wave-char" style="--ci:24;">t</span></span>
+              </span><br>
+              <span class="wave-line highlight" aria-hidden="true">
+                <span class="wave-word" style="--wi:4;"><span class="wave-char" style="--ci:25;">A</span><span class="wave-char" style="--ci:26;">t</span></span>
+                <span class="wave-word" style="--wi:5;"><span class="wave-char" style="--ci:27;">S</span><span class="wave-char" style="--ci:28;">c</span><span class="wave-char" style="--ci:29;">a</span><span class="wave-char" style="--ci:30;">l</span><span class="wave-char" style="--ci:31;">e</span></span>
+                <span class="wave-word" style="--wi:6;"><span class="wave-char" style="--ci:32;">.</span></span>
+                <span class="wave-word" style="--wi:7;"><span class="wave-char" style="--ci:33;">S</span><span class="wave-char" style="--ci:34;">a</span><span class="wave-char" style="--ci:35;">m</span><span class="wave-char" style="--ci:36;">e</span></span>
+                <span class="wave-word" style="--wi:8;"><span class="wave-char" style="--ci:37;">D</span><span class="wave-char" style="--ci:38;">a</span><span class="wave-char" style="--ci:39;">y</span></span>
+                <span class="wave-word" style="--wi:9;"><span class="wave-char" style="--ci:40;">.</span></span>
+              </span>
+            </h1>
+            <p class="heroDesc">
+              Stop waiting weeks for resumes and losing candidates to ghosting. Set up your custom hiring booth, interview hundreds of vetted freshers and lateral professionals, and roll out spot offers in a single day at JobUtsav.
+            </p>
+            <div class="heroActions">
+              <button class="heroBtn primary" type="button"
+                onclick="document.getElementById('regForm').scrollIntoView({behavior:'smooth'})">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Book a Hiring Booth</span>
+                <i class="fa-solid fa-arrow-right arrow-icon"></i>
+              </button>
+              <button class="heroBtn" type="button"
+                onclick="document.getElementById('howItWorks').scrollIntoView({behavior:'smooth'})">
+                <i class="fa-solid fa-circle-play"></i>
+                <span>Explore Hiring Process</span>
+              </button>
+            </div>
+            <div class="heroMeta">
+              <span><i class="dot green"></i> 10,000+ Pre-screened Walk-ins</span>
+              <span><i class="dot orange"></i> Dedicated Interview Cabins</span>
+              <span><i class="dot blue"></i> Zero Post-Fair Commission</span>
+              <span><i class="dot green"></i> On-the-spot Offer Letters</span>
+            </div>
+          </div>
+          <div class="heroRight">
+            <aside class="heroMediaCard" aria-label="Corporate hiring showcase">
+              <div class="heroMediaWrapper">
+                <img src="images/corporate-hero.jpg" alt="Corporate Recruitment Expo and Hiring Booths" fetchpriority="high" width="640" height="360">
+                <div class="heroMediaOverlay"></div>
+                <div class="liveTalentBadge">
+                  <span class="liveIndicator"></span>
+                  <span>10,000+ Verified Candidates Onsite</span>
+                </div>
+                <div class="heroSticker">
+                  <small>UPCOMING SUMMIT</small>
+                  <span>GREATER NOIDA 2026</span>
+                </div>
+              </div>
+              <div class="heroMediaBody">
+                <div class="heroMediaHeaderRow">
+                  <small><i class="fa-solid fa-building-circle-check"></i> RECRUITER SUITE</small>
+                </div>
+                <h3>Plug-&-Play Corporate Booths · Live Spot Offers</h3>
+                <div class="heroMediaRow">
+                  <span><i class="fa-solid fa-laptop-code"></i> Tech & IT</span>
+                  <span><i class="fa-solid fa-gear"></i> Core Engineering</span>
+                  <span><i class="fa-solid fa-chart-line"></i> Sales & BD</span>
+                  <span><i class="fa-solid fa-coins"></i> BFSI & Ops</span>
+                </div>
+              </div>
+            </aside>
+            <div class="heroStatsGrid" aria-label="Key hiring outcomes">
+              <div class="heroStatCard">
+                <div class="heroStatTop">
+                  <p class="num" data-count="10000" data-label="10k+">10k+</p>
+                  <div class="heroStatIcon"><i class="fa-solid fa-users"></i></div>
+                </div>
+                <p class="lbl">Average Candidate Footfall</p>
+              </div>
+              <div class="heroStatCard">
+                <div class="heroStatTop">
+                  <p class="num" data-count="80" data-label="80%">80%</p>
+                  <div class="heroStatIcon"><i class="fa-solid fa-award"></i></div>
+                </div>
+                <p class="lbl">Offer Rollout Success Rate</p>
+              </div>
+              <div class="heroStatCard">
+                <div class="heroStatTop">
+                  <p class="num" data-count="48" data-label="48h">&lt;48h</p>
+                  <div class="heroStatIcon"><i class="fa-solid fa-bolt"></i></div>
+                </div>
+                <p class="lbl">Average Time to Hire</p>
+              </div>
+              <div class="heroStatCard">
+                <div class="heroStatTop">
+                  <p class="num" data-count="0" data-label="₹0">₹0</p>
+                  <div class="heroStatIcon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                </div>
+                <p class="lbl">Post-Fair Hiring Commission</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="statsGrid">
-          <div class="statCard">
-            <p class="num" data-count="10000" data-label="10k+">10k+</p>
-            <p class="lbl">Average Footfall per Event</p>
-          </div>
-          <div class="statCard">
-            <p class="num" data-count="80" data-label="80%">80%</p>
-            <p class="lbl">Offer Rollout Rate</p>
-          </div>
-          <div class="statCard">
-            <p class="num" data-count="48" data-label="48h">48h</p>
-            <p class="lbl">Average Time to Hire</p>
-          </div>
-          <div class="statCard">
-            <p class="num">0</p>
-            <p class="lbl">Cost per Hire (Post Booth)</p>
-          </div>
+      </div>
+    </div>
+    <!-- Recruiter Social Proof Marquee -->
+    <div class="heroTickerWrapper" aria-label="Participating Hiring Partners">
+      <div class="heroTickerHeader">
+        <span><i class="fa-solid fa-shield-halved"></i> Trusted by 500+ Leading Corporates & High-Growth Employers</span>
+      </div>
+      <div class="heroTickerTrack">
+        <div class="tickerSlide">
+          <div class="tickerItem"><img src="images2/Cognizant.jpg" alt="Cognizant" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Wipro.png" alt="Wipro" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Genpact.png" alt="Genpact" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/HCL.jpg" alt="HCL" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Tech mahindra.png" alt="Tech Mahindra" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Oyo.png" alt="Oyo" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/ICICI.jpg" alt="ICICI Bank" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/HDFC.png" alt="HDFC Bank" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/EXL.png" alt="EXL Service" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Cars 24.png" alt="Cars 24" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Policy Bazaar.png" alt="Policy Bazaar" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Zetwerk.png" alt="Zetwerk" loading="lazy"></div>
+        </div>
+        <div class="tickerSlide" aria-hidden="true">
+          <div class="tickerItem"><img src="images2/Cognizant.jpg" alt="Cognizant" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Wipro.png" alt="Wipro" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Genpact.png" alt="Genpact" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/HCL.jpg" alt="HCL" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Tech mahindra.png" alt="Tech Mahindra" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Oyo.png" alt="Oyo" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/ICICI.jpg" alt="ICICI Bank" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/HDFC.png" alt="HDFC Bank" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/EXL.png" alt="EXL Service" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Cars 24.png" alt="Cars 24" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Policy Bazaar.png" alt="Policy Bazaar" loading="lazy"></div>
+          <div class="tickerItem"><img src="images2/Zetwerk.png" alt="Zetwerk" loading="lazy"></div>
         </div>
       </div>
     </div>
   </section>
   <!-- How It Works -->
-  <section class="mutedSection">
+  <section class="mutedSection" id="howItWorks">
     <div class="container">
       <div class="head">
         <h2>How It Works for Companies</h2>
@@ -1172,71 +2437,114 @@ font-size:20px;
   </section>
   <section class="company-growth-section">
 
-<h2>Building Stronger Recruitment Outcomes</h2>
+    <div class="growth-header">
+      <h2>Building Stronger Recruitment Outcomes</h2>
 
-<p>
+      <div class="growth-overview">
+        <p class="growth-lead">
 Hiring the right talent has become increasingly competitive across industries. Organizations today require efficient recruitment strategies that help identify skilled candidates while reducing hiring timelines and operational costs. JobUtsav supports this objective by providing a structured platform where employers can engage directly with job seekers and evaluate potential candidates more effectively.
-</p>
+        </p>
 
-<p>
+        <p class="growth-sublead">
 Unlike traditional recruitment channels that often involve lengthy screening processes, recruitment events allow employers to meet candidates face-to-face, understand their communication abilities, assess professional confidence, and identify suitable talent more quickly.
-</p>
+        </p>
+      </div>
+    </div>
 
-<h3>Challenges Faced By Modern Recruiters</h3>
+    <div class="growth-block growth-challenges-block">
+      <div class="growth-block-header">
+        <div class="growth-icon-pill" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+        <h3>Challenges Faced By Modern Recruiters</h3>
+      </div>
 
-<p>
+      <div class="growth-text-pair">
+        <p>
 Many organizations receive a large number of applications but struggle to identify qualified candidates efficiently. Screening resumes, scheduling interviews, and coordinating communication can significantly increase recruitment costs and delay hiring decisions.
-</p>
+        </p>
 
-<p>
+        <p class="growth-solution-note">
 JobUtsav helps streamline this process by creating opportunities for direct interaction between recruiters and candidates, making hiring more efficient and productive.
-</p>
+        </p>
+      </div>
+    </div>
 
-<div class="company-cards">
+    <div class="company-cards">
 
-<div class="company-card">
-<h4>Quality Candidate Access</h4>
-<p>Connect with motivated job seekers actively exploring employment opportunities.</p>
-</div>
+      <div class="company-card">
+        <div class="card-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+        </div>
+        <h4>Quality Candidate Access</h4>
+        <p>Connect with motivated job seekers actively exploring employment opportunities.</p>
+      </div>
 
-<div class="company-card">
-<h4>Reduced Hiring Time</h4>
-<p>Meet multiple candidates during a single event and accelerate recruitment cycles.</p>
-</div>
+      <div class="company-card">
+        <div class="card-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h4>Reduced Hiring Time</h4>
+        <p>Meet multiple candidates during a single event and accelerate recruitment cycles.</p>
+      </div>
 
-<div class="company-card">
-<h4>Brand Visibility</h4>
-<p>Strengthen employer presence among students, graduates, and professionals.</p>
-</div>
+      <div class="company-card">
+        <div class="card-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <h4>Brand Visibility</h4>
+        <p>Strengthen employer presence among students, graduates, and professionals.</p>
+      </div>
 
-<div class="company-card">
-<h4>Industry Networking</h4>
-<p>Build relationships with educational institutions and workforce communities.</p>
-</div>
+      <div class="company-card">
+        <div class="card-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        </div>
+        <h4>Industry Networking</h4>
+        <p>Build relationships with educational institutions and workforce communities.</p>
+      </div>
 
-</div>
+    </div>
 
-<h3>Supporting Workforce Growth</h3>
+    <div class="growth-dual-grid">
 
-<p>
+      <div class="growth-block growth-workforce-block">
+        <div class="growth-block-header">
+          <div class="growth-icon-pill" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <h3>Supporting Workforce Growth</h3>
+        </div>
+
+        <p>
 Recruitment is not only about filling vacancies. It is also about building teams capable of contributing to long-term organizational growth. Access to the right talent helps businesses improve productivity, strengthen innovation, and achieve strategic goals more effectively.
-</p>
+        </p>
 
-<p>
+        <p>
 Through JobUtsav, employers gain opportunities to engage with candidates from diverse educational backgrounds, skill levels, and professional experiences, creating a broader talent pipeline for future workforce requirements.
-</p>
+        </p>
+      </div>
 
-<h3>Creating Meaningful Employer-Candidate Connections</h3>
+      <div class="growth-block growth-connection-block">
+        <div class="growth-block-header">
+          <div class="growth-icon-pill" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3>Creating Meaningful Employer-Candidate Connections</h3>
+        </div>
 
-<p>
+        <p>
 Direct communication often provides valuable insights that cannot be captured through resumes alone. Recruitment events encourage meaningful conversations that help both employers and candidates make informed decisions regarding career opportunities and organizational fit.
-</p>
+        </p>
 
-<p>
+        <p>
 By bringing together recruiters, professionals, students, and job seekers on a common platform, JobUtsav contributes to a more efficient and transparent recruitment ecosystem.
-</p>
+        </p>
+      </div>
 
-</section>
+    </div>
+
+  </section>
   <!-- Registration + Trust Side -->
   <section class="regSection" id="regForm">
     <div class="container">
@@ -1325,7 +2633,13 @@ By bringing together recruiters, professionals, students, and job seekers on a c
   </section>
 <section class="faq-section">
 
-<h2>Frequently Asked Questions For Employers</h2>
+<h2 class="faqWaveHeading" aria-label="Frequently Asked Questions For Employers">
+  <span class="faq-word" style="--wi:0;"><span class="faq-char" style="--ci:0;">F</span><span class="faq-char" style="--ci:1;">r</span><span class="faq-char" style="--ci:2;">e</span><span class="faq-char" style="--ci:3;">q</span><span class="faq-char" style="--ci:4;">u</span><span class="faq-char" style="--ci:5;">e</span><span class="faq-char" style="--ci:6;">n</span><span class="faq-char" style="--ci:7;">t</span><span class="faq-char" style="--ci:8;">l</span><span class="faq-char" style="--ci:9;">y</span></span>
+  <span class="faq-word" style="--wi:1;"><span class="faq-char" style="--ci:10;">A</span><span class="faq-char" style="--ci:11;">s</span><span class="faq-char" style="--ci:12;">k</span><span class="faq-char" style="--ci:13;">e</span><span class="faq-char" style="--ci:14;">d</span></span>
+  <span class="faq-word" style="--wi:2;"><span class="faq-char" style="--ci:15;">Q</span><span class="faq-char" style="--ci:16;">u</span><span class="faq-char" style="--ci:17;">e</span><span class="faq-char" style="--ci:18;">s</span><span class="faq-char" style="--ci:19;">t</span><span class="faq-char" style="--ci:20;">i</span><span class="faq-char" style="--ci:21;">o</span><span class="faq-char" style="--ci:22;">n</span><span class="faq-char" style="--ci:23;">s</span></span>
+  <span class="faq-word" style="--wi:3;"><span class="faq-char" style="--ci:24;">F</span><span class="faq-char" style="--ci:25;">o</span><span class="faq-char" style="--ci:26;">r</span></span>
+  <span class="faq-word" style="--wi:4;"><span class="faq-char" style="--ci:27;">E</span><span class="faq-char" style="--ci:28;">m</span><span class="faq-char" style="--ci:29;">p</span><span class="faq-char" style="--ci:30;">l</span><span class="faq-char" style="--ci:31;">o</span><span class="faq-char" style="--ci:32;">y</span><span class="faq-char" style="--ci:33;">e</span><span class="faq-char" style="--ci:34;">r</span><span class="faq-char" style="--ci:35;">s</span></span>
+</h2>
 
 <h3>Who can register as an employer?</h3>
 <p>Organizations of all sizes can participate, including startups, SMEs, educational institutions, and large enterprises.</p>
@@ -1611,8 +2925,101 @@ By bringing together recruiters, professionals, students, and job seekers on a c
       document.body.style.overflow = '';
     });
   });
+
+  // Circular expanding hover effect tracking on hero button
+  document.querySelectorAll('.heroBtn.primary, .heroCta').forEach(function(btn) {
+    btn.addEventListener('mousemove', function(e) {
+      var rect = this.getBoundingClientRect();
+      this.style.setProperty('--circle-x', (e.clientX - rect.left) + 'px');
+      this.style.setProperty('--circle-y', (e.clientY - rect.top) + 'px');
+    });
+  });
 })();
 </script> 
+<script>
+/* =========================================================
+   Scroll-Triggered Roll Opening Animation for How It Works
+   - Adds .js-animate to section so cards stay visible if JS fails
+   - Desktop & Tablet: triggers when section enters view (threshold 0.25), reveals cards in order, unobserves
+   - Mobile: triggers each card as it enters view
+========================================================= */
+(function() {
+  var section = document.getElementById('howItWorks');
+  if (!section) return;
+
+  // Add .js-animate class so initial hidden state only applies when JS is active
+  section.classList.add('js-animate');
+
+  var cards = section.querySelectorAll('.step');
+  if (!cards.length) return;
+
+  // Fallback if IntersectionObserver not supported
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(function(card) { card.classList.add('is-visible'); });
+    return;
+  }
+
+  var isMobile = function() {
+    return window.matchMedia('(max-width: 640px)').matches;
+  };
+
+  if (isMobile()) {
+    // Mobile: trigger each card individually as it scrolls into view
+    var cardObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    cards.forEach(function(card) {
+      cardObserver.observe(card);
+    });
+  } else {
+    // Desktop & Tablet: observe section, reveal cards in order, then unobserve
+    var sectionObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          cards.forEach(function(card) {
+            card.classList.add('is-visible');
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    sectionObserver.observe(section);
+  }
+})();
+
+/* =========================================================
+   Scroll-Triggered Letter & Word Wave for FAQ Section
+========================================================= */
+(function() {
+  var faqSec = document.querySelector('.faq-section');
+  if (!faqSec) return;
+
+  faqSec.classList.add('js-animate');
+
+  if (!('IntersectionObserver' in window)) {
+    faqSec.classList.add('is-visible');
+    return;
+  }
+
+  var faqObserver = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        faqSec.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  faqObserver.observe(faqSec);
+})();
+</script>
   <script src="alert-modal.js"></script>
 </body>
 </html>
