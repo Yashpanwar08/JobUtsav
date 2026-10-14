@@ -289,174 +289,645 @@
       width:auto;
       margin-right:8px;
     }
-    /* ===== Hero (enhanced with right image card) ===== */
-    .hero{
-      background: linear-gradient(0deg, var(--navy3), var(--navy2));
-      border-bottom:1px solid rgba(15,23,42,.06);
-      position:relative;
-      overflow:hidden;
-      padding: 44px 0 64px; /* CHANGED: remove extra top gap */
+    /* ===== College Hero Section: Academic Prestige & Emerald Green Theme ===== */
+    .hero.collegeHero {
+      background: linear-gradient(145deg, #061512 0%, #0a211a 50%, #0f2e25 100%);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.18);
+      position: relative;
+      overflow: hidden;
+      padding: 56px 0 68px;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 420px at 70% 40%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(600px 360px at 25% 70%, rgba(255,255,255,.08), transparent 60%);
-      pointer-events:none;
+
+    /* Ambient Lighting Mesh with Emerald & Warm Amber */
+    .collegeHeroGlows {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
     }
-    .heroGrid{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 26px;
-      align-items:center;
+
+    .glowBall {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.6;
     }
-    /* ADDED: badge + meta (more content like other pages) */
-    .heroBadge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 7px 14px;
+
+    .emeraldGlow1 {
+      width: 620px;
+      height: 620px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(5, 150, 105, 0.12) 60%, transparent 80%);
+    }
+
+    .emeraldGlow2 {
+      width: 480px;
+      height: 480px;
+      bottom: -60px;
+      left: 20%;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, transparent 70%);
+    }
+
+    .amberGlow {
+      width: 440px;
+      height: 440px;
+      top: 30%;
+      left: -100px;
+      background: radial-gradient(circle, rgba(244, 123, 32, 0.12) 0%, transparent 70%);
+    }
+
+    .academicGridPattern {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.45;
+      mask-image: radial-gradient(circle at 60% 40%, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(circle at 60% 40%, black 40%, transparent 85%);
+    }
+
+    .collegeHeroGrid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    /* Left Content */
+    .collegeHeroBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.88);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing:.2px;
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-    .heroMeta{
-      margin-top: 14px;
-      display:flex;
-      gap: 16px;
-      flex-wrap:wrap;
-      color: rgba(255,255,255,.72);
-      font-weight: 800;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.32);
+      color: #a7f3d0;
       font-size: 12.5px;
-      align-items:center;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.12);
+      backdrop-filter: blur(8px);
     }
-    .heroMeta span{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
+
+    .liveBeacon {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-    .heroDot{
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 4px rgba(244,123,32,.18);
+
+    .beaconRing {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #10b981;
+      animation: beaconPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
     }
-    .hero h1{
-      margin:0;
-      font-size: clamp(34px, 5vw, 64px);
-      line-height:1.05;
-      font-weight:900;
-      letter-spacing:-.6px;
-      color:#fff;
+
+    .beaconCore {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 8px #10b981;
     }
-    .hero p{
-      margin:14px 0 0;
-      max-width: 740px;
-      font-size:15px;
-      line-height:1.85;
-      color: rgba(255,255,255,.82);
+
+    @keyframes beaconPulse {
+      0% { transform: scale(0.95); opacity: 0.85; }
+      50% { transform: scale(2.4); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
     }
-    .heroActions{
-      display:flex;
+
+    .collegeHeroTitle {
+      margin: 0 0 16px;
+      font-size: clamp(34px, 4.4vw, 56px);
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+    }
+
+    .emeraldHighlight {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #a7f3d0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 16px rgba(16, 185, 129, 0.35));
+      position: relative;
+      display: inline-block;
+    }
+
+    .emeraldHighlight::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #10b981, #34d399, transparent);
+      border-radius: 2px;
+    }
+
+    .collegeHeroDesc {
+      margin: 0 0 24px;
+      max-width: 620px;
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .collegeHeroDesc strong {
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+
+    /* Key Academic Stat Chips */
+    .collegeStatChips {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      flex-wrap:wrap;
-      margin-top: 18px;
+      margin-bottom: 26px;
+      max-width: 580px;
     }
-    .heroCta{
-      height:48px;
-      padding:0 28px;
-      border:none;
-      border-radius:12px;
-      background: var(--orange);
-      color:#fff;
-      font-weight:800;
-      font-size:14px;
-      cursor:pointer;
-      box-shadow: 0 16px 30px rgba(244,123,32,.22);
+
+    .statChip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(52, 211, 153, 0.16);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      transition: all 0.25s ease;
     }
-    .heroCta:hover{ background:#ea6f12; }
-    .heroGhost{
-      height:48px;
-      padding:0 18px;
-      border-radius:12px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      font-weight: 900;
-      font-size: 13px;
-      cursor:pointer;
-      transition:.15s ease;
+
+    .statChip:hover {
+      background: rgba(16, 185, 129, 0.10);
+      border-color: rgba(52, 211, 153, 0.38);
+      transform: translateY(-2px);
     }
-    .heroGhost:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
-    .heroMedia{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 18px;
-      overflow:hidden;
-      box-shadow: 0 18px 45px rgba(0,0,0,.25);
-      position:relative;
+
+    .statChipIcon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.35) 100%);
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
     }
-    .heroMedia img{
-      width:100%;
-      height: 260px;
-      object-fit: cover;
-      display:block;
+
+    .statChipText {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
     }
-    .heroSticker{
-      position:absolute;
+
+    .statChipText strong {
+      color: #ffffff;
+      font-size: 15.5px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .statChipText span {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 11.5px;
+      font-weight: 500;
+    }
+
+    /* Actions */
+    .collegeHeroActions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .collegeHeroCta {
+      height: 50px;
+      padding: 0 30px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.48);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .collegeHeroCta:hover {
+      background: linear-gradient(135deg, #047857 0%, #059669 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -4px rgba(16, 185, 129, 0.6);
+    }
+
+    .collegeHeroGhost {
+      height: 50px;
+      padding: 0 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .collegeHeroGhost:hover {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: #34d399;
+      transform: translateY(-2px);
+      color: #a7f3d0;
+    }
+
+    /* Meta list */
+    .collegeHeroMeta {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.76);
+      font-weight: 600;
+      font-size: 12.5px;
+      align-items: center;
+    }
+
+    .collegeHeroMeta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .collegeHeroMeta i {
+      color: #10b981;
+      font-size: 14px;
+    }
+
+    /* Right Showcase Card */
+    .collegeMediaWrap {
+      position: relative;
+    }
+
+    .collegeHeroMedia {
+      background: rgba(11, 31, 26, 0.75);
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(16, 185, 129, 0.12);
+      position: relative;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .collegeHeroMedia:hover {
+      border-color: rgba(52, 211, 153, 0.5);
+      box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.6), 0 0 50px rgba(16, 185, 129, 0.22);
+    }
+
+    .mediaFloatingTag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(6, 21, 18, 0.85);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #a7f3d0;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+      z-index: 4;
+    }
+
+    .mediaFloatingTag i {
+      color: #34d399;
+    }
+
+    .mediaOfferBadge {
+      position: absolute;
       top: 14px;
       right: 14px;
-      background: var(--orange);
-      color:#fff;
-      font-weight: 900;
-      font-size: 12px;
-      border-radius: 12px;
-      padding: 10px 12px;
-      box-shadow: 0 18px 34px rgba(244,123,32,.22);
-      line-height:1.15;
-      text-align:left;
+      background: linear-gradient(135deg, rgba(6, 21, 18, 0.92) 0%, rgba(11, 37, 30, 0.95) 100%);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      z-index: 4;
     }
-    .heroSticker small{
-      display:block;
-      opacity:.9;
+
+    .offerBadgeIcon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #10b981;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .offerBadgeInfo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .offerNum {
+      font-size: 14px;
+      font-weight: 800;
+      color: #6ee7b7;
+    }
+
+    .offerLabel {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 600;
+    }
+
+    .mediaImgFrame {
+      position: relative;
+      overflow: hidden;
+      height: 290px;
+    }
+
+    .mediaImgFrame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .collegeHeroMedia:hover .mediaImgFrame img {
+      transform: scale(1.04);
+    }
+
+    .mediaImgOverlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6, 21, 18, 0.1) 0%, rgba(6, 21, 18, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    .mediaPackageBadge {
+      position: absolute;
+      bottom: 120px;
+      left: 16px;
+      background: rgba(6, 21, 18, 0.88);
+      border: 1px solid rgba(244, 123, 32, 0.4);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      z-index: 4;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .pkgIcon {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #f47b20 0%, #ff9d42 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .mediaPackageBadge small {
+      display: block;
+      font-size: 9.5px;
+      color: #fed7aa;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .mediaPackageBadge strong {
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    .collegeMediaBody {
+      padding: 18px 20px 20px;
+      color: #ffffff;
+      background: rgba(8, 26, 21, 0.95);
+      border-top: 1px solid rgba(52, 211, 153, 0.18);
+    }
+
+    .mediaHeaderRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .collabTag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #34d399 !important;
       font-size: 11px;
       font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .heroMediaBody{
-      padding: 14px 14px 16px;
-      color:#fff;
-    }
-    .heroMediaBody small{
-      display:block;
-      color: rgba(255,255,255,.60);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing:.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin: 0 !important;
     }
-    .heroMediaBody h3{
-      margin:0 0 10px;
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing:-.2px;
-    }
-    .heroMediaRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      color: rgba(255,255,255,.74);
-      font-size: 12.6px;
+
+    .seasonStatus {
+      font-size: 11px;
       font-weight: 700;
+      color: #a7f3d0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulseGreenDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .collegeMediaBody h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+    }
+
+    .collegeMediaRow {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .collegeMediaRow span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .collegeMediaRow i {
+      color: #34d399;
+    }
+
+    /* Stream Ticker Bar */
+    .collegeStreamBar {
+      margin-top: 48px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(52, 211, 153, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .streamLabel {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #34d399;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .streamBadges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      flex: 1;
+    }
+
+    .streamPill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(52, 211, 153, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .streamPill:hover {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(52, 211, 153, 0.45);
+      color: #a7f3d0;
+      transform: translateY(-2px);
+    }
+
+    .streamPill i {
+      color: #10b981;
+      font-size: 11.5px;
+    }
+
+    @media (max-width: 980px) {
+      .hero.collegeHero {
+        padding: 40px 0 52px;
+      }
+      .collegeHeroGrid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .collegeHeroBadge {
+        margin: 0 auto 16px;
+      }
+      .collegeHeroTitle {
+        font-size: clamp(30px, 6vw, 42px);
+      }
+      .collegeHeroDesc {
+        margin: 0 auto 20px;
+      }
+      .collegeStatChips {
+        margin: 0 auto 24px;
+      }
+      .collegeHeroActions {
+        justify-content: center;
+      }
+      .collegeHeroMeta {
+        justify-content: center;
+      }
+      .collegeStreamBar {
+        justify-content: center;
+        text-align: center;
+      }
+      .streamBadges {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .collegeStatChips {
+        grid-template-columns: 1fr;
+      }
+      .mediaFloatingTag, .mediaPackageBadge {
+        display: none;
+      }
+      .mediaOfferBadge {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+      }
+      .streamBadges {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .streamPill {
+        justify-content: center;
+      }
     }
     /* ===== Sections ===== */
     section{ padding:72px 0; }
@@ -536,58 +1007,349 @@
       font-weight: 700;
       line-height: 1.6;
     }
-    .stepsGrid{
-      display:grid;
+
+    /* ===== Placement Outcomes Section: One-by-One Staggered Card Entrance ===== */
+    #placementOutcomes .sectionHead {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      will-change: opacity, transform;
+    }
+    #placementOutcomes.in-view .sectionHead {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #placementOutcomes .kpiCard {
+      opacity: 0;
+      transform: translateY(30px) scale(0.96);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.26s ease,
+                  border-color 0.26s ease !important;
+      will-change: opacity, transform;
+    }
+
+    #placementOutcomes.in-view .kpiCard {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    #placementOutcomes.in-view .kpiCard:nth-child(1) {
+      transition-delay: 0.12s !important;
+    }
+    #placementOutcomes.in-view .kpiCard:nth-child(2) {
+      transition-delay: 0.28s !important;
+    }
+    #placementOutcomes.in-view .kpiCard:nth-child(3) {
+      transition-delay: 0.44s !important;
+    }
+    #placementOutcomes.in-view .kpiCard:nth-child(4) {
+      transition-delay: 0.60s !important;
+    }
+
+    /* Seamless instant hover without delay when cards are in view */
+    #placementOutcomes.in-view .kpiCard:hover {
+      transform: translateY(-7px) scale(1.02) !important;
+      box-shadow: 0 28px 56px rgba(2, 6, 23, 0.16) !important;
+      border-color: rgba(244, 123, 32, 0.30) !important;
+      transition-delay: 0s !important;
+      transition-duration: 0.26s !important;
+    }
+
+    /* Smooth exit when scrolling away */
+    #placementOutcomes:not(.in-view) .kpiCard {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      transition: opacity 0.3s ease 0s, transform 0.3s ease 0s !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #placementOutcomes .sectionHead,
+      #placementOutcomes.in-view .sectionHead,
+      #placementOutcomes .kpiCard,
+      #placementOutcomes.in-view .kpiCard {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        transition-delay: 0s !important;
+      }
+    }
+    /* ===== How the College Partnership Works (Card-less Stepper) ===== */
+    #howItWorks {
+      position: relative;
+      overflow: hidden;
+    }
+    #howItWorks .highlight-orange {
+      color: #F97316;
+    }
+    .stepper-wrap {
+      position: relative;
+      margin-top: 52px;
+      width: 100%;
+    }
+    .stepper-track-wrap {
+      position: absolute;
+      top: var(--h-line-top, 20px);
+      left: var(--h-line-left, 16.6667%);
+      width: var(--h-line-width, 66.6667%);
+      height: 2px;
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .stepper-track-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(249, 115, 22, 0.20);
+    }
+    .stepper-progress-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #F97316;
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.4s ease 0s;
+    }
+    #howItWorks.in-view .stepper-progress-line {
+      transform: scaleX(1);
+      transition: transform 1.8s ease-out 0s;
+    }
+    .stepper-travel-dot {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #F97316;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s ease 0s;
+      z-index: 3;
+      pointer-events: none;
+    }
+    #howItWorks.in-view .stepper-travel-dot {
+      opacity: 1;
+      transition: opacity 0.4s ease 2.4s;
+      animation: stepperTravelDotH 3s linear infinite 2.4s;
+    }
+    @keyframes stepperTravelDotH {
+      0% {
+        left: 0%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    .college-stepper {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 18px;
+      gap: 24px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      z-index: 2;
     }
-    .stepCard{
-      background:#fff;
-      border: 1px solid rgba(15,23,42,.08);
-      border-radius: 16px;
-      box-shadow: var(--shadowSoft);
-      padding: 16px;
+    .stepper-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0;
     }
-    .stepTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 10px;
+    .stepper-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #F97316;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      z-index: 2;
+      position: relative;
+      opacity: 0;
+      transform: scale(0.3);
+      transition: opacity 0.4s ease 0s, transform 0.4s ease 0s;
+      user-select: none;
+      flex-shrink: 0;
     }
-    .stepNum{
-      width:38px; height:38px;
-      border-radius: 12px;
-      display:grid;
-      place-items:center;
-      background: rgba(244,123,32,.10);
-      border: 1px solid rgba(244,123,32,.18);
-      color: var(--orange);
-      font-weight: 900;
+    .stepper-circle-num {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      color: #ffffff;
     }
-    .stepBadge{
-      display:inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 900;
-      background: rgba(2,6,23,.04);
-      border: 1px solid rgba(2,6,23,.06);
-      color:#475569;
-      white-space:nowrap;
+    #howItWorks.in-view .stepper-step:nth-child(1) .stepper-circle {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.2s,
+                  transform 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.2s;
     }
-    .stepCard h3{
-      margin:0 0 8px;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing:-.2px;
+    #howItWorks.in-view .stepper-step:nth-child(2) .stepper-circle {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.9s,
+                  transform 0.5s cubic-bezier(.34, 1.56, .64, 1) 0.9s;
     }
-    .stepCard p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.8;
+    #howItWorks.in-view .stepper-step:nth-child(3) .stepper-circle {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.5s cubic-bezier(.34, 1.56, .64, 1) 1.6s,
+                  transform 0.5s cubic-bezier(.34, 1.56, .64, 1) 1.6s;
+    }
+    .stepper-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease 0s, transform 0.4s ease 0s;
+    }
+    #howItWorks.in-view .stepper-step:nth-child(1) .stepper-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease 0.5s,
+                  transform 0.5s ease 0.5s;
+    }
+    #howItWorks.in-view .stepper-step:nth-child(2) .stepper-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease 1.2s,
+                  transform 0.5s ease 1.2s;
+    }
+    #howItWorks.in-view .stepper-step:nth-child(3) .stepper-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease 1.9s,
+                  transform 0.5s ease 1.9s;
+    }
+    .stepper-title {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #0f172a;
+    }
+    .stepper-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background: rgba(2, 6, 23, 0.05);
+      border: 1px solid rgba(2, 6, 23, 0.08);
+      color: #475569;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+    .stepper-desc {
+      margin: 0;
+      color: var(--muted, #6b7280);
+      font-size: 13.5px;
+      line-height: 1.7;
+      max-width: 320px;
+    }
+    /* Vertical Stepper below 768px */
+    @media (max-width: 767.98px) {
+      .stepper-wrap {
+        margin-top: 36px;
+      }
+      .college-stepper {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+      }
+      .stepper-step {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 20px;
+      }
+      .stepper-circle {
+        margin: 0;
+      }
+      .stepper-content {
+        align-items: flex-start;
+        text-align: left;
+        flex: 1;
+      }
+      .stepper-desc {
+        max-width: 100%;
+      }
+      .stepper-track-wrap {
+        top: var(--v-line-top, 20px);
+        left: var(--v-line-left, 20px);
+        width: 2px;
+        height: var(--v-line-height, calc(100% - 100px));
+        transform: translateX(-50%);
+      }
+      .stepper-track-line {
+        width: 2px;
+        height: 100%;
+      }
+      .stepper-progress-line {
+        width: 2px;
+        height: 100%;
+        transform-origin: top center;
+        transform: scaleY(0);
+        transition: transform 0.4s ease 0s;
+      }
+      #howItWorks.in-view .stepper-progress-line {
+        transform: scaleY(1);
+        transition: transform 1.8s ease-out 0s;
+      }
+      .stepper-travel-dot {
+        top: 0%;
+        left: 50%;
+      }
+      #howItWorks.in-view .stepper-travel-dot {
+        opacity: 1;
+        transition: opacity 0.4s ease 2.4s;
+        animation: stepperTravelDotV 3s linear infinite 2.4s;
+      }
+    }
+    @keyframes stepperTravelDotV {
+      0% {
+        top: 0%;
+      }
+      100% {
+        top: 100%;
+      }
+    }
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .stepper-progress-line {
+        transform: scale(1) !important;
+        transition: none !important;
+      }
+      .stepper-circle {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        transition: none !important;
+      }
+      .stepper-content {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .stepper-travel-dot {
+        display: none !important;
+      }
     }
     /* Benefits row */
     .benefitGrid {
@@ -1461,52 +2223,374 @@ main{
       .actions{
           margin-top: 20px !important;
       }
-      .college-growth-section{
-    max-width:1100px;
-    margin:50px auto;
-    padding:40px;
-    background:#fff;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-}
+      /* ===== Career Growth Section (Academic Emerald Theme) ===== */
+      .college-growth-section {
+        padding: 72px 0;
+        background: radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
+                    radial-gradient(circle at 88% 82%, rgba(5, 150, 105, 0.12) 0%, transparent 50%),
+                    linear-gradient(155deg, #051914 0%, #08261e 50%, #0d352a 100%);
+        border-top: 1px solid rgba(16, 185, 129, 0.25);
+        border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+        position: relative;
+        overflow: hidden;
+      }
+      .college-growth-container {
+        max-width: 1100px;
+        width: min(1100px, calc(100% - 40px));
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 44px;
+        position: relative;
+        z-index: 1;
+      }
+      .college-growth-section .highlight-emerald,
+      .college-growth-section .highlight-orange {
+        color: #10b981;
+        background: linear-gradient(135deg, #34d399 0%, #10b981 60%, #059669 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 2px 14px rgba(16, 185, 129, 0.4));
+      }
+      .career-block {
+        position: relative;
+      }
 
-.college-growth-section h2{
-    color:#ff7a00;
-    font-size:32px;
-    margin-bottom:20px;
-    text-align:center;
-}
+      /* Block A: Split Layout */
+      .career-block-a {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .career-a-left {
+        text-align: left;
+      }
+      .career-pill {
+        display: inline-block;
+        padding: 5px 14px;
+        border-radius: 9999px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        color: #34d399;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        margin-bottom: 14px;
+      }
+      .career-a-left h2 {
+        color: #ffffff;
+        font-size: clamp(24px, 2.8vw, 34px);
+        font-weight: 700;
+        line-height: 1.25;
+        margin: 0 0 16px;
+        letter-spacing: -0.3px;
+      }
+      .career-intro {
+        color: #d1fae5;
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0 0 14px;
+        text-align: left;
+      }
+      .career-subtext {
+        color: #a7f3d0;
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0;
+        text-align: left;
+      }
+      .career-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .career-card {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(16, 185, 129, 0.18);
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        cursor: default;
+        transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+      }
+      .career-card:hover {
+        transform: translateY(-4px) !important;
+        background: rgba(16, 185, 129, 0.08) !important;
+        border-color: #10b981 !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(16, 185, 129, 0.28) !important;
+      }
+      .career-card-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: rgba(16, 185, 129, 0.18);
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        flex-shrink: 0;
+      }
+      .career-card-icon svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.3s ease;
+      }
+      @keyframes iconWobble {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg) scale(1.1); }
+        75% { transform: rotate(10deg) scale(1.1); }
+      }
+      .career-card:hover .career-card-icon svg {
+        animation: iconWobble 0.45s ease-in-out;
+      }
+      .career-card-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #f0fdf4;
+        margin: 0 0 6px;
+        line-height: 1.35;
+      }
+      .career-card-desc {
+        font-size: 13px;
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin: 0;
+      }
 
-.college-growth-section h3{
-    color:#222;
-    margin:25px 0 12px;
-    font-size:22px;
-}
+      /* Block B: Industry-Academia Connections */
+      .career-b-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 18px;
+        text-align: left;
+      }
+      .career-b-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .career-b-col {
+        border-left: 3px solid #10b981;
+        padding: 6px 0 6px 18px;
+        background: transparent;
+      }
+      .career-b-col p {
+        color: #e2e8f0;
+        font-size: 14.5px;
+        line-height: 1.7;
+        margin: 0;
+        text-align: left;
+      }
 
-.college-growth-section p{
-    color:#555;
-    line-height:1.9;
-    text-align:justify;
-}
+      /* Block C: Why Career Exposure Matters */
+      .career-c-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 16px;
+        text-align: left;
+      }
+      .career-chips-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+      }
+      .career-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 16px;
+        border-radius: 9999px;
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        color: #6ee7b7;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .career-chip-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #10b981;
+        flex-shrink: 0;
+      }
+      .career-chip-icon svg {
+        width: 15px;
+        height: 15px;
+      }
+      .career-highlight-box {
+        border-left: 3px solid #10b981;
+        background: rgba(16, 185, 129, 0.10);
+        border-top: 1px solid rgba(16, 185, 129, 0.22);
+        border-right: 1px solid rgba(16, 185, 129, 0.22);
+        border-bottom: 1px solid rgba(16, 185, 129, 0.22);
+        border-radius: 0 12px 12px 0;
+        padding: 18px 22px;
+        text-align: left;
+      }
+      .career-highlight-box p {
+        color: #f0fdf4;
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0;
+        text-align: left;
+      }
 
-.college-feature-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-    margin-top:25px;
-}
+      /* Scroll Animation (Transitions for bidirectional replay) */
+      .career-block-a .career-a-left,
+      .career-block-a .career-card,
+      .career-block-b .career-b-title,
+      .career-block-b .career-b-col,
+      .career-block-c .career-c-title,
+      .career-block-c .career-highlight-box {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.35s ease 0s, transform 0.35s ease 0s;
+      }
+      .career-block-c .career-chip {
+        opacity: 0;
+        transform: translateY(24px) scale(0.8);
+        transition: opacity 0.35s ease 0s, transform 0.35s ease 0s;
+      }
 
-.college-feature-card{
-    background:#fff8f1;
-    border-left:4px solid #ff7a00;
-    padding:18px;
-    border-radius:10px;
-}
+      /* In-View states with staggered delays */
+      .career-block-a.in-view .career-a-left {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0s, transform 0.6s ease-out 0s;
+      }
+      .career-block-a.in-view .career-card:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s;
+      }
+      .career-block-a.in-view .career-card:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
+      }
+      .career-block-a.in-view .career-card:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.45s, transform 0.6s ease-out 0.45s;
+      }
+      .career-block-a.in-view .career-card:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.6s, transform 0.6s ease-out 0.6s;
+      }
 
-.college-feature-card h4{
-    margin-bottom:8px;
-    color:#ff7a00;
-}
+      .career-block-b.in-view .career-b-title {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0s, transform 0.6s ease-out 0s;
+      }
+      .career-block-b.in-view .career-b-col:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0s, transform 0.6s ease-out 0s;
+      }
+      .career-block-b.in-view .career-b-col:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
+      }
+
+      .career-block-c.in-view .career-c-title {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0s, transform 0.6s ease-out 0s;
+      }
+      .career-block-c.in-view .career-chip:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition: opacity 0.6s ease-out 0s, transform 0.6s ease-out 0s;
+      }
+      .career-block-c.in-view .career-chip:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition: opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s;
+      }
+      .career-block-c.in-view .career-chip:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
+      }
+      .career-block-c.in-view .career-highlight-box {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s;
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 991.98px) {
+        .career-block-a {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+      @media (max-width: 575.98px) {
+        .college-growth-section {
+          padding: 48px 0;
+        }
+        .college-growth-container {
+          gap: 32px;
+        }
+        .career-cards-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .career-b-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .career-chips-list {
+          gap: 8px;
+        }
+        .career-chip {
+          font-size: 12px;
+          padding: 5px 12px;
+        }
+        .career-highlight-box {
+          padding: 14px 16px;
+        }
+      }
+
+      /* Accessibility: Reduced Motion */
+      @media (prefers-reduced-motion: reduce) {
+        .career-block-a .career-a-left,
+        .career-block-a .career-card,
+        .career-block-b .career-b-title,
+        .career-block-b .career-b-col,
+        .career-block-c .career-c-title,
+        .career-block-c .career-chip,
+        .career-block-c .career-highlight-box {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .career-card:hover {
+          transform: none !important;
+        }
+        .career-card:hover .career-card-icon svg {
+          animation: none !important;
+        }
+      }
 </style>
 </head>
 <body>
@@ -1550,51 +2634,156 @@ main{
 </header>
 <main>
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero collegeHero">
+    <div class="collegeHeroGlows" aria-hidden="true">
+      <div class="glowBall emeraldGlow1"></div>
+      <div class="glowBall emeraldGlow2"></div>
+      <div class="glowBall amberGlow"></div>
+      <div class="academicGridPattern"></div>
+    </div>
+
     <div class="container">
-      <div class="heroGrid">
-        <div>
-          <!-- REMOVED: top icon (as you asked) -->
-          <div class="heroBadge">- College Partnership Program</div>
-          <h1>Supercharge Your<br>Placement Cell</h1>
-          <p>
-            Partner with JobUtsav to give your students exclusive access to 500+ top recruiters in a single mega-event.
+      <div class="heroGrid collegeHeroGrid">
+        <div class="collegeHeroContent">
+          <!-- Institutional Badge with live pulsating emerald beacon -->
+          <div class="collegeHeroBadge">
+            <span class="liveBeacon">
+              <span class="beaconRing"></span>
+              <span class="beaconCore"></span>
+            </span>
+            <span class="badgeText">Campus Placement Accelerator • 2026 Season Active</span>
+          </div>
+
+          <h1 class="collegeHeroTitle">
+            Supercharge Your<br>
+            <span class="emeraldHighlight">Placement Cell</span>
+          </h1>
+
+          <p class="collegeHeroDesc">
+            Partner with JobUtsav to give your students exclusive access to <strong>500+ top recruiters</strong> in a single mega-event. Maximize campus placement rates, attract high-CTC employers, and elevate institutional NIRF rankings.
           </p>
-          <!-- ADDED: extra content (without changing your existing text) -->
-          <div class="heroActions">
-            <button class="heroCta" type="button"
-              onclick="document.getElementById('candidateReg').scrollIntoView({behavior:'smooth'})">
-              Register College
-            </button>
-            <button class="heroGhost" type="button"
-              onclick="document.getElementById('howItWorks').scrollIntoView({behavior:'smooth'})">
-              How It Works
-            </button>
-          </div>
-          <div class="heroMeta">
-            <span><i class="heroDot"></i> Priority shortlisting</span>
-            <span><i class="heroDot"></i> Verified recruiters</span>
-            <span><i class="heroDot"></i> Pan-India opportunities</span>
-          </div>
-        </div>
-        <!-- RIGHT IMAGE CARD -->
-        <aside class="heroMedia">
-          <img src="images/coll.jpeg" alt="College partnership highlight">
-          <div class="heroMediaBody">
-            <small>PLACEMENT COLLAB</small>
-            <h3>More Interviews. More Offers.</h3>
-            <div class="heroMediaRow">
-              <span>Companies 250+ Recruiters</span>
-              <span>Location: Multi-city</span>
-              <span>Growth Better placements</span>
+
+          <!-- Key Academic Stat Metric Chips -->
+          <div class="collegeStatChips">
+            <div class="statChip">
+              <div class="statChipIcon"><i class="fas fa-chart-line"></i></div>
+              <div class="statChipText">
+                <strong>92%</strong>
+                <span>Placement Rate</span>
+              </div>
+            </div>
+            <div class="statChip">
+              <div class="statChipIcon"><i class="fas fa-building"></i></div>
+              <div class="statChipText">
+                <strong>500+</strong>
+                <span>Corporate Partners</span>
+              </div>
+            </div>
+            <div class="statChip">
+              <div class="statChipIcon"><i class="fas fa-trophy"></i></div>
+              <div class="statChipText">
+                <strong>₹18+ LPA</strong>
+                <span>Highest Package</span>
+              </div>
+            </div>
+            <div class="statChip">
+              <div class="statChipIcon"><i class="fas fa-shield-alt"></i></div>
+              <div class="statChipText">
+                <strong>Zero Cost</strong>
+                <span>To College / TPO</span>
+              </div>
             </div>
           </div>
-        </aside>
+
+          <div class="heroActions collegeHeroActions">
+            <button class="collegeHeroCta" type="button"
+              onclick="document.getElementById('candidateReg').scrollIntoView({behavior:'smooth'})">
+              <i class="fas fa-university"></i>
+              <span>Register College</span>
+            </button>
+            <button class="collegeHeroGhost" type="button"
+              onclick="document.getElementById('howItWorks').scrollIntoView({behavior:'smooth'})">
+              <i class="fas fa-clipboard-list"></i>
+              <span>How It Works</span>
+            </button>
+          </div>
+
+          <div class="collegeHeroMeta">
+            <span><i class="fas fa-check-circle"></i> Priority shortlisting</span>
+            <span><i class="fas fa-check-circle"></i> Verified recruiters</span>
+            <span><i class="fas fa-check-circle"></i> Pan-India opportunities</span>
+            <span><i class="fas fa-check-circle"></i> AICTE & UGC Aligned</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: ENHANCED ACADEMIC SHOWCASE CARD -->
+        <div class="collegeMediaWrap">
+          <aside class="heroMedia collegeHeroMedia">
+            <!-- Floating Badge Top Left: Accreditation -->
+            <div class="mediaFloatingTag">
+              <i class="fas fa-graduation-cap"></i>
+              <span>AICTE & UGC Affiliated Colleges</span>
+            </div>
+
+            <!-- Floating Card Top Right: Live Offers Count -->
+            <div class="mediaOfferBadge">
+              <div class="offerBadgeIcon"><i class="fas fa-file-signature"></i></div>
+              <div class="offerBadgeInfo">
+                <span class="offerNum">1,420+</span>
+                <span class="offerLabel">Offers Issued</span>
+              </div>
+            </div>
+
+            <!-- Image with smooth zoom on hover -->
+            <div class="mediaImgFrame">
+              <img src="images/college-hero.jpg" alt="JobUtsav College Campus Placement Drive and Recruitment Summit" loading="eager" width="640" height="360">
+              <div class="mediaImgOverlay"></div>
+            </div>
+
+            <!-- Floating Badge Bottom Left: Highest Package -->
+            <div class="mediaPackageBadge">
+              <div class="pkgIcon"><i class="fas fa-award"></i></div>
+              <div>
+                <small>TOP CTC RECORDED</small>
+                <strong>₹18.5 LPA Package</strong>
+              </div>
+            </div>
+
+            <!-- Bottom Media Info Panel -->
+            <div class="heroMediaBody collegeMediaBody">
+              <div class="mediaHeaderRow">
+                <small class="collabTag"><i class="fas fa-handshake"></i> PLACEMENT COLLAB 2026</small>
+                <span class="seasonStatus"><span class="pulseGreenDot"></span> Multi-City Active</span>
+              </div>
+              <h3>More Interviews. More Offers.</h3>
+              <div class="heroMediaRow collegeMediaRow">
+                <span><i class="fas fa-briefcase"></i> 250+ Recruiters / Drive</span>
+                <span><i class="fas fa-map-marker-alt"></i> Multi-City Mega Events</span>
+                <span><i class="fas fa-chart-pie"></i> 3.4x Higher Conversion</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- INSTITUTION STREAM TICKER BAR -->
+      <div class="collegeStreamBar">
+        <div class="streamLabel">
+          <i class="fas fa-award"></i>
+          <span>PARTNERING ACROSS STREAMS</span>
+        </div>
+        <div class="streamBadges">
+          <div class="streamPill"><i class="fas fa-laptop-code"></i> Engineering & Tech (B.Tech / M.Tech)</div>
+          <div class="streamPill"><i class="fas fa-briefcase"></i> Management B-Schools (MBA / PGDM)</div>
+          <div class="streamPill"><i class="fas fa-code"></i> IT & Computer Apps (MCA / BCA)</div>
+          <div class="streamPill"><i class="fas fa-coins"></i> Commerce & Finance (B.Com / BBA)</div>
+          <div class="streamPill"><i class="fas fa-flask"></i> Science, Pharmacy & Arts</div>
+        </div>
       </div>
     </div>
   </section>
   <!-- ADDED: MORE CONTENT (keeps same structure/look, improves page) -->
-  <section class="mutedSection">
+  <section class="mutedSection" id="placementOutcomes">
     <div class="container">
       <div class="sectionHead">
         <div class="pill">Placement Outcomes</div>
@@ -1625,110 +2814,172 @@ main{
     </div>
   </section>
   
-  <section class="college-growth-section">
+  <!-- Career Growth Section -->
+  <section class="college-growth-section" id="careerGrowth">
+    <div class="college-growth-container">
 
-<h2>Helping Students Build Successful Careers</h2>
+      <!-- BLOCK A: Split Layout (Career Development Intro & 2x2 Feature Cards) -->
+      <div class="career-block career-block-a" id="careerBlockA">
+        <div class="career-a-left">
+          <span class="career-pill">Career Development</span>
+          <h2>Helping Students Build <span class="highlight-emerald">Successful Careers</span></h2>
+          <p class="career-intro">
+            Academic excellence alone is often not enough to secure employment. JobUtsav bridges education and employment through organised hiring events and career-focused initiatives.
+          </p>
+          <p class="career-subtext">
+            Our goal is to help institutions improve student employability by connecting them with employers from various sectors.
+          </p>
+        </div>
+        <div class="career-a-right">
+          <ul class="career-cards-grid">
+            <li class="career-card">
+              <div class="career-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor"></polygon>
+                </svg>
+              </div>
+              <h4 class="career-card-title">Career Guidance</h4>
+              <p class="career-card-desc">Exposure to real hiring practices and career opportunities.</p>
+            </li>
+            <li class="career-card">
+              <div class="career-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h4 class="career-card-title">Industry Interaction</h4>
+              <p class="career-card-desc">Connect directly with recruiters and professionals from multiple sectors.</p>
+            </li>
+            <li class="career-card">
+              <div class="career-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <h4 class="career-card-title">Internship Access</h4>
+              <p class="career-card-desc">Explore internship programs that build practical experience.</p>
+            </li>
+            <li class="career-card">
+              <div class="career-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"></circle>
+                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                </svg>
+              </div>
+              <h4 class="career-card-title">Placement Support</h4>
+              <p class="career-card-desc">Increase student visibility among participating employers.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-<p>
-In today's competitive job market, academic excellence alone is often not enough to secure employment. Students also need industry exposure, career guidance, professional networking opportunities, and access to recruiters. JobUtsav supports colleges by creating a bridge between education and employment through organized hiring events and career-focused initiatives.
-</p>
+      <!-- BLOCK B: Industry-Academia Connections -->
+      <div class="career-block career-block-b" id="careerBlockB">
+        <h3 class="career-b-title">Building Industry–Academia Connections</h3>
+        <div class="career-b-grid">
+          <div class="career-b-col">
+            <p>Strong collaboration between educational institutions and employers plays a crucial role in improving placement outcomes and student readiness.</p>
+          </div>
+          <div class="career-b-col">
+            <p>JobUtsav brings recruiters and academic institutions onto one platform where both can benefit from long-term hiring partnerships.</p>
+          </div>
+        </div>
+      </div>
 
-<p>
-Our goal is to help institutions improve student employability by connecting them with employers from various sectors. Through our platform, students gain practical exposure to recruitment processes, interview preparation, and industry expectations.
-</p>
+      <!-- BLOCK C: Why Career Exposure Matters -->
+      <div class="career-block career-block-c" id="careerBlockC">
+        <h3 class="career-c-title">Why Career Exposure <span class="highlight-emerald">Matters</span></h3>
+        <ul class="career-chips-list">
+          <li class="career-chip">
+            <span class="career-chip-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </span>
+            <span>Builds confidence</span>
+          </li>
+          <li class="career-chip">
+            <span class="career-chip-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+            <span>Improves communication</span>
+          </li>
+          <li class="career-chip">
+            <span class="career-chip-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </span>
+            <span>Clarifies employer expectations</span>
+          </li>
+        </ul>
+        <div class="career-highlight-box">
+          <p>
+            Even when immediate hiring does not occur, the experience gained from interacting with recruiters becomes valuable for future opportunities. Through continuous engagement with colleges and employers, JobUtsav remains committed to supporting career growth and employment opportunities for students across India.
+          </p>
+        </div>
+      </div>
 
-<h3>Career Development Opportunities</h3>
-
-<p>
-Beyond job fairs, students benefit from interactions with HR professionals, recruiters, industry experts, and hiring managers. These interactions help candidates understand current market trends, required skills, and professional expectations.
-</p>
-
-<div class="college-feature-grid">
-
-<div class="college-feature-card">
-<h4>Career Guidance</h4>
-<p>Students receive exposure to real hiring practices and career opportunities.</p>
-</div>
-
-<div class="college-feature-card">
-<h4>Industry Interaction</h4>
-<p>Connect directly with recruiters and professionals from multiple sectors.</p>
-</div>
-
-<div class="college-feature-card">
-<h4>Internship Access</h4>
-<p>Explore internship programs that help students gain practical experience.</p>
-</div>
-
-<div class="college-feature-card">
-<h4>Placement Support</h4>
-<p>Increase student visibility among participating employers.</p>
-</div>
-
-</div>
-
-<h3>Building Industry-Academia Connections</h3>
-
-<p>
-Strong collaboration between educational institutions and employers plays a crucial role in improving placement outcomes. JobUtsav helps facilitate these connections by bringing recruiters and academic institutions onto a common platform where both can benefit from long-term partnerships.
-</p>
-
-<p>
-As hiring trends continue to evolve, colleges that actively engage with industry partners can better prepare students for future career opportunities. JobUtsav aims to support this process through meaningful networking and recruitment initiatives.
-</p>
-
-<h3>Why Career Exposure Matters</h3>
-
-<p>
-Students who participate in recruitment events gain confidence, improve communication skills, and better understand employer expectations. Even when immediate hiring does not occur, the experience gained from interacting with recruiters becomes valuable for future opportunities.
-</p>
-
-<p>
-Through continuous engagement with colleges and employers, JobUtsav remains committed to supporting career growth, professional development, and employment opportunities for students across India.
-</p>
-
-</section>
+    </div>
+  </section>
   
   <section id="howItWorks">
     <div class="container">
       <div class="sectionHead">
         <div class="pill">Simple Process</div>
-        <h2>How the <span style="color:var(--orange)">College Partnership</span> Works</h2>
+        <h2>How the <span class="highlight-orange">College Partnership</span> Works</h2>
         <p>
           A clear, placement-cell friendly process - so your students can focus on preparation and interviews, while we manage coordination.
         </p>
       </div>
-      <div class="stepsGrid">
-        <div class="stepCard">
-          <div class="stepTop">
-            <div class="stepNum">1</div>
-            <span class="stepBadge">Nominate Students</span>
-          </div>
-          <h3>Share student registrations</h3>
-          <p>
-            Register candidates through the form below. You can register multiple students and help them prepare for the event.
-          </p>
+      <div class="stepper-wrap">
+        <div class="stepper-track-wrap" aria-hidden="true">
+          <div class="stepper-track-line"></div>
+          <div class="stepper-progress-line"></div>
+          <div class="stepper-travel-dot"></div>
         </div>
-        <div class="stepCard">
-          <div class="stepTop">
-            <div class="stepNum">2</div>
-            <span class="stepBadge">Shortlisting</span>
-          </div>
-          <h3>Recruiter screening & interview slots</h3>
-          <p>
-            Students get exposure to multiple recruiters. Based on eligibility and profiles, they receive interview opportunities quickly.
-          </p>
-        </div>
-        <div class="stepCard">
-          <div class="stepTop">
-            <div class="stepNum">3</div>
-            <span class="stepBadge">Offers</span>
-          </div>
-          <h3>On-ground interviews & outcomes</h3>
-          <p>
-            Walk-in interviews, fast feedback, and on-the-spot offers - giving your placement cell measurable results.
-          </p>
-        </div>
+        <ol class="college-stepper">
+          <li class="stepper-step">
+            <div class="stepper-circle"><span class="stepper-circle-num">1</span></div>
+            <div class="stepper-content">
+              <h3 class="stepper-title">Share student registrations</h3>
+              <span class="stepper-tag">Nominate Students</span>
+              <p class="stepper-desc">
+                Register candidates through the form below. You can register multiple students and help them prepare for the event.
+              </p>
+            </div>
+          </li>
+          <li class="stepper-step">
+            <div class="stepper-circle"><span class="stepper-circle-num">2</span></div>
+            <div class="stepper-content">
+              <h3 class="stepper-title">Recruiter screening &amp; interview slots</h3>
+              <span class="stepper-tag">Shortlisting</span>
+              <p class="stepper-desc">
+                Students get exposure to multiple recruiters. Based on eligibility and profiles, they receive interview opportunities quickly.
+              </p>
+            </div>
+          </li>
+          <li class="stepper-step">
+            <div class="stepper-circle"><span class="stepper-circle-num">3</span></div>
+            <div class="stepper-content">
+              <h3 class="stepper-title">On-ground interviews &amp; outcomes</h3>
+              <span class="stepper-tag">Offers</span>
+              <p class="stepper-desc">
+                Walk-in interviews, fast feedback, and on-the-spot offers - giving your placement cell measurable results.
+              </p>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
@@ -2071,6 +3322,159 @@ Through continuous engagement with colleges and employers, JobUtsav remains comm
     });
   }, { threshold: 0.25 });
   document.querySelectorAll('section, .statsGrid').forEach(s => observer.observe(s));
+})();
+</script>
+<script>
+// How the College Partnership Works Stepper Animation
+(function () {
+  const section = document.getElementById('howItWorks');
+  if (!section) return;
+
+  const stepper = section.querySelector('.college-stepper');
+  const trackWrap = section.querySelector('.stepper-track-wrap');
+
+  function updateStepperLine() {
+    if (!stepper || !trackWrap) return;
+    const circles = stepper.querySelectorAll('.stepper-circle');
+    if (circles.length < 3) return;
+
+    const stepperRect = stepper.getBoundingClientRect();
+    const c1 = circles[0].getBoundingClientRect();
+    const c3 = circles[circles.length - 1].getBoundingClientRect();
+
+    if (window.innerWidth >= 768) {
+      const left = (c1.left + c1.width / 2) - stepperRect.left;
+      const right = (c3.left + c3.width / 2) - stepperRect.left;
+      const width = right - left;
+      const top = (c1.top + c1.height / 2) - stepperRect.top;
+
+      stepper.style.setProperty('--h-line-left', left + 'px');
+      stepper.style.setProperty('--h-line-width', width + 'px');
+      stepper.style.setProperty('--h-line-top', top + 'px');
+    } else {
+      const top = (c1.top + c1.height / 2) - stepperRect.top;
+      const bottom = (c3.top + c3.height / 2) - stepperRect.top;
+      const height = bottom - top;
+      const left = (c1.left + c1.width / 2) - stepperRect.left;
+
+      stepper.style.setProperty('--v-line-left', left + 'px');
+      stepper.style.setProperty('--v-line-top', top + 'px');
+      stepper.style.setProperty('--v-line-height', height + 'px');
+    }
+  }
+
+  window.addEventListener('resize', updateStepperLine);
+  window.addEventListener('orientationchange', updateStepperLine);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateStepperLine);
+  }
+  updateStepperLine();
+
+  let debounceTimer = null;
+  let isInView = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const ratio = entry.intersectionRatio;
+        const isIntersecting = entry.isIntersecting;
+
+        const enterRatio = 0.35;
+        const exitRatio = 0.18;
+
+        if (!isInView && isIntersecting && ratio >= enterRatio) {
+          isInView = true;
+          section.classList.add('in-view');
+          updateStepperLine();
+        } else if (isInView && (!isIntersecting || ratio < exitRatio)) {
+          isInView = false;
+          section.classList.remove('in-view');
+        }
+      }, 50);
+    });
+  }, {
+    threshold: [0, 0.15, 0.2, 0.35, 0.5],
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  observer.observe(section);
+})();
+
+// Career Growth Section (Blocks A, B, C) Scroll Animation
+(function () {
+  const blocks = document.querySelectorAll('.career-block');
+  if (!blocks.length) return;
+
+  const timers = new Map();
+  const inViewStates = new Map();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const el = entry.target;
+      const prevTimer = timers.get(el);
+      if (prevTimer) clearTimeout(prevTimer);
+
+      const timer = setTimeout(() => {
+        const ratio = entry.intersectionRatio;
+        const isIntersecting = entry.isIntersecting;
+        const currentlyInView = inViewStates.get(el) || false;
+
+        const enterRatio = 0.25;
+        const exitRatio = 0.12;
+
+        if (!currentlyInView && isIntersecting && ratio >= enterRatio) {
+          inViewStates.set(el, true);
+          el.classList.add('in-view');
+        } else if (currentlyInView && (!isIntersecting || ratio < exitRatio)) {
+          inViewStates.set(el, false);
+          el.classList.remove('in-view');
+        }
+      }, 50);
+
+      timers.set(el, timer);
+    });
+  }, {
+    threshold: [0, 0.1, 0.25, 0.4],
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  blocks.forEach((b) => observer.observe(b));
+})();
+
+// Placement Outcomes (KPI Cards Stagger Animation)
+(function () {
+  const section = document.getElementById('placementOutcomes');
+  if (!section) return;
+
+  let debounceTimer = null;
+  let isInView = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        const ratio = entry.intersectionRatio;
+        const isIntersecting = entry.isIntersecting;
+
+        const enterRatio = 0.2;
+        const exitRatio = 0.06;
+
+        if (!isInView && isIntersecting && ratio >= enterRatio) {
+          isInView = true;
+          section.classList.add('in-view');
+        } else if (isInView && (!isIntersecting || ratio < exitRatio)) {
+          isInView = false;
+          section.classList.remove('in-view');
+        }
+      }, 50);
+    });
+  }, {
+    threshold: [0, 0.06, 0.2, 0.35],
+    rootMargin: '0px 0px -8% 0px'
+  });
+
+  observer.observe(section);
 })();
 </script>
   <script src="alert-modal.js"></script>
