@@ -132,7 +132,7 @@ if (isset($_GET['reg_id'])) {
 
         echo "</div>";
         echo "<div style='text-align:center; margin-top:20px;'>
-       <a href='https://jobutsav.com/index.html'>
+       <a href='../index.html'>
           <button style='padding:12px 20px; border:none; border-radius:10px; background:linear-gradient(135deg,#f47b20,#ff8a2a); color:#fff; font-weight:700; cursor:pointer;'>
             ← Go Back to Website
           </button>
