@@ -19,7 +19,7 @@ async function flipToBackAndDismiss(id){
 }
 async function cycle(id){
   if(!flip)return;
-  var sp=document.querySelectorAll('#sk span'),ln=document.querySelectorAll('.ln'),T=document.querySelectorAll('.toast');
+  var sp=document.querySelectorAll('#sk span'),ln=document.querySelectorAll('#flip .ln'),T=document.querySelectorAll('.toast');
   flip.classList.remove('back');await sl(900);if(id!=run)return;
   if($('nm'))$('nm').textContent='';sp.forEach(function(x){x.classList.remove('on')});ln.forEach(function(x){x.classList.remove('on')});
   if($('stamp'))$('stamp').classList.remove('on');if($('bar'))$('bar').style.width='0';if($('pc'))$('pc').textContent='0%';T.forEach(function(x){x.classList.remove('on')});
