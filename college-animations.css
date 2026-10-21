@@ -1,0 +1,1002 @@
+/**
+ * JobUtsav - College Page Animation Layer
+ * File: college-animations.css
+ * Spec-compliant, high-performance CSS animation layer
+ */
+
+/* ==========================================================================
+   0. CSS Variables & Design Tokens
+   ========================================================================== */
+:root {
+  --anim-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --anim-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-intro-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --anim-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Ensure no layout jumps or accidental horizontal scroll */
+html, body {
+  overflow-x: clip;
+}
+@supports not (overflow-x: clip) {
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
+/* ==========================================================================
+   A) PAGE-LOAD INTRO OVERLAY & PRE-JS COVER
+   ========================================================================== */
+
+/* Cover to prevent flash of content before JS executes */
+html.js:not(.intro-done) body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: linear-gradient(135deg, #e7f8ef 0%, #ffffff 50%, #fff1e1 100%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  animation: introFallbackHide 0.5s ease 4s forwards;
+}
+
+@keyframes introFallbackHide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+html.intro-done body::before,
+html.no-intro body::before {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Scroll lock during intro */
+body.intro-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+}
+
+/* Fullscreen Overlay */
+#jobutsav-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e7f8ef 0%, #ffffff 50%, #fff1e1 100%);
+  transform: translateY(0);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  will-change: transform, border-radius;
+  box-shadow: 0 30px 60px rgba(16, 185, 129, 0.12);
+  pointer-events: auto;
+}
+
+#jobutsav-intro-overlay.leaving {
+  transform: translateY(-100%);
+  border-bottom-left-radius: 50vw 80px;
+  border-bottom-right-radius: 50vw 80px;
+  transition: transform 0.95s var(--anim-intro-ease), border-radius 0.95s var(--anim-intro-ease);
+}
+
+.intro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(32px, 5vw, 64px);
+  max-width: min(680px, 92vw);
+  position: relative;
+  z-index: 2;
+}
+
+/* Ambient glowing halo behind the large intro card */
+.intro-card::before {
+  content: '';
+  position: absolute;
+  width: clamp(360px, 55vw, 620px);
+  height: clamp(360px, 55vw, 620px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(255, 138, 31, 0.12) 42%, transparent 72%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(50px);
+}
+
+.intro-logo {
+  height: clamp(72px, 11vw, 120px);
+  max-width: clamp(300px, 50vw, 500px);
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 14px 32px rgba(16, 185, 129, 0.22));
+  opacity: 0;
+  transform: translateY(18px) scale(0.92);
+  animation: introElementIn 0.75s var(--anim-ease-out) 0.05s forwards;
+}
+
+.intro-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(17px, 2.6vw, 24px);
+  font-weight: 700;
+  color: #0a8f63;
+  letter-spacing: clamp(0.12em, 0.3vw, 0.2em);
+  text-transform: uppercase;
+  margin: 0 0 32px;
+  text-shadow: 0 2px 16px rgba(16, 185, 129, 0.2);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: introElementIn 0.75s var(--anim-ease-out) 0.2s forwards;
+}
+
+.intro-bar-track {
+  width: clamp(320px, 50vw, 540px);
+  max-width: 86vw;
+  height: 8px;
+  background: rgba(16, 185, 129, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(22, 48, 41, 0.1);
+  opacity: 0;
+  animation: introElementIn 0.6s ease 0.32s forwards;
+}
+
+.intro-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981 0%, #ff8a1f 100%);
+  box-shadow: 0 0 18px rgba(255, 138, 31, 0.7), 0 0 8px rgba(16, 185, 129, 0.5);
+  transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes introElementIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   B) WORD-BY-WORD TEXT ANIMATIONS & ROTATING PHRASE
+   ========================================================================== */
+
+/* Strict Override: Remove ANY underline under hero h1 span and rotating phrase */
+h1 span,
+.hero h1 span,
+.rotating-phrase-wrap,
+.rotating-phrase {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-style: none !important;
+  border-bottom: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Heading word mask & inner word slide-up */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: inherit;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(115%) rotate(5deg);
+  opacity: 0;
+  transition: transform 0.85s var(--anim-ease-out), opacity 0.85s var(--anim-ease-out);
+  transition-delay: calc(var(--w-idx, 0) * 60ms);
+  will-change: transform, opacity;
+}
+
+.text-revealed .word-inner,
+.text-revealed.word-inner {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* Lead paragraph word blur + fade-in */
+.lead .word-mask {
+  display: inline;
+  overflow: visible;
+}
+
+.lead .word-inner {
+  display: inline-block;
+  filter: blur(6px);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: filter 0.7s var(--anim-ease-out), transform 0.7s var(--anim-ease-out), opacity 0.7s var(--anim-ease-out);
+  transition-delay: calc(var(--w-idx, 0) * 28ms);
+  will-change: filter, transform, opacity;
+}
+
+.lead.text-revealed .word-inner {
+  filter: blur(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Eyebrow soft fade and rise */
+.eyebrow {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s var(--anim-ease-out), transform 0.8s var(--anim-ease-out);
+}
+
+.eyebrow.text-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Rotating Phrase in Hero H1 ("Placement Cell" -> "Campus Hiring" -> "Student Careers") */
+.rotating-phrase-wrap {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  color: var(--green);
+  line-height: inherit;
+  transition: width 0.35s var(--anim-ease-out);
+}
+
+.rotating-phrase {
+  display: inline-block;
+  color: var(--green);
+  transition: transform 0.55s var(--anim-ease-out), opacity 0.55s var(--anim-ease-out), filter 0.55s var(--anim-ease-out);
+  will-change: transform, opacity, filter;
+  white-space: nowrap;
+}
+
+.rotating-phrase.current {
+  position: relative;
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0);
+}
+
+.rotating-phrase.exit-up {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-115%);
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.rotating-phrase.enter-from-down {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(115%);
+  opacity: 0;
+  filter: blur(6px);
+}
+
+/* ==========================================================================
+   C & D) SCROLL REVEALS & STAGGERS
+   ========================================================================== */
+
+/* Specificity booster: ensure .in always takes precedence over hidden states */
+.js .rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 1. Stat cards: rise + scale .9 -> 1 */
+.js .stat.rv {
+  opacity: 0;
+  transform: translateY(32px) scale(0.9);
+  transition: opacity 0.8s var(--anim-ease-out), transform 0.8s var(--anim-ease-out);
+}
+.js .stat.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* 2. Step items in #how: rise 56px + scale .95 */
+.js .step.rv {
+  opacity: 0;
+  transform: translateY(56px) scale(0.95);
+  transition: opacity 0.85s var(--anim-ease-out), transform 0.85s var(--anim-ease-out);
+}
+.js .step.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* 3. Perks: rise with alternating slight rotation */
+.js .perk.rv:nth-child(odd) {
+  opacity: 0;
+  transform: translateY(38px) rotate(-1.6deg);
+  transition: opacity 0.85s var(--anim-ease-out), transform 0.85s var(--anim-ease-out);
+}
+.js .perk.rv:nth-child(even) {
+  opacity: 0;
+  transform: translateY(38px) rotate(1.6deg);
+  transition: opacity 0.85s var(--anim-ease-out), transform 0.85s var(--anim-ease-out);
+}
+.js .perk.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateY(0) rotate(0deg) !important;
+}
+
+/* 4. Duo cards: left from left, right from right */
+.js .duo > .rv:first-child {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js .duo > .rv:last-child {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js .duo > .rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* 5. Career & Registration section elements */
+.js .edit .l.rv {
+  opacity: 0;
+  transform: translateX(-46px);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js .edit .l.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.js .regl.rv {
+  opacity: 0;
+  transform: translateX(-46px);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js .regl.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.js form.rv {
+  opacity: 0;
+  transform: translateX(46px);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js form.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.js .outbox.rv {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition: opacity 0.9s var(--anim-ease-out), transform 0.9s var(--anim-ease-out);
+}
+.js .outbox.rv.in:not(#_) {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Staggers: .career-feature-card x4 */
+.career-feature-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--anim-ease-out), transform 0.7s var(--anim-ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.rv.in .career-feature-card:nth-child(1) { transition-delay: 0.08s; }
+.rv.in .career-feature-card:nth-child(2) { transition-delay: 0.18s; }
+.rv.in .career-feature-card:nth-child(3) { transition-delay: 0.28s; }
+.rv.in .career-feature-card:nth-child(4) { transition-delay: 0.38s; }
+.rv.in .career-feature-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggers: .four outcome columns */
+.four > div {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--anim-ease-out), transform 0.7s var(--anim-ease-out);
+}
+.outbox.in .four > div:nth-child(1) { transition-delay: 0.12s; }
+.outbox.in .four > div:nth-child(2) { transition-delay: 0.24s; }
+.outbox.in .four > div:nth-child(3) { transition-delay: 0.36s; }
+.outbox.in .four > div:nth-child(4) { transition-delay: 0.48s; }
+.outbox.in .four > div {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggers: .regl li ticks */
+.regl li {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s var(--anim-ease-out), transform 0.6s var(--anim-ease-out);
+}
+.regl.in li:nth-child(1) { transition-delay: 0.2s; }
+.regl.in li:nth-child(2) { transition-delay: 0.32s; }
+.regl.in li:nth-child(3) { transition-delay: 0.44s; }
+.regl.in li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggers: form labels */
+form label {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--anim-ease-out), transform 0.5s var(--anim-ease-out), color 0.2s ease;
+}
+form.in label:nth-child(1) { transition-delay: 0.08s; }
+form.in label:nth-child(2) { transition-delay: 0.16s; }
+form.in label:nth-child(3) { transition-delay: 0.24s; }
+form.in label:nth-child(4) { transition-delay: 0.32s; }
+form.in label:nth-child(5) { transition-delay: 0.40s; }
+form.in label:nth-child(6) { transition-delay: 0.48s; }
+form.in label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero .checks and .chips pop-in */
+.hero .checks span,
+.hero .chips span {
+  opacity: 0;
+  transform: scale(0.78) translateY(10px);
+  transition: transform 0.6s var(--anim-spring), opacity 0.5s ease;
+}
+
+.hero.hero-revealed .checks span:nth-child(1) { transition-delay: 0.22s; }
+.hero.hero-revealed .checks span:nth-child(2) { transition-delay: 0.34s; }
+.hero.hero-revealed .checks span:nth-child(3) { transition-delay: 0.46s; }
+.hero.hero-revealed .checks span:nth-child(4) { transition-delay: 0.58s; }
+
+.hero.hero-revealed .chips span:nth-child(1) { transition-delay: 0.40s; }
+.hero.hero-revealed .chips span:nth-child(2) { transition-delay: 0.52s; }
+.hero.hero-revealed .chips span:nth-child(3) { transition-delay: 0.64s; }
+
+.hero.hero-revealed .checks span,
+.hero.hero-revealed .chips span {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Hero CTA buttons reveal */
+.hero .btns .btn {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease 0.35s, transform 0.6s var(--anim-ease-out) 0.35s;
+}
+.hero.hero-revealed .btns .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   E) HERO EXTRAS (Blobs, Zoom, Tilt, Pulsing Dots, Bobbing)
+   ========================================================================== */
+
+/* Hero section blob backdrop */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero-blob-1 {
+  width: 440px;
+  height: 440px;
+  top: -60px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.32) 0%, rgba(16, 185, 129, 0) 70%);
+  filter: blur(65px);
+  animation: blobDrift1 18s ease-in-out infinite alternate;
+}
+
+.hero-blob-2 {
+  width: 480px;
+  height: 480px;
+  top: 40px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(47, 107, 255, 0.25) 0%, rgba(47, 107, 255, 0) 70%);
+  filter: blur(75px);
+  animation: blobDrift2 22s ease-in-out infinite alternate;
+}
+
+.hero-blob-3 {
+  width: 420px;
+  height: 420px;
+  bottom: -40px;
+  left: 32%;
+  background: radial-gradient(circle, rgba(255, 138, 31, 0.26) 0%, rgba(255, 138, 31, 0) 70%);
+  filter: blur(70px);
+  animation: blobDrift3 20s ease-in-out infinite alternate;
+}
+
+@keyframes blobDrift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(45px, 30px) scale(1.08); }
+  100% { transform: translate(-25px, 50px) scale(0.96); }
+}
+
+@keyframes blobDrift2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.06); }
+  100% { transform: translate(25px, -30px) scale(0.95); }
+}
+
+@keyframes blobDrift3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-35px, -40px) scale(1.1); }
+  100% { transform: translate(40px, 25px) scale(0.94); }
+}
+
+/* Ken Burns slow zoom on hero image */
+.archimg {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.archimg img {
+  animation: kenBurnsZoom 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes kenBurnsZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* Pulsing dot in .eyebrow i */
+.eyebrow i {
+  animation: pulseEyebrowDot 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseEyebrowDot {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.22);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(16, 185, 129, 0.42);
+    transform: scale(1.08);
+  }
+}
+
+/* Blinking dot in .cap .live:before */
+.cap .live:before {
+  animation: liveBlinkDot 1.4s ease-in-out infinite;
+}
+
+@keyframes liveBlinkDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(0.72);
+  }
+}
+
+/* Gentle bob on .bub */
+.bub {
+  animation: gentleBubBob 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes gentleBubBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Micro-interactions on .coin and .ctc hero floating badges */
+.coin {
+  transition: transform 0.35s var(--anim-spring), box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.coin:hover {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow: 0 28px 48px -12px rgba(255, 122, 24, 0.95);
+}
+
+.ctc {
+  transition: transform 0.35s var(--anim-spring), box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+.ctc:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 24px 44px -14px rgba(22, 48, 41, 0.45);
+}
+
+/* ==========================================================================
+   F) GLOBAL POLISH
+   ========================================================================== */
+
+/* Top fixed scroll progress bar */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981 0%, #ff8a1f 100%);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 10000;
+  pointer-events: none;
+  transition: transform 0.08s linear;
+}
+
+/* Navbar shrink & stronger shadow on scroll */
+.nav {
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.nav.nav-scrolled {
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.32), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.nav.nav-scrolled .wrap {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  transition: padding 0.3s ease;
+}
+
+.nav .wrap {
+  transition: padding 0.3s ease;
+}
+
+/* Nav link animated orange underline on hover (not active .on and not .btn) */
+.nav nav a {
+  position: relative;
+}
+
+.nav nav a:not(.on):not(.btn)::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.28s var(--anim-ease-out);
+}
+
+.nav nav a:not(.on):not(.btn):hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Cursor spotlight on hover devices */
+@media (hover: hover) and (pointer: fine) {
+  .perk,
+  .career-feature-card,
+  .stat,
+  .duo > div {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .perk::before,
+  .career-feature-card::before,
+  .stat::before,
+  .duo > div::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(350px circle at var(--spot-x, -999px) var(--spot-y, -999px), rgba(16, 185, 129, 0.13), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .perk:hover::before,
+  .career-feature-card:hover::before,
+  .stat:hover::before,
+  .duo > div:hover::before {
+    opacity: 1;
+  }
+
+  .perk > *,
+  .career-feature-card > *,
+  .stat > *,
+  .duo > div > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Buttons: shine sweep on hover, press-down on active */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s var(--anim-ease-out), box-shadow 0.2s var(--anim-ease-out);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: skewX(-22deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+}
+
+.btn:hover::after {
+  left: 150%;
+}
+
+.btn:active {
+  transform: scale(0.96) translateY(1px) !important;
+}
+
+/* Floating "College Registration" button orange ring pulse */
+.float .btn.o {
+  animation: floatBtnPulse 2.4s infinite ease-out;
+}
+
+@keyframes floatBtnPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 31, 0.6), 0 14px 30px -10px rgba(255, 122, 24, .6);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(255, 138, 31, 0), 0 14px 30px -10px rgba(255, 122, 24, .6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 138, 31, 0), 0 14px 30px -10px rgba(255, 122, 24, .6);
+  }
+}
+
+/* Stepper number circles pulse after line animation reaches them */
+#how.in-view .stairs .step:nth-child(1) .num {
+  animation: numSoftPulse 2.4s ease-in-out 0.6s infinite;
+}
+#how.in-view .stairs .step:nth-child(2) .num {
+  animation: numSoftPulse 2.4s ease-in-out 1.2s infinite;
+}
+#how.in-view .stairs .step:nth-child(3) .num {
+  animation: numSoftPulse 2.4s ease-in-out 1.8s infinite;
+}
+
+@keyframes numSoftPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
+/* Input focus lift & label colour change */
+label {
+  transition: color 0.2s ease;
+}
+
+label:focus-within {
+  color: #0a8f63 !important;
+}
+
+label input {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+label input:focus {
+  transform: translateY(-2px);
+}
+
+/* Footer links animated underline */
+footer .fg a,
+footer .fine a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none !important;
+}
+
+footer .fg a:not(:has(img))::after,
+footer .fine a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.28s var(--anim-ease-out);
+}
+
+footer .fg a:not(:has(img)):hover::after,
+footer .fine a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Perk & Career icon circles gentle float + hover wobble */
+.perk .o,
+.career-feature-card .o {
+  animation: iconGentleFloat 4s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.perk:nth-child(2) .o,
+.career-feature-card:nth-child(even) .o {
+  animation-delay: -2s;
+}
+
+@keyframes iconGentleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+@media (hover: hover) {
+  .perk:hover .o,
+  .career-feature-card:hover .o {
+    animation: iconWobble 0.65s var(--anim-spring) forwards;
+  }
+}
+
+@keyframes iconWobble {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.14) rotate(-8deg); }
+  50% { transform: scale(1.14) rotate(6deg); }
+  75% { transform: scale(1.08) rotate(-3deg); }
+  100% { transform: scale(1.08) rotate(0deg); }
+}
+
+/* ==========================================================================
+   G) RESPONSIVENESS (<= 900px) & ACCESSIBILITY (prefers-reduced-motion)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* Simple vertical reveals on smaller viewports instead of sideways sliding */
+  .js .duo > .rv:first-child,
+  .js .duo > .rv:last-child,
+  .js .edit .l.rv,
+  .js .regl.rv,
+  .js form.rv {
+    transform: translateY(28px) !important;
+  }
+
+  /* Subdue hero blobs on smaller devices to keep text ultra legible */
+  .hero-blob-1,
+  .hero-blob-2,
+  .hero-blob-3 {
+    opacity: 0.55;
+  }
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #jobutsav-intro-overlay,
+  #scroll-progress-bar,
+  .hero-blobs {
+    display: none !important;
+  }
+
+  html.js:not(.intro-done) body::before {
+    display: none !important;
+  }
+
+  .word-mask {
+    display: inline !important;
+    overflow: visible !important;
+  }
+
+  .word-inner {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .lead .word-inner {
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .eyebrow {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .hero .checks span,
+  .hero .chips span,
+  .hero .btns .btn {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .archimg img {
+    animation: none !important;
+  }
+
+  .eyebrow i,
+  .cap .live:before,
+  .bub,
+  .coin,
+  .ctc,
+  .float .btn.o,
+  #how.in-view .num,
+  .perk .o,
+  .career-feature-card .o {
+    animation: none !important;
+  }
+
+  .coin:hover,
+  .ctc:hover {
+    transform: none !important;
+  }
+
+  .js .stat.rv,
+  .js .step.rv,
+  .js .perk.rv,
+  .js .duo > .rv,
+  .js .edit .l.rv,
+  .js .regl.rv,
+  .js form.rv,
+  .js .outbox.rv,
+  .career-feature-card,
+  .four > div,
+  .regl li,
+  form label {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
