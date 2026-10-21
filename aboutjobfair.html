@@ -2213,9 +2213,31 @@
       line-height: 1.2 !important;
       display: block !important;
     }
+
+    /* ==========================================================================
+       TOP FIXED SCROLL PROGRESS & ACCENT LINE (MATCHES OTHER PAGES)
+       ========================================================================== */
+    #scroll-progress-bar,
+    .ju-scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #f26a1b 0%, #ff8a2a 45%, #1aa355 100%);
+      transform-origin: left;
+      transform: scaleX(0);
+      z-index: 10002;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(242, 106, 27, 0.4);
+      transition: transform 0.08s linear;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Top fixed scroll progress & accent bar (matches company & college pages) -->
+  <div id="juScrollProgress" class="ju-scroll-progress" aria-hidden="true"></div>
 
 <header>
   <div class="container">
@@ -3243,6 +3265,20 @@
       } else {
         initMarquee();
       }
+    })();
+  </script>
+  <script>
+    /* ===== Top Scroll Progress Bar ===== */
+    (function(){
+      var bar = document.getElementById('juScrollProgress') || document.getElementById('scroll-progress-bar');
+      if(!bar) return;
+      function updateProgress() {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var p = max > 0 ? (window.scrollY / max) : 0;
+        bar.style.transform = 'scaleX(' + Math.min(Math.max(p, 0), 1) + ')';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
     })();
   </script>
   <script src="alert-modal.js"></script>
