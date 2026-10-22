@@ -10,10 +10,10 @@
   <link rel="icon" href="jobutsav-logo-transparent.png" sizes="192x192" type="image/png">
   <link rel="canonical" href="https://jobutsav.com/ourcommitee.html" />
 
-  <!-- Google Fonts: Outfit, Fraunces, Bricolage Grotesque & Hind -->
+  <!-- Google Fonts: Outfit, Fraunces, Bricolage Grotesque, Hind & Playfair Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Hind:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Hind:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -385,470 +385,743 @@
       color: #fff !important;
     }
 
-    /* ==================== HERO: CINEMATIC MIDNIGHT LEADERSHIP GALAXY ==================== */
-    .hero {
+        /* ==================== HERO: ORGANIZING COMMITTEE EXPANDING PANELS ==================== */
+    .hero-committee {
       position: relative;
-      padding: clamp(130px, 17vh, 175px) 0 clamp(80px, 12vh, 120px);
+      background: #ffffff;
+      color: #0f1535;
+      padding: clamp(120px, 15vh, 160px) 0 60px;
       overflow: hidden;
-      background:
-        radial-gradient(75rem 40rem at 50% -10%, rgba(242, 106, 27, 0.28), transparent 75%),
-        radial-gradient(55rem 32rem at 85% 45%, rgba(26, 163, 85, 0.20), transparent 70%),
-        radial-gradient(50rem 30rem at 15% 65%, rgba(124, 58, 237, 0.18), transparent 70%),
-        linear-gradient(180deg, #060919 0%, #0a0e28 50%, #0d1335 100%);
-      color: #ffffff;
       text-align: center;
     }
 
-    /* Interactive Particle Constellation Canvas */
-    #heroCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Ambient Nebulae */
-    .hero-glow-orb {
+    /* Soft blurred drifting aurora background blobs */
+    .hero-aurora-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(120px);
+      filter: blur(90px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.65;
-      animation: orbDrift 14s ease-in-out infinite alternate;
+      opacity: 0.10;
     }
-    .orb-saffron {
+    .aurora-orange {
+      width: 580px;
+      height: 580px;
+      background: #f26a1b;
+      top: -100px;
+      left: 12%;
+      animation: auroraDrift1 20s ease-in-out infinite alternate;
+    }
+    .aurora-green {
       width: 520px;
       height: 520px;
-      background: radial-gradient(circle, rgba(242, 106, 27, 0.45) 0%, transparent 70%);
-      top: -120px;
-      left: 20%;
+      background: #1aa355;
+      top: 140px;
+      right: 8%;
+      animation: auroraDrift2 25s ease-in-out infinite alternate;
     }
-    .orb-emerald {
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(circle, rgba(26, 163, 85, 0.35) 0%, transparent 70%);
-      bottom: -60px;
-      right: 15%;
-      animation-delay: -7s;
-    }
-    @keyframes orbDrift {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(45px, 30px) scale(1.18); }
+    .aurora-navy {
+      width: 460px;
+      height: 460px;
+      background: #0f1535;
+      bottom: 20px;
+      left: 36%;
+      animation: auroraDrift3 28s ease-in-out infinite alternate;
     }
 
-    .hero-wrap {
+    @keyframes auroraDrift1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 45px) scale(1.12); }
+    }
+    @keyframes auroraDrift2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-50px, -40px) scale(1.08); }
+    }
+    @keyframes auroraDrift3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.05); }
+    }
+
+    .hero-committee-wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 20px;
       position: relative;
       z-index: 2;
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 0 clamp(16px, 4vw, 32px);
     }
 
-    /* Cosmic Live Status Capsule */
-    .hero-cosmic-pill {
+    /* White Pill Badge with Soft Shadow & Pulsing Green Dot */
+    .hero-pill-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 24px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      font-size: 13px;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
+      padding: 7px 20px;
+      border-radius: 9999px;
+      font-size: 0.76rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #ffd8bd;
-      margin-bottom: 26px;
-      animation: floatPill 4s ease-in-out infinite alternate;
-    }
-    @keyframes floatPill {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-5px); }
+      color: #0f1535;
+      box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
+      margin-bottom: 24px;
     }
 
-    .pill-beacon-glow {
-      position: relative;
-      width: 10px;
-      height: 10px;
+    .pulsing-green-dot {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #1aa355;
-      box-shadow: 0 0 12px #1aa355;
+      position: relative;
+      display: inline-block;
     }
-    .pill-beacon-glow::after {
-      content: "";
+    .pulsing-green-dot::after {
+      content: '';
       position: absolute;
       inset: -4px;
       border-radius: 50%;
-      border: 2px solid #1aa355;
-      animation: radarExpand 1.8s ease-out infinite;
+      background: rgba(26, 163, 85, 0.45);
+      animation: greenPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
-    @keyframes radarExpand {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(2.6); opacity: 0; }
-    }
-
-    /* Grand Cinematic Typography */
-    .hero-grand-h1 {
-      font-family: var(--d);
-      font-weight: 900;
-      font-size: clamp(2.8rem, 6.5vw, 5.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      color: #ffffff;
-      margin-bottom: 20px;
-      text-wrap: balance;
+    @keyframes greenPulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.9); opacity: 0; }
     }
 
-    .hero-h1-subline {
+    /* Typography & Mask Slide-Up */
+    .hero-main-title {
+      margin: 0 auto 10px;
+      max-width: 1050px;
+    }
+    .hero-mask-line {
+      overflow: hidden;
       display: block;
-      font-size: clamp(1.2rem, 2.5vw, 2rem);
-      font-family: "Fraunces", Georgia, serif;
+    }
+    .hero-mask-line > span {
+      display: inline-block;
+      animation: maskSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+    .hero-mask-line:nth-child(1) > span { animation-delay: 0.08s; }
+    .hero-mask-line:nth-child(2) > span { animation-delay: 0.16s; }
+    .hero-mask-line:nth-child(3) > span { animation-delay: 0.24s; }
+
+    @keyframes maskSlideUp {
+      0% { transform: translateY(105%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero-heading-architects {
+      font-family: 'Playfair Display', Georgia, serif;
       font-style: italic;
-      font-weight: 400;
-      color: #ffb885;
-      letter-spacing: 0.01em;
+      font-weight: 600;
+      font-size: clamp(1.4rem, 2.6vw, 2.3rem);
+      color: #f26a1b;
       margin-bottom: 6px;
     }
 
-    .hero-shimmer-word {
-      background: linear-gradient(110deg, #ff7a1a 0%, #ffc107 28%, #1aa355 50%, #ff7a1a 75%, #ffc107 100%);
-      background-size: 240% auto;
+    .hero-heading-largest {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 5.8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #0f1535;
+      text-transform: uppercase;
+    }
+
+    .hero-heading-festival {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 5.8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #f26a1b 0%, #ff9a3c 45%, #f26a1b 90%);
+      background-size: 200% auto;
       -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: fireFlow 5s linear infinite;
-      display: inline-block;
-      filter: drop-shadow(0 0 35px rgba(242, 106, 27, 0.45));
+      -webkit-text-fill-color: transparent;
+      animation: festivalShimmer 6s linear infinite;
     }
-    @keyframes fireFlow {
-      to { background-position: 240% center; }
+    @keyframes festivalShimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
 
-    .hero-narrative {
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      line-height: 1.7;
-      color: #cbd5e1;
-      max-width: 800px;
-      margin: 0 auto 34px;
-      font-weight: 400;
+    /* Paragraph in Slate Text */
+    .hero-slate-paragraph {
+      max-width: 830px;
+      margin: 20px auto 30px;
+      font-size: clamp(0.96rem, 1.3vw, 1.1rem);
+      line-height: 1.68;
+      color: #4a5070;
+      font-family: 'Outfit', sans-serif;
     }
-    .hero-narrative strong {
-      color: #ffffff;
-      font-weight: 600;
+    .hero-slate-paragraph strong {
+      color: #0f1535;
+      font-weight: 700;
     }
 
-    /* Glowing Action Buttons */
-    .hero-btn-row {
+    /* Buttons */
+    .hero-cta-buttons {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 50px;
+      margin-bottom: 48px;
     }
-
-    .btn-cosmic-primary {
-      position: relative;
+    .btn-solid-orange {
+      background: #f26a1b;
+      color: #ffffff !important;
+      border: 1.5px solid #f26a1b;
+      padding: 13px 28px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.94rem;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-family: var(--d);
-      font-size: 15.5px;
-      font-weight: 700;
-      padding: 15px 34px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #f26a1b 0%, #ff8a3d 100%);
-      color: #ffffff !important;
+      gap: 8px;
       text-decoration: none;
-      box-shadow: 0 12px 36px rgba(242, 106, 27, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 8px 24px rgba(242, 106, 27, 0.28);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .btn-solid-orange:hover {
+      background: #d8570e;
+      border-color: #d8570e;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(242, 106, 27, 0.38);
+      color: #ffffff !important;
+    }
+    .btn-navy-outline {
+      background: #ffffff;
+      color: #0f1535 !important;
+      border: 1.5px solid #0f1535;
+      padding: 13px 28px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(15, 21, 53, 0.05);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .btn-navy-outline:hover {
+      background: #0f1535;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(15, 21, 53, 0.18);
+    }
+    .btn-navy-outline .btn-star {
+      color: #f26a1b;
+      transition: color 0.25s ease;
+    }
+    .btn-navy-outline:hover .btn-star {
+      color: #ffb833;
+    }
+
+    /* ==================== EXPANDING PANELS (DESKTOP) ==================== */
+    .expanding-panels-row {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto 38px;
+      height: 560px;
+      position: relative;
+    }
+
+    /* Staggered load rise */
+    .expanding-panels-row.is-loaded .expand-panel:nth-child(1) { animation: panelRise 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards; }
+    .expanding-panels-row.is-loaded .expand-panel:nth-child(2) { animation: panelRise 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards; }
+    .expanding-panels-row.is-loaded .expand-panel:nth-child(3) { animation: panelRise 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.32s backwards; }
+
+    @keyframes panelRise {
+      0% { transform: translateY(35px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .expand-panel {
+      position: relative;
+      height: 100%;
+      border-radius: 28px;
+      border: 1px solid #e6e9f2;
       overflow: hidden;
       cursor: pointer;
-    }
-    .btn-cosmic-primary::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-      transform: rotate(25deg);
-      transition: left 0.75s ease;
-    }
-    .btn-cosmic-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 18px 45px rgba(242, 106, 27, 0.6);
-    }
-    .btn-cosmic-primary:hover::after {
-      left: 140%;
-    }
-
-    .btn-cosmic-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--d);
-      font-size: 15.5px;
-      font-weight: 700;
-      padding: 15px 32px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1.5px solid rgba(255, 255, 255, 0.22);
-      color: #ffffff !important;
-      text-decoration: none;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-      cursor: pointer;
-    }
-    .btn-cosmic-secondary:hover {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: #f26a1b;
-      color: #ff9547 !important;
-      transform: translateY(-3px);
-    }
-
-    /* 3-CARD HOLOGRAPHIC LEADERSHIP GALAXY DECK */
-    .galaxy-deck {
-      display: grid;
-      grid-template-columns: 1fr 1.25fr 1fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 10px;
-      perspective: 1200px;
-    }
-
-    .galaxy-card {
-      position: relative;
-      border-radius: 26px;
-      padding: 30px 24px;
-      background: rgba(13, 20, 52, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
       text-align: left;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+      flex: 1;
+      transition: flex 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.4s ease;
+      background: linear-gradient(165deg,
+        color-mix(in srgb, var(--panel-color) 26%, white),
+        color-mix(in srgb, var(--panel-color) 10%, white)
+      );
+      box-shadow: 0 10px 30px rgba(15, 21, 53, 0.05);
+      outline: none;
+      user-select: none;
+    }
+
+    /* Cursor-following radial glow (26% color) */
+    .expand-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle 380px at var(--mx, 50%) var(--my, 50%),
+        color-mix(in srgb, var(--panel-color) 26%, transparent),
+        transparent 70%
+      );
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Active State: flex 3.3, 45% border, 20% glow shadow */
+    .expand-panel.is-active {
+      flex: 3.3;
+      cursor: default;
+      border-color: color-mix(in srgb, var(--panel-color) 45%, transparent);
+      box-shadow: 0 18px 45px color-mix(in srgb, var(--panel-color) 20%, transparent);
+    }
+
+    .expand-panel:focus-visible {
+      outline: 3px solid var(--panel-color);
+      outline-offset: 3px;
+    }
+
+    /* Outlined Ghost Number (01/02/03) at bottom right */
+    .panel-ghost-number {
+      position: absolute;
+      right: 20px;
+      bottom: 6px;
+      font-size: 136px;
+      font-weight: 900;
+      line-height: 1;
+      font-family: 'Outfit', sans-serif;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+      -webkit-text-stroke: 1.5px color-mix(in srgb, var(--panel-color) 25%, transparent);
+      color: transparent;
+      opacity: 0.85;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Autoplay 4px Progress Bar */
+    .panel-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: var(--panel-color);
+      z-index: 10;
+      pointer-events: none;
+      transition: width 0.05s linear;
+    }
+
+    /* ================= COLLAPSED STATE ================= */
+    .panel-collapsed-content {
+      position: absolute;
+      inset: 0;
+      padding: 28px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
-    }
-
-    .galaxy-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--card-color, #f26a1b), transparent);
-      opacity: 0.8;
-    }
-
-    .galaxy-card:hover {
-      transform: translateY(-8px) scale(1.015);
-      border-color: var(--card-color, #f26a1b);
-      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.5), 0 0 25px rgba(242, 106, 27, 0.25);
-    }
-
-    .galaxy-card.card-featured {
-      background:
-        radial-gradient(120% 120% at 50% 0%, rgba(242, 106, 27, 0.22), transparent 60%),
-        rgba(15, 23, 62, 0.90);
-      border: 1.5px solid rgba(242, 106, 27, 0.50);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 35px rgba(242, 106, 27, 0.25);
-      transform: scale(1.03);
-      z-index: 3;
-    }
-    .galaxy-card.card-featured:hover {
-      transform: translateY(-12px) scale(1.05);
-      border-color: #ff8a3d;
-      box-shadow: 0 34px 80px rgba(0, 0, 0, 0.6), 0 0 45px rgba(242, 106, 27, 0.4);
-    }
-
-    /* Card Contents */
-    .card-top-tag {
-      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--card-color, #ff9547);
-      background: rgba(255, 255, 255, 0.06);
-      padding: 5px 12px;
-      border-radius: 999px;
-      width: fit-content;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 3;
+      transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    .card-icon-badge {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
+    .expand-panel.is-active .panel-collapsed-content {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+    }
+    .expand-panel:not(.is-active) .panel-collapsed-content {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    .collapsed-index-num {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      color: var(--panel-color);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .collapsed-vertical-title {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #0f1535;
+      white-space: nowrap;
+      margin: auto 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .collapsed-expand-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--card-color, #ff9547);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      margin-bottom: 18px;
+      color: #0f1535;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 12px rgba(15, 21, 53, 0.06);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .leader-avatar-orbit {
-      position: relative;
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      padding: 3px;
-      background: conic-gradient(from 0deg, #f26a1b, #1aa355, #ffb885, #f26a1b);
-      animation: rot 5s linear infinite;
-      margin-bottom: 16px;
-      box-shadow: 0 0 25px rgba(242, 106, 27, 0.4);
-    }
-    .leader-avatar-orbit img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      background: #0f1535;
-    }
-
-    .card-heading {
-      font-size: 1.35rem;
-      font-weight: 800;
+    .expand-panel:hover .collapsed-expand-btn {
+      background: var(--panel-color);
       color: #ffffff;
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
+      border-color: var(--panel-color);
+      transform: rotate(90deg) scale(1.08);
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--panel-color) 40%, transparent);
     }
-    .card-subheading {
-      font-size: 13px;
-      color: var(--card-color, #ff9547);
-      font-weight: 700;
+
+    /* ================= EXPANDED STATE ================= */
+    .panel-expanded-content {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      padding: 34px 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease 0.18s;
+    }
+
+    .expand-panel.is-active .panel-expanded-content {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Staggered fade-up (0.08s apart, starting at 0.4s) */
+    .expand-panel.is-active .stag-item:nth-child(1) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.40s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(2) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.48s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(3) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.56s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(4) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.64s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(5) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.72s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(6) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.80s backwards; }
+    .expand-panel.is-active .stag-item:nth-child(7) { animation: panelItemFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.88s backwards; }
+
+    @keyframes panelItemFadeUp {
+      0% { transform: translateY(18px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Tag Pill */
+    .expanded-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 15px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--panel-color);
+      box-shadow: 0 2px 8px rgba(15, 21, 53, 0.04);
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    /* 68px Icon Tile */
+    .expanded-icon-tile {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.85rem;
+      color: var(--panel-color);
+      box-shadow: 0 8px 22px rgba(15, 21, 53, 0.06);
       margin-bottom: 14px;
     }
 
-    .card-body-text {
-      font-size: 13.5px;
-      color: #cbd5e1;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .card-feature-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .feature-chip {
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .card-metric-highlight {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .card-metric-big {
-      font-family: var(--d);
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1;
-    }
-    .card-metric-big span {
-      color: var(--card-color, #ff9547);
-    }
-    .card-metric-label {
-      font-size: 12px;
-      color: #94a3b8;
-      font-weight: 500;
-    }
-
-    /* Live Satellite Orbit Badges */
-    .hero-orbit-row {
+    /* Founder Photo with Dashed Spinning Ring & Reverse Green Ring */
+    .founder-photo-orbit {
+      width: 68px;
+      height: 68px;
+      position: relative;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 36px;
+    }
+    .founder-photo-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
       position: relative;
-      z-index: 3;
+      z-index: 2;
+      box-shadow: 0 4px 14px rgba(15, 21, 53, 0.15);
+      border: 2px solid #ffffff;
+    }
+    .founder-dashed-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px dashed #f26a1b;
+      animation: spinClockwise 12s linear infinite;
+      z-index: 1;
+    }
+    .founder-reverse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid #1aa355;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      animation: spinCounter 7s linear infinite;
+      z-index: 1;
     }
 
-    .orbit-pill {
+    @keyframes spinClockwise {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spinCounter {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Title */
+    .expanded-title {
+      font-size: clamp(1.85rem, 2.3vw, 2.38rem);
+      font-weight: 900;
+      color: #0f1535;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Role Line in Card Color */
+    .expanded-role-line {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--panel-color);
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Paragraph in Slate Text */
+    .expanded-paragraph {
+      font-size: 0.93rem;
+      line-height: 1.62;
+      color: #4a5070;
+      max-width: 580px;
+      margin-bottom: 16px;
+      font-family: 'Outfit', sans-serif;
+    }
+    .expanded-paragraph strong {
+      color: #0f1535;
+      font-weight: 700;
+    }
+
+    /* Big Stat (56px) + Caption */
+    .expanded-stat-group {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .expanded-stat-value {
+      font-size: clamp(2.8rem, 3.8vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: #0f1535;
+      letter-spacing: -0.04em;
+      font-family: 'Outfit', sans-serif;
+    }
+    .expanded-stat-value .stat-accent {
+      color: var(--panel-color);
+    }
+    .expanded-stat-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4a5070;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Chips (White, 1px border) */
+    .expanded-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      z-index: 2;
+      position: relative;
+    }
+    .expanded-chip {
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #0f1535;
+      box-shadow: 0 2px 6px rgba(15, 21, 53, 0.03);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* ==================== BELOW THE PANELS: 30s INFINITE MARQUEE ==================== */
+    .hero-marquee-shelf {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 16px 0 0;
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    .hero-marquee-track {
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      animation: marqueeSlide 30s linear infinite;
+    }
+    .hero-marquee-shelf:hover .hero-marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes marqueeSlide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .hero-marquee-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      font-size: 12.5px;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #e6e9f2;
+      padding: 9px 22px;
+      border-radius: 9999px;
+      font-size: 0.86rem;
       font-weight: 600;
-      color: #e2e8f0;
-      backdrop-filter: blur(10px);
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      color: #0f1535;
+      box-shadow: 0 3px 12px rgba(15, 21, 53, 0.04);
+      white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
     }
-    .orbit-pill:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.14);
-      border-color: #f26a1b;
-      color: #ffffff;
-    }
-    .orbit-pill i {
-      color: var(--o);
+    .hero-marquee-pill i {
+      color: #f26a1b;
     }
 
-    @media (max-width: 1024px) {
-      .galaxy-deck {
-        grid-template-columns: 1fr;
-        max-width: 580px;
-        margin: 20px auto 0;
-      }
-      .galaxy-card.card-featured {
-        transform: none;
-      }
-      .galaxy-card.card-featured:hover {
-        transform: translateY(-8px);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 105px 0 55px;
-      }
-      .hero-btn-row {
+    /* ==================== RESPONSIVE: BELOW 900PX ACCORDION ==================== */
+    @media (max-width: 900px) {
+      .expanding-panels-row {
         flex-direction: column;
+        height: auto;
         gap: 12px;
       }
-      .btn-cosmic-primary, .btn-cosmic-secondary {
+      .expand-panel {
+        height: 84px;
+        flex: none !important;
+        width: 100%;
+        transition: height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    border-color 0.4s ease,
+                    box-shadow 0.4s ease;
+      }
+      .expand-panel.is-active {
+        height: 650px;
+      }
+      .panel-collapsed-content {
+        flex-direction: row;
+        padding: 18px 24px;
+        justify-content: flex-start;
+        gap: 18px;
+      }
+      .collapsed-vertical-title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin: 0;
+        font-size: 1.15rem;
+      }
+      .collapsed-expand-btn {
+        margin-left: auto;
+      }
+      .panel-expanded-content {
+        padding: 24px 22px;
+      }
+      .panel-ghost-number {
+        font-size: 96px;
+        right: 14px;
+        bottom: 8px;
+      }
+      .hero-cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .btn-solid-orange, .btn-navy-outline {
         width: 100%;
         justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .expand-panel.is-active {
+        height: 720px;
+      }
+      .expanded-title {
+        font-size: 1.62rem;
+      }
+      .expanded-stat-value {
+        font-size: 2.45rem;
+      }
+      .panel-collapsed-content {
+        padding: 16px 18px;
+        gap: 12px;
+      }
+      .collapsed-vertical-title {
+        font-size: 1rem;
+      }
+    }
+
+    /* ==================== PREFERS REDUCED MOTION ==================== */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-aurora-blob,
+      .hero-heading-festival,
+      .pulsing-green-dot::after,
+      .founder-dashed-ring,
+      .founder-reverse-ring,
+      .hero-marquee-track,
+      .hero-mask-line > span,
+      .expanding-panels-row.is-loaded .expand-panel {
+        animation: none !important;
+      }
+      .expand-panel,
+      .panel-progress-bar,
+      .panel-collapsed-content,
+      .panel-expanded-content,
+      .collapsed-expand-btn {
+        transition: none !important;
       }
     }
 
@@ -1331,167 +1604,511 @@
       }
     }
 
-    /* ==================== SECTION: MISSION & VISION MODERN GLASS ==================== */
-    .mv-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-top: 2rem;
-    }
-
-    .mv-card {
+        /* ==================== SECTION: ABOUT INTERNBOOT & SHIKSHIT (CORE PURPOSE & STATS) ==================== */
+    #mission.sec-purpose {
       position: relative;
-      border-radius: 26px;
-      padding: clamp(2.5rem, 5vw, 3.5rem);
-      background: #ffffff;
-      border: 1px solid rgba(15, 21, 53, 0.08);
-      box-shadow: 0 12px 35px rgba(15, 21, 53, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 70px 20px 75px;
       overflow: hidden;
+      background: #ffffff;
     }
-
-    .mv-card::before {
-      content: "";
+    #mission .au {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 6px;
-      height: 100%;
-      background: var(--mv-color, #f26a1b);
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      filter: blur(110px);
+      animation: dr 18s ease-in-out infinite alternate;
+      pointer-events: none;
     }
-
-    .mv-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 48px rgba(15, 21, 53, 0.10);
+    #mission .au.a {
+      background: #f26a1b;
+      top: -200px;
+      left: 8%;
+      opacity: .12;
     }
-
-    .mv-card.card-mission {
-      --mv-color: var(--o);
-      background: linear-gradient(180deg, #fffcf9 0%, #ffffff 100%);
+    #mission .au.b {
+      background: #1aa355;
+      top: 30%;
+      right: -160px;
+      opacity: .12;
+      animation-delay: -7s;
     }
-
-    .mv-card.card-vision {
-      --mv-color: var(--g);
-      background: linear-gradient(180deg, #f7fdf9 0%, #ffffff 100%);
+    @keyframes dr {
+      to { transform: translate(90px, 60px) scale(1.15); }
     }
-
-    .mv-card-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
+    #mission .in {
+      position: relative;
+      z-index: 2;
+      max-width: 1120px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #mission .up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: purposeUp .9s var(--d, 0s) cubic-bezier(.2, .8, .2, 1) forwards;
+    }
+    @keyframes purposeUp {
+      to { opacity: 1; transform: none; }
+    }
+    #mission .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 30px;
+      background: #fff1e8;
+      border: 1px solid #ffd5b9;
+      color: #f26a1b;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .badge i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #f26a1b;
+      display: inline-block;
+      animation: pl 1.8s infinite;
+    }
+    @keyframes pl {
+      0% { box-shadow: 0 0 0 0 rgba(242, 106, 27, .55); }
+      70%, 100% { box-shadow: 0 0 0 9px rgba(242, 106, 27, 0); }
+    }
+    #mission h2 {
+      font-size: clamp(34px, 5.2vw, 62px);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.08;
+      margin-top: 16px;
+      color: #0f1535;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission h2 i {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      color: #f26a1b;
+      letter-spacing: -.02em;
+      background: linear-gradient(90deg, #f26a1b, #ff9a3c, #f26a1b);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: sh 5s linear infinite;
+    }
+    @keyframes sh {
+      to { background-position: -200% 0; }
+    }
+    #mission .sub {
+      max-width: 600px;
+      margin: 14px auto 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #4a5070;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .sw {
+      position: relative;
+      display: inline-flex;
+      margin-top: 34px;
+      padding: 6px;
+      border-radius: 44px;
+      background: #fff;
+      border: 1px solid #e6e9f2;
+      box-shadow: 0 10px 26px rgba(15, 21, 53, .08);
+    }
+    #mission .t {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      min-width: 170px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      background: rgba(242, 106, 27, 0.10);
-      color: var(--mv-color);
-      margin-bottom: 22px;
-    }
-    .card-vision .mv-card-icon {
-      background: rgba(26, 163, 85, 0.10);
-    }
-
-    .mv-card h3 {
-      font-size: 1.85rem;
+      gap: 9px;
+      font-family: 'Outfit', sans-serif;
       font-weight: 800;
-      color: var(--n);
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
+      font-size: 15px;
+      padding: 14px 22px;
+      border: 0;
+      background: none;
+      border-radius: 34px;
+      cursor: pointer;
+      color: #4a5070;
+      transition: color .35s;
+      outline: none;
     }
-
-    .mv-card p {
-      font-size: 1.05rem;
-      color: #334155;
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-
-    .mv-bullets {
-      list-style: none;
-      margin-top: 18px;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .mv-bullets li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.98rem;
-      color: #475569;
-    }
-
-    .mv-bullets li i {
-      color: var(--mv-color);
-      margin-top: 4px;
-    }
-
-    @media (max-width: 768px) {
-      .mv-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ==================== SECTION: STATS RINGS ==================== */
-    .rg {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-      gap: 2.5rem 1.2rem;
-      padding: 1rem 0;
-    }
-
-    .ring {
-      text-align: center;
-    }
-
-    .ring svg {
-      width: 100%;
-      max-width: 11rem;
-      transform: rotate(-90deg);
-    }
-
-    .ring circle {
+    #mission .t svg {
+      width: 20px;
+      height: 20px;
       fill: none;
-      stroke-width: 4.5;
+      stroke: currentColor;
+      stroke-width: 1.9;
       stroke-linecap: round;
+      stroke-linejoin: round;
     }
-
-    .ring .bg {
-      stroke: rgba(15, 21, 53, .10);
+    #mission .t.on {
+      color: #fff;
     }
-
-    .ring .fg {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      transition: stroke-dashoffset 2s cubic-bezier(.3, .7, .2, 1);
-    }
-
-    .ring.in .fg {
-      stroke-dashoffset: 0;
-    }
-
-    .rw {
-      position: relative;
-      max-width: 11rem;
-      margin: 0 auto;
-    }
-
-    .rw b {
+    #mission .ind {
       position: absolute;
-      inset: 0;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: calc(50% - 6px);
+      border-radius: 34px;
+      background: #f26a1b;
+      transition: transform .55s cubic-bezier(.7, 0, .2, 1), background .55s;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #mission .sw[data-k="v"] .ind {
+      transform: translateX(100%);
+      background: #1aa355;
+    }
+    #mission .ind::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0;
+      background: rgba(255, 255, 255, .75);
+    }
+    #mission .ind.run::after {
+      animation: pgs 8s linear forwards;
+    }
+    #mission .wrap:hover .ind::after {
+      animation-play-state: paused;
+    }
+    @keyframes pgs {
+      to { width: 100%; }
+    }
+    #mission .card {
+      position: relative;
+      margin-top: 28px;
+      border-radius: 30px;
+      border: 1px solid #e6e9f2;
+      background: #fff;
+      box-shadow: 0 26px 60px rgba(15, 21, 53, .1);
+      overflow: hidden;
+      display: grid;
+      text-align: left;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    #mission .pane {
+      --c: #f26a1b;
+      grid-area: 1/1;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 48px;
+      padding: 46px 48px 40px 52px;
+      background: linear-gradient(130deg, color-mix(in srgb, var(--c) 16%, #fff), color-mix(in srgb, var(--c) 4%, #fff) 70%);
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(.985);
+      transition: opacity .5s, transform .6s, visibility 0s .5s;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    #mission .pane.v {
+      --c: #1aa355;
+    }
+    #mission .pane::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--c);
+    }
+    #mission .pane.on {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition: opacity .5s .1s, transform .6s .1s, visibility 0s;
+    }
+    #mission .gw {
+      position: absolute;
+      right: 26px;
+      bottom: -34px;
+      font-size: 150px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px color-mix(in srgb, var(--c) 18%, transparent);
+      pointer-events: none;
+      text-transform: uppercase;
+      font-family: 'Outfit', sans-serif;
+      user-select: none;
+    }
+    #mission .l > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .3s, transform .3s;
+    }
+    #mission .on .l > * {
+      opacity: 1;
+      transform: none;
+      transition: opacity .6s calc(.25s + var(--i) * .1s), transform .6s calc(.25s + var(--i) * .1s);
+    }
+    #mission .l > :nth-child(1) { --i: 0; }
+    #mission .l > :nth-child(2) { --i: 1; }
+    #mission .l > :nth-child(3) { --i: 2; }
+    #mission .ic {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
-      font: 800 2.2rem var(--d);
-      color: var(--n);
+      background: #fff;
+      border: 1.5px solid color-mix(in srgb, var(--c) 45%, transparent);
+      box-shadow: 7px 7px 0 color-mix(in srgb, var(--c) 18%, transparent);
+    }
+    #mission .ic svg {
+      width: 38px;
+      height: 38px;
+      fill: none;
+      stroke: var(--c);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #mission .on .ic svg {
+      animation: pop .9s .4s cubic-bezier(.3, 1.5, .5, 1);
+    }
+    @keyframes pop {
+      from { transform: scale(.3) rotate(-40deg); }
+    }
+    #mission h3 {
+      font-size: clamp(30px, 3.6vw, 44px);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      margin-top: 24px;
+      color: #0f1535;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .l p {
+      margin-top: 14px;
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: #4a5070;
+      max-width: 480px;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .purpose-tl {
+      list-style: none;
+      padding: 0;
+      margin: 6px 0 0;
+      position: relative;
+      z-index: 2;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    #mission .purpose-tl li {
+      position: relative;
+      padding: 0 0 34px 66px;
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 500;
+      color: #0f1535;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity .3s, transform .3s;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .on .purpose-tl li {
+      opacity: 1;
+      transform: none;
+      transition: opacity .6s calc(.45s + var(--i) * .2s), transform .6s calc(.45s + var(--i) * .2s);
+    }
+    #mission .purpose-tl li:last-child {
+      padding-bottom: 0;
+    }
+    #mission .nd {
+      position: absolute;
+      left: 0;
+      top: -6px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--c);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: var(--c);
+      transform: scale(0);
+      transition: transform .3s;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .on .nd {
+      transform: scale(1);
+      transition: transform .6s calc(.4s + var(--i) * .2s) cubic-bezier(.3, 1.6, .5, 1);
+    }
+    #mission .purpose-tl li::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 42px;
+      bottom: -4px;
+      width: 2px;
+      background: color-mix(in srgb, var(--c) 40%, transparent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform .3s;
+    }
+    #mission .on .purpose-tl li::before {
+      transform: scaleY(1);
+      transition: transform .6s calc(.6s + var(--i) * .2s);
+    }
+    #mission .purpose-tl li:last-child::before {
+      display: none;
+    }
+    #mission .purpose-tl li:nth-child(1) { --i: 0; }
+    #mission .purpose-tl li:nth-child(2) { --i: 1; }
+    #mission .purpose-tl li:nth-child(3) { --i: 2; }
+    #mission .stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      margin-top: 46px;
+    }
+    #mission .st {
+      --a: #f26a1b;
+      position: relative;
+      background: #fff;
+      border: 1px solid #e6e9f2;
+      border-radius: 22px;
+      padding: 26px 14px 20px;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(15, 21, 53, .05);
+      transition: transform .3s, box-shadow .3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    #mission .st.g {
+      --a: #1aa355;
+    }
+    #mission .stats.go .st {
+      opacity: 1;
+      transform: none;
+      transition: opacity .7s var(--d), transform .7s var(--d), box-shadow .3s;
+    }
+    #mission .stats.go .st:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px color-mix(in srgb, var(--a) 22%, transparent);
+    }
+    #mission .st::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 5px;
+      background: var(--a);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .8s .3s;
+    }
+    #mission .stats.go .st::before {
+      transform: scaleX(1);
+    }
+    #mission .num {
+      display: inline-flex;
+      align-items: flex-start;
+      font-size: clamp(30px, 3.4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      height: 1em;
+      line-height: 1;
+      overflow: hidden;
+      color: #0f1535;
+      font-family: 'Outfit', sans-serif;
+    }
+    #mission .d {
+      display: block;
+      height: 1em;
+      overflow: hidden;
+    }
+    #mission .s {
+      display: block;
+      transform: translateY(0);
+    }
+    #mission .s b {
+      display: block;
+      height: 1em;
+      line-height: 1;
+      font-weight: 900;
+    }
+    #mission .c {
+      display: block;
+      height: 1em;
+      line-height: 1;
+    }
+    #mission .c.sf {
+      color: var(--a);
+    }
+    #mission .lb {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4a5070;
+      font-family: 'Outfit', sans-serif;
     }
 
-    .ring span {
-      display: block;
-      margin-top: .75rem;
-      color: var(--soft);
-      font-weight: 600;
-      font-size: 0.98rem;
+    @media (max-width: 900px) {
+      #mission .pane {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 34px 26px 30px 32px;
+      }
+      #mission .gw {
+        font-size: 90px;
+      }
+      #mission .stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 560px) {
+      #mission .t {
+        min-width: 0;
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+      #mission .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      #mission .purpose-tl li {
+        padding-left: 58px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #mission * {
+        animation: none !important;
+        transition: none !important;
+      }
+      #mission .up,
+      #mission .st,
+      #mission .l > *,
+      #mission .purpose-tl li {
+        opacity: 1;
+        transform: none;
+      }
+      #mission .nd {
+        transform: none;
+      }
     }
 
     /* ==================== SECTION: PROGRAMS BENTO GRID ==================== */
@@ -1575,7 +2192,7 @@
     }
 
     /* ==================== SECTION: JOURNEY TIMELINE ==================== */
-    .tl {
+    #journey .tl {
       position: relative;
       height: 155rem;
       margin-top: 2rem;
@@ -2240,135 +2857,200 @@
     </div>
   </div>
 
-  <!-- HERO SECTION: CINEMATIC MIDNIGHT LEADERSHIP GALAXY -->
-  <header class="hero" id="heroArea">
-    <!-- Interactive Particle Constellation Canvas -->
-    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <!-- HERO SECTION: ORGANIZING COMMITTEE & LEADERSHIP BOARD 2026 -->
+  <header class="hero-committee" id="heroArea">
+    <!-- Soft blurred drifting aurora background blobs -->
+    <div class="hero-aurora-blob aurora-orange" aria-hidden="true"></div>
+    <div class="hero-aurora-blob aurora-green" aria-hidden="true"></div>
+    <div class="hero-aurora-blob aurora-navy" aria-hidden="true"></div>
 
-    <!-- Glowing Ambient Nebulae -->
-    <div class="hero-glow-orb orb-saffron" aria-hidden="true"></div>
-    <div class="hero-glow-orb orb-emerald" aria-hidden="true"></div>
-
-    <div class="hero-wrap">
-      <!-- Live Status Capsule -->
-      <div class="hero-cosmic-pill">
-        <span class="pill-beacon-glow"></span>
-        <span>Organizing Committee &amp; Leadership Board 2026</span>
+    <div class="hero-committee-wrap">
+      <!-- White pill badge with soft shadow and pulsing green dot -->
+      <div class="hero-pill-badge">
+        <span class="pulsing-green-dot" aria-hidden="true"></span>
+        <span>ORGANIZING COMMITTEE &amp; LEADERSHIP BOARD 2026</span>
       </div>
 
-      <!-- Grand Typography -->
-      <h1 class="hero-grand-h1">
-        <span class="hero-h1-subline">The Architects of</span>
-        India's Largest<br>
-        <span class="hero-shimmer-word">Career Festival</span>
+      <!-- Grand Typography: The Architects of / India's Largest / Career Festival -->
+      <h1 class="hero-main-title">
+        <span class="hero-mask-line">
+          <span class="hero-heading-architects">The Architects of</span>
+        </span>
+        <span class="hero-mask-line">
+          <span class="hero-heading-largest">India's Largest</span>
+        </span>
+        <span class="hero-mask-line">
+          <span class="hero-heading-festival">Career Festival</span>
+        </span>
       </h1>
 
-      <p class="hero-narrative">
-        Spearheaded by executive leaders from <strong>IBM</strong>, <strong>Quick Heal</strong>, academic councils, and <strong>650+ enterprise partners</strong> uniting <strong>Shikshit.in</strong> &amp; <strong>InternBoot.com</strong> to build an unemployment-free India.
+      <!-- Paragraph in Slate Text (Bold names in Navy) -->
+      <p class="hero-slate-paragraph">
+        Under the strategic stewardship of <strong>Prof. (Dr.) Ankit Sharma</strong> (Academic &amp; CSR Directorate), alongside visionary leaders from <strong>IEML, DSCI, CyberPeace, and top-tier MNCs</strong>, steering 650+ hiring conglomerates and empowering 1.5 Lakh+ ambitious graduates across India.
       </p>
 
-      <!-- Action Buttons -->
-      <div class="hero-btn-row">
-        <a class="btn-cosmic-primary" href="#committee-roster">
+      <!-- Two Action Buttons -->
+      <div class="hero-cta-buttons">
+        <a class="btn-solid-orange" href="#committeePanels" id="btnExploreRoster">
           <span>Explore Committee Roster</span>
-          <i class="fas fa-arrow-down"></i>
+          <span aria-hidden="true">↓</span>
         </a>
-        <a class="btn-cosmic-secondary" href="#founder-spotlight">
+        <a class="btn-navy-outline" href="#panelFounder" id="btnFounderSpotlight">
           <span>Founder &amp; Executive Spotlight</span>
-          <i class="fas fa-star" style="color:#f26a1b;"></i>
+          <span class="btn-star" aria-hidden="true">★</span>
         </a>
       </div>
 
-      <!-- 3-CARD HOLOGRAPHIC LEADERSHIP GALAXY DECK -->
-      <div class="galaxy-deck">
-        <!-- CARD 1: ACADEMIC & CSR COUNCIL -->
-        <div class="galaxy-card" style="--card-color: #1aa355;">
-          <div>
-            <div class="card-top-tag"><i class="fas fa-graduation-cap"></i> Academic Council</div>
-            <div class="card-icon-badge"><i class="fas fa-book-open-reader"></i></div>
-            <h3 class="card-heading">Academic &amp; CSR Directorate</h3>
-            <div class="card-subheading">Curriculum · Research · Scholarships</div>
-            <p class="card-body-text">
-              Governing the NS-MAS National Merit Scholarship, curriculum alignment with AICTE guidelines, and offering 100% free virtual internships to students nationwide.
-            </p>
-          </div>
-          <div>
-            <div class="card-metric-highlight">
-              <div class="card-metric-big">1.5<span>L+</span></div>
-              <div class="card-metric-label">Learners Empowered</div>
-            </div>
-            <div class="card-feature-chips">
-              <span class="feature-chip">NS-MAS Drive</span>
-              <span class="feature-chip">15+ Domains</span>
-              <span class="feature-chip">Free Access</span>
-            </div>
-          </div>
-        </div>
+      <!-- CARDS: EXPANDING PANELS (3 Panels, Active = Flex 3.3, Founder open by default) -->
+      <div class="expanding-panels-row" id="committeePanels">
+        <!-- PANEL 01: ACADEMIC & CSR DIRECTORATE (GREEN) -->
+        <article class="expand-panel" data-index="0" style="--panel-color: #1aa355;" role="region" aria-expanded="false" tabindex="0" aria-label="Academic &amp; CSR Directorate">
+          <div class="panel-progress-bar" aria-hidden="true"></div>
+          <div class="panel-ghost-number" aria-hidden="true">01</div>
 
-        <!-- CARD 2: FEATURED FOUNDER & MD SPOTLIGHT -->
-        <div class="galaxy-card card-featured" style="--card-color: #f26a1b;">
-          <div>
-            <div class="card-top-tag"><i class="fas fa-crown"></i> Executive Leadership</div>
-            <div class="leader-avatar-orbit">
-              <img src="https://internboot.com/img/ankit.jpeg" alt="Dr. Ankit Sharma" onerror="this.style.display='none';this.parentElement.textContent='AS';" />
-            </div>
-            <h3 class="card-heading">Dr. Ankit Sharma</h3>
-            <div class="card-subheading">Founder &amp; Managing Director</div>
-            <p class="card-body-text">
-              Tech visionary with leadership tenures at <strong>IBM</strong> and <strong>Quick Heal</strong>. Leading Employment Express Verband LLP &amp; InternBoot to create India's most democratic hiring highway.
-            </p>
+          <!-- Collapsed State -->
+          <div class="panel-collapsed-content" aria-hidden="true">
+            <span class="collapsed-index-num">01</span>
+            <span class="collapsed-vertical-title">Academic &amp; CSR Directorate</span>
+            <div class="collapsed-expand-btn"><i class="fas fa-plus"></i></div>
           </div>
-          <div>
-            <div class="card-metric-highlight">
-              <div class="card-metric-big">650<span>+</span></div>
-              <div class="card-metric-label">Corporate Linkages Across 8 States</div>
-            </div>
-            <div class="card-feature-chips">
-              <span class="feature-chip">Ex-IBM</span>
-              <span class="feature-chip">Ex-Quick Heal</span>
-              <span class="feature-chip">IEML Greater Noida</span>
-            </div>
-          </div>
-        </div>
 
-        <!-- CARD 3: CORPORATE PLACEMENT ALLIANCES -->
-        <div class="galaxy-card" style="--card-color: #ff9547;">
-          <div>
-            <div class="card-top-tag"><i class="fas fa-handshake"></i> Industry Alliances</div>
-            <div class="card-icon-badge"><i class="fas fa-building-columns"></i></div>
-            <h3 class="card-heading">Corporate Alliances Directorate</h3>
-            <div class="card-subheading">Enterprise Walk-ins · PPO Hiring</div>
-            <p class="card-body-text">
-              Directly partnering with Fortune 500 tech firms, unicorn startups, and manufacturing giants to host on-spot hiring drives and offer letters at IEML Greater Noida.
-            </p>
-          </div>
-          <div>
-            <div class="card-metric-highlight">
-              <div class="card-metric-big">10,000<span>+</span></div>
-              <div class="card-metric-label">On-Spot Offers Targeted</div>
+          <!-- Expanded State -->
+          <div class="panel-expanded-content">
+            <div>
+              <div class="stag-item expanded-tag-pill">
+                <i class="fas fa-graduation-cap"></i> Academic Council
+              </div>
+              <div class="stag-item expanded-icon-tile">
+                <i class="fas fa-book-open-reader"></i>
+              </div>
+              <h2 class="stag-item expanded-title">Academic &amp; CSR Directorate</h2>
+              <div class="stag-item expanded-role-line">Curriculum · Research · Scholarships</div>
+              <p class="stag-item expanded-paragraph">
+                Governing the NS-MAS National Merit Scholarship, curriculum alignment with AICTE guidelines, and offering 100% free virtual internships to students nationwide.
+              </p>
             </div>
-            <div class="card-feature-chips">
-              <span class="feature-chip">100+ Hiring Stalls</span>
-              <span class="feature-chip">Zero Fee</span>
-              <span class="feature-chip">PAN-India</span>
+            <div>
+              <div class="stag-item expanded-stat-group">
+                <div class="expanded-stat-value" data-target="1.5" data-suffix="L+" data-decimals="1">
+                  <span class="stat-num-val">1.5</span><span class="stat-accent">L+</span>
+                </div>
+                <div class="expanded-stat-label">Learners Empowered</div>
+              </div>
+              <div class="stag-item expanded-chips-row">
+                <span class="expanded-chip">NS-MAS Drive</span>
+                <span class="expanded-chip">15+ Domains</span>
+                <span class="expanded-chip">Free Access</span>
+              </div>
             </div>
           </div>
-        </div>
+        </article>
+
+        <!-- PANEL 02: DR. ANKIT SHARMA - FOUNDER & MD (ORANGE, OPEN BY DEFAULT) -->
+        <article class="expand-panel is-active" id="panelFounder" data-index="1" style="--panel-color: #f26a1b;" role="region" aria-expanded="true" tabindex="0" aria-label="Dr. Ankit Sharma, Founder &amp; Managing Director">
+          <div class="panel-progress-bar" aria-hidden="true"></div>
+          <div class="panel-ghost-number" aria-hidden="true">02</div>
+
+          <!-- Collapsed State -->
+          <div class="panel-collapsed-content" aria-hidden="true">
+            <span class="collapsed-index-num">02</span>
+            <span class="collapsed-vertical-title">Dr. Ankit Sharma</span>
+            <div class="collapsed-expand-btn"><i class="fas fa-plus"></i></div>
+          </div>
+
+          <!-- Expanded State -->
+          <div class="panel-expanded-content">
+            <div>
+              <div class="stag-item expanded-tag-pill">
+                <i class="fas fa-crown"></i> Executive Leadership
+              </div>
+              <div class="stag-item founder-photo-orbit">
+                <div class="founder-dashed-ring" aria-hidden="true"></div>
+                <div class="founder-reverse-ring" aria-hidden="true"></div>
+                <img src="https://internboot.com/img/ankit.jpeg" alt="Dr. Ankit Sharma" class="founder-photo-circle" onerror="this.onerror=null;this.src='jobutsav-logo-transparent.png';">
+              </div>
+              <h2 class="stag-item expanded-title">Dr. Ankit Sharma</h2>
+              <div class="stag-item expanded-role-line">Founder &amp; Managing Director</div>
+              <p class="stag-item expanded-paragraph">
+                Tech visionary with leadership tenures at <strong>IBM</strong> and <strong>Quick Heal</strong>. Leading Employment Express Verband LLP &amp; InternBoot to create India's most democratic hiring highway.
+              </p>
+            </div>
+            <div>
+              <div class="stag-item expanded-stat-group">
+                <div class="expanded-stat-value" data-target="650" data-suffix="+" data-decimals="0">
+                  <span class="stat-num-val">650</span><span class="stat-accent">+</span>
+                </div>
+                <div class="expanded-stat-label">Corporate Linkages Across 8 States</div>
+              </div>
+              <div class="stag-item expanded-chips-row">
+                <span class="expanded-chip">Ex-IBM</span>
+                <span class="expanded-chip">Ex-Quick Heal</span>
+                <span class="expanded-chip">IEML Greater Noida</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PANEL 03: CORPORATE ALLIANCES DIRECTORATE (NAVY) -->
+        <article class="expand-panel" data-index="2" style="--panel-color: #0f1535;" role="region" aria-expanded="false" tabindex="0" aria-label="Corporate Alliances Directorate">
+          <div class="panel-progress-bar" aria-hidden="true"></div>
+          <div class="panel-ghost-number" aria-hidden="true">03</div>
+
+          <!-- Collapsed State -->
+          <div class="panel-collapsed-content" aria-hidden="true">
+            <span class="collapsed-index-num">03</span>
+            <span class="collapsed-vertical-title">Corporate Alliances Directorate</span>
+            <div class="collapsed-expand-btn"><i class="fas fa-plus"></i></div>
+          </div>
+
+          <!-- Expanded State -->
+          <div class="panel-expanded-content">
+            <div>
+              <div class="stag-item expanded-tag-pill">
+                <i class="fas fa-handshake"></i> Industry Alliances
+              </div>
+              <div class="stag-item expanded-icon-tile">
+                <i class="fas fa-building-columns"></i>
+              </div>
+              <h2 class="stag-item expanded-title">Corporate Alliances Directorate</h2>
+              <div class="stag-item expanded-role-line">Enterprise Walk-ins · PPO Hiring</div>
+              <p class="stag-item expanded-paragraph">
+                Directly partnering with Fortune 500 tech firms, unicorn startups, and manufacturing giants to host on-spot hiring drives and offer letters at IEML Greater Noida.
+              </p>
+            </div>
+            <div>
+              <div class="stag-item expanded-stat-group">
+                <div class="expanded-stat-value" data-target="10000" data-suffix="+" data-decimals="0" data-format="comma">
+                  <span class="stat-num-val">10,000</span><span class="stat-accent">+</span>
+                </div>
+                <div class="expanded-stat-label">On-Spot Offers Targeted</div>
+              </div>
+              <div class="stag-item expanded-chips-row">
+                <span class="expanded-chip">100+ Hiring Stalls</span>
+                <span class="expanded-chip">Zero Fee</span>
+                <span class="expanded-chip">PAN-India</span>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
 
-      <!-- Live Satellite Orbit Badges -->
-      <div class="hero-orbit-row">
-        <div class="orbit-pill">
-          <i class="fas fa-map-pin"></i>
-          <span>IEML Greater Noida · Sep 13–14</span>
-        </div>
-        <div class="orbit-pill">
-          <i class="fas fa-shield-halved"></i>
-          <span>DSCI &amp; Microsoft Cyber Initiative</span>
-        </div>
-        <div class="orbit-pill">
-          <i class="fas fa-certificate"></i>
-          <span>100% QR-Verified Certifications</span>
+      <!-- BELOW THE PANELS: SLOW INFINITE MARQUEE (30s) -->
+      <div class="hero-marquee-shelf" aria-label="JobUtsav 2026 Key Highlights">
+        <div class="hero-marquee-track">
+          <div class="hero-marquee-pill"><i class="fas fa-map-pin" aria-hidden="true"></i><span>IEML Greater Noida · Sep 13–14</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>DSCI &amp; Microsoft Cyber Initiative</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-certificate" aria-hidden="true"></i><span>100% QR-Verified Certifications</span></div>
+          <!-- Loop Duplication for continuous marquee -->
+          <div class="hero-marquee-pill"><i class="fas fa-map-pin" aria-hidden="true"></i><span>IEML Greater Noida · Sep 13–14</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>DSCI &amp; Microsoft Cyber Initiative</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-certificate" aria-hidden="true"></i><span>100% QR-Verified Certifications</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-map-pin" aria-hidden="true"></i><span>IEML Greater Noida · Sep 13–14</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>DSCI &amp; Microsoft Cyber Initiative</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-certificate" aria-hidden="true"></i><span>100% QR-Verified Certifications</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-map-pin" aria-hidden="true"></i><span>IEML Greater Noida · Sep 13–14</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i><span>DSCI &amp; Microsoft Cyber Initiative</span></div>
+          <div class="hero-marquee-pill"><i class="fas fa-certificate" aria-hidden="true"></i><span>100% QR-Verified Certifications</span></div>
         </div>
       </div>
     </div>
@@ -2700,54 +3382,62 @@
       </div>
     </section>
 
-    <!-- SECTION 3: MISSION & VISION MODERN GLASS CARDS -->
-    <section class="sec" id="mission">
-      <div class="wrap">
-        <div style="text-align: center;">
-          <div class="sec-badge-pill">
-            <i class="fas fa-compass"></i> Core Purpose
-          </div>
-          <h2 class="sec-title">About <em>InternBoot &amp; Shikshit</em></h2>
-          <p class="sec-subtitle">
-            A collaborative alliance committed to democratizing access to high-impact jobs, skills, and scholarships.
-          </p>
-        </div>
+        <!-- SECTION 3: ABOUT INTERNBOOT & SHIKSHIT (CORE PURPOSE & STATS) -->
+    <section class="sec sec-purpose" id="mission">
+      <div class="au a"></div>
+      <div class="au b"></div>
+      <div class="in">
+        <div class="up"><span class="badge"><i></i>Core Purpose</span></div>
+        <h2 class="up" style="--d:.1s">About <i>InternBoot &amp; Shikshit</i></h2>
+        <p class="sub up" style="--d:.2s">A collaborative alliance committed to democratizing access to high-impact jobs, skills, and scholarships.</p>
 
-        <div class="mv-grid">
-          <!-- MISSION CARD -->
-          <div class="mv-card card-mission">
-            <div class="mv-card-icon"><i class="fas fa-bullseye"></i></div>
-            <h3>Our Mission</h3>
-            <p>
-              To forge an inclusive education and recruitment ecosystem where every student, regardless of financial background or geographic location, receives industry-aligned training that translates directly into professional employment.
-            </p>
-            <ul class="mv-bullets">
-              <li><i class="fas fa-circle-check"></i> Empower students through Indian National Science Congress (INSC) programs.</li>
-              <li><i class="fas fa-circle-check"></i> Eliminate recruitment middlemen with transparent, walk-in mega job fairs.</li>
-              <li><i class="fas fa-circle-check"></i> Foster technical competence with live, hands-on enterprise case studies.</li>
-            </ul>
+        <div class="wrap up" style="--d:.3s">
+          <div class="sw" id="sw" data-k="m" role="tablist">
+            <div class="ind run" id="ind"></div>
+            <button class="t on" data-k="m" role="tab" aria-selected="true" aria-controls="pm">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>Our Mission
+            </button>
+            <button class="t" data-k="v" role="tab" aria-selected="false" aria-controls="pv">
+              <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Our Vision
+            </button>
           </div>
 
-          <!-- VISION CARD -->
-          <div class="mv-card card-vision">
-            <div class="mv-card-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Our Vision</h3>
-            <p>
-              An India where every graduate achieves gainful employment through equitable education, structured virtual internships, and verifiable merit credentials.
-            </p>
-            <ul class="mv-bullets">
-              <li><i class="fas fa-circle-check"></i> Empower 1 Million Students nationwide with vocational programs by 2030.</li>
-              <li><i class="fas fa-circle-check"></i> Scale the NS-MAS National Merit Scholarship to 100% free registrations.</li>
-              <li><i class="fas fa-circle-check"></i> Drive national economic growth through skilled, day-one-ready young talent.</li>
-            </ul>
+          <div class="card">
+            <div class="pane m on" id="pm" role="tabpanel">
+              <div class="gw">Mission</div>
+              <div class="l">
+                <div class="ic">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To forge an inclusive education and recruitment ecosystem where every student, regardless of financial background or geographic location, receives industry-aligned training that translates directly into professional employment.</p>
+              </div>
+              <ol class="purpose-tl">
+                <li><span class="nd">1</span>Empower students through Indian National Science Congress (INSC) programs.</li>
+                <li><span class="nd">2</span>Eliminate recruitment middlemen with transparent, walk-in mega job fairs.</li>
+                <li><span class="nd">3</span>Foster technical competence with live, hands-on enterprise case studies.</li>
+              </ol>
+            </div>
+            <div class="pane v" id="pv" role="tabpanel">
+              <div class="gw">Vision</div>
+              <div class="l">
+                <div class="ic">
+                  <svg viewBox="0 0 24 24"><path d="M5 15c-1 1-1.5 4-1.5 4s3-.5 4-1.5M12 15l-3-3a13 13 0 0110-9 13 13 0 01-9 10zM9 12H4l2-3h4M12 15v5l3-2v-4"/></svg>
+                </div>
+                <h3>Our Vision</h3>
+                <p>An India where every graduate achieves gainful employment through equitable education, structured virtual internships, and verifiable merit credentials.</p>
+              </div>
+              <ol class="purpose-tl">
+                <li><span class="nd">1</span>Empower 1 Million Students nationwide with vocational programs by 2030.</li>
+                <li><span class="nd">2</span>Scale the NS-MAS National Merit Scholarship to 100% free registrations.</li>
+                <li><span class="nd">3</span>Drive national economic growth through skilled, day-one-ready young talent.</li>
+              </ol>
+            </div>
           </div>
         </div>
+
+        <div class="stats" id="stats"></div>
       </div>
-    </section>
-
-    <!-- SECTION 4: ANIMATED STATS RINGS -->
-    <section class="sec" style="padding-top: 1rem;">
-      <div class="wrap rg" id="rg"></div>
     </section>
 
     <!-- SECTION 5: COMPREHENSIVE ECOSYSTEM PROGRAMS -->
@@ -2999,106 +3689,218 @@
     const fYear = $('footerYear');
     if (fYear) fYear.textContent = new Date().getFullYear();
 
-    // 3. INTERACTIVE HERO CONSTELLATION CANVAS
-    const heroCanvas = $('heroCanvas');
-    const heroArea = $('heroArea');
-    if (heroCanvas && heroArea && !R) {
-      const ctx = heroCanvas.getContext('2d');
-      let W, H;
-      let nodes = [];
-      let mouse = { x: -1000, y: -1000 };
+        // 3. EXPANDING PANELS CONTROLLER (ORGANIZING COMMITTEE 2026)
+    (function initExpandingPanels() {
+      const deck = document.getElementById('committeePanels');
+      if (!deck) return;
 
-      function resizeHeroCanvas() {
-        W = heroCanvas.width = heroArea.offsetWidth;
-        H = heroCanvas.height = heroArea.offsetHeight;
-        initNodes();
+      const panels = Array.from(deck.querySelectorAll('.expand-panel'));
+      if (!panels.length) return;
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let activeIndex = panels.findIndex(p => p.classList.contains('is-active'));
+      if (activeIndex === -1) activeIndex = 1; // Default to founder card (02)
+
+      let autoplayTimer = null;
+      let progressStart = null;
+      let progressDuration = 6000;
+      let progressPaused = false;
+      let progressElapsed = 0;
+      let progressRaf = null;
+
+      // Cursor-following radial glow (--mx, --my)
+      panels.forEach(panel => {
+        panel.addEventListener('mousemove', (e) => {
+          const rect = panel.getBoundingClientRect();
+          const mx = ((e.clientX - rect.left) / rect.width) * 100;
+          const my = ((e.clientY - rect.top) / rect.height) * 100;
+          panel.style.setProperty('--mx', mx + '%');
+          panel.style.setProperty('--my', my + '%');
+        });
+        panel.addEventListener('mouseleave', () => {
+          panel.style.setProperty('--mx', '50%');
+          panel.style.setProperty('--my', '50%');
+        });
+      });
+
+      // Ease-out cubic formula for counters
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
       }
 
-      function initNodes() {
-        nodes = [];
-        const count = Math.floor((W * H) / 14000);
-        const actualCount = Math.min(80, Math.max(30, count));
-        for (let i = 0; i < actualCount; i++) {
-          nodes.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.45,
-            vy: (Math.random() - 0.5) * 0.45,
-            r: Math.random() * 2 + 1,
-            color: Math.random() > 0.4 ? 'rgba(242, 106, 27, ' : 'rgba(26, 163, 85, '
-          });
+      // Animate stat counters from 0 on panel activation
+      function runStatCounter(panel) {
+        const statValElem = panel.querySelector('.expanded-stat-value');
+        if (!statValElem) return;
+
+        const target = parseFloat(statValElem.dataset.target || '0');
+        const decimals = parseInt(statValElem.dataset.decimals || '0', 10);
+        const suffix = statValElem.dataset.suffix || '';
+        const isComma = statValElem.dataset.format === 'comma';
+        const numValSpan = statValElem.querySelector('.stat-num-val');
+        if (!numValSpan) return;
+
+        if (prefersReducedMotion) {
+          numValSpan.textContent = isComma ? target.toLocaleString('en-IN') : (decimals > 0 ? target.toFixed(decimals) : target);
+          return;
         }
+
+        const duration = 1500;
+        const startTime = performance.now();
+
+        function tick(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const currentVal = target * easeOutCubic(progress);
+
+          if (isComma) {
+            numValSpan.textContent = Math.round(currentVal).toLocaleString('en-IN');
+          } else if (decimals > 0) {
+            numValSpan.textContent = currentVal.toFixed(decimals);
+          } else {
+            numValSpan.textContent = Math.round(currentVal);
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        }
+        requestAnimationFrame(tick);
       }
 
-      heroArea.addEventListener('mousemove', (e) => {
-        const rect = heroArea.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-      });
+      // Progress bar animation
+      function startProgressBar(panel) {
+        // Reset all progress bars
+        panels.forEach(p => {
+          const bar = p.querySelector('.panel-progress-bar');
+          if (bar) bar.style.width = '0%';
+        });
 
-      heroArea.addEventListener('mouseleave', () => {
-        mouse.x = -1000;
-        mouse.y = -1000;
-      });
+        if (prefersReducedMotion) return;
 
-      window.addEventListener('resize', resizeHeroCanvas);
-      resizeHeroCanvas();
+        const activeBar = panel.querySelector('.panel-progress-bar');
+        if (!activeBar) return;
 
-      function animateConstellation() {
-        ctx.clearRect(0, 0, W, H);
+        progressStart = performance.now();
+        progressElapsed = 0;
+        cancelAnimationFrame(progressRaf);
 
-        for (let i = 0; i < nodes.length; i++) {
-          const p = nodes[i];
-          p.x += p.vx;
-          p.y += p.vy;
+        function updateProgress(now) {
+          if (!progressPaused) {
+            progressElapsed = now - progressStart;
+            const pct = Math.min(100, (progressElapsed / progressDuration) * 100);
+            activeBar.style.width = pct + '%';
 
-          if (p.x < 0 || p.x > W) p.vx *= -1;
-          if (p.y < 0 || p.y > H) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.color + '0.7)';
-          ctx.shadowBlur = 6;
-          ctx.shadowColor = p.color + '0.9)';
-          ctx.fill();
-
-          // Connect to nearby nodes
-          for (let j = i + 1; j < nodes.length; j++) {
-            const p2 = nodes[j];
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 115) {
-              const alpha = (1 - dist / 115) * 0.28;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
+            if (progressElapsed >= progressDuration) {
+              activeBar.style.width = '100%';
+              activatePanel((activeIndex + 1) % panels.length);
+              return;
             }
+          } else {
+            // Keep start time moving forward while paused
+            progressStart = now - progressElapsed;
           }
-
-          // Connect to mouse cursor
-          const mdx = p.x - mouse.x;
-          const mdy = p.y - mouse.y;
-          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 140) {
-            const mAlpha = (1 - mdist / 140) * 0.55;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(242, 106, 27, ${mAlpha})`;
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
-          }
+          progressRaf = requestAnimationFrame(updateProgress);
         }
-
-        requestAnimationFrame(animateConstellation);
+        progressRaf = requestAnimationFrame(updateProgress);
       }
 
-      animateConstellation();
-    }
+      function stopProgressBar() {
+        cancelAnimationFrame(progressRaf);
+        panels.forEach(p => {
+          const bar = p.querySelector('.panel-progress-bar');
+          if (bar) bar.style.width = '0%';
+        });
+      }
+
+      // Activate panel function
+      function activatePanel(idx) {
+        if (idx < 0 || idx >= panels.length) return;
+        activeIndex = idx;
+
+        panels.forEach((p, i) => {
+          const isTarget = (i === idx);
+          p.classList.toggle('is-active', isTarget);
+          p.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+          if (isTarget) {
+            runStatCounter(p);
+          }
+        });
+
+        startProgressBar(panels[activeIndex]);
+      }
+
+      // Initial run for default active panel
+      runStatCounter(panels[activeIndex]);
+      startProgressBar(panels[activeIndex]);
+
+      // Hover / Click activation
+      panels.forEach((panel, idx) => {
+        // Desktop hover
+        panel.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 900 && activeIndex !== idx) {
+            activatePanel(idx);
+          }
+        });
+
+        // Click / Tap
+        panel.addEventListener('click', () => {
+          if (activeIndex !== idx) {
+            activatePanel(idx);
+          }
+        });
+
+        // Keyboard accessibility (Enter or Space)
+        panel.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activatePanel(idx);
+          }
+        });
+      });
+
+      // Pause autoplay while hovering over the panels container
+      deck.addEventListener('mouseenter', () => {
+        progressPaused = true;
+      });
+      deck.addEventListener('mouseleave', () => {
+        progressPaused = false;
+      });
+
+      // Staggered rise on page load
+      window.addEventListener('DOMContentLoaded', () => {
+        deck.classList.add('is-loaded');
+      });
+      // Fallback if DOMContentLoaded already fired
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        deck.classList.add('is-loaded');
+      }
+
+      // Buttons smooth scroll & spotlight
+      const btnExplore = document.getElementById('btnExploreRoster');
+      if (btnExplore) {
+        btnExplore.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.getElementById('committeePanels') || document.getElementById('committee-roster');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      }
+
+      const btnFounder = document.getElementById('btnFounderSpotlight');
+      if (btnFounder) {
+        btnFounder.addEventListener('click', (e) => {
+          e.preventDefault();
+          activatePanel(1); // Founder panel
+          const founderPanel = document.getElementById('panelFounder');
+          if (founderPanel) {
+            founderPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            founderPanel.focus();
+          }
+        });
+      }
+    })();
 
     // 4. COMMITTEE FILTER TABS
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -3172,49 +3974,101 @@
       rib.innerHTML = r;
     }
 
-    // 7. STATS RINGS OBSERVER & COUNT-UP
-    const S = [
-      [1.5, 'L+', 'Candidates Trained', '#f26a1b'],
-      [2.5, 'L+', 'Internships Provided', '#1aa355'],
-      [2.0, 'L+', 'Candidates Placed', '#f26a1b'],
-      [100, '+', 'Corporate Partners', '#1aa355'],
-      [57, 'K+', 'Active Learners', '#f26a1b'],
-      [15, '+', 'Industry Domains', '#1aa355']
-    ];
-    const rg = $('rg');
-    if (rg) {
-      let g = '';
-      S.forEach(s => {
-        g += '<div class="ring"><div class="rw"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="46"/><circle class="fg" cx="50" cy="50" r="46" pathLength="1" stroke="' + s[3] + '"/></svg><b data-n="' + s[0] + '" data-s="' + s[1] + '">0</b></div><span>' + s[2] + '</span></div>';
-      });
-      rg.innerHTML = g;
+        // 7. ABOUT INTERNBOOT & SHIKSHIT TABS, PROGRESS & ROLLING NUMBER STATS
+    (function initAboutPurpose() {
+      var sw = document.getElementById('sw');
+      var ind = document.getElementById('ind');
+      var pm = document.getElementById('pm');
+      var pv = document.getElementById('pv');
+      if (!sw || !ind || !pm || !pv) return;
 
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          io.unobserve(e.target);
-          e.target.classList.add('in');
-          const b = e.target.querySelector('b');
-          const n = +b.dataset.n;
-          const s = b.dataset.s;
-          const dc = b.dataset.n.indexOf('.') > -1 ? 1 : 0;
-          let t0 = null;
-          function f(ts) {
-            t0 = t0 || ts;
-            const k = Math.min((ts - t0) / 1800, 1);
-            b.textContent = (n * (1 - Math.pow(1 - k, 3))).toFixed(dc) + s;
-            if (k < 1 && !R) requestAnimationFrame(f);
-          }
-          if (R) {
-            b.textContent = n.toFixed(dc) + s;
+      var tabs = [].slice.call(sw.querySelectorAll('.t'));
+      var cur = 'm';
+
+      function sel(k) {
+        cur = k;
+        sw.dataset.k = k;
+        tabs.forEach(function(t) {
+          var on = t.dataset.k === k;
+          t.classList.toggle('on', on);
+          t.setAttribute('aria-selected', on);
+        });
+        pm.classList.toggle('on', k === 'm');
+        pv.classList.toggle('on', k === 'v');
+        ind.classList.remove('run');
+        void ind.offsetWidth;
+        ind.classList.add('run');
+      }
+
+      tabs.forEach(function(t) {
+        t.onclick = function() { sel(t.dataset.k); };
+      });
+
+      ind.addEventListener('animationend', function(e) {
+        if (e.animationName === 'pgs') sel(cur === 'm' ? 'v' : 'm');
+      });
+
+      var S = [
+        ["1.5L+", "Candidates Trained"],
+        ["2.5L+", "Internships Provided"],
+        ["2L+", "Candidates Placed"],
+        ["100+", "Corporate Partners"],
+        ["57K+", "Active Learners"],
+        ["15+", "Industry Domains"]
+      ];
+      var box = document.getElementById('stats');
+      if (!box) return;
+
+      S.forEach(function(s, i) {
+        var d = document.createElement('div');
+        d.className = 'st' + (i % 2 ? ' g' : '');
+        d.style.setProperty('--d', (i * 0.1) + 's');
+        var h = '<div class="num" aria-label="' + s[0] + '">';
+        s[0].split('').forEach(function(ch, j) {
+          if (/\d/.test(ch)) {
+            h += '<span class="d" data-v="' + ch + '"><span class="s">' + '0123456789'.split('').map(function(x) { return '<b>' + x + '</b>'; }).join('') + '</span></span>';
           } else {
-            requestAnimationFrame(f);
+            h += '<span class="c' + (ch === '.' ? '' : ' sf') + '">' + ch + '</span>';
           }
         });
-      }, { threshold: 0.4 });
+        d.innerHTML = h + '</div><div class="lb">' + s[1] + '</div>';
+        d.onmouseenter = function() { roll(d); };
+        box.appendChild(d);
+      });
 
-      document.querySelectorAll('.ring').forEach(e => io.observe(e));
-    }
+      function roll(card) {
+        var ds = card.querySelectorAll('.d');
+        ds.forEach(function(x) {
+          var s = x.firstChild;
+          if (s) {
+            s.style.transition = 'none';
+            s.style.transform = 'translateY(0)';
+          }
+        });
+        void card.offsetWidth;
+        ds.forEach(function(x, k) {
+          var s = x.firstChild;
+          if (s) {
+            s.style.transition = 'transform ' + (1.2 + k * 0.25) + 's cubic-bezier(.2, .8, .2, 1)';
+            s.style.transform = 'translateY(-' + (+x.dataset.v) + 'em)';
+          }
+        });
+      }
+
+      var io = new IntersectionObserver(function(en) {
+        en.forEach(function(e) {
+          if (e.isIntersecting) {
+            box.classList.add('go');
+            box.querySelectorAll('.st').forEach(function(c, i) {
+              setTimeout(function() { roll(c); }, 300 + i * 100);
+            });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      io.observe(box);
+    })();
 
     // 8. JOURNEY TIMELINE SVG CURVE & DIYA/LAMP FOLLOWER
     const Y = [

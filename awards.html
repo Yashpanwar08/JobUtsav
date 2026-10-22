@@ -136,8 +136,7 @@
       pointer-events: none;
     }
 
-    /* ==================== HOME PAGE PRESERVED NAVBAR ==================== */
-    /* ==================== SITE NAVBAR (PRESERVED & RESPONSIVE) ==================== */
+    /* ==================== PRESERVED SITE NAVBAR ==================== */
     nav.site-nav {
       position: fixed;
       top: 0;
@@ -146,37 +145,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px clamp(16px, 4vw, 48px);
-      z-index: 1000;
+      padding: 16px clamp(16px, 4vw, 48px);
+      z-index: 100;
       pointer-events: none;
-      transition: padding 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
     }
 
-    nav.site-nav.scrolled {
-      padding: 10px clamp(16px, 4vw, 48px);
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 4px 20px rgba(15, 21, 53, 0.08);
-      border-bottom: 1px solid rgba(15, 21, 53, 0.06);
-    }
-
-    nav.site-nav > * {
+    nav.site-nav>* {
       pointer-events: auto;
     }
 
     .nav-logo-link {
       display: flex;
       align-items: center;
-      flex-shrink: 0;
     }
 
     .nav-logo {
-      height: clamp(44px, 4.8vw, 58px);
+      height: clamp(52px, 5.8vw, 72px);
       width: auto;
-      object-fit: contain;
-      mix-blend-mode: normal;
-      filter: none;
+      mix-blend-mode: difference;
+      filter: contrast(1.2);
       transition: transform 0.2s ease;
     }
 
@@ -187,11 +174,11 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: clamp(10px, 1.25vw, 18px);
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 7px clamp(14px, 1.5vw, 22px);
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 8px 20px;
       border-radius: 999px;
       border: 1px solid rgba(15, 21, 53, 0.08);
       box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
@@ -199,51 +186,20 @@
 
     .nav-links a {
       color: var(--n);
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
-      white-space: nowrap;
       transition: color 0.15s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       color: var(--o);
-    }
-
-    .nav-links a.active {
-      font-weight: 800;
     }
 
     .nav-right-actions {
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-shrink: 0;
-    }
-
-    /* CTA Desktop */
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 22px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      font-family: var(--d);
-      background: var(--o);
-      color: #ffffff !important;
-      border: none;
-      box-shadow: 0 4px 14px rgba(242, 106, 27, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(242, 106, 27, 0.5);
     }
 
     /* Hamburger Menu Button */
@@ -256,13 +212,13 @@
       width: 44px;
       height: 44px;
       padding: 0;
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.92);
       border: 1.5px solid rgba(15, 21, 53, 0.12);
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 4px 14px rgba(15, 21, 53, 0.08);
       transition: transform 0.2s ease, background-color 0.2s ease;
-      z-index: 1001;
+      z-index: 101;
     }
 
     .nav-menu-btn:hover {
@@ -299,7 +255,7 @@
       left: 0;
       right: 0;
       width: 100%;
-      z-index: 999;
+      z-index: 99;
       pointer-events: none;
       opacity: 0;
       transform: translateY(-12px);
@@ -313,19 +269,17 @@
     }
 
     .mobile-nav-inner {
-      margin: clamp(74px, 11vh, 90px) 16px 16px;
+      margin: clamp(76px, 12vh, 92px) 16px 16px;
       padding: 18px 20px;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 24px;
       border: 1px solid rgba(15, 21, 53, 0.1);
       box-shadow: 0 20px 50px rgba(15, 21, 53, 0.18);
       display: flex;
       flex-direction: column;
       gap: 4px;
-      max-height: calc(100vh - 110px);
-      overflow-y: auto;
     }
 
     .mobile-nav-link {
@@ -340,8 +294,7 @@
     }
 
     .mobile-nav-link:hover,
-    .mobile-nav-link:active,
-    .mobile-nav-link.active {
+    .mobile-nav-link:active {
       background: rgba(242, 106, 27, 0.08);
       color: var(--o);
       transform: translateX(4px);
@@ -356,18 +309,18 @@
       gap: 10px;
     }
 
-    .mobile-nav-actions .cta-btn {
-      width: 100%;
+    .mobile-nav-actions .cta {
       text-align: center;
+      width: 100%;
       padding: 12px 20px;
     }
 
-    @media (max-width: 1040px) {
+    @media (max-width: 860px) {
       .nav-links {
         display: none !important;
       }
       .nav-menu-btn {
-        display: flex !important;
+        display: flex;
       }
       nav.site-nav {
         padding: 12px clamp(14px, 4vw, 24px);
@@ -376,71 +329,57 @@
 
     @media (max-width: 520px) {
       .nav-right-actions .nav-cta-desktop {
-        display: none !important;
+        display: none;
       }
     }
 
-    /* ==================== HERO: LUMINOUS ELEGANT LIGHT HONOURS SHOWCASE ==================== */
+    /* CTAs */
+    .cta {
+      background: var(--o);
+      color: #fff !important;
+      border-radius: 99px;
+      padding: 12px 26px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .cta:hover {
+      background: #db590f;
+      transform: translateY(-2px);
+    }
+
+    .cta.o {
+      background: transparent;
+      color: var(--n) !important;
+      border: 2px solid var(--n);
+      box-shadow: none;
+    }
+
+    .cta.o:hover {
+      background: var(--n);
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
+
+
+    /* ==================== HERO: MATCHES HOME PAGE (PEACH & MINT THEME) ==================== */
     .hero {
       position: relative;
       padding: clamp(130px, 16vh, 165px) 0 clamp(60px, 10vh, 90px);
       overflow: hidden;
-      background:
-        radial-gradient(65rem 38rem at 50% -8%, rgba(242, 106, 27, 0.12), transparent 75%),
-        radial-gradient(50rem 32rem at 85% 35%, rgba(245, 158, 11, 0.10), transparent 70%),
-        radial-gradient(45rem 28rem at 15% 55%, rgba(26, 163, 85, 0.08), transparent 70%),
-        linear-gradient(180deg, #f8faff 0%, #f1f5fd 55%, #e9eef8 100%);
+      background-color: #fffdfb;
+      background-image:
+        radial-gradient(circle at 10% 15%, #fde1ce 0%, transparent 50%),
+        radial-gradient(circle at 95% 85%, #d9f0e1 0%, transparent 55%);
+      background-repeat: no-repeat;
       color: var(--n);
       text-align: center;
     }
 
-    /* Interactive Particle Constellation Canvas */
-    #heroCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Ambient Warm Luminous Nebulae */
-    .hero-glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.55;
-      animation: orbDrift 14s ease-in-out infinite alternate;
-    }
-    .orb-saffron {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(242, 106, 27, 0.22) 0%, transparent 70%);
-      top: -120px;
-      left: 18%;
-    }
-    .orb-gold {
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(circle, rgba(245, 158, 11, 0.20) 0%, transparent 70%);
-      bottom: -60px;
-      right: 15%;
-      animation-delay: -6s;
-    }
-    .orb-emerald {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(26, 163, 85, 0.16) 0%, transparent 70%);
-      bottom: 20%;
-      left: 8%;
-      animation-delay: -10s;
-    }
-    @keyframes orbDrift {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(45px, 30px) scale(1.18); }
-    }
 
     .hero-wrap {
       position: relative;
@@ -1288,17 +1227,71 @@
     }
 
     .metric-val {
+      display: inline-flex;
+      align-items: flex-start;
       font-family: var(--d);
       font-size: clamp(2.5rem, 5vw, 3.6rem);
       font-weight: 900;
-      color: var(--n);
+      color: #000000;
+      height: 1em;
       line-height: 1;
+      overflow: hidden;
       margin-bottom: 8px;
       letter-spacing: -0.03em;
     }
 
+    .metric-val .d {
+      display: block;
+      height: 1em;
+      overflow: hidden;
+      color: #000000;
+    }
+
+    .metric-val .d[data-v="1"],
+    .metric-val .d.d-1 {
+      width: 0.32em;
+    }
+
+    .metric-val .s {
+      display: block;
+      transform: translateY(0);
+      color: #000000;
+    }
+
+    .metric-val .s b {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1em;
+      line-height: 1;
+      font-weight: 900;
+      font-family: var(--d);
+      color: #000000;
+    }
+
+    .metric-val .d[data-v="1"] .s b,
+    .metric-val .d.d-1 .s b {
+      width: 0.32em;
+    }
+
+    .metric-val .c {
+      display: block;
+      height: 1em;
+      line-height: 1;
+      font-family: var(--d);
+      color: #000000;
+    }
+
+    .metric-val .c.cm {
+      letter-spacing: -0.05em;
+      margin: 0 -1px;
+      color: #000000;
+    }
+
+    .metric-val .c.sf,
     .metric-val span {
       color: var(--o);
+      margin-left: 1px;
     }
 
     .metric-lbl {
@@ -2000,7 +1993,7 @@
   <!-- HOME PAGE PRESERVED NAVBAR -->
   <nav class="site-nav" role="navigation" aria-label="Main Navigation">
     <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
-      <img src="jobutsav-logo-transparent.png" onerror="this.onerror=null;this.src='https://jobutsav.com/jobutsav-logo-transparent.png'" alt="JobUtsav Logo" class="nav-logo" />
+      <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="nav-logo" />
     </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
@@ -2012,7 +2005,7 @@
       <a href="aboutjobfair.html">Job Fair 2026</a>
     </div>
     <div class="nav-right-actions">
-      <a class="cta-btn nav-cta-desktop" href="candidate.html">Get Hired</a>
+      <a class="cta nav-cta-desktop" href="candidate.html">Get Hired</a>
       <button class="nav-menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
@@ -2032,8 +2025,8 @@
       <a href="sponsor.html" class="mobile-nav-link">Sponsors</a>
       <a href="aboutjobfair.html" class="mobile-nav-link">Job Fair 2026</a>
       <div class="mobile-nav-actions">
-        <a class="cta-btn" href="candidate.html">Get Hired →</a>
-        <a class="cta-btn" style="background:var(--n);" href="company.html">Register Your Company</a>
+        <a class="cta" href="candidate.html">Get Hired →</a>
+        <a class="cta o" href="company.html">Register Your Company</a>
       </div>
     </div>
   </div>
@@ -2041,13 +2034,6 @@
   <main>
     <!-- HERO SECTION: CINEMATIC MIDNIGHT HONOURS GALAXY -->
     <header class="hero" id="heroArea">
-      <!-- Interactive Particle Constellation Canvas -->
-      <canvas id="heroCanvas" aria-hidden="true"></canvas>
-
-      <!-- Glowing Ambient Nebulae -->
-      <div class="hero-glow-orb orb-saffron" aria-hidden="true"></div>
-      <div class="hero-glow-orb orb-gold" aria-hidden="true"></div>
-      <div class="hero-glow-orb orb-emerald" aria-hidden="true"></div>
 
       <div class="hero-wrap">
         <!-- Live Status Capsule -->
@@ -2477,7 +2463,7 @@
           <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-building-user"></i></div>
             <div>
-              <div class="metric-val" data-to="250" data-s="+">0<span>+</span></div>
+              <div class="metric-val" data-val="250+">250<span>+</span></div>
               <div class="metric-lbl">Active Corporate Recruiters</div>
               <div class="metric-sub">Hiring on-spot across 8 Indian states</div>
             </div>
@@ -2487,7 +2473,7 @@
           <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-user-graduate"></i></div>
             <div>
-              <div class="metric-val" data-to="10000" data-s="+">0<span>+</span></div>
+              <div class="metric-val" data-val="10,000+">10,000<span>+</span></div>
               <div class="metric-lbl">Candidates Served Per Fair</div>
               <div class="metric-sub">Zero registration fee for job seekers</div>
             </div>
@@ -2497,7 +2483,7 @@
           <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-briefcase"></i></div>
             <div>
-              <div class="metric-val" data-to="100" data-s="+">0<span>+</span></div>
+              <div class="metric-val" data-val="100+">100<span>+</span></div>
               <div class="metric-lbl">Companies Per Mega Fair</div>
               <div class="metric-sub">Multi-industry interview stalls</div>
             </div>
@@ -2507,7 +2493,7 @@
           <div class="metric-card">
             <div class="metric-icon"><i class="fas fa-certificate"></i></div>
             <div>
-              <div class="metric-val" data-to="15000" data-s="+">0<span>+</span></div>
+              <div class="metric-val" data-val="15,000+">15,000<span>+</span></div>
               <div class="metric-lbl">Verified Placements &amp; Offers</div>
               <div class="metric-sub">Backed by verified credentials</div>
             </div>
@@ -2801,45 +2787,30 @@
     const R = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const $ = id => document.getElementById(id);
 
-    // 1. NAVBAR SCROLL EFFECT & MOBILE DRAWER TOGGLE
-    const siteNav = document.querySelector('nav.site-nav');
-    window.addEventListener('scroll', () => {
-      if (siteNav) {
-        siteNav.classList.toggle('scrolled', window.scrollY > 24);
-      }
-    }, { passive: true });
-
+    // 1. MOBILE DRAWER TOGGLE (HOME PAGE NAVBAR LOGIC)
     const menuBtn = $('menuBtn');
     const mobileNav = $('mobileNav');
     if (menuBtn && mobileNav) {
-      function setNavState(isOpen) {
-        mobileNav.classList.toggle('show', isOpen);
-        menuBtn.setAttribute('aria-expanded', String(isOpen));
-        menuBtn.classList.toggle('active', isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      }
-
       menuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = !mobileNav.classList.contains('show');
-        setNavState(isOpen);
+        const isOpen = mobileNav.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        menuBtn.classList.toggle('active', isOpen);
       });
 
       document.addEventListener('click', (e) => {
         if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target) && mobileNav.classList.contains('show')) {
-          setNavState(false);
-        }
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileNav.classList.contains('show')) {
-          setNavState(false);
+          mobileNav.classList.remove('show');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.classList.remove('active');
         }
       });
 
       mobileNav.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
-          setNavState(false);
+          mobileNav.classList.remove('show');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.classList.remove('active');
         });
       });
     }
@@ -2867,106 +2838,6 @@
       }, { passive: true });
     }
 
-    // 4. INTERACTIVE HERO CONSTELLATION CANVAS
-    const heroCanvas = $('heroCanvas');
-    const heroArea = $('heroArea');
-    if (heroCanvas && heroArea && !R) {
-      const ctx = heroCanvas.getContext('2d');
-      let W, H;
-      let nodes = [];
-      let mouse = { x: -1000, y: -1000 };
-
-      function resizeHeroCanvas() {
-        W = heroCanvas.width = heroArea.offsetWidth;
-        H = heroCanvas.height = heroArea.offsetHeight;
-        initNodes();
-      }
-
-      function initNodes() {
-        nodes = [];
-        const count = Math.floor((W * H) / 14000);
-        const actualCount = Math.min(80, Math.max(30, count));
-        for (let i = 0; i < actualCount; i++) {
-          nodes.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.45,
-            vy: (Math.random() - 0.5) * 0.45,
-            r: Math.random() * 2 + 1,
-            color: Math.random() > 0.5 ? 'rgba(245, 158, 11, ' : (Math.random() > 0.5 ? 'rgba(242, 106, 27, ' : 'rgba(26, 163, 85, ')
-          });
-        }
-      }
-
-      heroArea.addEventListener('mousemove', (e) => {
-        const rect = heroArea.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-      });
-
-      heroArea.addEventListener('mouseleave', () => {
-        mouse.x = -1000;
-        mouse.y = -1000;
-      });
-
-      window.addEventListener('resize', resizeHeroCanvas);
-      resizeHeroCanvas();
-
-      function animateConstellation() {
-        ctx.clearRect(0, 0, W, H);
-
-        for (let i = 0; i < nodes.length; i++) {
-          const p = nodes[i];
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > W) p.vx *= -1;
-          if (p.y < 0 || p.y > H) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.color + '0.85)';
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = p.color + '0.4)';
-          ctx.fill();
-
-          // Connect to nearby nodes
-          for (let j = i + 1; j < nodes.length; j++) {
-            const p2 = nodes[j];
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 115) {
-              const alpha = (1 - dist / 115) * 0.22;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(15, 21, 53, ${alpha})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
-            }
-          }
-
-          // Connect to mouse cursor
-          const mdx = p.x - mouse.x;
-          const mdy = p.y - mouse.y;
-          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 140) {
-            const mAlpha = (1 - mdist / 140) * 0.65;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(242, 106, 27, ${mAlpha})`;
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
-          }
-        }
-
-        requestAnimationFrame(animateConstellation);
-      }
-
-      animateConstellation();
-    }
 
     // 5. 3D CYLINDER TURNTABLE (Interactive rotation, dragging, buttons, keyboard, card click)
     const ring = $('ring');
@@ -3187,40 +3058,83 @@
       rib.innerHTML = r;
     }
 
-    // 9. METRICS COUNT-UP ON SCROLL
-    const metricVals = document.querySelectorAll('.metric-val');
-    if (metricVals.length) {
+    // 9. METRICS ROLLING ODOMETER EFFECT ON SCROLL & HOVER
+    const metricCards = document.querySelectorAll('.metrics-section .metric-card');
+    if (metricCards.length) {
+      metricCards.forEach(card => {
+        const valElem = card.querySelector('.metric-val');
+        if (!valElem) return;
+
+        const rawVal = valElem.getAttribute('data-val') || valElem.textContent.trim();
+        valElem.setAttribute('aria-label', rawVal);
+
+        let html = '';
+        rawVal.split('').forEach(ch => {
+          if (/\d/.test(ch)) {
+            html += '<span class="d' + (ch === '1' ? ' d-1' : '') + '" data-v="' + ch + '"><span class="s">' +
+              '0123456789'.split('').map(x => '<b>' + x + '</b>').join('') +
+              '</span></span>';
+          } else if (ch === ',') {
+            html += '<span class="c cm">,</span>';
+          } else if (ch === '.') {
+            html += '<span class="c">.</span>';
+          } else {
+            html += '<span class="c sf">' + ch + '</span>';
+          }
+        });
+        valElem.innerHTML = html;
+
+        card.addEventListener('mouseenter', () => {
+          rollMetric(card);
+        });
+      });
+
+      function rollMetric(card) {
+        const ds = card.querySelectorAll('.d');
+        if (R) {
+          ds.forEach(x => {
+            const s = x.firstChild;
+            if (s) s.style.transform = 'translateY(-' + (+x.dataset.v) + 'em)';
+          });
+          return;
+        }
+
+        ds.forEach(x => {
+          const s = x.firstChild;
+          if (s) {
+            s.style.transition = 'none';
+            s.style.transform = 'translateY(0)';
+          }
+        });
+        void card.offsetWidth;
+        ds.forEach((x, k) => {
+          const s = x.firstChild;
+          if (s) {
+            s.style.transition = 'transform ' + (1.2 + k * 0.22) + 's cubic-bezier(.2, .8, .2, 1)';
+            s.style.transform = 'translateY(-' + (+x.dataset.v) + 'em)';
+          }
+        });
+      }
+
+      const metricsGrid = document.querySelector('.metrics-grid');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           observer.unobserve(entry.target);
 
-          const el = entry.target;
-          const targetNum = +el.dataset.to;
-          const suffix = el.dataset.s || '';
-          let startTs = null;
-
-          function stepCount(ts) {
-            startTs = startTs || ts;
-            const progress = Math.min((ts - startTs) / 1800, 1);
-            const current = Math.round(targetNum * (1 - Math.pow(1 - progress, 3)));
-            el.innerHTML = current.toLocaleString('en-IN') + '<span>' + suffix + '</span>';
-            if (progress < 1 && !R) {
-              requestAnimationFrame(stepCount);
-            } else {
-              el.innerHTML = targetNum.toLocaleString('en-IN') + '<span>' + suffix + '</span>';
-            }
-          }
-
-          if (R) {
-            el.innerHTML = targetNum.toLocaleString('en-IN') + '<span>' + suffix + '</span>';
-          } else {
-            requestAnimationFrame(stepCount);
-          }
+          metricCards.forEach((card, idx) => {
+            setTimeout(() => {
+              rollMetric(card);
+            }, 200 + idx * 130);
+          });
         });
-      }, { threshold: 0.35 });
+      }, { threshold: 0.25 });
 
-      metricVals.forEach(v => observer.observe(v));
+      if (metricsGrid) {
+        observer.observe(metricsGrid);
+      } else {
+        metricCards.forEach(c => observer.observe(c));
+      }
     }
 
     // 10. PHOTO MARQUEE SEAMLESS CLONE
