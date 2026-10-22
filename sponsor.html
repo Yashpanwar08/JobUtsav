@@ -113,29 +113,29 @@
        CSS VARIABLES - THEME TOKENS (LIGHT, AIRY, SOFT)
     ========================================================= */
     :root {
-      --blue: #2f6bff;
-      --sky: #38bdf8;
-      --tint: #eaf3ff;
-      --tint-light: #f4f8ff;
-      --warm: #ff8a1f;
-      --warm2: #ffc46b;
-      --ink: #1a2b4d;
-      --muted: #5b6b8c;
-      --bg: #fbfdff;
+      --blue: #1aa355;
+      --sky: #22c55e;
+      --tint: #fff3eb;
+      --tint-light: #fffdf9;
+      --warm: #f26a1b;
+      --warm2: #ff8a3d;
+      --ink: #0f1535;
+      --muted: #5a6082;
+      --bg: #fff8f0;
       --white: #ffffff;
-      --line: rgba(47, 107, 255, 0.10);
-      --line-warm: rgba(255, 138, 31, 0.18);
+      --line: rgba(15, 21, 53, 0.08);
+      --line-warm: rgba(242, 106, 27, 0.22);
 
-      --grad-blue: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%);
-      --grad-orange: linear-gradient(135deg, #ff7a18 0%, #ffc46b 100%);
-      --grad-hero: linear-gradient(135deg, var(--blue) 0%, var(--warm) 100%);
+      --grad-blue: linear-gradient(135deg, #1aa355 0%, #2ecc71 100%);
+      --grad-orange: linear-gradient(135deg, #f26a1b 0%, #ff8a3d 100%);
+      --grad-hero: linear-gradient(135deg, #f26a1b 0%, #1aa355 100%);
 
-      --shadow-sm: 0 4px 14px rgba(47, 107, 255, 0.05);
-      --shadow-soft: 0 14px 34px rgba(47, 107, 255, 0.08);
-      --shadow-card: 0 18px 45px rgba(26, 43, 77, 0.06);
-      --shadow-card-hover: 0 24px 55px rgba(47, 107, 255, 0.14);
-      --shadow-orange: 0 12px 28px rgba(255, 122, 24, 0.32);
-      --shadow-orange-hover: 0 16px 36px rgba(255, 122, 24, 0.44);
+      --shadow-sm: 0 4px 14px rgba(15, 21, 53, 0.04);
+      --shadow-soft: 0 14px 34px rgba(15, 21, 53, 0.07);
+      --shadow-card: 0 16px 45px rgba(15, 21, 53, 0.06);
+      --shadow-card-hover: 0 22px 50px rgba(15, 21, 53, 0.12);
+      --shadow-orange: 0 12px 28px rgba(242, 106, 27, 0.32);
+      --shadow-orange-hover: 0 16px 36px rgba(242, 106, 27, 0.44);
 
       --radius-sm: 16px;
       --radius-md: 24px;
@@ -241,7 +241,7 @@
     .sec-badge.orange {
       color: var(--warm);
       border-color: var(--line-warm);
-      background: rgba(255, 138, 31, 0.08);
+      background: rgba(242, 106, 27, 0.08);
     }
 
     .sec-title {
@@ -286,7 +286,7 @@
 
     .btn.secondary {
       background: #ffffff;
-      color: var(--blue);
+      color: var(--ink);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
     }
@@ -294,7 +294,8 @@
     .btn.secondary:hover {
       transform: translateY(-4px);
       background: var(--tint);
-      color: var(--blue);
+      color: var(--warm);
+      border-color: var(--line-warm);
       box-shadow: var(--shadow-card-hover);
     }
 
@@ -328,12 +329,12 @@
 
     .nav-pill {
       width: min(var(--container), 100%);
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(47, 107, 255, 0.12);
+      border: 1px solid rgba(15, 21, 53, 0.08);
       border-radius: var(--radius-pill);
-      box-shadow: 0 12px 34px rgba(47, 107, 255, 0.08);
+      box-shadow: 0 12px 34px rgba(15, 21, 53, 0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -371,7 +372,7 @@
 
     .nav-links a:hover,
     .nav-links a.active {
-      background: rgba(255, 138, 31, 0.12);
+      background: rgba(242, 106, 27, 0.12);
       color: var(--warm);
       font-weight: 700;
     }
@@ -423,7 +424,7 @@
       background: #ffffff;
       border: 1px solid var(--line);
       border-radius: 26px;
-      box-shadow: 0 20px 50px rgba(47, 107, 255, 0.18);
+      box-shadow: 0 20px 50px rgba(15, 21, 53, 0.14);
       padding: 24px;
       z-index: 999;
       flex-direction: column;
@@ -444,7 +445,7 @@
 
     .mobileNav a.active,
     .mobileNav a:hover {
-      background: rgba(255, 138, 31, 0.10);
+      background: rgba(242, 106, 27, 0.10);
       color: var(--warm);
     }
 
@@ -456,9 +457,9 @@
       padding: 60px 0 110px;
       overflow: hidden;
       background:
-        radial-gradient(circle at 12% 18%, rgba(47, 107, 255, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 88% 22%, rgba(56, 189, 248, 0.10) 0%, transparent 42%),
-        radial-gradient(circle at 20% 80%, rgba(255, 138, 31, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 12% 18%, rgba(242, 106, 27, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 88% 22%, rgba(26, 163, 85, 0.10) 0%, transparent 42%),
+        radial-gradient(circle at 20% 80%, rgba(242, 106, 27, 0.08) 0%, transparent 45%),
         var(--bg);
     }
 
@@ -478,7 +479,7 @@
       padding: 8px 20px;
       border-radius: var(--radius-pill);
       background: #ffffff;
-      border: 1px solid rgba(47, 107, 255, 0.12);
+      border: 1px solid rgba(15, 21, 53, 0.08);
       box-shadow: var(--shadow-soft);
       font-size: 13px;
       font-weight: 700;
@@ -491,7 +492,7 @@
       height: 9px;
       border-radius: 50%;
       background: var(--warm);
-      box-shadow: 0 0 10px rgba(255, 122, 24, 0.8);
+      box-shadow: 0 0 10px rgba(242, 106, 27, 0.8);
       position: relative;
     }
 
@@ -500,7 +501,7 @@
       position: absolute;
       inset: -4px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 122, 24, 0.5);
+      border: 2px solid rgba(242, 106, 27, 0.5);
       animation: dotPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
     }
 
@@ -529,7 +530,7 @@
       gap: 8px;
       padding: 8px 18px;
       border-radius: var(--radius-pill);
-      background: rgba(255, 138, 31, 0.10);
+      background: rgba(242, 106, 27, 0.10);
       border: 1px solid var(--line-warm);
       color: var(--warm);
       font-size: 13.5px;
@@ -561,9 +562,9 @@
       border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
       overflow: hidden;
       border: 10px solid #ffffff;
-      box-shadow: 0 28px 65px rgba(47, 107, 255, 0.16);
+      box-shadow: 0 28px 65px rgba(15, 21, 53, 0.12);
       animation: morphBlob 14s ease-in-out infinite alternate;
-      background: #e6f0ff;
+      background: #fff3eb;
     }
 
     .blob-wrap img {
@@ -592,13 +593,13 @@
     /* 3 Floating Glass Chips */
     .glass-chip {
       position: absolute;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(47, 107, 255, 0.12);
+      border: 1px solid rgba(15, 21, 53, 0.08);
       border-radius: 22px;
       padding: 10px 18px;
-      box-shadow: 0 14px 34px rgba(26, 43, 77, 0.10);
+      box-shadow: 0 14px 34px rgba(15, 21, 53, 0.08);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -655,7 +656,7 @@
       animation-delay: -4s;
     }
     .chip-3 .chip-icon {
-      background: linear-gradient(135deg, #0ea5e9, #10b981);
+      background: linear-gradient(135deg, #1aa355, #22c55e);
     }
 
     @keyframes floatBob {
@@ -669,7 +670,7 @@
 
     /* =========================================================
        3. EVENT DETAILS STRIP (OVERLAPPING HERO)
-    ========================================================= */
+     ========================================================= */
     .strip-wrapper {
       position: relative;
       z-index: 10;
@@ -681,7 +682,7 @@
       background: #ffffff;
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      box-shadow: 0 20px 48px rgba(47, 107, 255, 0.09);
+      box-shadow: 0 20px 48px rgba(15, 21, 53, 0.06);
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       padding: 10px 0;
@@ -772,7 +773,7 @@
     .mission-card:hover {
       transform: translateX(8px);
       border-color: var(--line-warm);
-      box-shadow: 0 10px 24px rgba(255, 122, 24, 0.12);
+      box-shadow: 0 10px 24px rgba(242, 106, 27, 0.12);
     }
 
     .mission-check {
@@ -786,7 +787,7 @@
       justify-content: center;
       font-size: 11px;
       flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(255, 122, 24, 0.35);
+      box-shadow: 0 4px 12px rgba(242, 106, 27, 0.35);
     }
 
     /* 3 Small Tinted Rounded Stat Cards */
@@ -812,17 +813,18 @@
     }
 
     .stat-tint-card.tint-blue {
-      background: linear-gradient(145deg, #ffffff 0%, var(--tint) 100%);
+      background: linear-gradient(145deg, #ffffff 0%, #fff8f0 100%);
     }
 
     .stat-tint-card.tint-orange {
       background: linear-gradient(145deg, #ffffff 0%, #fff4e8 100%);
       border-color: var(--line-warm);
-      box-shadow: 0 16px 40px rgba(255, 122, 24, 0.09);
+      box-shadow: 0 16px 40px rgba(242, 106, 27, 0.09);
     }
 
     .stat-tint-card.tint-sky {
-      background: linear-gradient(145deg, #ffffff 0%, #f0faff 100%);
+      background: linear-gradient(145deg, #ffffff 0%, #eefbf3 100%);
+      border-color: rgba(26, 163, 85, 0.22);
     }
 
     .stat-number {
@@ -842,7 +844,7 @@
        5. WHO WE CONNECT (LIGHT BLUE GRADIENT + WAVE)
     ========================================================= */
     .connect-sec {
-      background: linear-gradient(180deg, #f4f8ff 0%, #ebf3ff 100%);
+      background: linear-gradient(180deg, #fff3eb 0%, #faeee1 100%);
       padding: 80px 0 90px;
       position: relative;
     }
@@ -879,22 +881,22 @@
       color: #ffffff;
       font-size: 22px;
       margin-bottom: 22px;
-      box-shadow: 0 10px 24px rgba(47, 107, 255, 0.22);
+      box-shadow: 0 10px 24px rgba(15, 21, 53, 0.14);
     }
 
     .orb-blue {
       background: var(--grad-blue);
-      box-shadow: 0 10px 24px rgba(47, 107, 255, 0.26);
+      box-shadow: 0 10px 24px rgba(26, 163, 85, 0.28);
     }
 
     .orb-orange {
       background: var(--grad-orange);
-      box-shadow: 0 10px 24px rgba(255, 122, 24, 0.30);
+      box-shadow: 0 10px 24px rgba(242, 106, 27, 0.30);
     }
 
     .orb-sky {
-      background: linear-gradient(135deg, #0ea5e9, #10b981);
-      box-shadow: 0 10px 24px rgba(14, 165, 233, 0.26);
+      background: linear-gradient(135deg, #1aa355, #22c55e);
+      box-shadow: 0 10px 24px rgba(26, 163, 85, 0.26);
     }
 
     .connect-card h3 {
@@ -924,8 +926,8 @@
     }
 
     .big-metric-card {
-      background: linear-gradient(145deg, #eef5ff 0%, #fff7ef 100%);
-      border: 1px solid rgba(47, 107, 255, 0.12);
+      background: linear-gradient(145deg, #fffbf6 0%, #fff3eb 100%);
+      border: 1px solid rgba(242, 106, 27, 0.22);
       border-radius: var(--radius-xl);
       padding: 48px 38px;
       box-shadow: var(--shadow-soft);
@@ -979,7 +981,7 @@
     .why-card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-card-hover);
-      border-color: rgba(47, 107, 255, 0.22);
+      border-color: rgba(242, 106, 27, 0.35);
     }
 
     .why-icon-wrap {
@@ -987,7 +989,7 @@
       height: 44px;
       border-radius: 14px;
       background: var(--tint);
-      color: var(--blue);
+      color: var(--warm);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1010,7 +1012,7 @@
        7. SPONSORSHIP PACKAGES (LIGHT BLUE + WAVE)
     ========================================================= */
     .pkg-sec {
-      background: linear-gradient(180deg, #f0f6ff 0%, #f9fcff 100%);
+      background: linear-gradient(180deg, #fff3eb 0%, #fff8f0 100%);
       padding: 85px 0 100px;
       position: relative;
     }
@@ -1042,17 +1044,17 @@
     }
 
     .pkg-card.featured {
-      background: linear-gradient(145deg, #ff7a18 0%, #ff8e26 50%, #ffa542 100%);
+      background: linear-gradient(145deg, #f26a1b 0%, #ff8a3d 50%, #ffa542 100%);
       color: #ffffff;
       border: none;
-      box-shadow: 0 24px 55px rgba(255, 122, 24, 0.35);
+      box-shadow: 0 24px 55px rgba(242, 106, 27, 0.35);
       transform: scale(1.03);
       z-index: 3;
     }
 
     .pkg-card.featured:hover {
       transform: scale(1.03) translateY(-8px);
-      box-shadow: 0 30px 65px rgba(255, 122, 24, 0.45);
+      box-shadow: 0 30px 65px rgba(242, 106, 27, 0.45);
     }
 
     .pkg-badge-top {
@@ -1060,7 +1062,7 @@
       top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--blue);
+      background: var(--ink);
       color: #ffffff;
       font-size: 11px;
       font-weight: 800;
@@ -1068,7 +1070,7 @@
       text-transform: uppercase;
       padding: 5px 16px;
       border-radius: var(--radius-pill);
-      box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
+      box-shadow: 0 6px 16px rgba(15, 21, 53, 0.35);
     }
 
     .pkg-card h3 {
@@ -1125,8 +1127,8 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: var(--tint);
-      color: var(--blue);
+      background: #e8f7ee;
+      color: #1aa355;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1155,14 +1157,15 @@
 
     .pkg-card:not(.featured) .pkg-btn {
       background: var(--tint);
-      color: var(--blue);
-      border: 1px solid var(--line);
+      color: var(--warm);
+      border: 1.5px solid var(--line-warm);
     }
 
     .pkg-card:not(.featured) .pkg-btn:hover {
-      background: var(--blue);
+      background: var(--warm);
       color: #ffffff;
-      box-shadow: 0 10px 24px rgba(47, 107, 255, 0.25);
+      border-color: var(--warm);
+      box-shadow: var(--shadow-orange);
       transform: translateY(-2px);
     }
 
@@ -1174,8 +1177,8 @@
     }
 
     .pkg-card.featured .pkg-btn:hover {
-      background: #fffbf5;
-      color: #e06509;
+      background: #fff8f0;
+      color: #db590f;
       transform: translateY(-2px);
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
     }
@@ -1210,8 +1213,8 @@
       background: #ffffff;
       border-radius: 36px;
       padding: 42px 38px;
-      box-shadow: 0 24px 60px rgba(47, 107, 255, 0.09);
-      border: 1px solid rgba(47, 107, 255, 0.08);
+      box-shadow: 0 24px 60px rgba(15, 21, 53, 0.08);
+      border: 1px solid rgba(15, 21, 53, 0.08);
     }
 
     .form-grid {
@@ -1245,8 +1248,8 @@
       width: 100%;
       height: 50px;
       border-radius: var(--radius-sm);
-      background: var(--tint);
-      border: 1.5px solid transparent;
+      background: #fff8f0;
+      border: 1.5px solid rgba(15, 21, 53, 0.08);
       padding: 0 18px;
       font-family: inherit;
       font-size: 14px;
@@ -1258,14 +1261,14 @@
     .input-group input[type="file"] {
       height: auto;
       padding: 12px 16px;
-      background: var(--tint);
+      background: #fff8f0;
       cursor: pointer;
     }
 
     .input-group input:focus {
       background: #ffffff;
-      border-color: var(--sky);
-      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.22);
+      border-color: var(--warm);
+      box-shadow: 0 0 0 4px rgba(242, 106, 27, 0.20);
     }
 
     .submit-btn {
@@ -1291,11 +1294,11 @@
        9. FOOTER (LIGHT BLUE TINT, ROUNDED TOP CORNERS 56PX)
     ========================================================= */
     footer {
-      background: linear-gradient(180deg, #f1f7ff 0%, #e6f1ff 100%);
+      background: linear-gradient(160deg, #10163a 0%, #0a0d24 100%);
       border-radius: 56px 56px 0 0;
-      border-top: 1px solid rgba(47, 107, 255, 0.12);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
       padding: 68px 0 40px;
-      color: var(--muted);
+      color: #cfd4ea;
       position: relative;
     }
 
@@ -1304,7 +1307,7 @@
       grid-template-columns: 1.3fr repeat(3, 1fr);
       gap: 36px;
       padding-bottom: 36px;
-      border-bottom: 1px solid rgba(47, 107, 255, 0.10);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
     }
 
     .footer-logo {
@@ -1317,6 +1320,7 @@
       font-size: 13.5px;
       line-height: 1.7;
       margin-bottom: 16px;
+      color: #cfd4ea;
     }
 
     .social-links {
@@ -1329,9 +1333,9 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      color: var(--blue);
+      background: rgba(242, 106, 27, 0.12);
+      border: 1.5px solid rgba(242, 106, 27, 0.5);
+      color: #ff8a3d;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1350,25 +1354,26 @@
     .org-box {
       font-size: 13px;
       line-height: 1.6;
+      color: #aab0cc;
     }
 
     .org-box b {
-      color: var(--ink);
+      color: #ffffff;
     }
 
     .org-box a {
-      color: var(--blue);
+      color: var(--warm);
       font-weight: 600;
     }
 
     .org-box a:hover {
-      color: var(--warm);
+      color: #ff8a3d;
     }
 
     .footer-col h4 {
       font-size: 16px;
       margin-bottom: 18px;
-      color: var(--ink);
+      color: #ff8a3d;
     }
 
     .footer-col ul {
@@ -1380,7 +1385,7 @@
 
     .footer-col a {
       font-size: 13.5px;
-      color: var(--muted);
+      color: #e6e9f7;
       transition: color 0.2s ease, transform 0.2s ease;
       display: inline-block;
     }
@@ -1398,10 +1403,11 @@
       padding-top: 26px;
       font-size: 13px;
       flex-wrap: wrap;
+      color: #aab0cc;
     }
 
     .footer-bottom a {
-      color: var(--muted);
+      color: #cfd4ea;
     }
 
     .footer-bottom a:hover {
@@ -1415,23 +1421,33 @@
       position: fixed;
       bottom: 22px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(120%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
       z-index: 999;
-      background: rgba(255, 255, 255, 0.90);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: var(--radius-pill);
       padding: 8px 14px;
-      box-shadow: 0 16px 40px rgba(47, 107, 255, 0.16);
-      border: 1px solid rgba(47, 107, 255, 0.14);
+      box-shadow: 0 16px 40px rgba(15, 21, 53, 0.12);
+      border: 1px solid rgba(15, 21, 53, 0.08);
       display: flex;
       align-items: center;
       gap: 10px;
-      transition: transform 0.25s ease;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s;
     }
 
-    .floating-bar:hover {
-      transform: translateX(-50%) translateY(-2px);
+    .floating-bar.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .floating-bar.visible:hover {
+      transform: translateX(-50%) translateY(-3px);
     }
 
     .floating-bar .btn {
@@ -1879,7 +1895,7 @@
     <!-- Top Wave Divider for Who We Connect -->
     <div class="wave-wrap" aria-hidden="true">
       <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
-        <path d="M0,32 C320,64 640,0 960,32 C1200,56 1360,20 1440,32 L1440,64 L0,64 Z" fill="#f4f8ff"></path>
+        <path d="M0,32 C320,64 640,0 960,32 C1200,56 1360,20 1440,32 L1440,64 L0,64 Z" fill="#fff3eb"></path>
       </svg>
     </div>
 
@@ -1939,7 +1955,7 @@
     <!-- Bottom Wave Divider for Who We Connect -->
     <div class="wave-wrap" style="transform: rotate(180deg);" aria-hidden="true">
       <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
-        <path d="M0,32 C320,64 640,0 960,32 C1200,56 1360,20 1440,32 L1440,64 L0,64 Z" fill="#ebf3ff"></path>
+        <path d="M0,32 C320,64 640,0 960,32 C1200,56 1360,20 1440,32 L1440,64 L0,64 Z" fill="#faeee1"></path>
       </svg>
     </div>
 
@@ -1981,7 +1997,7 @@
             </div>
 
             <div class="why-card">
-              <div class="why-icon-wrap" style="color: var(--warm); background: rgba(255, 138, 31, 0.12);">
+              <div class="why-icon-wrap" style="color: var(--warm); background: rgba(242, 106, 27, 0.12);">
                 <i class="fas fa-award"></i>
               </div>
               <div>
@@ -1991,7 +2007,7 @@
             </div>
 
             <div class="why-card">
-              <div class="why-icon-wrap" style="color: #0ea5e9; background: #e0f6ff;">
+              <div class="why-icon-wrap" style="color: #1aa355; background: #e8f7ee;">
                 <i class="fas fa-users-viewfinder"></i>
               </div>
               <div>
@@ -2007,7 +2023,7 @@
     <!-- Top Wave Divider for Sponsorship Packages -->
     <div class="wave-wrap" aria-hidden="true">
       <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
-        <path d="M0,28 C360,60 720,0 1080,36 C1240,52 1360,18 1440,28 L1440,64 L0,64 Z" fill="#f0f6ff"></path>
+        <path d="M0,28 C360,60 720,0 1080,36 C1240,52 1360,18 1440,28 L1440,64 L0,64 Z" fill="#fff3eb"></path>
       </svg>
     </div>
 
@@ -2124,7 +2140,7 @@
     <!-- Bottom Wave for Packages -->
     <div class="wave-wrap" style="transform: rotate(180deg);" aria-hidden="true">
       <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none">
-        <path d="M0,28 C360,60 720,0 1080,36 C1240,52 1360,18 1440,28 L1440,64 L0,64 Z" fill="#f9fcff"></path>
+        <path d="M0,28 C360,60 720,0 1080,36 C1240,52 1360,18 1440,28 L1440,64 L0,64 Z" fill="#fff8f0"></path>
       </svg>
     </div>
 
@@ -2350,7 +2366,38 @@
         });
       }
 
-      // 4. Dynamic Year in Footer
+      // 4. Floating Bottom Bar Visibility (Appears after scrolling hero section, and vice versa)
+      const floatingBar = document.querySelector('.floating-bar');
+      const heroSection = document.querySelector('.hero');
+      if (floatingBar && heroSection) {
+        if ('IntersectionObserver' in window) {
+          const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                floatingBar.classList.remove('visible');
+              } else {
+                floatingBar.classList.add('visible');
+              }
+            });
+          }, {
+            threshold: 0
+          });
+          heroObserver.observe(heroSection);
+        } else {
+          const checkHeroScroll = () => {
+            const heroRect = heroSection.getBoundingClientRect();
+            if (heroRect.bottom <= 60) {
+              floatingBar.classList.add('visible');
+            } else {
+              floatingBar.classList.remove('visible');
+            }
+          };
+          window.addEventListener('scroll', checkHeroScroll, { passive: true });
+          checkHeroScroll();
+        }
+      }
+
+      // 5. Dynamic Year in Footer
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
