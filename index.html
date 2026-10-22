@@ -986,6 +986,17 @@
       box-sizing: border-box;
     }
 
+    /* HERO / WELCOME SECTION (MATCHES PAST ACTIVITIES HERO BACKGROUND: PEACH & MINT THEME) */
+    .sc.sc-hero,
+    .sc[data-l="Welcome"],
+    #scHero {
+      background-color: #fffdfb;
+      background-image:
+        radial-gradient(circle at 10% 15%, #fde1ce 0%, transparent 50%),
+        radial-gradient(circle at 95% 85%, #d9f0e1 0%, transparent 55%);
+      background-repeat: no-repeat;
+    }
+
     .sc.dk {
       color: #fff;
     }
@@ -1601,25 +1612,76 @@
       }
     }
 
-    /* 6. HEADING FILL (JOBUTSAV) */
+    /* 6. HEADING FILL (JOBUTSAV - MATCHING BRAND LOGO COLORS) */
     .s6-heading {
       font-weight: 800;
       text-transform: uppercase;
       font-size: clamp(48px, 11.5vw, 150px);
-      letter-spacing: -0.05em;
+      letter-spacing: -0.04em;
       line-height: 0.95;
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+      filter: drop-shadow(0 10px 28px rgba(5, 38, 18, 0.45)) drop-shadow(0 4px 16px rgba(242, 106, 27, 0.3));
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .s6-heading:hover {
+      transform: scale(1.025);
+      filter: drop-shadow(0 14px 34px rgba(242, 106, 27, 0.5)) drop-shadow(0 6px 20px rgba(0, 96, 204, 0.45));
+    }
+
+    /* "JOB" - Signature Logo Saffron / Orange with Interactive Glint */
+    .s6-logo-job {
+      display: inline-block;
       color: transparent;
       -webkit-text-fill-color: transparent;
       background-image:
-        radial-gradient(circle at var(--s6-g1x, 30%) var(--s6-g1y, 40%), #fff4d8 0%, transparent 60%),
-        radial-gradient(circle at var(--s6-g2x, 70%) var(--s6-g2y, 60%), #c8f7dc 0%, transparent 60%),
-        linear-gradient(#ffffff, #ffffff);
+        radial-gradient(circle at var(--s6-g1x, 30%) var(--s6-g1y, 40%), rgba(255, 255, 255, 0.9) 0%, transparent 48%),
+        linear-gradient(135deg, #fff3e6 0%, #ffa352 20%, #f26a1b 55%, #ff7825 78%, #d04b04 100%);
+      background-size: 160% 160%;
       -webkit-background-clip: text;
       background-clip: text;
-      filter: drop-shadow(0 8px 24px rgba(10, 60, 30, 0.35));
+      animation: s6JobGradientShift 7s ease-in-out infinite alternate;
       will-change: background-position;
-      position: relative;
-      z-index: 3;
+      padding-right: 0.01em;
+    }
+
+    /* "UTSAV" - Signature Logo Royal Sapphire Blue & Pearl White Highlight with Interactive Glint */
+    .s6-logo-utsav {
+      display: inline-block;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-image:
+        radial-gradient(circle at var(--s6-g2x, 70%) var(--s6-g2y, 60%), rgba(255, 255, 255, 0.95) 0%, transparent 48%),
+        linear-gradient(135deg, #ffffff 0%, #d8ecff 22%, #4ea5ff 50%, #0066cc 78%, #003a85 100%);
+      background-size: 160% 160%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: s6UtsavGradientShift 7s ease-in-out infinite alternate 1s;
+      will-change: background-position;
+    }
+
+    @keyframes s6JobGradientShift {
+      0% {
+        background-position: 0% 35%;
+      }
+      100% {
+        background-position: 100% 65%;
+      }
+    }
+
+    @keyframes s6UtsavGradientShift {
+      0% {
+        background-position: 0% 65%;
+      }
+      100% {
+        background-position: 100% 35%;
+      }
     }
 
     /* 1 & 2. WORD REVEAL & KEY PHRASES */
@@ -2696,12 +2758,12 @@
     </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="about-us.html">About Us</a>
       <a href="candidate.html">Candidates</a>
       <a href="company.html">Companies</a>
       <a href="college.html">Colleges</a>
       <a href="sponsor.html">Sponsors</a>
       <a href="aboutjobfair.html">Job Fair 2026</a>
-      <a href="about-us.html">About Us</a>
     </div>
     <div class="nav-right-actions">
       <a class="cta nav-cta-desktop" href="candidate.html">Get Hired</a>
@@ -2717,12 +2779,12 @@
   <div class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-inner">
       <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about-us.html" class="mobile-nav-link">About Us</a>
       <a href="candidate.html" class="mobile-nav-link">Candidates</a>
       <a href="company.html" class="mobile-nav-link">Companies</a>
       <a href="college.html" class="mobile-nav-link">Colleges</a>
       <a href="sponsor.html" class="mobile-nav-link">Sponsors</a>
       <a href="aboutjobfair.html" class="mobile-nav-link">Job Fair 2026</a>
-      <a href="about-us.html" class="mobile-nav-link">About Us</a>
       <div class="mobile-nav-actions">
         <a class="cta" href="candidate.html">Get Hired →</a>
         <a class="cta o" href="company.html">Register Your Company</a>
@@ -2743,7 +2805,7 @@
     <div class="stage">
 
       <!-- 1. WELCOME / HERO -->
-      <section class="sc" data-l="Welcome">
+      <section class="sc sc-hero" id="scHero" data-l="Welcome">
         <canvas id="ribbonCanvas"
           style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
         <div class="hero-content" id="heroContent">
@@ -2944,7 +3006,7 @@
 
         <!-- MAIN CONTENT -->
         <div class="k">About</div>
-        <h2 class="g s6-heading" id="s6Heading">JobUtsav</h2>
+        <h2 class="g s6-heading" id="s6Heading" aria-label="JobUtsav"><span class="s6-logo-job">Job</span><span class="s6-logo-utsav">Utsav</span></h2>
         <p class="sm s6-para" id="ab"><span class="wd">JobUtsav</span> <span class="wd">is</span> <span
             class="wd">a</span> <span class="wd">career-focused</span> <span class="wd">platform</span> <span
             class="wd">designed</span> <span class="wd">to</span> <span class="wd">connect</span> <span class="kw"

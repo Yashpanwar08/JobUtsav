@@ -1,15 +1,18 @@
 RewriteEngine On
 
-# Force HTTPS (exclude localhost for local development)
-RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+# Exclude localhost, 127.0.0.1, and local IPs from all redirects
+RewriteCond %{HTTP_HOST} ^(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?$ [NC]
+RewriteRule ^ - [L]
+
+# Force HTTPS (production only)
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirect www to non-www
+# Redirect www to non-www (production only)
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
-# Remove index.html
+# Remove index.html (production only)
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
 
