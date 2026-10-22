@@ -1291,127 +1291,350 @@
     }
 
     /* =========================================================
-       9. FOOTER (LIGHT BLUE TINT, ROUNDED TOP CORNERS 56PX)
+       9. FOOTER (EXACT HOMEPAGE CODE & STYLES)
     ========================================================= */
-    footer {
-      background: linear-gradient(160deg, #10163a 0%, #0a0d24 100%);
-      border-radius: 56px 56px 0 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 68px 0 40px;
-      color: #cfd4ea;
-      position: relative;
+    .footer-wrap {
+      background: #0a0f2e !important;
+      padding-block: 28px 16px !important;
+      padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)) !important;
+      position: relative !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.3fr repeat(3, 1fr);
-      gap: 36px;
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    .footer {
+      position: relative !important;
+      max-width: 1280px !important;
+      margin-inline: auto !important;
+      border: 1px solid rgba(255, 255, 255, 0.13) !important;
+      border-radius: 20px !important;
+      padding: 28px 32px 16px !important;
+      background:
+        radial-gradient(900px 520px at 0% 0%, rgba(120, 58, 72, 0.55), transparent 62%),
+        radial-gradient(900px 520px at 100% 100%, rgba(120, 58, 72, 0.5), transparent 62%),
+        linear-gradient(160deg, #151d4a, #0a0f2e) !important;
+      overflow: hidden !important;
+      color: #eceffb !important;
+      font-family: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif !important;
+      box-sizing: border-box !important;
     }
 
-    .footer-logo {
-      height: 48px;
-      width: auto;
-      margin-bottom: 14px;
+    .footer a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .footer-brand p {
-      font-size: 13.5px;
-      line-height: 1.7;
-      margin-bottom: 16px;
-      color: #cfd4ea;
+    .footer ul {
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    .social-links {
-      display: flex;
-      gap: 10px;
-      margin: 12px 0 20px;
+    .footer h3,
+    .footer h4,
+    .footer p {
+      margin: 0 !important;
     }
 
-    .social-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(242, 106, 27, 0.12);
-      border: 1.5px solid rgba(242, 106, 27, 0.5);
-      color: #ff8a3d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.25s ease;
+    .footer a:focus-visible,
+    .footer button:focus-visible {
+      outline: 2px solid #ff8a3d;
+      outline-offset: 3px;
+      border-radius: 6px;
     }
 
-    .social-icon:hover {
-      background: var(--warm);
-      color: #ffffff;
-      border-color: var(--warm);
-      transform: translateY(-3px);
+    .footer .grid {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr) !important;
+      gap: 24px 40px !important;
+      align-items: start !important;
     }
 
-    .org-box {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #aab0cc;
+    .footer section,
+    .footer nav,
+    .footer .col {
+      display: block !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
     }
 
-    .org-box b {
-      color: #ffffff;
+    .footer .col > h4 {
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.01em !important;
+      margin-bottom: 14px !important;
+      color: #fff !important;
+      line-height: 1.3 !important;
     }
 
-    .org-box a {
-      color: var(--warm);
-      font-weight: 600;
+    /* Brand column */
+    .footer .brand {
+      display: block !important;
+      flex-direction: initial !important;
+      align-items: initial !important;
     }
 
-    .org-box a:hover {
-      color: #ff8a3d;
+    .footer .logo,
+    .footer .brand-logo {
+      display: block !important;
+      width: 112px !important;
+      height: auto !important;
+      margin: -4px 0 12px -6px !important;
+      max-width: none !important;
     }
 
-    .footer-col h4 {
-      font-size: 16px;
-      margin-bottom: 18px;
-      color: #ff8a3d;
+    .footer .brand-copy {
+      color: #b4bad6 !important;
+      max-width: 36ch !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      margin: 0 0 16px 0 !important;
+      display: block !important;
     }
 
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .footer .meta {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 0 36px !important;
     }
 
-    .footer-col a {
-      font-size: 13.5px;
-      color: #e6e9f7;
-      transition: color 0.2s ease, transform 0.2s ease;
-      display: inline-block;
+    .footer .label {
+      display: block !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      margin: 16px 0 8px !important;
+      color: #fff !important;
     }
 
-    .footer-col a:hover {
-      color: var(--warm);
-      transform: translateX(3px);
+    .footer .social {
+      display: flex !important;
+      gap: 8px !important;
     }
 
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding-top: 26px;
-      font-size: 13px;
-      flex-wrap: wrap;
-      color: #aab0cc;
+    .footer .social a {
+      display: grid !important;
+      place-items: center !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 10px !important;
+      border: 1px solid rgba(255, 255, 255, 0.13) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      color: #eceffb !important;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
     }
 
-    .footer-bottom a {
-      color: #cfd4ea;
+    .footer .social a:hover {
+      background: rgba(255, 255, 255, 0.14) !important;
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      transform: translateY(-2px);
+      color: #fff !important;
     }
 
-    .footer-bottom a:hover {
-      color: var(--warm);
+    .footer .social svg {
+      width: 16px !important;
+      height: 16px !important;
+      fill: currentColor;
+    }
+
+    .footer .organizers {
+      display: grid !important;
+      gap: 2px !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+    }
+
+    .footer .organizers a {
+      width: fit-content !important;
+      color: #eceffb !important;
+      transition: color 0.2s;
+    }
+
+    .footer .organizers a:hover {
+      color: #ff8a3d !important;
+    }
+
+    /* Link columns */
+    .footer .links {
+      display: grid !important;
+      gap: 8px !important;
+      font-size: 14px !important;
+    }
+
+    .footer .links a {
+      color: #b4bad6 !important;
+      width: fit-content !important;
+      background: linear-gradient(#ff8a3d, #ff8a3d) 0 100% / 0 1px no-repeat;
+      transition: color 0.2s, background-size 0.25s;
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+    }
+
+    .footer .links a:hover {
+      color: #eceffb !important;
+      background-size: 100% 1px;
+    }
+
+    /* Contact column */
+    .footer .contact {
+      display: grid !important;
+      gap: 10px !important;
+      font-size: 14px !important;
+      color: #b4bad6 !important;
+      font-style: normal !important;
+      margin: 0 !important;
+    }
+
+    .footer .contact dl {
+      margin: 0 !important;
+      display: grid !important;
+      gap: 10px !important;
+    }
+
+    .footer .contact dt {
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.14em !important;
+      text-transform: uppercase !important;
+      color: #8f97bd !important;
+      margin-bottom: 1px !important;
+    }
+
+    .footer .contact dd {
+      margin: 0 !important;
+      line-height: 1.45 !important;
+      color: #b4bad6 !important;
+      font-size: 14px !important;
+    }
+
+    .footer .contact .mail {
+      color: #eceffb !important;
+      font-weight: 700 !important;
+      overflow-wrap: anywhere !important;
+      border-bottom: 2px solid #f26a1b !important;
+      transition: color 0.2s;
+    }
+
+    .footer .contact .mail:hover {
+      color: #ff8a3d !important;
+    }
+
+    /* Legal bar */
+    .footer .bar {
+      margin-top: 20px !important;
+      padding-top: 14px !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.13) !important;
+      display: grid !important;
+      grid-template-columns: 1fr auto 1fr !important;
+      align-items: center !important;
+      gap: 16px 24px !important;
+      font-size: 13px !important;
+      color: #b4bad6 !important;
+      height: auto !important;
+      background: transparent !important;
+      overflow: visible !important;
+      border-radius: 0 !important;
+    }
+
+    .footer .bar p {
+      margin: 0 !important;
+      color: #b4bad6 !important;
+      font-size: 13px !important;
+    }
+
+    .footer .legal {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 4px 18px !important;
+    }
+
+    .footer .legal a {
+      color: #b4bad6 !important;
+      font-size: 13px !important;
+      transition: color 0.2s;
+    }
+
+    .footer .legal a:hover {
+      color: #eceffb !important;
+    }
+
+    .footer .top {
+      justify-self: end !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      border: 0 !important;
+      cursor: pointer !important;
+      font: 700 13px/1 "Outfit", sans-serif !important;
+      color: #fff !important;
+      background: #f26a1b !important;
+      padding: 9px 16px !important;
+      border-radius: 999px !important;
+      box-shadow: 0 4px 12px rgba(242, 106, 27, 0.35) !important;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .footer .top:hover {
+      background: #ff8a3d !important;
+      transform: translateY(-2px);
+    }
+
+    .footer .top svg {
+      width: 12px !important;
+      height: 12px !important;
+      fill: none !important;
+      stroke: currentColor !important;
+      stroke-width: 2.4 !important;
+      stroke-linecap: round !important;
+      stroke-linejoin: round !important;
+    }
+
+    @media (max-width: 1020px) {
+      .footer .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+      .footer .brand {
+        grid-column: 1 / -1 !important;
+      }
+      .footer .brand-copy {
+        max-width: 52ch !important;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .footer .bar {
+        grid-template-columns: 1fr !important;
+        justify-items: center !important;
+        text-align: center !important;
+      }
+      .footer .top {
+        justify-self: center !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .footer {
+        padding: 22px 18px 16px !important;
+        border-radius: 16px !important;
+      }
+      .footer .grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 22px !important;
+      }
+      .footer .col > h4 {
+        margin-bottom: 10px !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .footer * {
+        transition: none !important;
+      }
     }
 
     /* =========================================================
@@ -1612,16 +1835,6 @@
 
       .input-group.full {
         grid-column: span 1;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
       }
 
       .floating-bar {
@@ -2215,88 +2428,91 @@
     </section>
   </main>
 
-  <!-- =========================================================
-     9. FOOTER (LIGHT BLUE TINT WITH 56PX ROUNDED TOP CORNERS)
-  ========================================================= -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Col 1: Brand & About -->
-        <div class="footer-brand">
-          <a href="index.html" aria-label="JobUtsav Home">
-            <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="footer-logo" />
-          </a>
-          <h4 style="margin: 0 0 8px;">JobUtsav</h4>
-          <p>
-            India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.
-          </p>
+  <!-- FOOTER -->
+  <footer class="footer-wrap" role="contentinfo">
+    <div class="footer">
+      <div class="grid">
+        <section class="col brand" aria-label="JobUtsav">
+          <img class="logo" alt="JobUtsav, India's Hiring Festival" src="jobutsav-logo-transparent.png" />
+          <p class="brand-copy">India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.</p>
 
-          <h4 style="font-size: 13px; margin: 16px 0 8px; color: var(--ink);">FOLLOW US</h4>
-          <div class="social-links">
-            <a href="https://www.instagram.com/job_utsav?igsh=MXJ6NGwwbmRkMjAxdg==" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/showcase/jobutsav/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://www.facebook.com/share/p/1LahracPNq/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
+          <div class="meta">
+            <div>
+              <span class="label">Follow us</span>
+              <div class="social">
+                <a href="https://www.instagram.com/jobutsav/" target="_blank" rel="noopener" aria-label="JobUtsav on Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" style="fill:currentColor"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/jobutsav/" target="_blank" rel="noopener" aria-label="JobUtsav on LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.25H3V9.75Zm6.5 0h3.8v1.54h.05c.53-1 1.82-2.04 3.75-2.04 4 0 4.75 2.63 4.75 6.05V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75Z"/></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1ALqZ2Wn19/" target="_blank" rel="noopener" aria-label="JobUtsav on Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.55l.4-3h-2.95V8.5c0-.87.24-1.46 1.5-1.46h1.6V4.36A21 21 0 0 0 14.27 4.2c-2.3 0-3.87 1.4-3.87 3.98v2.22H7.8v3h2.6V21h3.1Z"/></svg>
+                </a>
+              </div>
+            </div>
+            <div>
+              <span class="label">Organized by</span>
+              <div class="organizers">
+                <a href="https://shikshit.in/" target="_blank" rel="noopener">Shikshit.in</a>
+                <a href="https://internboot.com/" target="_blank" rel="noopener">InternBoot.com</a>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div class="org-box">
-            <b>ORGANIZED BY</b><br>
-            <a href="https://shikshit.in/" target="_blank" rel="noopener">Shikshit.in</a><br>
-            <a href="https://internboot.com/" target="_blank" rel="noopener">InternBoot.com</a>
-          </div>
-        </div>
-
-        <!-- Col 2: About Us Links -->
-        <div class="footer-col">
+        <nav class="col" aria-label="About us">
           <h4>About Us</h4>
-          <ul>
+          <ul class="links">
             <li><a href="ourcommitee.html">Organizing Committee</a></li>
             <li><a href="past.html">Past Activities</a></li>
-            <li><a href="awards.html">Awards & Recognition</a></li>
+            <li><a href="awards.html">Awards &amp; Recognition</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <!-- Col 3: Upcoming Cities -->
-        <div class="footer-col">
-          <h4>Upcoming Cities</h4>
-          <ul>
-            <li>Greater Noida &mdash; September 13-14</li>
-            <li>Mumbai &mdash; Coming Soon</li>
-            <li>Bangalore &mdash; Coming Soon</li>
-            <li>Hyderabad &mdash; Coming Soon</li>
+        <nav class="col" aria-label="Quick links">
+          <h4>Quick Links</h4>
+          <ul class="links">
+            <li><a href="candidate.html">Candidates</a></li>
+            <li><a href="company.html">Companies</a></li>
+            <li><a href="college.html">Colleges</a></li>
+            <li><a href="sponsor.html">Sponsors</a></li>
+            <li><a href="aboutjobfair.html">Job Fair 2026</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <!-- Col 4: Contact Us -->
-        <div class="footer-col">
+        <section class="col" aria-label="Contact us">
           <h4>Contact Us</h4>
-          <ul>
-            <li>Location: C Block, Phase 2, Essential Oil association of India, Noida Uttar Pradesh</li>
-            <li>
-              <a href="https://wa.me/?text=Hello%20I%20need%20support" target="_blank" rel="noopener" style="color: #10b981; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-                <i class="fab fa-whatsapp"></i> WhatsApp Support
-              </a>
-            </li>
-            <li style="font-size: 12.5px; margin-top: 6px;">Mon - Sat | 10:00 AM - 7:00 PM</li>
-          </ul>
-        </div>
+          <dl class="contact">
+            <div>
+              <dt>Venue</dt>
+              <dd>The India Expo Mart (IEML), Greater Noida, Uttar Pradesh</dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a class="mail" href="mailto:info@jobutsav.com">info@jobutsav.com</a></dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>Mon - Sat | 10:00 AM - 7:00 PM</dd>
+            </div>
+          </dl>
+        </section>
       </div>
 
-      <!-- Footer Bottom -->
-      <div class="footer-bottom">
-        <div>&copy; <span id="year"></span> JobUtsav. All rights reserved.</div>
-        <div style="display:flex; gap:18px; flex-wrap:wrap;">
+      <div class="bar">
+        <p>&copy; <span id="footerYear">2026</span> JobUtsav. All rights reserved.</p>
+        <nav class="legal" aria-label="Legal">
           <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="cookie-policy.html">Cookie Policy</a>
           <a href="terms-of-service.html">Terms of Service</a>
+          <a href="cookie-policy.html">Cookie Policy</a>
           <a href="disclaimer.html">Disclaimer</a>
-        </div>
+        </nav>
+        <button class="top" type="button" id="ftUp" aria-label="Back to top">
+          Back to top
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
       </div>
     </div>
   </footer>
@@ -2420,6 +2636,15 @@
         // Fallback for older browsers
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
       }
+
+      const ftUpBtn = document.getElementById('ftUp');
+      if (ftUpBtn) {
+        ftUpBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+      const fYear = document.getElementById('footerYear');
+      if (fYear) fYear.textContent = new Date().getFullYear();
     })();
   </script>
 
