@@ -36,11 +36,11 @@
   <meta name="twitter:creator" content="@jobutsav">
   <link rel="icon" href="jobutsav-logo-transparent.png" sizes="192x192" type="image/png">
 
-  <!-- Google Fonts: Outfit (400-800) & Fraunces (Italic 700) -->
+  <!-- Google Fonts: Outfit (400-800) & Fraunces (500-700 normal + italic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Outfit:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Font Awesome -->
@@ -150,11 +150,17 @@
       line-height: 1.6;
     }
 
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
     /* TYPOGRAPHY UTILITIES */
     .fraunces-italic-orange {
       font-family: "Fraunces", Georgia, serif;
       font-style: italic;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--o);
       display: inline-block;
       padding-right: 0.18em;
@@ -164,7 +170,7 @@
     .fraunces-italic-green {
       font-family: "Fraunces", Georgia, serif;
       font-style: italic;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--g);
       display: inline-block;
       padding-right: 0.18em;
@@ -179,13 +185,15 @@
       color: var(--o);
       margin-bottom: 12px;
       display: inline-block;
+      font-family: "Outfit", sans-serif;
     }
 
     .section-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: clamp(2.1rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
       color: var(--n);
       margin: 0 0 20px;
     }
@@ -548,10 +556,11 @@
 
     /* Word-by-word reveal for H1 */
     .hero-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: clamp(2.3rem, 4.2vw, 3.8rem);
       line-height: 1.15;
-      letter-spacing: -0.035em;
-      font-weight: 800;
+      letter-spacing: -0.025em;
+      font-weight: 600;
       color: var(--n);
       margin: 0 0 24px;
     }
@@ -1482,10 +1491,12 @@
     }
 
     .who-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: clamp(24px, 2.5vw, 32px);
-      font-weight: 800;
+      font-weight: 600;
       margin: 0 0 12px;
       line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
     .who-panel-navy .who-title {
@@ -1576,10 +1587,11 @@
     }
 
     .city-band-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: clamp(2.2rem, 4.4vw, 3.6rem);
-      font-weight: 800;
+      font-weight: 600;
       line-height: 1.08;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
       margin: 0 0 16px;
       color: #ffffff;
     }
@@ -1797,10 +1809,11 @@
     }
 
     .register-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
       margin: 10px 0 14px;
       color: var(--n);
     }
@@ -1845,10 +1858,12 @@
     }
 
     .step-title {
+      font-family: "Fraunces", Georgia, "Times New Roman", serif;
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--n);
       margin: 0;
+      letter-spacing: -0.015em;
     }
 
     .form-grid-2 {
