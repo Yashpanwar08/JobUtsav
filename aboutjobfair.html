@@ -1816,7 +1816,7 @@
     }
 
     .cats .cat-tab.on .bar {
-      animation: catFill 6s linear forwards;
+      animation: catFill 3.5s linear forwards;
     }
 
     @keyframes catFill {
@@ -3340,7 +3340,7 @@
         timer = setInterval(function () {
           const next = (currentIdx + 1) % data.length;
           renderCategory(next, true);
-        }, 6000);
+        }, 3500);
       }
 
       function stopTimer() {
