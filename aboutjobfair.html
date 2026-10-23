@@ -1698,73 +1698,385 @@
       border: 1px solid var(--border);
     }
 
-    /* ========================= 6. JOB CATEGORIES ========================= */
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+    /* ========================= 6. JOB CATEGORIES (INTERACTIVE SHOWCASE) ========================= */
+    #roles {
+      background: #f3f5ff;
     }
 
-    .category-card {
-      padding: 30px 26px;
+    .cats {
+      --acc: #f26a1b;
+      --accSoft: #ffe9db;
+      --accGlow: rgba(242, 106, 27, 0.28);
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .cats-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    /* Left Rail */
+    .cats .cats-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cats .cat-tab {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 14px 18px;
+      background: #ffffff;
+      border: 1px solid #e3e6f6;
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.25s ease,
+                  box-shadow 0.28s ease,
+                  background-color 0.2s ease;
+    }
+
+    .cats .cat-tab:hover:not(.on) {
+      border-color: #ccd3eb;
+      transform: translateX(4px);
+      box-shadow: 0 6px 18px -4px rgba(15, 21, 53, 0.06);
+    }
+
+    .cats .cat-tab:focus-visible {
+      outline: 2px solid var(--c, #f26a1b);
+      outline-offset: 3px;
+    }
+
+    .cats .cat-tab.on {
+      border-color: var(--c);
+      box-shadow: 0 10px 28px -6px var(--c-glow);
+      transform: translateX(12px);
+      background: #ffffff;
+    }
+
+    .cats .cat-tab-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--c-soft);
+      font-size: 24px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cats .cat-tab.on .cat-tab-icon {
+      transform: rotate(-8deg) scale(1.1);
+    }
+
+    .cats .cat-tab-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .cats .cat-tab-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f1535;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cats .cat-tab-count {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5px;
+      color: #5b6285;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    .cats .cat-tab .bar {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 0;
+      background: var(--c);
+      border-radius: 0 0 16px 16px;
+    }
+
+    .cats .cat-tab.on .bar {
+      animation: catFill 6s linear forwards;
+    }
+
+    @keyframes catFill {
+      to { width: 100%; }
+    }
+
+    /* Right Showcase Stage Panel */
+    .cats .cat-stage {
+      background: #ffffff;
+      border: 1px solid #e3e6f6;
+      border-radius: 28px;
+      padding: clamp(28px, 4vw, 44px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 45px -12px rgba(15, 21, 53, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 440px;
+    }
+
+    .cats .stage-orb {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accSoft) 0%, rgba(255, 255, 255, 0) 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+      transition: background 0.5s ease;
+      animation: catOrbFloat 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes catOrbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-25px, 25px) scale(1.15); }
+    }
+
+    .cats .stage-bg-emoji {
+      position: absolute;
+      right: 20px;
+      bottom: -20px;
+      font-size: clamp(140px, 16vw, 210px);
+      line-height: 1;
+      opacity: 0.09;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cats .stage-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .cats .stage-head-wrap {
+      animation: stageSlide 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes stageSlide {
+      from {
+        opacity: 0;
+        transform: translateX(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .cats .stage-top-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cats .stage-icon-box {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      background: var(--accSoft);
+      font-size: 34px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px -6px var(--accGlow);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cats .stage-titles {
       display: flex;
       flex-direction: column;
     }
 
-    .cat-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .cat-icon-tile {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .category-card h3 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 20px;
+    .cats .stage-count-pill {
+      font-family: 'Outfit', sans-serif;
+      color: var(--acc);
       font-weight: 700;
-      color: var(--navy);
-      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: inline-block;
+      transition: color 0.3s ease;
     }
 
-    .bullet-list {
-      list-style: none;
-      padding: 0;
+    .cats .stage-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 800;
+      color: #0f1535;
       margin: 0;
-      display: grid;
-      gap: 10px;
+      line-height: 1.18;
     }
 
-    .bullet-item {
+    .cats .stage-roles-divider {
+      height: 1px;
+      background: linear-gradient(90deg, #e3e6f6 0%, rgba(227, 230, 246, 0.3) 100%);
+      margin: 28px 0 22px;
+    }
+
+    .cats .stage-roles-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5b6285;
+      margin-bottom: 16px;
+    }
+
+    .cats .stage-roles-grid {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-      font-weight: 500;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .bullet-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      flex-shrink: 0;
+    .cats .role {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      background: #f8faff;
+      border: 1px solid #e3e6f6;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f1535;
+      cursor: default;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      opacity: 0;
+      transform: translateY(18px) scale(0.9);
+      animation: catPop 0.55s cubic-bezier(0.2, 1.2, 0.3, 1) forwards;
+      user-select: none;
     }
-    .dot-orange { background: var(--orange); }
-    .dot-green  { background: var(--green); }
-    .dot-blue   { background: var(--blue); }
+
+    .cats .role:nth-child(even) {
+      border-radius: 14px;
+    }
+
+    .cats .role-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--acc);
+      flex-shrink: 0;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .cats .role:hover {
+      background: var(--acc);
+      color: #ffffff;
+      border-color: var(--acc);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px -4px var(--accGlow);
+    }
+
+    .cats .role:hover .role-dot {
+      background: #ffffff;
+      transform: scale(1.25);
+    }
+
+    @keyframes catPop {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Mobile Responsive (<820px) */
+    @media (max-width: 820px) {
+      .cats-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .cats .cats-rail {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding: 4px 2px 14px;
+        scrollbar-width: none;
+      }
+
+      .cats .cats-rail::-webkit-scrollbar {
+        display: none;
+      }
+
+      .cats .cat-tab {
+        flex: 0 0 240px;
+        scroll-snap-align: start;
+        transform: none !important;
+      }
+
+      .cats .cat-tab.on {
+        transform: translateY(-4px) !important;
+      }
+
+      .cats .cat-stage {
+        min-height: auto;
+        padding: 24px 20px;
+        border-radius: 22px;
+      }
+
+      .cats .stage-roles-divider {
+        margin: 20px 0 16px;
+      }
+
+      .cats .role {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .cats *,
+      .cats .bar,
+      .cats .role,
+      .cats .stage-head-wrap,
+      .cats .stage-orb {
+        animation: none !important;
+        transition: none !important;
+      }
+      .cats .role {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
 
     /* ========================= 7. EVENT HIGHLIGHTS ========================= */
     .highlights-grid {
@@ -2818,101 +3130,280 @@
   <!-- ==========================================================================
        6. JOB CATEGORIES
        ========================================================================== -->
-  <section id="roles">
+  <section id="roles" class="cats-section">
     <div class="container">
       <div class="section-head reveal-on-scroll">
-        <div class="pill-tag">Diverse Opportunities</div>
+        <div class="pill-tag">DIVERSE OPPORTUNITIES</div>
         <h2>Job Categories</h2>
         <p>Opportunities for freshers, graduates, and experienced professionals.</p>
       </div>
 
-      <div class="categories-grid reveal-on-scroll">
-        <!-- 1. Tech/Analytics -->
-        <div class="card ju-card category-card" style="--c:#f26a1b;">
-          <div class="ic">💻</div>
-          <h3>Tech / Analytics</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Software / Web Developer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>QA / Testing</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Support Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Data Analyst</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Business Analyst</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Operations Analyst</li>
-          </ul>
-        </div>
+      <div class="cats" id="catsModule">
+        <div class="cats-layout">
+          <!-- Left Rail (340px) -->
+          <div class="cats-rail" role="tablist" aria-label="Job Categories">
+            <button type="button" class="cat-tab on" role="tab" aria-selected="true" data-index="0" style="--c:#f26a1b; --c-soft:#ffe9db; --c-glow:rgba(242,106,27,0.28)">
+              <div class="cat-tab-icon">💻</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">Tech / Analytics</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+            <button type="button" class="cat-tab" role="tab" aria-selected="false" data-index="1" style="--c:#1aa355; --c-soft:#dcf5e6; --c-glow:rgba(26,163,85,0.28)">
+              <div class="cat-tab-icon">🏭</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">Manufacturing</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+            <button type="button" class="cat-tab" role="tab" aria-selected="false" data-index="2" style="--c:#2f5bea; --c-soft:#e1e8ff; --c-glow:rgba(47,91,234,0.28)">
+              <div class="cat-tab-icon">📞</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">Business / BPO</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+            <button type="button" class="cat-tab" role="tab" aria-selected="false" data-index="3" style="--c:#f26a1b; --c-soft:#ffe9db; --c-glow:rgba(242,106,27,0.28)">
+              <div class="cat-tab-icon">💊</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">Pharma</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+            <button type="button" class="cat-tab" role="tab" aria-selected="false" data-index="4" style="--c:#1aa355; --c-soft:#dcf5e6; --c-glow:rgba(26,163,85,0.28)">
+              <div class="cat-tab-icon">🏗️</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">Mechanical / Civil</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+            <button type="button" class="cat-tab" role="tab" aria-selected="false" data-index="5" style="--c:#2f5bea; --c-soft:#e1e8ff; --c-glow:rgba(47,91,234,0.28)">
+              <div class="cat-tab-icon">🔧</div>
+              <div class="cat-tab-info">
+                <span class="cat-tab-name">ITI / Diploma</span>
+                <span class="cat-tab-count">6 Roles</span>
+              </div>
+              <div class="bar"></div>
+            </button>
+          </div>
 
-        <!-- 2. Manufacturing -->
-        <div class="card ju-card category-card" style="--c:#1aa355;">
-          <div class="ic">🏭</div>
-          <h3>Manufacturing</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Production Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Quality Control Executive</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Design Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Safety Officer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Supply Chain Coordinator</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Machine Operator</li>
-          </ul>
-        </div>
+          <!-- Right Showcase Stage Panel -->
+          <div class="cat-stage" role="tabpanel" aria-live="polite">
+            <div class="stage-orb" aria-hidden="true"></div>
+            <div class="stage-bg-emoji" id="catStageBgEmoji" aria-hidden="true">💻</div>
 
-        <!-- 3. Business/BPO -->
-        <div class="card ju-card category-card" style="--c:#2f5bea;">
-          <div class="ic">📞</div>
-          <h3>Business / BPO</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Sales & Business Development</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Digital Marketing</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>HR Executive</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Customer Support</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Voice/Chat Process</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Customer Relationship Executive</li>
-          </ul>
-        </div>
+            <div class="stage-content">
+              <div class="stage-head-wrap" id="catStageHead">
+                <div class="stage-top-meta">
+                  <div class="stage-icon-box" id="catStageIcon">💻</div>
+                  <div class="stage-titles">
+                    <span class="stage-count-pill" id="catStageCount">6 ROLES OPEN FOR YOU</span>
+                    <h3 class="stage-title" id="catStageName">Tech / Analytics</h3>
+                  </div>
+                </div>
+              </div>
 
-        <!-- 4. Pharma -->
-        <div class="card ju-card category-card" style="--c:#f26a1b;">
-          <div class="ic">💊</div>
-          <h3>Pharma</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Pharmacist</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Clinical Research Associate</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Regulatory Affairs Specialist</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Medical Representative</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Quality Control Analyst</li>
-            <li class="bullet-item"><span class="bullet-dot dot-orange"></span>Drug Safety Associate</li>
-          </ul>
-        </div>
+              <div class="stage-roles-divider"></div>
 
-        <!-- 5. Mechanical/Civil -->
-        <div class="card ju-card category-card" style="--c:#1aa355;">
-          <div class="ic">🏗️</div>
-          <h3>Mechanical / Civil</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Mechanical Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Civil Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Structural Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Project Site Supervisor</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Design Engineer</li>
-            <li class="bullet-item"><span class="bullet-dot dot-green"></span>Construction Manager</li>
-          </ul>
-        </div>
-
-        <!-- 6. ITI/Diploma -->
-        <div class="card ju-card category-card" style="--c:#2f5bea;">
-          <div class="ic">🔧</div>
-          <h3>ITI / Diploma</h3>
-          <ul class="bullet-list" style="margin-top: 14px;">
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Electrician</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Fitter</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Welder</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Diploma in Mechanical Engineering</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Diploma in Civil Engineering</li>
-            <li class="bullet-item"><span class="bullet-dot dot-blue"></span>Diploma in Electrical Engineering</li>
-          </ul>
+              <div class="stage-roles-box">
+                <div class="stage-roles-label">FEATURED ROLES IN THIS DOMAIN</div>
+                <div class="stage-roles-grid" id="catStageRoles">
+                  <span class="role" style="animation-delay:120ms"><span class="role-dot"></span>Software / Web Developer</span>
+                  <span class="role" style="animation-delay:200ms"><span class="role-dot"></span>QA / Testing</span>
+                  <span class="role" style="animation-delay:280ms"><span class="role-dot"></span>Support Engineer</span>
+                  <span class="role" style="animation-delay:360ms"><span class="role-dot"></span>Data Analyst</span>
+                  <span class="role" style="animation-delay:440ms"><span class="role-dot"></span>Business Analyst</span>
+                  <span class="role" style="animation-delay:520ms"><span class="role-dot"></span>Operations Analyst</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    /* ========================= JOB CATEGORIES INTERACTIVE MODULE ========================= */
+    (function () {
+      const data = [
+        {
+          n: 'Tech / Analytics',
+          i: '💻',
+          c: ['#f26a1b', '#ffe9db'],
+          r: ['Software / Web Developer', 'QA / Testing', 'Support Engineer', 'Data Analyst', 'Business Analyst', 'Operations Analyst']
+        },
+        {
+          n: 'Manufacturing',
+          i: '🏭',
+          c: ['#1aa355', '#dcf5e6'],
+          r: ['Production Engineer', 'Quality Control Executive', 'Design Engineer', 'Safety Officer', 'Supply Chain Coordinator', 'Machine Operator']
+        },
+        {
+          n: 'Business / BPO',
+          i: '📞',
+          c: ['#2f5bea', '#e1e8ff'],
+          r: ['Sales & Business Development', 'Digital Marketing', 'HR Executive', 'Customer Support', 'Voice/Chat Process', 'Customer Relationship Executive']
+        },
+        {
+          n: 'Pharma',
+          i: '💊',
+          c: ['#f26a1b', '#ffe9db'],
+          r: ['Pharmacist', 'Clinical Research Associate', 'Regulatory Affairs Specialist', 'Medical Representative', 'Quality Control Analyst', 'Drug Safety Associate']
+        },
+        {
+          n: 'Mechanical / Civil',
+          i: '🏗️',
+          c: ['#1aa355', '#dcf5e6'],
+          r: ['Mechanical Engineer', 'Civil Engineer', 'Structural Engineer', 'Project Site Supervisor', 'Design Engineer', 'Construction Manager']
+        },
+        {
+          n: 'ITI / Diploma',
+          i: '🔧',
+          c: ['#2f5bea', '#e1e8ff'],
+          r: ['Electrician', 'Fitter', 'Welder', 'Diploma in Mechanical Engineering', 'Diploma in Civil Engineering', 'Diploma in Electrical Engineering']
+        }
+      ];
+
+      let currentIdx = 0;
+      let timer = null;
+      let isHovered = false;
+      let inView = false;
+      const root = document.querySelector('.cats');
+      if (!root) return;
+
+      const tabs = root.querySelectorAll('.cat-tab');
+      const stageIcon = root.querySelector('#catStageIcon');
+      const stageName = root.querySelector('#catStageName');
+      const stageCount = root.querySelector('#catStageCount');
+      const stageRoles = root.querySelector('#catStageRoles');
+      const stageBgEmoji = root.querySelector('#catStageBgEmoji');
+      const stageHeadWrap = root.querySelector('#catStageHead');
+
+      function renderCategory(idx, restartAnim) {
+        currentIdx = idx;
+        const d = data[idx];
+
+        // Accent colour dynamic CSS variables
+        root.style.setProperty('--acc', d.c[0]);
+        root.style.setProperty('--accSoft', d.c[1]);
+        root.style.setProperty('--accGlow', d.c[0] + '40');
+
+        // Update active tab state and progress bar
+        tabs.forEach(function (tab, i) {
+          const isCurrent = (i === idx);
+          tab.classList.toggle('on', isCurrent);
+          tab.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+          const bar = tab.querySelector('.bar');
+          if (bar) {
+            bar.style.animation = 'none';
+            if (isCurrent && inView && !isHovered) {
+              void bar.offsetWidth;
+              bar.style.animation = '';
+            }
+          }
+        });
+
+        // Stage details
+        if (stageIcon) stageIcon.textContent = d.i;
+        if (stageName) stageName.textContent = d.n;
+        if (stageCount) stageCount.textContent = d.r.length + ' ROLES OPEN FOR YOU';
+        if (stageBgEmoji) stageBgEmoji.textContent = d.i;
+
+        // Slide in animation for stage header on switch
+        if (stageHeadWrap && restartAnim) {
+          stageHeadWrap.style.animation = 'none';
+          void stageHeadWrap.offsetWidth;
+          stageHeadWrap.style.animation = '';
+        }
+
+        // Staggered role chips
+        if (stageRoles) {
+          stageRoles.innerHTML = d.r.map(function (role, rIdx) {
+            return '<span class="role" style="animation-delay:' + (rIdx * 80 + 120) + 'ms"><span class="role-dot"></span>' + role + '</span>';
+          }).join('');
+        }
+      }
+
+      function startTimer() {
+        stopTimer();
+        if (!inView || isHovered) return;
+        const activeBar = root.querySelector('.cat-tab.on .bar');
+        if (activeBar) {
+          activeBar.style.animationPlayState = 'running';
+        }
+        timer = setInterval(function () {
+          const next = (currentIdx + 1) % data.length;
+          renderCategory(next, true);
+        }, 6000);
+      }
+
+      function stopTimer() {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      }
+
+      // Tab clicks
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          const idx = parseInt(tab.getAttribute('data-index'), 10);
+          renderCategory(idx, true);
+          startTimer();
+        });
+      });
+
+      // Hover pause / resume
+      root.addEventListener('mouseenter', function () {
+        isHovered = true;
+        stopTimer();
+        const activeBar = root.querySelector('.cat-tab.on .bar');
+        if (activeBar) activeBar.style.animationPlayState = 'paused';
+      });
+
+      root.addEventListener('mouseleave', function () {
+        isHovered = false;
+        const activeBar = root.querySelector('.cat-tab.on .bar');
+        if (activeBar) activeBar.style.animationPlayState = 'running';
+        if (inView) startTimer();
+      });
+
+      // Viewport IntersectionObserver (threshold 0.3)
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              inView = true;
+              const activeBar = root.querySelector('.cat-tab.on .bar');
+              if (activeBar) {
+                activeBar.style.animation = 'none';
+                void activeBar.offsetWidth;
+                activeBar.style.animation = '';
+              }
+              startTimer();
+            } else {
+              inView = false;
+              stopTimer();
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(root);
+      } else {
+        inView = true;
+        startTimer();
+      }
+
+      // Initialize initial state
+      renderCategory(0, false);
+    })();
+  </script>
 
   <!-- ==========================================================================
        7. EVENT HIGHLIGHTS
