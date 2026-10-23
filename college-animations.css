@@ -25,27 +25,13 @@ html, body {
 }
 
 /* ==========================================================================
-   A) PAGE-LOAD INTRO OVERLAY & PRE-JS COVER
+   A) PAGE-LOAD INTRO OVERLAY & PRE-JS COVER (DISABLED)
    ========================================================================== */
 
 /* Cover to prevent flash of content before JS executes */
-html.js:not(.intro-done) body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 99998;
-  background: linear-gradient(135deg, #e7f8ef 0%, #ffffff 50%, #fff1e1 100%);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  animation: introFallbackHide 0.5s ease 4s forwards;
-}
-
-@keyframes introFallbackHide {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+html.js:not(.intro-done) body::before,
+html body::before {
+  display: none !important;
 }
 
 html.intro-done body::before,
@@ -57,33 +43,13 @@ html.no-intro body::before {
 
 /* Scroll lock during intro */
 body.intro-locked {
-  overflow: hidden !important;
-  height: 100vh !important;
-  touch-action: none;
+  overflow: visible !important;
+  height: auto !important;
 }
 
 /* Fullscreen Overlay */
 #jobutsav-intro-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #e7f8ef 0%, #ffffff 50%, #fff1e1 100%);
-  transform: translateY(0);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  will-change: transform, border-radius;
-  box-shadow: 0 30px 60px rgba(16, 185, 129, 0.12);
-  pointer-events: auto;
-}
-
-#jobutsav-intro-overlay.leaving {
-  transform: translateY(-100%);
-  border-bottom-left-radius: 50vw 80px;
-  border-bottom-right-radius: 50vw 80px;
-  transition: transform 0.95s var(--anim-intro-ease), border-radius 0.95s var(--anim-intro-ease);
+  display: none !important;
 }
 
 .intro-card {
@@ -175,11 +141,20 @@ body.intro-locked {
    B) WORD-BY-WORD TEXT ANIMATIONS & ROTATING PHRASE
    ========================================================================== */
 
-/* Strict Override: Remove ANY underline under hero h1 span and rotating phrase */
+/* Strict Override: Hero h1 Supercharge Your in pure black & rotating phrase in candidate page orange */
+h1,
+.hero h1,
+.hero h1 .word-mask,
+.hero h1 .word-inner {
+  color: #000000 !important;
+}
+
 h1 span,
 .hero h1 span,
 .rotating-phrase-wrap,
-.rotating-phrase {
+.rotating-phrase,
+.rotating-phrase .word-inner {
+  color: #f26a1b !important;
   text-decoration: none !important;
   text-decoration-line: none !important;
   text-decoration-style: none !important;
@@ -251,14 +226,14 @@ h1 span,
   vertical-align: top;
   position: relative;
   overflow: hidden;
-  color: var(--green);
+  color: #f26a1b;
   line-height: inherit;
   transition: width 0.35s var(--anim-ease-out);
 }
 
 .rotating-phrase {
   display: inline-block;
-  color: var(--green);
+  color: #f26a1b;
   transition: transform 0.55s var(--anim-ease-out), opacity 0.55s var(--anim-ease-out), filter 0.55s var(--anim-ease-out);
   will-change: transform, opacity, filter;
   white-space: nowrap;
@@ -498,6 +473,7 @@ form.in label {
 .hero {
   position: relative;
   overflow: hidden;
+  background: #fff8f0 !important;
 }
 
 .hero-blobs {
@@ -525,8 +501,8 @@ form.in label {
   height: 440px;
   top: -60px;
   left: -80px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.32) 0%, rgba(16, 185, 129, 0) 70%);
-  filter: blur(65px);
+  background: radial-gradient(circle, rgba(134, 239, 172, 0.35) 0%, rgba(134, 239, 172, 0) 70%);
+  filter: blur(70px);
   animation: blobDrift1 18s ease-in-out infinite alternate;
 }
 
@@ -535,7 +511,7 @@ form.in label {
   height: 480px;
   top: 40px;
   right: -100px;
-  background: radial-gradient(circle, rgba(47, 107, 255, 0.25) 0%, rgba(47, 107, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(242, 106, 27, 0.22) 0%, rgba(242, 106, 27, 0) 70%);
   filter: blur(75px);
   animation: blobDrift2 22s ease-in-out infinite alternate;
 }
@@ -545,7 +521,7 @@ form.in label {
   height: 420px;
   bottom: -40px;
   left: 32%;
-  background: radial-gradient(circle, rgba(255, 138, 31, 0.26) 0%, rgba(255, 138, 31, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 138, 31, 0.16) 0%, rgba(255, 138, 31, 0) 70%);
   filter: blur(70px);
   animation: blobDrift3 20s ease-in-out infinite alternate;
 }

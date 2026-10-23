@@ -227,53 +227,7 @@
       transition: width 0.08s ease-out;
     }
 
-    /* CUSTOM CURSOR */
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 10px;
-      height: 10px;
-      background: var(--o);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      mix-blend-mode: multiply;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease;
-    }
 
-    .cursor-ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 36px;
-      border: 2px solid rgba(242, 106, 27, 0.45);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        background 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.15s ease-out;
-    }
-
-    .cursor-ring.active {
-      width: 64px;
-      height: 64px;
-      background: rgba(26, 163, 85, 0.22);
-      border-color: rgba(26, 163, 85, 0.65);
-    }
-
-    @media (hover: none) or (pointer: coarse) {
-      .cursor-dot,
-      .cursor-ring {
-        display: none !important;
-      }
-    }
 
     /* =========================================================
        SITE NAVBAR (EXACT HOMEPAGE & CANDIDATE PAGE DESIGN)
@@ -1619,9 +1573,7 @@
     <div class="scroll-progress-fill" id="scrollProgressFill"></div>
   </div>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
 
   <!-- SITE NAVBAR (CANDIDATE PAGE STYLE) -->
   <nav class="site-nav" role="navigation" aria-label="Main Navigation">
@@ -2230,35 +2182,7 @@
         }
       }, { passive: true });
 
-      // 6. Custom Cursor
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-      if (dot && ring && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        let mouseX = -100, mouseY = -100;
-        let ringX = -100, ringY = -100;
 
-        window.addEventListener('mousemove', function (e) {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          dot.style.left = mouseX + 'px';
-          dot.style.top = mouseY + 'px';
-        });
-
-        function renderCursor() {
-          ringX += (mouseX - ringX) * 0.18;
-          ringY += (mouseY - ringY) * 0.18;
-          ring.style.left = ringX + 'px';
-          ring.style.top = ringY + 'px';
-          requestAnimationFrame(renderCursor);
-        }
-        requestAnimationFrame(renderCursor);
-
-        const interactiveTargets = document.querySelectorAll('a, button, .policy-list-card, .trust-metric-pill');
-        interactiveTargets.forEach(function (el) {
-          el.addEventListener('mouseenter', function () { ring.classList.add('active'); });
-          el.addEventListener('mouseleave', function () { ring.classList.remove('active'); });
-        });
-      }
 
       // 7. Dynamic Active State for Table of Contents
       const sections = document.querySelectorAll('.policy-section-block');

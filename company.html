@@ -125,50 +125,6 @@
       transition: transform 0.08s linear;
     }
 
-    /* ===== Awwwards Custom Smooth Cursor ===== */
-    .ju-cursor-dot,
-    .ju-cursor-ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      display: none;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .ju-cursor-dot,
-      .ju-cursor-ring {
-        display: block;
-      }
-    }
-    .ju-cursor-dot {
-      width: 8px;
-      height: 8px;
-      background: #f26a1b;
-      mix-blend-mode: multiply;
-      transition: transform 0.12s ease-out;
-    }
-    .ju-cursor-ring {
-      width: 34px;
-      height: 34px;
-      border: 1.5px solid rgba(242, 106, 27, 0.45);
-      background: rgba(242, 106, 27, 0.04);
-      transition: width 0.25s cubic-bezier(.2,.8,.2,1),
-                  height 0.25s cubic-bezier(.2,.8,.2,1),
-                  border-color 0.25s ease,
-                  background 0.25s ease;
-    }
-    body.cursor-hover .ju-cursor-ring {
-      width: 52px;
-      height: 52px;
-      border-color: rgba(242, 106, 27, 0.85);
-      background: rgba(242, 106, 27, 0.12);
-    }
-    body.cursor-hover .ju-cursor-dot {
-      transform: translate(-50%, -50%) scale(1.4);
-    }
     /* Normal cursor on inputs and forms */
     input, textarea, select {
       cursor: auto !important;
@@ -471,12 +427,12 @@
     /* Editorial Typography */
     .hero-heading {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.6rem, 6.4vw, 5.6rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
+      font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
       font-weight: 800;
       color: var(--ju-navy);
-      margin: 0 0 24px;
+      margin: 0 0 16px;
     }
 
     .section-h2 {
@@ -562,10 +518,12 @@
       background: var(--ju-cream);
       position: relative;
       overflow: hidden;
-      padding: clamp(90px, 12vh, 120px) 0 clamp(60px, 8vh, 88px);
-      min-height: 86vh;
-      display: flex;
-      align-items: center;
+      padding: clamp(32px, 4.5vh, 48px) 0 clamp(40px, 5vh, 56px);
+      min-height: auto;
+      display: block;
+    }
+    .hero-section .container {
+      width: min(1200px, calc(100% - 40px));
     }
     .hero-glow-orb {
       position: absolute;
@@ -587,7 +545,8 @@
     .hero-glow-green {
       width: 380px;
       height: 380px;
-      background: #1aa355;
+      background: #86efac;
+      opacity: 0.18;
       bottom: 20px;
       left: 5%;
       animation: orbDriftGreen 16s ease-in-out infinite alternate;
@@ -605,11 +564,29 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 52px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 3vw, 44px);
+      align-items: stretch;
       position: relative;
       z-index: 2;
+    }
+
+    /* Left Hero Column: Equal Height Flex */
+    .hero-left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .hero-left-top {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-left-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
     }
 
     /* Glass Pill Top Tag */
@@ -617,7 +594,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 9px 20px;
+      padding: 8px 18px;
       border-radius: var(--ju-radius-pill);
       background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(15, 21, 53, 0.1);
@@ -625,10 +602,11 @@
       -webkit-backdrop-filter: blur(14px);
       color: var(--ju-navy);
       box-shadow: 0 4px 16px rgba(15, 21, 53, 0.05);
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.04em;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
+      width: fit-content;
       animation: heroBadgeDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
     @keyframes heroBadgeDown {
@@ -638,19 +616,19 @@
 
     .hero-desc {
       color: #55607f;
-      font-size: clamp(1.05rem, 1.25vw, 1.2rem);
-      line-height: 1.7;
-      margin: 0 0 32px;
-      max-width: 580px;
+      font-size: clamp(0.96rem, 1.08vw, 1.05rem);
+      line-height: 1.6;
+      margin: 0 0 18px;
+      max-width: 530px;
       animation: heroFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s backwards;
     }
 
     .hero-actions {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
       flex-wrap: wrap;
-      margin-bottom: 36px;
+      margin-bottom: 8px;
       animation: heroFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s backwards;
     }
 
@@ -661,12 +639,12 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      padding: 0 32px;
-      height: 54px;
+      padding: 0 30px;
+      height: 50px;
       border-radius: var(--ju-radius-pill);
       background: var(--ju-orange);
       color: #ffffff;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       border: none;
       cursor: pointer;
@@ -714,13 +692,13 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 0 28px;
-      height: 54px;
+      padding: 0 26px;
+      height: 50px;
       border-radius: var(--ju-radius-pill);
       background: transparent;
       border: 2px solid var(--ju-navy);
       color: var(--ju-navy);
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
@@ -736,18 +714,18 @@
     .hero-meta-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       animation: heroFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.65s backwards;
     }
     .hero-meta-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 7px 16px;
+      gap: 7px;
+      padding: 6px 13px;
       border-radius: var(--ju-radius-pill);
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       border: 1.5px dashed rgba(15, 21, 53, 0.22);
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--ju-navy);
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(15, 21, 53, 0.04);
@@ -761,9 +739,68 @@
     .pill-dot.orange { background: #f26a1b; }
     .pill-dot.blue { background: #3b82f6; }
 
-    /* Right Hero: Recruiter Suite Card & 3D Tilt */
+    /* Hero Corporate Trust Bar */
+    .hero-trust-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(15, 21, 53, 0.08);
+      box-shadow: 0 4px 16px rgba(15, 21, 53, 0.04);
+      animation: heroFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.75s backwards;
+    }
+    .hero-trust-avatars {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .hero-trust-avatars img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-left: -8px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(15, 21, 53, 0.15);
+    }
+    .hero-trust-avatars img:first-child {
+      margin-left: 0;
+    }
+    .hero-trust-avatars .avatar-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--ju-navy);
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      border: 2px solid #ffffff;
+      margin-left: -8px;
+      box-shadow: 0 2px 6px rgba(15, 21, 53, 0.15);
+    }
+    .hero-trust-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #55607f;
+    }
+    .hero-trust-text strong {
+      color: var(--ju-navy);
+      font-weight: 700;
+    }
+
+    /* Right Hero: Recruiter Suite Card & 3D Tilt - Equal Height Flex */
     .hero-right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
       position: relative;
+      margin-top: 0;
       animation: heroCardSlideIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards;
     }
     @keyframes heroCardSlideIn {
@@ -778,20 +815,25 @@
     }
 
     .hero-recruiter-card {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
       border-radius: var(--ju-radius-card);
       background: #ffffff;
       border: 1px solid rgba(15, 21, 53, 0.1);
-      box-shadow: 0 24px 60px rgba(15, 21, 53, 0.12);
+      box-shadow: 0 20px 50px rgba(15, 21, 53, 0.10);
       transform-style: preserve-3d;
       transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
       will-change: transform;
+      overflow: hidden;
     }
 
     .hero-card-img-wrap {
       position: relative;
       width: 100%;
-      height: 240px;
+      height: 200px;
       overflow: hidden;
+      flex-shrink: 0;
     }
     .hero-card-img-wrap img {
       width: 100%;
@@ -847,58 +889,84 @@
     }
 
     .hero-card-body {
-      padding: 22px 24px;
+      padding: 16px 20px;
       background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
     }
     .hero-card-label {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.08em;
       color: var(--ju-orange);
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .hero-card-body h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--ju-navy);
-      margin: 0 0 14px;
+      margin: 0 0 10px;
       letter-spacing: -0.01em;
     }
     .hero-card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
+      margin-bottom: 10px;
     }
     .hero-card-tags span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border-radius: 8px;
       background: var(--ju-cream);
       border: 1px solid rgba(15, 21, 53, 0.08);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--ju-navy);
       font-weight: 600;
+    }
+
+    .hero-card-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(15, 21, 53, 0.08);
+    }
+    .hero-card-perk {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #3b4870;
+    }
+    .hero-card-perk i {
+      color: var(--ju-green);
+      font-size: 12px;
     }
 
     /* 2x2 Glass Stat Boxes */
     .hero-stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 10px;
+      flex-shrink: 0;
     }
     .hero-stat-box {
-      border-radius: 20px;
+      border-radius: 16px;
       background: #ffffff;
       border: 1px solid rgba(15, 21, 53, 0.08);
-      box-shadow: 0 8px 24px rgba(15, 21, 53, 0.05);
-      padding: 18px 20px;
+      box-shadow: 0 6px 20px rgba(15, 21, 53, 0.05);
+      padding: 12px 16px;
       transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
       will-change: transform;
       opacity: 0;
@@ -915,29 +983,30 @@
     }
 
     .hero-stat-box:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       border-color: rgba(242, 106, 27, 0.65);
-      box-shadow: 0 16px 36px rgba(242, 106, 27, 0.16);
+      box-shadow: 0 14px 30px rgba(242, 106, 27, 0.16);
     }
 
     .stat-number-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .stat-number-wrap i {
-      color: rgba(15, 21, 53, 0.35) !important;
+      color: rgba(15, 21, 53, 0.4) !important;
+      font-size: 13px;
     }
     .hero-stat-box .stat-val {
       font-family: 'Fraunces', serif;
-      font-size: 1.85rem;
+      font-size: 1.65rem;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.02em;
     }
     .hero-stat-box .stat-lbl {
-      font-size: 12.5px;
+      font-size: 11.5px;
       color: #55607f;
       margin: 0;
       font-weight: 500;
@@ -947,6 +1016,52 @@
     .color-orange { color: #f26a1b; }
     .color-green { color: #1aa355; }
     .color-blue { color: #1b2559; }
+
+    /* Hero Responsive Rules */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-left-col,
+      .hero-right-col {
+        height: auto;
+      }
+      .hero-right-col {
+        max-width: 580px;
+        margin-inline: auto;
+        width: 100%;
+      }
+    }
+    @media (max-width: 640px) {
+      .hero-section {
+        padding: 24px 0 36px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-hero-primary,
+      .btn-hero-glass {
+        justify-content: center;
+        width: 100%;
+      }
+      .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .hero-stat-box {
+        padding: 10px 12px;
+      }
+      .hero-stat-box .stat-val {
+        font-size: 1.45rem;
+      }
+      .hero-trust-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
 
     /* ================================================================
        SECTION 2: TRUSTED BY 500+ COMPANIES (WHITE MARQUEE STRIP)
@@ -1083,27 +1198,9 @@
       margin: 0 auto;
     }
 
-    /* Desktop Connecting Line */
+    /* Connecting Line Removed */
     .steps-connecting-line {
-      display: none;
-    }
-    @media (min-width: 1024px) {
-      .steps-connecting-line {
-        display: block;
-        position: absolute;
-        top: 60px;
-        left: 10%;
-        width: 80%;
-        height: 3px;
-        background: linear-gradient(90deg, #f26a1b 0%, #1aa355 50%, #1b2559 100%);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
-        z-index: 1;
-      }
-      .how-section.in .steps-connecting-line {
-        transform: scaleX(1);
-      }
+      display: none !important;
     }
 
     .how-steps-grid {
@@ -1124,6 +1221,7 @@
       }
     }
 
+    /* How It Works Step Cards - Animated & Interactive */
     .step-card {
       background: #ffffff;
       border-radius: 26px;
@@ -1132,12 +1230,69 @@
       position: relative;
       overflow: hidden;
       border-top: 4px solid var(--step-accent, var(--ju-orange));
-      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
-      will-change: transform;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.3s ease;
+      will-change: transform, box-shadow;
+      cursor: pointer;
     }
+
+    /* Sequential one-by-one entrance animation on scroll reveal */
+    .step-card.reveal-item {
+      opacity: 0;
+      transform: translateY(54px) scale(0.92);
+      transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.4s ease;
+    }
+    .step-card.stagger-1 { transition-delay: 0.15s !important; }
+    .step-card.stagger-2 { transition-delay: 0.45s !important; }
+    .step-card.stagger-3 { transition-delay: 0.75s !important; }
+    .step-card.stagger-4 { transition-delay: 1.05s !important; }
+
+    .step-card.reveal-item.in {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Immediate hover response without delay */
+    .step-card.reveal-item.in:hover {
+      transition-delay: 0s !important;
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 28px 60px rgba(15, 21, 53, 0.14),
+                  0 8px 24px rgba(242, 106, 27, 0.12);
+    }
+
+    /* Light sweep / shimmer reflection on hover */
+    .step-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+      transform: skewX(-22deg);
+      transition: left 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+      z-index: 4;
+    }
+    .step-card:hover::after {
+      left: 170%;
+    }
+
+    /* Elevated 3D lift & accent colored glow shadow */
     .step-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 50px rgba(15, 21, 53, 0.12);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 28px 60px rgba(15, 21, 53, 0.14),
+                  0 8px 24px rgba(242, 106, 27, 0.12);
+    }
+
+    .step-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
     }
 
     .step-num {
@@ -1146,24 +1301,75 @@
       font-size: 2.8rem;
       font-weight: 700;
       line-height: 1;
-      margin-bottom: 14px;
+      margin: 0;
       color: var(--step-accent, var(--ju-orange));
-      transition: transform 0.3s ease;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.35s ease;
+      display: inline-block;
     }
     .step-card:hover .step-num {
-      transform: scale(1.08);
+      transform: scale(1.15) translateY(-3px);
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(15, 21, 53, 0.04);
+      color: var(--step-accent, var(--ju-orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  background-color 0.3s ease,
+                  color 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+    .step-card:hover .step-icon {
+      transform: scale(1.14) rotate(8deg);
+      background: var(--step-accent, var(--ju-orange));
+      color: #ffffff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+    }
+
     .step-card h3 {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--ju-navy);
       margin: 0 0 10px;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
+    .step-card:hover h3 {
+      color: var(--step-accent, var(--ju-orange));
+      transform: translateX(2px);
+    }
+
     .step-card p {
       color: #55607f;
       font-size: 0.94rem;
       line-height: 1.6;
       margin: 0;
+      transition: color 0.3s ease;
+    }
+    .step-card:hover p {
+      color: #2e384d;
+    }
+
+    /* Bottom animated accent progress indicator */
+    .step-card-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--step-accent, var(--ju-orange));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .step-card:hover .step-card-progress {
+      transform: scaleX(1);
     }
 
     /* ================================================================
@@ -2276,8 +2482,6 @@
 </head>
 <body>
 <div id="juScrollProgress" class="ju-scroll-progress" aria-hidden="true"></div>
-<div id="juCursorDot" class="ju-cursor-dot" aria-hidden="true"></div>
-<div id="juCursorRing" class="ju-cursor-ring" aria-hidden="true"></div>
 <nav class="site-nav" role="navigation" aria-label="Main Navigation">
   <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
     <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="nav-logo" />
@@ -2326,45 +2530,58 @@
       <div class="hero-grid">
         <!-- Left Hero Column -->
         <div class="hero-left-col">
-          <div class="hero-glass-pill">
-            <span class="pulse-dot"></span>
-            <span>MEGA RECRUITMENT EXPO 2026 | FOR RECRUITERS &amp; HR LEADERS</span>
+          <div class="hero-left-top">
+            <div class="hero-glass-pill">
+              <span class="pulse-dot"></span>
+              <span>MEGA RECRUITMENT EXPO 2026 | FOR RECRUITERS &amp; HR LEADERS</span>
+            </div>
+
+            <h1 class="hero-heading" aria-label="Hire Pre-Screened Top Talent At Scale.">
+              <span class="wave-word" style="--delay: 0ms;"><span class="wave-word-inner">Hire</span></span>
+              <span class="wave-word" style="--delay: 90ms;"><span class="wave-word-inner">Pre-Screened</span></span>
+              <span class="wave-word" style="--delay: 180ms;"><span class="wave-word-inner">Top</span></span>
+              <span class="wave-word" style="--delay: 270ms;"><span class="wave-word-inner">Talent</span></span>
+              <br>
+              <span class="wave-word" style="--delay: 360ms;"><span class="wave-word-inner shimmer-orange accent-serif">At</span></span>
+              <span class="wave-word" style="--delay: 450ms;"><span class="wave-word-inner shimmer-orange accent-serif">Scale.</span></span>
+            </h1>
+
+            <p class="hero-desc">
+              Stop waiting weeks for resumes and losing candidates to ghosting. Set up your custom hiring booth, interview hundreds of vetted freshers and lateral professionals, and roll out spot offers in a single day at JobUtsav.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#regForm" class="btn-hero-primary" id="heroPrimaryCta">
+                <span>Book a Hiring Booth</span>
+                <i class="fa-solid fa-arrow-right arrow-icon"></i>
+              </a>
+              <a href="#howItWorks" class="btn-hero-glass">
+                <i class="fa-solid fa-circle-play"></i>
+                <span>Explore Hiring Process</span>
+              </a>
+            </div>
           </div>
 
-          <h1 class="hero-heading" aria-label="Hire Pre-Screened Top Talent At Scale . Same Day .">
-            <span class="wave-word" style="--delay: 0ms;"><span class="wave-word-inner">Hire</span></span>
-            <span class="wave-word" style="--delay: 90ms;"><span class="wave-word-inner">Pre-Screened</span></span>
-            <span class="wave-word" style="--delay: 180ms;"><span class="wave-word-inner">Top</span></span>
-            <span class="wave-word" style="--delay: 270ms;"><span class="wave-word-inner">Talent</span></span>
-            <br>
-            <span class="wave-word" style="--delay: 360ms;"><span class="wave-word-inner shimmer-orange accent-serif">At</span></span>
-            <span class="wave-word" style="--delay: 450ms;"><span class="wave-word-inner shimmer-orange accent-serif">Scale</span></span>
-            <span class="wave-word" style="--delay: 540ms;"><span class="wave-word-inner shimmer-orange accent-serif">.</span></span>
-            <span class="wave-word" style="--delay: 630ms;"><span class="wave-word-inner shimmer-orange accent-serif">Same</span></span>
-            <span class="wave-word" style="--delay: 720ms;"><span class="wave-word-inner shimmer-orange accent-serif">Day</span></span>
-            <span class="wave-word" style="--delay: 810ms;"><span class="wave-word-inner shimmer-orange accent-serif">.</span></span>
-          </h1>
+          <div class="hero-left-bottom">
+            <div class="hero-meta-pills">
+              <span class="hero-meta-pill"><span class="pill-dot green"></span> 10,000+ Pre-screened Walk-ins</span>
+              <span class="hero-meta-pill"><span class="pill-dot orange"></span> Dedicated Interview Cabins</span>
+              <span class="hero-meta-pill"><span class="pill-dot blue"></span> Zero Post-Fair Commission</span>
+              <span class="hero-meta-pill"><span class="pill-dot green"></span> On-the-spot Offer Letters</span>
+            </div>
 
-          <p class="hero-desc">
-            Stop waiting weeks for resumes and losing candidates to ghosting. Set up your custom hiring booth, interview hundreds of vetted freshers and lateral professionals, and roll out spot offers in a single day at JobUtsav.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#regForm" class="btn-hero-primary" id="heroPrimaryCta">
-              <span>Book a Hiring Booth</span>
-              <i class="fa-solid fa-arrow-right arrow-icon"></i>
-            </a>
-            <a href="#howItWorks" class="btn-hero-glass">
-              <i class="fa-solid fa-circle-play"></i>
-              <span>Explore Hiring Process</span>
-            </a>
-          </div>
-
-          <div class="hero-meta-pills">
-            <span class="hero-meta-pill"><span class="pill-dot green"></span> 10,000+ Pre-screened Walk-ins</span>
-            <span class="hero-meta-pill"><span class="pill-dot orange"></span> Dedicated Interview Cabins</span>
-            <span class="hero-meta-pill"><span class="pill-dot blue"></span> Zero Post-Fair Commission</span>
-            <span class="hero-meta-pill"><span class="pill-dot green"></span> On-the-spot Offer Letters</span>
+            <div class="hero-trust-bar">
+              <div class="hero-trust-avatars">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Recruiter">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" alt="Recruiter">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Recruiter">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt="Recruiter">
+                <span class="avatar-count">+500</span>
+              </div>
+              <div class="hero-trust-text">
+                <strong>500+ Top Corporates</strong> registered &amp; hired directly through JobUtsav drives
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2394,6 +2611,11 @@
                 <span><i class="fa-solid fa-chart-line"></i> Sales &amp; BD</span>
                 <span><i class="fa-solid fa-coins"></i> BFSI &amp; Ops</span>
               </div>
+              <div class="hero-card-perks">
+                <span class="hero-card-perk"><i class="fa-solid fa-circle-check"></i> Pre-Screened Candidates</span>
+                <span class="hero-card-perk"><i class="fa-solid fa-circle-check"></i> Turnkey Booth Setup</span>
+                <span class="hero-card-perk"><i class="fa-solid fa-circle-check"></i> Same-Day Offers</span>
+              </div>
             </div>
           </aside>
 
@@ -2402,7 +2624,7 @@
             <div class="hero-stat-box">
               <div class="stat-number-wrap">
                 <div class="stat-val color-orange" data-target="10" data-suffix="k+">10k+</div>
-                <i class="fa-solid fa-users" style="color: rgba(255,255,255,0.4);"></i>
+                <i class="fa-solid fa-users"></i>
               </div>
               <p class="stat-lbl">Average Candidate Footfall</p>
             </div>
@@ -2410,7 +2632,7 @@
             <div class="hero-stat-box">
               <div class="stat-number-wrap">
                 <div class="stat-val color-green" data-target="80" data-suffix="%">80%</div>
-                <i class="fa-solid fa-award" style="color: rgba(255,255,255,0.4);"></i>
+                <i class="fa-solid fa-award"></i>
               </div>
               <p class="stat-lbl">Offer Rollout Success Rate</p>
             </div>
@@ -2418,7 +2640,7 @@
             <div class="hero-stat-box">
               <div class="stat-number-wrap">
                 <div class="stat-val color-blue" data-target="48" data-prefix="<" data-suffix="h">&lt;48h</div>
-                <i class="fa-solid fa-bolt" style="color: rgba(255,255,255,0.4);"></i>
+                <i class="fa-solid fa-bolt"></i>
               </div>
               <p class="stat-lbl">Average Time to Hire</p>
             </div>
@@ -2426,7 +2648,7 @@
             <div class="hero-stat-box">
               <div class="stat-number-wrap">
                 <div class="stat-val color-orange" data-target="0" data-prefix="₹">₹0</div>
-                <i class="fa-solid fa-hand-holding-dollar" style="color: rgba(255,255,255,0.4);"></i>
+                <i class="fa-solid fa-hand-holding-dollar"></i>
               </div>
               <p class="stat-lbl">Post-Fair Hiring Commission</p>
             </div>
@@ -2494,36 +2716,49 @@
       </div>
 
       <div class="how-steps-container">
-        <!-- Self-drawing connector line (desktop only) -->
-        <div class="steps-connecting-line" aria-hidden="true"></div>
-
         <div class="how-steps-grid">
           <!-- Step 01 -->
           <div class="step-card reveal-item stagger-1" style="--step-accent: #f26a1b;">
-            <div class="step-num">01</div>
+            <div class="step-card-top">
+              <div class="step-num">01</div>
+              <div class="step-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            </div>
             <h3>Book Booth</h3>
             <p>Register online and select your preferred cities, dates, and dedicated booth configuration.</p>
+            <div class="step-card-progress" aria-hidden="true"></div>
           </div>
 
           <!-- Step 02 -->
           <div class="step-card reveal-item stagger-2" style="--step-accent: #1aa355;">
-            <div class="step-num">02</div>
+            <div class="step-card-top">
+              <div class="step-num">02</div>
+              <div class="step-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+            </div>
             <h3>Share JDs</h3>
             <p>Upload your job descriptions. Our algorithm pre-matches and alerts aligned candidates before the expo.</p>
+            <div class="step-card-progress" aria-hidden="true"></div>
           </div>
 
           <!-- Step 03 -->
           <div class="step-card reveal-item stagger-3" style="--step-accent: #1b2559;">
-            <div class="step-num">03</div>
+            <div class="step-card-top">
+              <div class="step-num">03</div>
+              <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+            </div>
             <h3>Event Day</h3>
             <p>Conduct rapid face-to-face walk-in interviews at your fully equipped corporate booth and private cabin.</p>
+            <div class="step-card-progress" aria-hidden="true"></div>
           </div>
 
           <!-- Step 04 -->
           <div class="step-card reveal-item stagger-4" style="--step-accent: #f26a1b;">
-            <div class="step-num">04</div>
+            <div class="step-card-top">
+              <div class="step-num">04</div>
+              <div class="step-icon"><i class="fa-solid fa-award"></i></div>
+            </div>
             <h3>Roll Out Offers</h3>
             <p>Hand out formal spot offer letters on the same day and complete your monthly hiring volume targets.</p>
+            <div class="step-card-progress" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -3043,44 +3278,6 @@
 })();
 </script>
 
-<script>
-/* ===== Custom Smooth Magnetic Cursor ===== */
-(function(){
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  var dot = document.getElementById('juCursorDot');
-  var ring = document.getElementById('juCursorRing');
-  if (!dot || !ring) return;
-
-  var mouseX = -100, mouseY = -100;
-  var ringX = -100, ringY = -100;
-
-  window.addEventListener('mousemove', function(e){
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)';
-  }, { passive: true });
-
-  function renderRing(){
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-    ring.style.transform = 'translate(' + ringX.toFixed(2) + 'px, ' + ringY.toFixed(2) + 'px) translate(-50%, -50%)';
-    requestAnimationFrame(renderRing);
-  }
-  requestAnimationFrame(renderRing);
-
-  var hoverSelectors = 'a, button, input[type=submit], .hero-stat-box, .hero-recruiter-card, .step-card, .bento-card, .marquee-item, summary';
-  document.addEventListener('mouseover', function(e){
-    if (e.target && e.target.closest && e.target.closest(hoverSelectors)) {
-      document.body.classList.add('cursor-hover');
-    }
-  });
-  document.addEventListener('mouseout', function(e){
-    if (e.target && e.target.closest && e.target.closest(hoverSelectors)) {
-      document.body.classList.remove('cursor-hover');
-    }
-  });
-})();
-</script>
 
 <script>
 /* ===== Hero Recruiter Suite 3D Card Tilt (perspective 900px, max 8deg) ===== */

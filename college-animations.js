@@ -30,65 +30,13 @@
   var isFineHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   /* ==========================================================================
-     A) PAGE-LOAD INTRO OVERLAY
+     A) PAGE-LOAD INTRO OVERLAY (DISABLED)
      ========================================================================== */
   function initIntroOverlay(onComplete) {
-    if (prefersReducedMotion) {
-      document.documentElement.classList.add('intro-done');
-      if (typeof onComplete === 'function') onComplete();
-      return;
+    document.documentElement.classList.add('intro-done');
+    if (typeof onComplete === 'function') {
+      onComplete();
     }
-
-    // Lock page scroll during intro
-    document.body.classList.add('intro-locked');
-
-    // Get navbar logo source for exact brand parity
-    var navLogo = document.querySelector('.nav img');
-    var logoSrc = navLogo ? navLogo.getAttribute('src') : 'jobutsav-logo-transparent.png';
-
-    // Construct overlay DOM
-    var overlay = document.createElement('div');
-    overlay.id = 'jobutsav-intro-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-    overlay.innerHTML =
-      '<div class="intro-card">' +
-        '<img class="intro-logo" src="' + logoSrc + '" alt="JobUtsav">' +
-        '<div class="intro-tagline">Campus Placement Partnership</div>' +
-        '<div class="intro-bar-track">' +
-          '<div class="intro-bar-fill"></div>' +
-        '</div>' +
-      '</div>';
-
-    document.body.appendChild(overlay);
-
-    var barFill = overlay.querySelector('.intro-bar-fill');
-
-    // Animate progress bar fill
-    requestAnimationFrame(function () {
-      setTimeout(function () {
-        if (barFill) {
-          barFill.style.width = '100%';
-        }
-      }, 60);
-    });
-
-    // Start slide-up transition
-    setTimeout(function () {
-      overlay.classList.add('leaving');
-
-      // Once slide-up transition finishes (~950ms)
-      setTimeout(function () {
-        if (overlay.parentNode) {
-          overlay.parentNode.removeChild(overlay);
-        }
-        document.body.classList.remove('intro-locked');
-        document.documentElement.classList.add('intro-done');
-
-        if (typeof onComplete === 'function') {
-          onComplete();
-        }
-      }, CONFIG.introSlideDuration);
-    }, CONFIG.introHoldDuration);
   }
 
   /* ==========================================================================
