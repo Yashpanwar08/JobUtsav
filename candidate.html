@@ -1021,13 +1021,217 @@
     }
 
     @media (max-width: 960px) {
-      .toast {
-        left: 8px;
+      .hero-section {
+        padding: 105px 0 50px;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-cta-group {
+        justify-content: center;
+      }
+
+      .hero-chips-row {
+        justify-content: center;
+      }
+
+      .hero-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
       }
 
       .scene {
         max-width: 440px;
+        width: 100%;
+        height: 500px;
+      }
+
+      .toast {
+        left: 8px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-section {
+        padding: 95px 0 40px;
+      }
+
+      .hero-container {
+        gap: 32px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .hero-title {
+        font-size: clamp(1.9rem, 7.5vw, 2.4rem);
+        margin-bottom: 16px;
+      }
+
+      .hero-description {
+        font-size: 14.5px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .hero-cta-group .btn-pill-orange,
+      .hero-cta-group .btn-pill-outline {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 24px;
+        font-size: 14.5px;
+      }
+
+      .hero-chips-row {
+        gap: 8px;
+      }
+
+      .hero-chip-dashed {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      .hero-right {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .scene {
+        max-width: 100%;
+        width: 100%;
         height: 480px;
+      }
+
+      .face {
+        padding: 20px 18px;
+        border-radius: 22px;
+      }
+
+      .face .top {
+        gap: 12px;
+        padding-bottom: 12px;
+      }
+
+      .av {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+
+      .nm {
+        font-size: 17px;
+        min-height: 24px;
+      }
+
+      .rl {
+        font-size: 12px;
+      }
+
+      .sec {
+        font-size: 10.5px;
+        margin: 14px 0 6px;
+      }
+
+      .sk {
+        gap: 6px;
+      }
+
+      .sk span {
+        font-size: 11px;
+        padding: 4px 10px;
+      }
+
+      .toast {
+        left: 10px;
+        max-width: calc(100% - 20px);
+        padding: 7px 12px;
+        font-size: 11px;
+        border-radius: 10px;
+      }
+
+      .stamp {
+        right: 14px;
+        bottom: 14px;
+        font-size: 13.5px;
+        padding: 4px 10px;
+      }
+
+      .bk {
+        padding: 20px 18px;
+      }
+
+      .bk h3 {
+        font-size: 11px;
+      }
+
+      .bk h2 {
+        font-size: 19px;
+        margin-bottom: 8px;
+      }
+
+      .bk p {
+        font-size: 12px;
+        line-height: 1.55;
+        margin-bottom: 10px;
+      }
+
+      .bk .row {
+        padding: 8px 12px;
+        font-size: 12px;
+        margin-top: 6px;
+      }
+
+      .card-click-hint {
+        font-size: 12px;
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .scene {
+        height: 460px;
+      }
+
+      .face {
+        padding: 16px 14px;
+      }
+
+      .bk h2 {
+        font-size: 17px;
+      }
+
+      .bk p {
+        font-size: 11.5px;
+      }
+
+      .toast {
+        font-size: 10.5px;
+        padding: 6px 10px;
       }
     }
 
