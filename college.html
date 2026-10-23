@@ -465,17 +465,24 @@ nav.site-nav > * {
   gap: 10px;
   background: #fff;
   border-radius: 999px;
-  padding: 8px 18px 8px 10px;
+  padding: 8px 18px 8px 14px;
   font-weight: 600;
   font-size: 14.5px;
-  box-shadow: 0 8px 24px -14px rgba(16, 185, 129, .7);
+  box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
 }
 .eyebrow i {
-  width: 22px;
-  height: 22px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--gg);
-  box-shadow: 0 0 0 5px rgba(16, 185, 129, .2);
+  background: var(--green, #1aa355);
+  box-shadow: 0 0 0 3.5px rgba(26, 163, 85, 0.22);
+  display: inline-block;
+  flex-shrink: 0;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(26, 163, 85, 0.25); }
+  50% { box-shadow: 0 0 0 6px rgba(26, 163, 85, 0.12); }
 }
 h1 {
   color: #000000;
