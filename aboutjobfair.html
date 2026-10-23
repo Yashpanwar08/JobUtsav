@@ -352,7 +352,7 @@
     }
 
     main {
-      padding-top: clamp(100px, 14vh, 130px);
+      padding-top: 0;
     }
 
     /* ==================== FOOTER ==================== */
@@ -927,10 +927,12 @@
 
     /* ========================= 1. HERO ========================= */
     .hero-section {
-      background: linear-gradient(180deg, #fff4ec 0%, #f8faff 100%);
+      background: #fff8f0;
       position: relative;
       overflow: hidden;
-      padding: 60px 0 115px;
+      padding: clamp(120px, 15vh, 150px) 0 clamp(90px, 12vh, 120px);
+      min-height: auto;
+      display: block;
     }
 
     .hero-grid-pattern {
@@ -938,47 +940,49 @@
       inset: 0;
       background-size: 38px 38px;
       background-image:
-        linear-gradient(to right, rgba(47, 91, 234, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(47, 91, 234, 0.05) 1px, transparent 1px);
+        linear-gradient(to right, rgba(15, 21, 53, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 21, 53, 0.035) 1px, transparent 1px);
       mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 55%, transparent 95%);
       -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.65) 55%, transparent 95%);
       pointer-events: none;
+      z-index: 1;
     }
 
     .hero-orb {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(80px);
-      opacity: 0.55;
+      filter: blur(75px);
+      z-index: 1;
+      opacity: 0.28;
       will-change: transform;
     }
 
     .hero-orb-orange {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(242, 106, 27, 0.35) 0%, rgba(242, 106, 27, 0.05) 70%, transparent 100%);
-      top: -80px;
-      left: -120px;
-      animation: floatOrb1 18s ease-in-out infinite alternate;
+      width: 480px;
+      height: 480px;
+      background: #f26a1b;
+      top: -120px;
+      right: -80px;
+      animation: floatOrb1 16s ease-in-out infinite alternate;
     }
 
     .hero-orb-green {
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(circle, rgba(26, 163, 85, 0.30) 0%, rgba(26, 163, 85, 0.05) 70%, transparent 100%);
-      top: 25%;
-      right: 5%;
-      animation: floatOrb2 22s ease-in-out infinite alternate;
+      width: 380px;
+      height: 380px;
+      background: #86efac;
+      bottom: -80px;
+      left: -60px;
+      animation: floatOrb2 20s ease-in-out infinite alternate;
     }
 
     .hero-orb-blue {
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(circle, rgba(47, 91, 234, 0.28) 0%, rgba(47, 91, 234, 0.05) 70%, transparent 100%);
-      bottom: -60px;
-      left: 35%;
-      animation: floatOrb3 20s ease-in-out infinite alternate;
+      width: 340px;
+      height: 340px;
+      background: rgba(47, 91, 234, 0.12);
+      top: 35%;
+      left: 30%;
+      animation: floatOrb3 22s ease-in-out infinite alternate;
     }
 
     @keyframes floatOrb1 {
@@ -2923,8 +2927,8 @@
     }
 
     @media (max-width: 640px) {
-      main { padding-top: 86px; }
-      .hero-section { padding: 40px 0 95px; }
+      main { padding-top: 0; }
+      .hero-section { padding: 95px 0 85px; }
       .stats-strip-wrap { margin-top: -46px; }
       .stats-strip-card {
         grid-template-columns: 1fr;
