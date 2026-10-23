@@ -1080,67 +1080,114 @@ h1 span {
 form {
   background: #fff;
   border-radius: 42px;
-  padding: 38px;
+  padding: 40px;
   box-shadow: var(--shadow);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 26px;
 }
 fieldset {
   border: 0;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  min-width: 0;
+  width: 100%;
 }
 legend {
   font-weight: 800;
   font-size: 19px;
   padding: 0;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
-  float: left;
   width: 100%;
+  color: #0f1535;
 }
 legend:before {
   content: "";
-  width: 14px;
-  height: 14px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--orange);
+  box-shadow: 0 0 0 4px rgba(242, 106, 27, 0.2);
+  flex-shrink: 0;
 }
-fieldset:nth-of-type(2) legend:before { background: var(--blue); }
-fieldset:nth-of-type(3) legend:before { background: var(--green); }
-legend+* { clear: both; }
+fieldset:nth-of-type(2) legend:before {
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.2);
+}
+fieldset:nth-of-type(3) legend:before {
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(26, 163, 85, 0.2);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+  width: 100%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.form-group.full {
+  grid-column: 1 / -1;
+}
 
 label {
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 14px;
+  color: #0f1535;
   display: block;
 }
+.req {
+  color: #f26a1b;
+  font-weight: 700;
+}
+
 input {
   width: 100%;
-  margin-top: 6px;
   padding: 13px 16px;
   border: 2px solid var(--line);
   border-radius: 16px;
   background: #fbfffd;
-  font: 500 16px 'Outfit', sans-serif;
+  font: 500 15px 'Outfit', sans-serif;
   color: var(--ink);
   transition: .2s;
+  box-sizing: border-box;
 }
 input:focus {
   outline: 0;
   border-color: var(--green);
-  box-shadow: 0 0 0 5px rgba(16, 185, 129, .18);
+  box-shadow: 0 0 0 5px rgba(26, 163, 85, .18);
   background: #fff;
 }
-.full { grid-column: 1/-1; }
+input[type="file"] {
+  padding: 12px 16px;
+  background: #f8fbf9;
+  border: 2px dashed #b8e6ce;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 14px;
+}
+input[type="file"]:hover {
+  border-color: var(--green);
+  background: #f0faf4;
+}
+
 form .btn {
   width: 100%;
   justify-content: center;
+  padding: 15px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 /* ==================== FOOTER ==================== */
@@ -1536,9 +1583,10 @@ form .btn {
   .archimg { height: 400px; }
   .b1 { left: 0; }
   .coin { right: 0; }
-  .ctc { left: 0; }
-  fieldset, .dev { grid-template-columns: 1fr; }
+  .form-grid, .dev { grid-template-columns: 1fr; }
   .outbox { padding: 40px 22px; border-radius: 34px; }
+  form { padding: 28px 20px; border-radius: 28px; }
+  .regl { padding: 34px 24px; border-radius: 28px; }
 }
 
 @media (max-width: 520px) {
@@ -1799,21 +1847,51 @@ form .btn {
   <form class="rv" method="post" action="college.php" enctype="multipart/form-data">
    <fieldset>
     <legend>College Information</legend>
-    <label>College Name *<input type="text" name="college_name" required></label>
-    <label>College Location *<input type="text" name="college_location" required></label>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="college_name">College Name <span class="req">*</span></label>
+        <input type="text" id="college_name" name="college_name" placeholder="e.g. ABC Institute of Technology" required>
+      </div>
+      <div class="form-group">
+        <label for="college_location">College Location <span class="req">*</span></label>
+        <input type="text" id="college_location" name="college_location" placeholder="e.g. Greater Noida, Uttar Pradesh" required>
+      </div>
+    </div>
    </fieldset>
+
    <fieldset>
     <legend>Representative Information</legend>
-    <label>Full Name *<input type="text" name="name" id="name" required></label>
-    <label>Phone Number *<input type="tel" name="phone" id="phone" required></label>
-    <label>Email Address *<input type="email" name="email" id="email" required></label>
-    <label>Designation *<input type="text" name="designation" id="designation" required></label>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name">Full Name <span class="req">*</span></label>
+        <input type="text" name="name" id="name" placeholder="e.g. Dr. Rajesh Sharma" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="req">*</span></label>
+        <input type="tel" name="phone" id="phone" placeholder="e.g. 9876543210" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" name="email" id="email" placeholder="e.g. tpo@college.edu.in" required>
+      </div>
+      <div class="form-group">
+        <label for="designation">Designation <span class="req">*</span></label>
+        <input type="text" name="designation" id="designation" placeholder="e.g. Head - Training &amp; Placement" required>
+      </div>
+    </div>
    </fieldset>
+
    <fieldset>
     <legend>Upload Documents</legend>
-    <label class="full">Profile Picture<input type="file" name="profilePic" id="profilePic" accept="image/*"></label>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="profilePic">College Logo / Representative Photo</label>
+        <input type="file" name="profilePic" id="profilePic" accept="image/*">
+      </div>
+    </div>
    </fieldset>
-   <button class="btn p" type="submit">Register College</button>
+
+   <button class="btn p" type="submit">Register College →</button>
   </form>
  </div>
 </section>
