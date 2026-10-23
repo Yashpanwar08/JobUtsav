@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <!-- Open Graph Meta Tags -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Campus Hiring &amp; Placement Partnership | JobUtsav">
@@ -1544,33 +1545,76 @@ form .btn {
   }
 }
 
-/* Floating Actions */
+/* Floating Actions & WhatsApp Button */
 .float {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 40;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
+.float .btn.o {
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(242, 106, 27, 0.36);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.float .btn.o:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(242, 106, 27, 0.48);
+}
+.whatsapp-chat,
 .float .wa {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 14px 34px -12px rgba(22, 48, 41, .55);
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background: #25d366 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  animation: pulse 2s infinite !important;
+  flex-shrink: 0;
+}
+.whatsapp-chat:hover,
+.float .wa:hover {
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55) !important;
+}
+.whatsapp-chat i,
+.float .wa i {
+  font-size: 28px !important;
+  color: #ffffff !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform .25s ease;
 }
-.float .wa:hover {
-  transform: scale(1.08);
-}
+.whatsapp-chat img,
 .float .wa img {
-  width: 28px;
-  height: 28px;
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+@media (max-width: 640px) {
+  .float {
+    right: 16px;
+    bottom: 20px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .float .btn.o {
+    font-size: 13px;
+    padding: 10px 18px;
+  }
 }
 
 /* Responsive */
@@ -1995,7 +2039,9 @@ form .btn {
 
 <div class="float">
  <a class="btn o" href="#candidateReg">College Registration &rarr;</a>
- <a class="wa" href="https://wa.me/?text=Hello%20I%20need%20support" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+ <a class="wa whatsapp-chat" href="https://wa.me/?text=Hello%20I%20need%20support" target="_blank" rel="noopener" aria-label="WhatsApp Support">
+   <i class="fab fa-whatsapp"></i>
+ </a>
 </div>
 
 <script src="alert-modal.js"></script>
