@@ -703,30 +703,46 @@
     }
 
     .whatsapp-chat {
-      position: fixed;
-      bottom: 80px;
-      right: 25px;
-      width: 55px;
-      height: 55px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s ease;
-      z-index: 1000;
-      animation: pulse 2s infinite;
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 24px !important;
+      width: 52px !important;
+      height: 52px !important;
+      background: #25d366 !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4) !important;
+      transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+      z-index: 99999 !important;
+      text-decoration: none !important;
+      animation: pulse 2s infinite !important;
     }
     @keyframes pulse {
       0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-      70%  { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      70%  { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
-    .whatsapp-chat img { width: 30px; height: 30px; }
-    .whatsapp-chat:hover { transform: scale(1.1); }
+    .whatsapp-chat:hover {
+      transform: scale(1.1) translateY(-2px) !important;
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55) !important;
+    }
+    .whatsapp-chat img {
+      width: 28px !important;
+      height: 28px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+    .whatsapp-chat i {
+      font-size: 28px !important;
+      color: #ffffff !important;
+    }
     @media (max-width: 640px) {
-      .whatsapp-chat { bottom: 132px !important; }
+      .whatsapp-chat {
+        bottom: 20px !important;
+        right: 16px !important;
+      }
     }
 
 @property --ang {
@@ -2867,37 +2883,6 @@
       transform: translateY(0);
     }
 
-
-    .whatsapp-chat {
-      position: fixed;
-      bottom: 152px !important;
-      right: 25px;
-      width: 55px;
-      height: 55px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: 0.3s ease;
-      z-index: 1000;
-      animation: pulse 2s infinite, waFloat 3.2s ease-in-out infinite !important;
-    }
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-      70%  { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-    @keyframes waFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .whatsapp-chat img { width: 30px; height: 30px; }
-    .whatsapp-chat:hover {
-      transform: translateY(-6px) scale(1.12) !important;
-    }
-
     /* ========================= RESPONSIVE BREAKPOINTS ========================= */
     @media (max-width: 980px) {
       .hero-inner {
@@ -2942,7 +2927,6 @@
       .pass-cta-btn { justify-content: center; }
       .floating-badge { display: none; }
       .banner-btn-white, .banner-btn-ghost { width: 100%; justify-content: center; }
-      .whatsapp-chat { bottom: 132px !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -4309,11 +4293,9 @@
   class="whatsapp-chat"
   target="_blank"
   rel="noopener"
+  aria-label="WhatsApp Support"
 >
-  <img
-    src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-    alt="WhatsApp"
-  />
+  <i class="fab fa-whatsapp"></i>
 </a>
 
   <!-- Preserved Header & Footer Scripts -->
