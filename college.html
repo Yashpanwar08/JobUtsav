@@ -214,59 +214,243 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   transform: none;
 }
 
-/* Nav */
-.nav {
-  background: rgba(255, 255, 255, .92);
-  backdrop-filter: blur(12px);
-  position: sticky;
+/* ==================== SITE NAVBAR (EXACT HOMEPAGE CODE) ==================== */
+nav.site-nav {
+  position: fixed;
   top: 0;
-  z-index: 30;
-  box-shadow: 0 6px 30px -20px rgba(16, 185, 129, .7);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px clamp(16px, 4vw, 48px);
+  z-index: 1000;
+  pointer-events: none;
 }
-.nav .wrap {
+
+nav.site-nav > * {
+  pointer-events: auto;
+}
+
+.nav-logo-link {
   display: flex;
   align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
-.nav img {
-  height: 36px;
-  display: block;
+
+.nav-logo {
+  height: clamp(52px, 5.8vw, 72px);
+  width: auto;
+  mix-blend-mode: difference;
+  filter: contrast(1.2);
+  transition: transform 0.2s ease;
 }
-.nav nav {
+
+.nav-logo:hover {
+  transform: scale(1.04);
+}
+
+.nav-links {
   display: flex;
-  gap: 2px;
-  flex: 1;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 21, 53, 0.08);
+  box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
 }
-.nav nav a {
+
+.nav-links a {
+  color: var(--n, #0f1535);
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--o, #f26a1b);
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Hamburger Menu Button */
+.nav-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(15, 21, 53, 0.12);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 21, 53, 0.08);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  z-index: 1001;
+}
+
+.nav-menu-btn:hover {
+  transform: scale(1.05);
+  background: #fff;
+}
+
+.nav-menu-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--n, #0f1535);
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.nav-menu-btn.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-menu-btn.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav.show {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav-inner {
+  margin: clamp(76px, 12vh, 92px) 16px 16px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(15, 21, 53, 0.1);
+  box-shadow: 0 20px 50px rgba(15, 21, 53, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 11px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--n, #0f1535);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:active,
+.mobile-nav-link.active {
+  background: rgba(242, 106, 27, 0.08);
+  color: var(--o, #f26a1b);
+  transform: translateX(4px);
+}
+
+.mobile-nav-actions {
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(15, 21, 53, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-nav-actions .cta {
+  text-align: center;
+  width: 100%;
+  padding: 12px 20px;
+}
+
+@media (max-width: 860px) {
+  .nav-links {
+    display: none !important;
+  }
+  .nav-menu-btn {
+    display: flex;
+  }
+  nav.site-nav {
+    padding: 12px clamp(14px, 4vw, 24px);
+  }
+}
+
+@media (max-width: 520px) {
+  .nav-right-actions .nav-cta-desktop {
+    display: none;
+  }
+}
+
+/* CTAs for Nav */
+.site-nav .cta,
+.mobile-nav .cta {
+  background: #f26a1b;
+  color: #fff !important;
+  border-radius: 99px;
+  padding: 12px 26px;
   font-weight: 600;
   font-size: 15px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  color: var(--muted);
-  transition: .2s;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  line-height: normal;
 }
-.nav nav a:hover {
-  background: var(--mint);
-  color: var(--gdeep);
+
+.site-nav .cta:hover,
+.mobile-nav .cta:hover {
+  background: #db590f;
+  transform: translateY(-2px);
 }
-.nav nav a.on {
-  background: var(--mint);
-  color: var(--gdeep);
+
+.mobile-nav .cta.o {
+  background: transparent;
+  color: #0f1535 !important;
+  border: 2px solid #0f1535;
+  box-shadow: none;
 }
-.nav .btn {
-  padding: 10px 20px;
-  font-size: 14.5px;
+
+.mobile-nav .cta.o:hover {
+  background: #0f1535;
+  color: #fff !important;
+  transform: translateY(-2px);
 }
 
 /* Hero */
 .hero {
-  padding: 60px 0 150px;
+  padding: clamp(100px, 14vh, 130px) 0 150px;
   background: radial-gradient(640px 460px at 0% 0%, #d3f5e4, transparent 70%),
               radial-gradient(520px 420px at 100% 20%, #e0ebff, transparent 70%),
               radial-gradient(500px 360px at 55% 100%, #ffe9d2, transparent 70%);
@@ -1406,7 +1590,6 @@ form .btn {
   .ctc { left: 0; }
   fieldset, .dev { grid-template-columns: 1fr; }
   .outbox { padding: 40px 22px; border-radius: 34px; }
-  .nav .wrap { justify-content: center; }
 }
 
 @media (max-width: 520px) {
@@ -1429,22 +1612,42 @@ form .btn {
 </head>
 <body>
 
-<header class="nav">
- <div class="wrap">
-  <a href="index.html"><img src="jobutsav-logo-transparent.png" alt="JobUtsav"></a>
-  <nav aria-label="Main">
-   <a href="index.html">Home</a>
-   <a href="candidate.html">Candidates</a>
-   <a href="company.html">Companies</a>
-   <a class="on" href="college.html">Colleges</a>
-   <a href="sponsor.html">Sponsors</a>
-   <a href="aboutjobfair.html">Job Fair 2026</a>
-   <a href="about-us.html">About Us</a>
-  </nav>
-  <a class="btn s" href="company.html">Hire Talent</a>
-  <a class="btn o" href="candidate.html">Get Hired</a>
- </div>
-</header>
+<nav class="site-nav" role="navigation" aria-label="Main Navigation">
+  <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
+    <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="nav-logo" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about-us.html">About Us</a>
+    <a href="candidate.html">Candidates</a>
+    <a href="company.html">Companies</a>
+    <a href="college.html" class="active">Colleges</a>
+    <a href="sponsor.html">Sponsors</a>
+    <a href="aboutjobfair.html">Job Fair 2026</a>
+  </div>
+  <div class="nav-right-actions">
+    <a class="cta nav-cta-desktop" href="candidate.html">Get Hired</a>
+    <button class="nav-menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner">
+    <a href="index.html" class="mobile-nav-link">Home</a>
+    <a href="about-us.html" class="mobile-nav-link">About Us</a>
+    <a href="candidate.html" class="mobile-nav-link">Candidates</a>
+    <a href="company.html" class="mobile-nav-link">Companies</a>
+    <a href="college.html" class="mobile-nav-link active">Colleges</a>
+    <a href="sponsor.html" class="mobile-nav-link">Sponsors</a>
+    <a href="aboutjobfair.html" class="mobile-nav-link">Job Fair 2026</a>
+    <div class="mobile-nav-actions">
+      <a class="cta" href="candidate.html">Get Hired →</a>
+      <a class="cta o" href="company.html">Register Your Company</a>
+    </div>
+  </div>
+</div>
 
 <main>
 <!-- HERO -->
@@ -1810,6 +2013,32 @@ form .btn {
   }
   const fYear = document.getElementById('footerYear');
   if (fYear) fYear.textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNav.classList.toggle('show');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.classList.toggle('active', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target) && mobileNav.classList.contains('show')) {
+        mobileNav.classList.remove('show');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.classList.remove('active');
+      }
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('show');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.classList.remove('active');
+      });
+    });
+  }
 })();
 </script>
 <script src="college-animations.js"></script>
