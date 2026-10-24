@@ -1274,7 +1274,18 @@
       .track.t1 { height: 210vh; }
       .track.t2 { height: 490vh; }
       .sc {
-        will-change: auto !important;
+        will-change: transform, opacity !important;
+        contain: layout paint;
+      }
+      .stage {
+        contain: paint;
+      }
+      .s2-ghost-wrap {
+        display: none !important;
+      }
+      .side,
+      .hint {
+        display: none !important;
       }
     }
 
@@ -4183,16 +4194,34 @@
     const numsFrame = now => { const u = cl((now - numT0) / 1800); numsApply(u); if (u < 1) requestAnimationFrame(numsFrame); else numState = 2 };
     numsApply(0);
 
-    // Scene entrances (unique mathematical clip-paths & transforms)
+    // Scene entrances (unique mathematical clip-paths & transforms on desktop, lightweight GPU transforms on mobile)
     const E = [
       null,
-      (e, s) => s.clipPath = `circle(${e * 150}% at 50% 100%)`,
-      (e, s) => { const p = e * 160; s.clipPath = `polygon(0 0,${p}% 0,${p - 60}% 100%,0 100%)` },
-      (e, s) => s.clipPath = `inset(0 ${50 * (1 - e)}% 0 ${50 * (1 - e)}%)`,
-      (e, s) => s.transform = `translateY(${(1 - e) * 100}%)`,
-      (e, s) => s.clipPath = `inset(${(1 - e) * 38}% ${(1 - e) * 38}% ${(1 - e) * 38}% round ${(1 - e) * 160}px)`,
-      (e, s) => s.transform = `translateX(${(1 - e) * 100}%) skewX(${(1 - e) * -12}deg)`,
-      (e, s) => { s.transformOrigin = '50% 0'; s.transform = `perspective(1600px) rotateX(${(1 - e) * -90}deg)` }
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(0, ${(1 - e) * 40}px, 0)`; s.opacity = e; }
+        else { s.clipPath = `circle(${e * 150}% at 50% 100%)`; }
+      },
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(0, ${(1 - e) * 40}px, 0)`; s.opacity = e; }
+        else { const p = e * 160; s.clipPath = `polygon(0 0,${p}% 0,${p - 60}% 100%,0 100%)`; }
+      },
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(0, ${(1 - e) * 40}px, 0)`; s.opacity = e; }
+        else { s.clipPath = `inset(0 ${50 * (1 - e)}% 0 ${50 * (1 - e)}%)`; }
+      },
+      (e, s) => s.transform = `translate3d(0, ${(1 - e) * 100}%, 0)`,
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(0, ${(1 - e) * 40}px, 0)`; s.opacity = e; }
+        else { s.clipPath = `inset(${(1 - e) * 38}% ${(1 - e) * 38}% ${(1 - e) * 38}% round ${(1 - e) * 160}px)`; }
+      },
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(${(1 - e) * 100}%, 0, 0)`; s.opacity = e; }
+        else { s.transform = `translateX(${(1 - e) * 100}%) skewX(${(1 - e) * -12}deg)`; }
+      },
+      (e, s) => {
+        if (window.innerWidth <= 800) { s.transform = `translate3d(0, ${(1 - e) * 40}px, 0)`; s.opacity = e; }
+        else { s.transformOrigin = '50% 0'; s.transform = `perspective(1600px) rotateX(${(1 - e) * -90}deg)`; }
+      }
     ];
 
     const flipChars = (el, a, ax) => chars(el).forEach((c, k) => {
@@ -4559,6 +4588,15 @@
 
     // UNIFIED RAF ANIMATION LOOP
     function heroLoop(now) {
+      const isMobile = window.innerWidth <= 800;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+
+      // On mobile when scrolled past hero, skip loop completely to save battery and GPU cycles
+      if (isMobile && scrollY > 200 && confettiParticles.length === 0) {
+        requestAnimationFrame(heroLoop);
+        return;
+      }
+
       // Idle / touch-start Lissajous path
       if (!pointerActive || (now - lastPointerTime > 2800)) {
         const t = now * 0.001;
@@ -4577,7 +4615,7 @@
       // 1. 3D Tilt on Headline & Extrusion vars (crisp, no blur)
       const h1 = $('heroHeadline');
       if (h1 && !prefersReducedMotion) {
-        const isMobileOrTouch = window.innerWidth <= 800 || (('ontouchstart' in window) && !pointerActive);
+        const isMobileOrTouch = isMobile || (('ontouchstart' in window) && !pointerActive);
         if (isMobileOrTouch || globalHeroP > 0.05) {
           currentRotY += (0 - currentRotY) * 0.12;
           currentRotX += (0 - currentRotX) * 0.12;
@@ -4602,10 +4640,10 @@
         }
       }
 
-      // Scene 2: 3D Tilt on Greater Noida & Extrusion vars
+      // Scene 2: 3D Tilt on Greater Noida & Extrusion vars (desktop only)
       const s2Wrap = $('s2H2TiltWrap');
       const s2H2 = $('s2H2');
-      if (s2Wrap && s2H2 && !prefersReducedMotion) {
+      if (s2Wrap && s2H2 && !prefersReducedMotion && !isMobile) {
         const s2TargetRotY = smoothedX * 10;
         const s2TargetRotX = -smoothedY * 8;
         s2CurrentRotY += (s2TargetRotY - s2CurrentRotY) * 0.08;
@@ -4618,15 +4656,15 @@
         s2H2.style.setProperty('--ey2', ey2);
       }
 
-      // Scene 2: Ghost text vertical drift with pointer Y
+      // Scene 2: Ghost text vertical drift with pointer Y (desktop only)
       const s2GhostWrap = $('s2GhostWrap');
-      if (s2GhostWrap && !prefersReducedMotion) {
+      if (s2GhostWrap && !prefersReducedMotion && !isMobile) {
         s2GhostWrap.style.transform = `translate3d(0, ${(smoothedY * 14).toFixed(1)}px, 0)`;
       }
 
-      // Scene 6: Moving radial gradients on JOBUTSAV heading
+      // Scene 6: Moving radial gradients on JOBUTSAV heading (desktop only)
       const s6H2 = $('s6Heading');
-      if (s6H2 && !prefersReducedMotion) {
+      if (s6H2 && !prefersReducedMotion && !isMobile) {
         const g1x = (50 + Math.sin(now * 0.0010) * 35).toFixed(1) + '%';
         const g1y = (50 + Math.cos(now * 0.0013) * 35).toFixed(1) + '%';
         const g2x = (50 + Math.cos(now * 0.0011 + 1.5) * 35).toFixed(1) + '%';
@@ -4637,9 +4675,9 @@
         s6H2.style.setProperty('--s6-g2y', g2y);
       }
 
-      // Scene 6: Four nodes bobbing & pointer parallax
+      // Scene 6: Four nodes bobbing & pointer parallax (desktop only)
       const node0 = $('s6Node0'), node1 = $('s6Node1'), node2 = $('s6Node2'), node3 = $('s6Node3');
-      if (node0 && !prefersReducedMotion) {
+      if (node0 && !prefersReducedMotion && !isMobile) {
         const bob0 = Math.sin(now * 0.0025) * 5;
         const bob1 = Math.sin(now * 0.0025 + 1.5) * 5;
         const bob2 = Math.sin(now * 0.0025 + 3.0) * 5;
@@ -4653,7 +4691,7 @@
       }
 
       // Scene 6: Connection lines easing & traveling dots (desktop only; SVG empty on mobile)
-      if (window.innerWidth > 800) {
+      if (!isMobile) {
         for (let i = 0; i < 4; i++) {
           const targetAct = (prefersReducedMotion || s6KwLit[i]) ? 1 : 0;
           s6Act[i] += (targetAct - s6Act[i]) * 0.06;
@@ -4835,9 +4873,34 @@
       }
     };
 
+    let winH = window.innerHeight || 800;
+    let track1Top = 0, track1H = 1;
+    let track2Top = 0, track2H = 1;
+
+    function updateTrackMetrics() {
+      winH = window.innerHeight || 800;
+      if (track) {
+        track1Top = track.offsetTop;
+        track1H = track.offsetHeight || 1;
+      }
+      if (track2) {
+        track2Top = track2.offsetTop;
+        track2H = track2.offsetHeight || 1;
+      }
+    }
+    updateTrackMetrics();
+    window.addEventListener('resize', updateTrackMetrics);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateTrackMetrics);
+    }
+
     function tick() {
-      const prog = t => cl(-t.getBoundingClientRect().top / (t.offsetHeight - innerHeight));
-      const p = prog(track), cams = [p * 1, 3 + prog(track2) * 3];
+      const isMobile = window.innerWidth <= 800;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const p = cl((scrollY - track1Top) / Math.max(1, track1H - winH));
+      const p2 = cl((scrollY - track2Top) / Math.max(1, track2H - winH));
+      const cams = [p * 1, 3 + p2 * 3];
+
       sc.forEach((el, i) => {
         if (i == 2) return;
         const cam = cams[i < 2 ? 0 : 1];
@@ -4850,20 +4913,32 @@
         // Skip heavy off-screen animations for butter-smooth mobile scrolling
         if (!isVis && Math.abs(d) > 1.15 && i !== 0) return;
 
-        if (E[i]) { s.clipPath = 'none'; s.transform = 'none'; E[i](e, s); }
+        if (E[i]) {
+          if (!isMobile) { s.clipPath = 'none'; s.transform = 'none'; }
+          E[i](e, s);
+        }
+
         if (i == 0) {
           const heroP = cl(d / 0.55);
           globalHeroP = heroP;
           if (heroP > 0.05) {
             const ease = heroP * heroP * (3 - 2 * heroP);
-            for (let k = 0; k < heroLetters.length; k++) {
-              const item = heroLetters[k];
-              const curX = item.dx * ease;
-              const curY = item.dy * ease;
-              const curRot = item.rot * ease;
-              const curAlpha = Math.max(0, 1 - heroP * 1.6);
-              item.el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) rotate(${curRot.toFixed(1)}deg)`;
-              item.el.style.opacity = curAlpha.toFixed(2);
+            if (isMobile) {
+              const h1 = $('heroHeadline');
+              if (h1) {
+                h1.style.transform = `translate3d(0, ${(heroP * 30).toFixed(1)}px, 0)`;
+                h1.style.opacity = Math.max(0, 1 - heroP * 1.6).toFixed(2);
+              }
+            } else {
+              for (let k = 0; k < heroLetters.length; k++) {
+                const item = heroLetters[k];
+                const curX = item.dx * ease;
+                const curY = item.dy * ease;
+                const curRot = item.rot * ease;
+                const curAlpha = Math.max(0, 1 - heroP * 1.6);
+                item.el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) rotate(${curRot.toFixed(1)}deg)`;
+                item.el.style.opacity = curAlpha.toFixed(2);
+              }
             }
             const slideY = heroP * 40;
             const elemAlpha = Math.max(0, 1 - heroP * 1.8).toFixed(2);
@@ -4877,7 +4952,8 @@
             if (hpElem) { hpElem.style.transform = ''; hpElem.style.opacity = '1'; }
             if (hbElem) { hbElem.style.transform = ''; hbElem.style.opacity = '1'; }
             if (heroHintElem) { heroHintElem.style.transform = ''; heroHintElem.style.opacity = ''; }
-            // Ensure every letter is guaranteed 100% visible and positioned correctly when scrolled back
+            const h1 = $('heroHeadline');
+            if (h1) { h1.style.transform = ''; h1.style.opacity = '1'; }
             for (let k = 0; k < heroLetters.length; k++) {
               const item = heroLetters[k];
               item.active = false;
@@ -4888,18 +4964,23 @@
           }
         }
         if (i == 1) {
-          if (s1Chars0.length) flipCachedChars(s1Chars0, a, 'X');
-          if (s1Chars1.length) flipCachedChars(s1Chars1, cl(a * 1.1 - .15), 'X');
+          if (!isMobile) {
+            if (s1Chars0.length) flipCachedChars(s1Chars0, a, 'X');
+            if (s1Chars1.length) flipCachedChars(s1Chars1, cl(a * 1.1 - .15), 'X');
+          } else {
+            if (s1G[0]) s1G[0].style.opacity = a;
+            if (s1G[1]) s1G[1].style.opacity = a;
+          }
           const l = cl(a * 1.4 - .35);
           if (dtElem) dtElem.style.transform = `translateX(${(1 - out(l)) * -110}vw)`;
 
-          // Ghost rows horizontal slide on scroll
-          const sShiftL = (-d * 30).toFixed(2);
-          const sShiftR = (d * 30).toFixed(2);
-          s1GhostOdd.forEach(el => el.style.transform = `translateX(${sShiftL}vw)`);
-          s1GhostEven.forEach(el => el.style.transform = `translateX(${sShiftR}vw)`);
+          if (!isMobile) {
+            const sShiftL = (-d * 30).toFixed(2);
+            const sShiftR = (d * 30).toFixed(2);
+            s1GhostOdd.forEach(el => el.style.transform = `translateX(${sShiftL}vw)`);
+            s1GhostEven.forEach(el => el.style.transform = `translateX(${sShiftR}vw)`);
+          }
 
-          // Main text scale up to 1.4x and fade in last half; routes fade out first
           if (d > 0) {
             const exitP = cl(d / 0.75);
             const textScale = (1 + exitP * 0.4).toFixed(3);
@@ -4938,14 +5019,9 @@
           const q = cl((pScene - 0.04) / 0.66);
           const lit = q * (wds.length + 3);
 
-          if (prefersReducedMotion) {
+          if (prefersReducedMotion || isMobile) {
             wds.forEach(w => w.style.opacity = '1');
             kwEls.forEach(kw => kw.classList.add('on'));
-            for (let k = 0; k < 4; k++) {
-              s6KwLit[k] = true;
-              const n = $('s6Node' + k);
-              if (n) n.classList.add('on');
-            }
           } else {
             wds.forEach((w, k) => {
               w.style.opacity = (0.25 + 0.75 * cl(lit - k)).toFixed(2);
@@ -4968,18 +5044,20 @@
         }
       });
 
-      const t2top = track2.getBoundingClientRect().top;
-      if (t2top < innerHeight * 0.7 && numState == 0) { numState = 1; numT0 = performance.now(); requestAnimationFrame(numsFrame); }
-      else if (t2top > innerHeight * 1.2 && numState == 2) { numState = 0; numsApply(0); }
+      const t2top = track2Top - scrollY;
+      if (t2top < winH * 0.7 && numState == 0) { numState = 1; numT0 = performance.now(); requestAnimationFrame(numsFrame); }
+      else if (t2top > winH * 1.2 && numState == 2) { numState = 0; numsApply(0); }
 
-      let hudIdx = 1, hudLabel = sc[0].dataset.l;
-      hudElements.forEach(el => {
-        if (el.getBoundingClientRect().top > innerHeight * 0.5) return;
-        if (el.classList.contains('pg')) { hudIdx = +el.dataset.pg; hudLabel = el.dataset.l; }
-        else { const r = Math.round(cams[el === track ? 0 : 1]); hudIdx = r + 1; hudLabel = sc[r].dataset.l; }
-      });
-      if (sideElem) sideElem.textContent = String(hudIdx).padStart(2, '0') + ' / ' + TOTAL + '  ·  ' + hudLabel.toUpperCase();
-      if (hintElem) hintElem.style.opacity = p < .02 ? 1 : 0;
+      if (!isMobile) {
+        let hudIdx = 1, hudLabel = sc[0].dataset.l;
+        hudElements.forEach(el => {
+          if (el.getBoundingClientRect().top > winH * 0.5) return;
+          if (el.classList.contains('pg')) { hudIdx = +el.dataset.pg; hudLabel = el.dataset.l; }
+          else { const r = Math.round(cams[el === track ? 0 : 1]); hudIdx = r + 1; hudLabel = sc[r].dataset.l; }
+        });
+        if (sideElem) sideElem.textContent = String(hudIdx).padStart(2, '0') + ' / ' + TOTAL + '  ·  ' + hudLabel.toUpperCase();
+        if (hintElem) hintElem.style.opacity = p < .02 ? 1 : 0;
+      }
     }
 
     let isScrollTicking = false;
