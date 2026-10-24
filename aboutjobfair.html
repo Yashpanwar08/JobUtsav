@@ -115,6 +115,26 @@
     /* ==========================================================================
        ORIGINAL NAVBAR & FOOTER STYLES (PRESERVED UNCHANGED)
        ========================================================================== */
+    /* SCROLL PROGRESS BAR (TOP) */
+    .scroll-progress-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(15, 21, 53, 0.05);
+      z-index: 1005;
+      pointer-events: none;
+    }
+
+    .scroll-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f26a1b 0%, #1aa355 100%);
+      box-shadow: 0 0 10px rgba(242, 106, 27, 0.5);
+      transition: width 0.08s ease-out;
+    }
+
     /* ==================== SITE NAVBAR (EXACT HOMEPAGE CODE) ==================== */
     nav.site-nav {
       position: fixed;
@@ -304,7 +324,18 @@
         display: flex;
       }
       nav.site-nav {
-        padding: 12px clamp(14px, 4vw, 24px);
+        background: rgba(255, 255, 255, 0.80);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 10px clamp(14px, 4vw, 24px);
+        box-shadow: 0 4px 18px rgba(15, 21, 53, 0.05);
+        border-bottom: 1px solid rgba(15, 21, 53, 0.06);
+        pointer-events: auto;
+      }
+      .nav-logo {
+        mix-blend-mode: normal !important;
+        filter: none !important;
+        height: clamp(42px, 11vw, 50px);
       }
     }
 
@@ -3092,8 +3123,10 @@
 </head>
 <body>
 
-  <!-- Top fixed scroll progress & accent bar (matches company & college pages) -->
-  <div id="juScrollProgress" class="ju-scroll-progress" aria-hidden="true"></div>
+  <!-- SCROLL PROGRESS BAR (TOP) -->
+  <div class="scroll-progress-line" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+  </div>
 
 <nav class="site-nav" role="navigation" aria-label="Main Navigation">
   <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
@@ -4474,15 +4507,14 @@
   <script>
     /* ===== Top Scroll Progress Bar ===== */
     (function(){
-      var bar = document.getElementById('juScrollProgress') || document.getElementById('scroll-progress-bar');
-      if(!bar) return;
-      function updateProgress() {
-        var max = document.documentElement.scrollHeight - window.innerHeight;
-        var p = max > 0 ? (window.scrollY / max) : 0;
-        bar.style.transform = 'scaleX(' + Math.min(Math.max(p, 0), 1) + ')';
+      var progFill = document.getElementById('scrollProgressFill');
+      function onScrollProgress() {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = h > 0 ? (window.pageYOffset / h) * 100 : 0;
+        if (progFill) progFill.style.width = pct.toFixed(2) + '%';
       }
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      updateProgress();
+      window.addEventListener('scroll', onScrollProgress, { passive: true });
+      onScrollProgress();
     })();
   </script>
   <script src="alert-modal.js"></script>

@@ -14,7 +14,9 @@
   <link rel="icon" href="jobutsav-logo-transparent.png" sizes="192x192" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600;1,9..144,700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- Open Graph Meta Tags -->
@@ -145,7 +147,9 @@
     }
 
     /* Base Reset */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -178,7 +182,12 @@
       display: block;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
       color: var(--ink);
       font-weight: 600;
@@ -361,7 +370,7 @@
       pointer-events: none;
     }
 
-    nav.site-nav > * {
+    nav.site-nav>* {
       pointer-events: auto;
     }
 
@@ -536,11 +545,25 @@
       .nav-links {
         display: none !important;
       }
+
       .nav-menu-btn {
         display: flex;
       }
+
       nav.site-nav {
-        padding: 12px clamp(14px, 4vw, 24px);
+        background: rgba(255, 255, 255, 0.80);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 10px clamp(14px, 4vw, 24px);
+        box-shadow: 0 4px 18px rgba(15, 21, 53, 0.05);
+        border-bottom: 1px solid rgba(15, 21, 53, 0.06);
+        pointer-events: auto;
+      }
+
+      .nav-logo {
+        mix-blend-mode: normal !important;
+        filter: none !important;
+        height: clamp(42px, 11vw, 50px);
       }
     }
 
@@ -650,8 +673,15 @@
     }
 
     @keyframes dotPulse {
-      0% { transform: scale(0.8); opacity: 1; }
-      100% { transform: scale(2.4); opacity: 0; }
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(2.4);
+        opacity: 0;
+      }
     }
 
     .hero-title {
@@ -730,12 +760,15 @@
       0% {
         border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
       }
+
       33% {
         border-radius: 56% 44% 40% 60% / 54% 58% 42% 46%;
       }
+
       66% {
         border-radius: 48% 52% 64% 36% / 40% 48% 52% 60%;
       }
+
       100% {
         border-radius: 58% 42% 46% 54% / 50% 56% 44% 50%;
       }
@@ -788,6 +821,7 @@
       left: -10px;
       animation-delay: 0s;
     }
+
     .chip-1 .chip-icon {
       background: var(--grad-blue);
     }
@@ -797,6 +831,7 @@
       left: 10px;
       animation-delay: -2s;
     }
+
     .chip-2 .chip-icon {
       background: var(--grad-orange);
     }
@@ -806,14 +841,18 @@
       right: -14px;
       animation-delay: -4s;
     }
+
     .chip-3 .chip-icon {
       background: linear-gradient(135deg, #1aa355, #22c55e);
     }
 
     @keyframes floatBob {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
+
       50% {
         transform: translateY(-10px);
       }
@@ -1587,7 +1626,7 @@
       margin: 0 !important;
     }
 
-    .footer .col > h4 {
+    .footer .col>h4 {
       font-size: 16px !important;
       font-weight: 700 !important;
       letter-spacing: 0.01em !important;
@@ -1824,9 +1863,11 @@
       .footer .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       }
+
       .footer .brand {
         grid-column: 1 / -1 !important;
       }
+
       .footer .brand-copy {
         max-width: 52ch !important;
       }
@@ -1838,6 +1879,7 @@
         justify-items: center !important;
         text-align: center !important;
       }
+
       .footer .top {
         justify-self: center !important;
       }
@@ -1848,11 +1890,13 @@
         padding: 22px 18px 16px !important;
         border-radius: 16px !important;
       }
+
       .footer .grid {
         grid-template-columns: minmax(0, 1fr) !important;
         gap: 22px !important;
       }
-      .footer .col > h4 {
+
+      .footer .col>h4 {
         margin-bottom: 10px !important;
       }
     }
@@ -1882,10 +1926,14 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation: none !important;
         transition: none !important;
       }
+
       html.js .reveal {
         opacity: 1 !important;
         transform: none !important;
@@ -1998,21 +2046,49 @@
       .strip-card {
         grid-template-columns: 1fr;
       }
+
       .strip-cell {
         border-right: none !important;
       }
+
       .strip-cell:not(:last-child) {
         border-bottom: 1px solid var(--tint);
       }
+
       .inquiry-card {
         padding: 28px 20px;
         border-radius: 26px;
       }
     }
+
+    /* SCROLL PROGRESS BAR (TOP) */
+    .scroll-progress-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(15, 21, 53, 0.05);
+      z-index: 1005;
+      pointer-events: none;
+    }
+
+    .scroll-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #f26a1b 0%, #1aa355 100%);
+      box-shadow: 0 0 10px rgba(242, 106, 27, 0.5);
+      transition: width 0.08s ease-out;
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- SCROLL PROGRESS BAR (TOP) -->
+  <div class="scroll-progress-line" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+  </div>
 
   <!-- PRESERVED SITE NAVBAR (EXACT HOMEPAGE CODE, ACTIVE = SPONSORS) -->
   <nav class="site-nav" role="navigation" aria-label="Main Navigation">
@@ -2072,7 +2148,8 @@
               Sponsorship <span class="grad-text">Document</span>
             </h1>
             <p class="hero-desc">
-              A large-scale, multi-city initiative bridging jobseekers and employers through high impact recruitment ecosystems.
+              A large-scale, multi-city initiative bridging jobseekers and employers through high impact recruitment
+              ecosystems.
             </p>
             <div class="hero-chapter-pill">
               <i class="fas fa-location-dot" aria-hidden="true"></i>
@@ -2178,7 +2255,8 @@
             <span class="sec-badge orange">Sponsorship Overview</span>
             <h2>About <span class="grad-text">JobUtsav</span></h2>
             <p>
-              JobUtsav is a transformative, multi-city hiring initiative designed to bridge the gap between job seekers and
+              JobUtsav is a transformative, multi-city hiring initiative designed to bridge the gap between job seekers
+              and
               employers by creating a high-impact, on-ground recruitment ecosystem that connects talent with opportunity
               at unprecedented scale.
             </p>
@@ -2255,7 +2333,8 @@
        5. WHO WE CONNECT (INTERACTIVE THREE-CIRCLE VENN & DETAIL CARD)
     ========================================================= -->
     <section class="ju-connect-section" id="audience" aria-labelledby="ju-connect-title">
-      <span id="who-we-connect" style="position: absolute; top: -40px; left: 0; pointer-events: none; visibility: hidden;"></span>
+      <span id="who-we-connect"
+        style="position: absolute; top: -40px; left: 0; pointer-events: none; visibility: hidden;"></span>
       <style>
         /* -------------------------------------------------------------
            SCOPED THEME TOKENS & BASE STYLES
@@ -2275,7 +2354,7 @@
           --ju-card-radius: 28px;
           --ju-card-shadow: 0 20px 48px rgba(16, 23, 58, 0.08), 0 4px 16px rgba(16, 23, 58, 0.03);
           --ju-font: 'Outfit', "Segoe UI", system-ui, sans-serif;
-          
+
           background: linear-gradient(180deg, var(--ju-bg-start) 0%, var(--ju-bg-end) 100%);
           color: var(--ju-navy);
           font-family: var(--ju-font);
@@ -2340,8 +2419,17 @@
         }
 
         @keyframes juBadgePulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.35); opacity: 0.75; }
+
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+
+          50% {
+            transform: scale(1.35);
+            opacity: 0.75;
+          }
         }
 
         .ju-connect-title {
@@ -2418,10 +2506,12 @@
             transform: scale(0.68);
             opacity: 0;
           }
+
           60% {
             transform: scale(1.02);
             opacity: 0.95;
           }
+
           100% {
             transform: scale(1);
             opacity: 1;
@@ -2432,24 +2522,49 @@
         .ju-orbit-institutions {
           animation: juFloatTop 7s ease-in-out infinite;
         }
+
         .ju-orbit-seekers {
           animation: juFloatLeft 8.2s ease-in-out 1.2s infinite;
         }
+
         .ju-orbit-corporates {
           animation: juFloatRight 7.5s ease-in-out 2.4s infinite;
         }
 
         @keyframes juFloatTop {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-7px); }
+
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-7px);
+          }
         }
+
         @keyframes juFloatLeft {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(-5px, 6px); }
+
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+
+          50% {
+            transform: translate(-5px, 6px);
+          }
         }
+
         @keyframes juFloatRight {
-          0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(6px, -4px); }
+
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+
+          50% {
+            transform: translate(6px, -4px);
+          }
         }
 
         /* Interactive Circle Nodes */
@@ -2492,8 +2607,15 @@
         }
 
         @keyframes juLabelEntry {
-          0% { opacity: 0; transform: translateY(8px); }
-          100% { opacity: 1; transform: translateY(0); }
+          0% {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .ju-orbit-institutions:hover,
@@ -2529,6 +2651,7 @@
             opacity: 0.85;
             stroke-width: 3px;
           }
+
           100% {
             r: 38px;
             opacity: 0;
@@ -2570,6 +2693,7 @@
             opacity: 0.55;
             stroke-width: 2px;
           }
+
           100% {
             r: 72px;
             opacity: 0;
@@ -2615,8 +2739,15 @@
         }
 
         @keyframes juHintBounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
+
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+
+          50% {
+            transform: translateY(-3px);
+          }
         }
 
         /* -------------------------------------------------------------
@@ -2792,8 +2923,13 @@
         }
 
         @keyframes juStemDraw {
-          0% { transform: scaleY(0); }
-          100% { transform: scaleY(1); }
+          0% {
+            transform: scaleY(0);
+          }
+
+          100% {
+            transform: scaleY(1);
+          }
         }
 
         .ju-timeline-list {
@@ -2814,9 +2950,11 @@
         .ju-timeline-wrapper.is-animating .ju-timeline-item:nth-child(1) {
           animation: juItemSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
         }
+
         .ju-timeline-wrapper.is-animating .ju-timeline-item:nth-child(2) {
           animation: juItemSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
         }
+
         .ju-timeline-wrapper.is-animating .ju-timeline-item:nth-child(3) {
           animation: juItemSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
         }
@@ -2826,6 +2964,7 @@
             opacity: 0;
             transform: translateX(18px);
           }
+
           100% {
             opacity: 1;
             transform: translateX(0);
@@ -2884,23 +3023,29 @@
           .ju-connect-section {
             padding: 70px 18px 80px;
           }
+
           .ju-connect-grid {
             grid-template-columns: 1fr;
             gap: 44px;
           }
+
           .ju-venn-stage {
             max-width: 440px;
           }
+
           .ju-detail-card {
             padding: 30px 24px;
           }
+
           .ju-card-tabs {
             flex-wrap: wrap;
             border-radius: 16px;
           }
+
           .ju-tab-pill {
             flex: 1 1 calc(50% - 8px);
           }
+
           .ju-tab-pill:last-child {
             flex: 1 1 100%;
           }
@@ -2910,21 +3055,26 @@
           .ju-connect-section {
             padding: 56px 14px 68px;
           }
+
           .ju-detail-card {
             padding: 24px 18px;
             border-radius: 22px;
           }
+
           .ju-group-heading {
             font-size: 1.45rem;
           }
+
           .ju-group-icon-circle {
             width: 52px;
             height: 52px;
           }
+
           .ju-card-tabs {
             flex-direction: column;
             border-radius: 18px;
           }
+
           .ju-tab-pill {
             flex: 1 1 100%;
           }
@@ -2934,6 +3084,7 @@
            PREFERS-REDUCED-MOTION
            ------------------------------------------------------------- */
         @media (prefers-reduced-motion: reduce) {
+
           .ju-orbit-institutions,
           .ju-orbit-seekers,
           .ju-orbit-corporates,
@@ -2961,17 +3112,19 @@
             Who We <span class="ju-grad-connect">Connect</span>
           </h2>
           <p class="ju-connect-subtitle">
-            JobUtsav connects diverse stakeholders across the employment ecosystem, creating value for every participant in the hiring journey.
+            JobUtsav connects diverse stakeholders across the employment ecosystem, creating value for every participant
+            in the hiring journey.
           </p>
         </header>
 
         <!-- Main Grid: Venn Diagram + Detail Card -->
         <div class="ju-connect-grid">
-          
+
           <!-- LEFT: Three-Circle Venn Diagram -->
           <div class="ju-venn-column">
             <div class="ju-venn-stage">
-              <svg class="ju-venn-svg" id="ju-venn-svg" viewBox="0 0 540 500" role="img" aria-label="Interactive Venn diagram showing Job Seekers, Corporate Partners, and Educational Institutions overlapping at JobUtsav">
+              <svg class="ju-venn-svg" id="ju-venn-svg" viewBox="0 0 540 500" role="img"
+                aria-label="Interactive Venn diagram showing Job Seekers, Corporate Partners, and Educational Institutions overlapping at JobUtsav">
                 <defs>
                   <filter id="ju-filter-shadow" x="-20%" y="-20%" width="140%" height="140%">
                     <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#10173A" flood-opacity="0.08" />
@@ -3009,16 +3162,18 @@
 
                   <!-- CIRCLE 1: EDUCATIONAL INSTITUTIONS (TOP, OLIVE #8FA12B) -->
                   <g class="ju-orbit-institutions">
-                    <g class="ju-venn-node" id="venn-node-institutions" role="button" tabindex="0" aria-label="Explore Educational Institutions" aria-pressed="false" data-group="institutions">
+                    <g class="ju-venn-node" id="venn-node-institutions" role="button" tabindex="0"
+                      aria-label="Explore Educational Institutions" aria-pressed="false" data-group="institutions">
                       <circle class="ju-venn-circle-fill" cx="270" cy="173" r="142" fill="#8FA12B" stroke="#8FA12B" />
-                      
+
                       <g class="ju-node-exclusive">
                         <g transform="translate(270, 80)">
                           <circle class="ju-node-halo" cx="0" cy="0" r="22" fill="none" stroke="#8FA12B" />
                           <g class="ju-node-icon-scaler">
                             <circle cx="0" cy="0" r="20" fill="url(#ju-grad-olive-dot)" filter="url(#ju-icon-shadow)" />
                             <g transform="translate(-10, -10)" fill="#FFFFFF">
-                              <path d="M10 2L1 7h18L10 2zm-7 7v7h2V9H3zm5 0v7h2V9H8zm5 0v7h2V9h-2zm5 0v7h2V9h-2zM1 18v2h18v-2H1z"/>
+                              <path
+                                d="M10 2L1 7h18L10 2zm-7 7v7h2V9H3zm5 0v7h2V9H8zm5 0v7h2V9h-2zm5 0v7h2V9h-2zM1 18v2h18v-2H1z" />
                             </g>
                           </g>
                         </g>
@@ -3030,16 +3185,18 @@
 
                   <!-- CIRCLE 2: JOB SEEKERS (BOTTOM-LEFT, GREEN #1FA855) -->
                   <g class="ju-orbit-seekers">
-                    <g class="ju-venn-node is-active" id="venn-node-seekers" role="button" tabindex="0" aria-label="Explore Job Seekers" aria-pressed="true" data-group="seekers">
+                    <g class="ju-venn-node is-active" id="venn-node-seekers" role="button" tabindex="0"
+                      aria-label="Explore Job Seekers" aria-pressed="true" data-group="seekers">
                       <circle class="ju-venn-circle-fill" cx="199" cy="296" r="142" fill="#1FA855" stroke="#1FA855" />
-                      
+
                       <g class="ju-node-exclusive">
                         <g transform="translate(147, 308)">
                           <circle class="ju-node-halo" cx="0" cy="0" r="22" fill="none" stroke="#1FA855" />
                           <g class="ju-node-icon-scaler">
                             <circle cx="0" cy="0" r="20" fill="url(#ju-grad-green-dot)" filter="url(#ju-icon-shadow)" />
                             <g transform="translate(-10, -10)" fill="#FFFFFF">
-                              <path d="M10 3L1 7.5l9 4.5 7.5-3.75V14h2V7.5L10 3zm-5.5 8.2v3.9c0 2.2 2.5 4.4 5.5 4.4s5.5-2.2 5.5-4.4v-3.9l-5.5 2.8-5.5-2.8z"/>
+                              <path
+                                d="M10 3L1 7.5l9 4.5 7.5-3.75V14h2V7.5L10 3zm-5.5 8.2v3.9c0 2.2 2.5 4.4 5.5 4.4s5.5-2.2 5.5-4.4v-3.9l-5.5 2.8-5.5-2.8z" />
                             </g>
                           </g>
                         </g>
@@ -3051,16 +3208,19 @@
 
                   <!-- CIRCLE 3: CORPORATE PARTNERS (BOTTOM-RIGHT, ORANGE #FF7A1F) -->
                   <g class="ju-orbit-corporates">
-                    <g class="ju-venn-node" id="venn-node-corporates" role="button" tabindex="0" aria-label="Explore Corporate Partners" aria-pressed="false" data-group="corporates">
+                    <g class="ju-venn-node" id="venn-node-corporates" role="button" tabindex="0"
+                      aria-label="Explore Corporate Partners" aria-pressed="false" data-group="corporates">
                       <circle class="ju-venn-circle-fill" cx="341" cy="296" r="142" fill="#FF7A1F" stroke="#FF7A1F" />
-                      
+
                       <g class="ju-node-exclusive">
                         <g transform="translate(393, 308)">
                           <circle class="ju-node-halo" cx="0" cy="0" r="22" fill="none" stroke="#FF7A1F" />
                           <g class="ju-node-icon-scaler">
-                            <circle cx="0" cy="0" r="20" fill="url(#ju-grad-orange-dot)" filter="url(#ju-icon-shadow)" />
+                            <circle cx="0" cy="0" r="20" fill="url(#ju-grad-orange-dot)"
+                              filter="url(#ju-icon-shadow)" />
                             <g transform="translate(-10, -10)" fill="#FFFFFF">
-                              <path d="M4 3v15h4v-3h4v3h4V3H4zm2 2h2v2H6V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm-8 4h2v2H6V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm-8 4h2v2H6v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM2 19h16v2H2v-2z"/>
+                              <path
+                                d="M4 3v15h4v-3h4v3h4V3H4zm2 2h2v2H6V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zm-8 4h2v2H6V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zm-8 4h2v2H6v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM2 19h16v2H2v-2z" />
                             </g>
                           </g>
                         </g>
@@ -3088,8 +3248,10 @@
 
             <!-- Hint Under Diagram -->
             <div class="ju-venn-hint" aria-hidden="true">
-              <svg class="ju-venn-hint-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+              <svg class="ju-venn-hint-icon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
               </svg>
               <span>Hover or tap a circle to explore</span>
             </div>
@@ -3103,13 +3265,16 @@
 
               <!-- Three Pill Tabs -->
               <div class="ju-card-tabs" role="tablist" aria-label="Audience Groups">
-                <button type="button" class="ju-tab-pill is-active" id="ju-tab-seekers" role="tab" aria-selected="true" aria-controls="ju-tabpanel" data-group="seekers" tabindex="0">
+                <button type="button" class="ju-tab-pill is-active" id="ju-tab-seekers" role="tab" aria-selected="true"
+                  aria-controls="ju-tabpanel" data-group="seekers" tabindex="0">
                   Job Seekers
                 </button>
-                <button type="button" class="ju-tab-pill" id="ju-tab-corporates" role="tab" aria-selected="false" aria-controls="ju-tabpanel" data-group="corporates" tabindex="-1">
+                <button type="button" class="ju-tab-pill" id="ju-tab-corporates" role="tab" aria-selected="false"
+                  aria-controls="ju-tabpanel" data-group="corporates" tabindex="-1">
                   Corporate Partners
                 </button>
-                <button type="button" class="ju-tab-pill" id="ju-tab-institutions" role="tab" aria-selected="false" aria-controls="ju-tabpanel" data-group="institutions" tabindex="-1">
+                <button type="button" class="ju-tab-pill" id="ju-tab-institutions" role="tab" aria-selected="false"
+                  aria-controls="ju-tabpanel" data-group="institutions" tabindex="-1">
                   Educational Institutions
                 </button>
               </div>
@@ -3417,14 +3582,14 @@
           --ws-white: #ffffff;
           --ws-glass: rgba(255, 255, 255, 0.85);
           --ws-line: rgba(20, 26, 58, 0.07);
-          
+
           --ws-grad-og: linear-gradient(135deg, #f26a1b 0%, #ff8a3d 45%, #16a34a 100%);
           --ws-grad-shimmer: linear-gradient(90deg, #f26a1b 0%, #ff8a3d 25%, #16a34a 50%, #ff8a3d 75%, #f26a1b 100%);
-          
+
           --ws-shadow-sm: 0 4px 16px rgba(20, 26, 58, 0.04);
           --ws-shadow-card: 0 16px 42px rgba(20, 26, 58, 0.06);
           --ws-shadow-hover: 0 24px 55px rgba(20, 26, 58, 0.11);
-          
+
           --ws-radius-xl: 32px;
           --ws-radius-lg: 26px;
           --ws-radius-md: 20px;
@@ -3440,8 +3605,8 @@
           box-sizing: border-box;
         }
 
-        #why-sponsor *, 
-        #why-sponsor *::before, 
+        #why-sponsor *,
+        #why-sponsor *::before,
         #why-sponsor *::after {
           box-sizing: border-box;
         }
@@ -3456,6 +3621,7 @@
           opacity: 0.65;
           animation: wsBlobPulse 10s ease-in-out infinite alternate;
         }
+
         #why-sponsor .ws-blob-orange {
           width: 440px;
           height: 440px;
@@ -3463,6 +3629,7 @@
           top: -100px;
           left: 8%;
         }
+
         #why-sponsor .ws-blob-green {
           width: 480px;
           height: 480px;
@@ -3471,9 +3638,17 @@
           right: 6%;
           animation-delay: -5s;
         }
+
         @keyframes wsBlobPulse {
-          0% { transform: scale(1) translate(0, 0); opacity: 0.55; }
-          100% { transform: scale(1.15) translate(25px, 20px); opacity: 0.75; }
+          0% {
+            transform: scale(1) translate(0, 0);
+            opacity: 0.55;
+          }
+
+          100% {
+            transform: scale(1.15) translate(25px, 20px);
+            opacity: 0.75;
+          }
         }
 
         /* Main Container */
@@ -3515,6 +3690,7 @@
           background: var(--ws-orange);
           position: relative;
         }
+
         #why-sponsor .ws-dot-ping::after {
           content: '';
           position: absolute;
@@ -3523,9 +3699,17 @@
           border: 2px solid var(--ws-orange);
           animation: wsPing 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
         }
+
         @keyframes wsPing {
-          0% { transform: scale(0.8); opacity: 1; }
-          100% { transform: scale(2.4); opacity: 0; }
+          0% {
+            transform: scale(0.8);
+            opacity: 1;
+          }
+
+          100% {
+            transform: scale(2.4);
+            opacity: 0;
+          }
         }
 
         #why-sponsor .ws-title {
@@ -3554,12 +3738,22 @@
           transform: translateY(115%);
           transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         #why-sponsor.ws-active .ws-title-word {
           transform: translateY(0);
         }
-        #why-sponsor.ws-active .ws-word-1 { transition-delay: 0.06s; }
-        #why-sponsor.ws-active .ws-word-2 { transition-delay: 0.16s; }
-        #why-sponsor.ws-active .ws-word-3 { transition-delay: 0.26s; }
+
+        #why-sponsor.ws-active .ws-word-1 {
+          transition-delay: 0.06s;
+        }
+
+        #why-sponsor.ws-active .ws-word-2 {
+          transition-delay: 0.16s;
+        }
+
+        #why-sponsor.ws-active .ws-word-3 {
+          transition-delay: 0.26s;
+        }
 
         #why-sponsor .ws-shimmer {
           background: var(--ws-grad-shimmer);
@@ -3568,9 +3762,15 @@
           -webkit-text-fill-color: transparent;
           animation: wsShimmer 4.5s linear infinite;
         }
+
         @keyframes wsShimmer {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 200% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+
+          100% {
+            background-position: 200% 50%;
+          }
         }
 
         #why-sponsor .ws-subtitle {
@@ -3583,6 +3783,7 @@
           transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
           transition-delay: 0.32s;
         }
+
         #why-sponsor.ws-active .ws-subtitle {
           opacity: 1;
           transform: translateY(0);
@@ -3625,8 +3826,11 @@
           opacity: 0.6;
           transition: stroke 0.3s ease, stroke-width 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
         }
+
         @keyframes wsMarch {
-          to { stroke-dashoffset: -140; }
+          to {
+            stroke-dashoffset: -140;
+          }
         }
 
         #why-sponsor .ws-wire-group.ws-active .ws-wire-marching {
@@ -3635,6 +3839,7 @@
           opacity: 1;
           filter: drop-shadow(0 0 6px rgba(242, 106, 27, 0.55));
         }
+
         #why-sponsor .ws-wire-group.ws-wire-3.ws-active .ws-wire-marching {
           stroke: var(--ws-green);
           filter: drop-shadow(0 0 6px rgba(22, 163, 74, 0.55));
@@ -3644,6 +3849,7 @@
           fill: var(--ws-orange);
           filter: drop-shadow(0 0 5px var(--ws-orange));
         }
+
         #why-sponsor .ws-wire-3 .ws-wire-particle {
           fill: var(--ws-green);
           filter: drop-shadow(0 0 5px var(--ws-green));
@@ -3654,6 +3860,7 @@
           stroke: var(--ws-orange);
           stroke-width: 2.5;
         }
+
         #why-sponsor .ws-wire-3 .ws-wire-node-target {
           stroke: var(--ws-green);
         }
@@ -3675,10 +3882,12 @@
           transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
           transition-delay: 0.25s;
         }
+
         #why-sponsor.ws-active .ws-attendance-card {
           opacity: 1;
           transform: translateX(0);
         }
+
         #why-sponsor .ws-attendance-card:hover {
           box-shadow: var(--ws-shadow-hover);
         }
@@ -3703,9 +3912,17 @@
           filter: blur(28px);
           animation: wsGlowBreath 6s ease-in-out infinite alternate;
         }
+
         @keyframes wsGlowBreath {
-          0% { transform: scale(0.9); opacity: 0.45; }
-          100% { transform: scale(1.15); opacity: 0.75; }
+          0% {
+            transform: scale(0.9);
+            opacity: 0.45;
+          }
+
+          100% {
+            transform: scale(1.15);
+            opacity: 0.75;
+          }
         }
 
         #why-sponsor .ws-orbit-ring {
@@ -3713,26 +3930,35 @@
           border-radius: 50%;
           border: 1.5px dashed var(--ws-orange-border);
         }
+
         #why-sponsor .ws-ring-1 {
           inset: 60px;
           border-color: rgba(242, 106, 27, 0.28);
           animation: wsOrbitClockwise 32s linear infinite;
         }
+
         #why-sponsor .ws-ring-2 {
           inset: 110px;
           border-color: rgba(22, 163, 74, 0.28);
           animation: wsOrbitCounter 26s linear infinite;
         }
+
         #why-sponsor .ws-ring-3 {
           inset: 160px;
           border-color: rgba(242, 106, 27, 0.24);
           animation: wsOrbitClockwise 20s linear infinite;
         }
+
         @keyframes wsOrbitClockwise {
-          to { transform: rotate(360deg); }
+          to {
+            transform: rotate(360deg);
+          }
         }
+
         @keyframes wsOrbitCounter {
-          to { transform: rotate(-360deg); }
+          to {
+            transform: rotate(-360deg);
+          }
         }
 
         #why-sponsor .ws-avatar-dot {
@@ -3749,6 +3975,7 @@
           font-size: 8px;
           color: var(--ws-orange);
         }
+
         #why-sponsor .ws-avatar-dot.green {
           border-color: var(--ws-green);
           color: var(--ws-green);
@@ -3812,13 +4039,16 @@
           box-shadow: var(--ws-shadow-sm);
           transition: all 0.24s ease;
         }
+
         #why-sponsor .ws-chip i {
           font-size: 11px;
           color: var(--ws-orange);
         }
+
         #why-sponsor .ws-chip:last-child i {
           color: var(--ws-green);
         }
+
         #why-sponsor .ws-chip:hover {
           transform: translateY(-2px);
           border-color: var(--ws-orange-border);
@@ -3859,11 +4089,13 @@
           transform: translateX(0);
           transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, box-shadow 0.3s ease, border-color 0.3s ease;
         }
+
         #why-sponsor.ws-active .ws-card-2 {
           opacity: 1;
           transform: translateX(0);
           transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.44s, box-shadow 0.3s ease, border-color 0.3s ease;
         }
+
         #why-sponsor.ws-active .ws-card-3 {
           opacity: 1;
           transform: translateX(0);
@@ -3874,6 +4106,7 @@
           box-shadow: var(--ws-shadow-hover);
           border-color: var(--ws-orange-border);
         }
+
         #why-sponsor .ws-card-3:hover {
           border-color: var(--ws-green-border);
         }
@@ -3888,9 +4121,11 @@
           opacity: 0;
           transition: opacity 0.3s ease;
         }
+
         #why-sponsor .ws-card-3 .ws-card-spotlight {
           background: radial-gradient(circle 200px at var(--mouse-x, -100%) var(--mouse-y, -100%), rgba(22, 163, 74, 0.08), transparent 75%);
         }
+
         #why-sponsor .ws-card:hover .ws-card-spotlight {
           opacity: 1;
         }
@@ -3908,6 +4143,7 @@
           transform-origin: left center;
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         #why-sponsor .ws-card:hover::after {
           transform: scaleX(1);
         }
@@ -3931,6 +4167,7 @@
           color: var(--ws-orange);
           border: 1px solid var(--ws-orange-border);
         }
+
         #why-sponsor .ws-tile-green {
           background: var(--ws-green-light);
           color: var(--ws-green);
@@ -3948,10 +4185,12 @@
           transition: transform 0.4s ease, opacity 0.4s ease;
           pointer-events: none;
         }
+
         #why-sponsor .ws-card:hover .ws-icon-halo {
           opacity: 0.5;
           transform: scale(1.18);
         }
+
         #why-sponsor .ws-card:hover .ws-icon-tile {
           transform: scale(1.1) rotate(4deg);
         }
@@ -3964,6 +4203,7 @@
           margin: 0 0 6px;
           line-height: 1.3;
         }
+
         #why-sponsor .ws-card-body p {
           font-size: 14px;
           color: var(--ws-muted);
@@ -3978,16 +4218,20 @@
           #why-sponsor {
             padding: 60px 16px;
           }
+
           #why-sponsor .ws-grid {
             grid-template-columns: 1fr;
             gap: 36px;
           }
+
           #why-sponsor .ws-wires-svg {
             display: none !important;
           }
+
           #why-sponsor .ws-attendance-card {
             padding: 36px 26px;
           }
+
           #why-sponsor .ws-orbit-wrapper {
             top: -60px;
             right: -110px;
@@ -4000,13 +4244,16 @@
           #why-sponsor .ws-title {
             font-size: 28px;
           }
+
           #why-sponsor .ws-metric-num-wrap {
             font-size: 46px;
           }
+
           #why-sponsor .ws-card {
             padding: 20px 18px;
             gap: 15px;
           }
+
           #why-sponsor .ws-icon-tile {
             width: 46px;
             height: 46px;
@@ -4020,6 +4267,7 @@
             animation: none !important;
             transition: none !important;
           }
+
           #why-sponsor .ws-title-word,
           #why-sponsor .ws-subtitle,
           #why-sponsor .ws-attendance-card,
@@ -4027,6 +4275,7 @@
             opacity: 1 !important;
             transform: none !important;
           }
+
           #why-sponsor .ws-wires-svg {
             display: none !important;
           }
@@ -4085,7 +4334,8 @@
               </div>
               <h2 class="ws-attendance-heading">Engaged Attendees Per City Event</h2>
               <p class="ws-attendance-desc">
-                Access high-density footfall on-ground along with expansive multi-channel digital exposure across youth demographics.
+                Access high-density footfall on-ground along with expansive multi-channel digital exposure across youth
+                demographics.
               </p>
 
               <!-- 3 Small Chips -->
@@ -4117,7 +4367,8 @@
               </div>
               <div class="ws-card-body">
                 <h3>Massive Reach</h3>
-                <p>Access an engaged audience of 15,000+ attendees per city event, both physically and through our digital campaigns.</p>
+                <p>Access an engaged audience of 15,000+ attendees per city event, both physically and through our
+                  digital campaigns.</p>
               </div>
             </div>
 
@@ -4130,7 +4381,8 @@
               </div>
               <div class="ws-card-body">
                 <h3>Employer Branding</h3>
-                <p>Position your company as a top employer of choice. Build trust and awareness among the next generation of talent.</p>
+                <p>Position your company as a top employer of choice. Build trust and awareness among the next
+                  generation of talent.</p>
               </div>
             </div>
 
@@ -4211,7 +4463,7 @@
               // Ease Out Quartic
               const ease = 1 - Math.pow(1 - progress, 4);
               const currentVal = Math.floor(ease * target);
-              
+
               counterEl.textContent = Number(currentVal).toLocaleString('en-IN');
 
               if (progress < 1) {
@@ -4520,7 +4772,8 @@
             <span class="sec-badge orange">Get in Touch</span>
             <h2>Let's Shape the <span class="grad-text">Future of Hiring</span></h2>
             <p>
-              Leave your details below and our partnerships head will contact you promptly to curate a bespoke sponsorship proposal tailored to your branding and recruitment objectives.
+              Leave your details below and our partnerships head will contact you promptly to curate a bespoke
+              sponsorship proposal tailored to your branding and recruitment objectives.
             </p>
             <a class="btn secondary" href="images/jobutsav-greater-noida-edition-2026.pdf" download>
               <i class="fas fa-file-pdf" aria-hidden="true" style="color: var(--blue);"></i>
@@ -4539,7 +4792,8 @@
               <div class="form-grid">
                 <div class="input-group">
                   <label for="companyName">Company Name <span class="required">*</span></label>
-                  <input type="text" id="companyName" name="companyName" placeholder="Enter company name" minlength="2" required>
+                  <input type="text" id="companyName" name="companyName" placeholder="Enter company name" minlength="2"
+                    required>
                 </div>
 
                 <div class="input-group">
@@ -4563,7 +4817,8 @@
 
                 <div class="input-group full">
                   <label for="password">Password <span class="required">*</span></label>
-                  <input type="password" id="password" name="password" placeholder="Create password" minlength="6" required>
+                  <input type="password" id="password" name="password" placeholder="Create password" minlength="6"
+                    required>
                 </div>
 
                 <div class="input-group full">
@@ -4586,20 +4841,34 @@
       <div class="grid">
         <section class="col brand" aria-label="JobUtsav">
           <img class="logo" alt="JobUtsav, India's Hiring Festival" src="jobutsav-logo-transparent.png" />
-          <p class="brand-copy">India's premier monthly job fair series. Connecting thousands of job seekers with top companies across major cities.</p>
+          <p class="brand-copy">India's premier monthly job fair series. Connecting thousands of job seekers with top
+            companies across major cities.</p>
 
           <div class="meta">
             <div>
               <span class="label">Follow us</span>
               <div class="social">
-                <a href="https://www.instagram.com/jobutsav/" target="_blank" rel="noopener" aria-label="JobUtsav on Instagram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" style="fill:currentColor"/></svg>
+                <a href="https://www.instagram.com/jobutsav/" target="_blank" rel="noopener"
+                  aria-label="JobUtsav on Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.2" cy="6.8" r="0.6" style="fill:currentColor" />
+                  </svg>
                 </a>
-                <a href="https://www.linkedin.com/company/jobutsav/" target="_blank" rel="noopener" aria-label="JobUtsav on LinkedIn">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.25H3V9.75Zm6.5 0h3.8v1.54h.05c.53-1 1.82-2.04 3.75-2.04 4 0 4.75 2.63 4.75 6.05V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75Z"/></svg>
+                <a href="https://www.linkedin.com/company/jobutsav/" target="_blank" rel="noopener"
+                  aria-label="JobUtsav on LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.25H3V9.75Zm6.5 0h3.8v1.54h.05c.53-1 1.82-2.04 3.75-2.04 4 0 4.75 2.63 4.75 6.05V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75Z" />
+                  </svg>
                 </a>
-                <a href="https://www.facebook.com/share/1ALqZ2Wn19/" target="_blank" rel="noopener" aria-label="JobUtsav on Facebook">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.55l.4-3h-2.95V8.5c0-.87.24-1.46 1.5-1.46h1.6V4.36A21 21 0 0 0 14.27 4.2c-2.3 0-3.87 1.4-3.87 3.98v2.22H7.8v3h2.6V21h3.1Z"/></svg>
+                <a href="https://www.facebook.com/share/1ALqZ2Wn19/" target="_blank" rel="noopener"
+                  aria-label="JobUtsav on Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M13.5 21v-7.6h2.55l.4-3h-2.95V8.5c0-.87.24-1.46 1.5-1.46h1.6V4.36A21 21 0 0 0 14.27 4.2c-2.3 0-3.87 1.4-3.87 3.98v2.22H7.8v3h2.6V21h3.1Z" />
+                  </svg>
                 </a>
               </div>
             </div>
@@ -4663,7 +4932,9 @@
         </nav>
         <button class="top" type="button" id="ftUp" aria-label="Back to top">
           Back to top
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
         </button>
       </div>
     </div>
@@ -4830,6 +5101,16 @@
           odoCards.forEach(c => rollStatCard(c));
         }
       }
+
+      // Scroll Progress Bar
+      const progFill = document.getElementById('scrollProgressFill');
+      function onScrollProgress() {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = h > 0 ? (window.pageYOffset / h) * 100 : 0;
+        if (progFill) progFill.style.width = pct.toFixed(2) + '%';
+      }
+      window.addEventListener('scroll', onScrollProgress, { passive: true });
+      onScrollProgress();
     })();
   </script>
 
