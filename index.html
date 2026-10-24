@@ -86,6 +86,8 @@
       color: var(--n);
       overflow-x: clip;
       -webkit-font-smoothing: antialiased;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
     }
 
     /* ==================== PRESERVED SITE NAVBAR ==================== */
@@ -776,13 +778,7 @@
     }
 
     .ind-row-num {
-      font-family: "Outfit", sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      color: #94a3b8;
-      transition: color 0.2s ease;
-      flex-shrink: 0;
+      display: none !important;
     }
 
     /* ACTIVE & HOVER STATES */
@@ -854,19 +850,7 @@
     }
 
     .ind-card-outnum {
-      position: absolute;
-      top: 26px;
-      right: 32px;
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 78px;
-      font-weight: 600;
-      color: transparent;
-      -webkit-text-stroke: 1.6px var(--active-card-color, var(--o));
-      opacity: 0.7;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-      transition: -webkit-text-stroke 0.35s ease;
+      display: none !important;
     }
 
     .ind-card-content {
@@ -1286,6 +1270,14 @@
     .track.t1 { height: 367vh; }
     .track.t2 { height: 900vh; }
 
+    @media (max-width: 800px) {
+      .track.t1 { height: 210vh; }
+      .track.t2 { height: 490vh; }
+      .sc {
+        will-change: auto !important;
+      }
+    }
+
     .stage {
       position: sticky;
       top: 0;
@@ -1390,13 +1382,23 @@
     }
 
     .hero-h1 {
-      will-change: transform;
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     #h1a,
     #h1b {
       display: block;
-      will-change: transform, text-shadow;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
 
     #h1a {
@@ -1428,12 +1430,14 @@
     .hero-ch-wrap {
       display: inline-block;
       position: relative;
-      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .hero-ch-in {
       display: inline-block;
-      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       animation: letterDrop 0.85s cubic-bezier(0.3, 1.5, 0.5, 1) backwards;
     }
 
@@ -1801,21 +1805,17 @@
     }
 
     .s2-pill-2 {
-      background: rgba(255, 255, 255, 0.18);
+      background: var(--n);
       color: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(15, 21, 53, 0.28);
       font-weight: 600;
       animation: s2PillFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) 2.75s backwards;
     }
 
     .s2-pill-3 {
-      background: rgba(255, 255, 255, 0.18);
+      background: var(--n);
       color: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(15, 21, 53, 0.28);
       font-weight: 600;
       animation: s2PillFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) 2.9s backwards;
     }
@@ -2260,6 +2260,8 @@
       transition: color 0.2s ease, opacity 0.2s ease;
       user-select: none;
       -webkit-user-select: none;
+      min-width: max-content;
+      padding: 4px 10px;
     }
 
     .city > span.f {
@@ -2298,15 +2300,20 @@
     }
 
     .city > span small {
-      display: block;
-      font-size: .16em;
-      letter-spacing: .2em;
+      display: inline-grid;
+      grid-template-areas: "content";
+      justify-items: center;
+      align-items: center;
+      font-size: clamp(9px, 0.78vw, 11px);
+      letter-spacing: .15em;
       color: var(--mut);
-      margin-top: 4px;
+      margin-top: 6px;
       position: relative;
-      height: 1.4em;
+      height: 1.6em;
       overflow: hidden;
-      line-height: 1.4;
+      line-height: 1.6;
+      width: max-content;
+      max-width: 100%;
     }
 
     .city > span small .lbl-o {
@@ -2314,23 +2321,23 @@
       font-weight: 800;
     }
 
-    .city > span small .lbl-default,
-    .city > span small .lbl-hover {
+    .city > span small .lbl-default {
+      grid-area: content;
       display: block;
       white-space: nowrap;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
     }
 
     .city > span small .lbl-hover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      grid-area: content;
+      display: block;
+      white-space: nowrap;
       color: var(--o);
       font-weight: 800;
       opacity: 0;
       transform: translateY(100%);
       pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
     }
 
     .city > span:hover small .lbl-default,
@@ -3544,11 +3551,11 @@
               <span class="lbl-hover">GET ALERTS FOR MUMBAI &rarr;</span>
             </small>
           </span>
-          <span data-city="Bangalore" role="button" tabindex="0" aria-label="Get alerts for Bangalore">
-            <span class="city-name">Bangalore</span>
+          <span data-city="Bengaluru" role="button" tabindex="0" aria-label="Get alerts for Bengaluru">
+            <span class="city-name">Bengaluru</span>
             <small>
               <span class="lbl-default">COMING SOON · <span class="lbl-o">NOTIFY ME</span></span>
-              <span class="lbl-hover">GET ALERTS FOR BANGALORE &rarr;</span>
+              <span class="lbl-hover">GET ALERTS FOR BENGALURU &rarr;</span>
             </small>
           </span>
           <span data-city="Hyderabad" role="button" tabindex="0" aria-label="Get alerts for Hyderabad">
@@ -3644,7 +3651,6 @@
               </span>
               <span class="ind-row-name">Information Technology (IT)</span>
             </div>
-            <span class="ind-row-num">01</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="1" style="--ind-color: #0f1535;" aria-label="Banking and Financial Services">
@@ -3655,7 +3661,6 @@
               </span>
               <span class="ind-row-name">Banking and Financial Services</span>
             </div>
-            <span class="ind-row-num">02</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="2" style="--ind-color: #1aa355;" aria-label="Healthcare and Pharmaceuticals">
@@ -3666,7 +3671,6 @@
               </span>
               <span class="ind-row-name">Healthcare and Pharmaceuticals</span>
             </div>
-            <span class="ind-row-num">03</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="3" style="--ind-color: #f26a1b;" aria-label="Education and Training">
@@ -3677,7 +3681,6 @@
               </span>
               <span class="ind-row-name">Education and Training</span>
             </div>
-            <span class="ind-row-num">04</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="4" style="--ind-color: #0f1535;" aria-label="Retail and E-commerce">
@@ -3688,7 +3691,6 @@
               </span>
               <span class="ind-row-name">Retail and E-commerce</span>
             </div>
-            <span class="ind-row-num">05</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="5" style="--ind-color: #1aa355;" aria-label="Manufacturing and Engineering">
@@ -3699,7 +3701,6 @@
               </span>
               <span class="ind-row-name">Manufacturing and Engineering</span>
             </div>
-            <span class="ind-row-num">06</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="6" style="--ind-color: #f26a1b;" aria-label="Logistics and Supply Chain">
@@ -3710,7 +3711,6 @@
               </span>
               <span class="ind-row-name">Logistics and Supply Chain</span>
             </div>
-            <span class="ind-row-num">07</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="7" style="--ind-color: #0f1535;" aria-label="Digital Marketing and Media">
@@ -3721,7 +3721,6 @@
               </span>
               <span class="ind-row-name">Digital Marketing and Media</span>
             </div>
-            <span class="ind-row-num">08</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="8" style="--ind-color: #1aa355;" aria-label="Telecommunications">
@@ -3732,7 +3731,6 @@
               </span>
               <span class="ind-row-name">Telecommunications</span>
             </div>
-            <span class="ind-row-num">09</span>
           </button>
 
           <button type="button" class="ind-row" role="tab" aria-selected="false" data-idx="9" style="--ind-color: #f26a1b;" aria-label="Customer Support and Operations">
@@ -3743,7 +3741,6 @@
               </span>
               <span class="ind-row-name">Customer Support and Operations</span>
             </div>
-            <span class="ind-row-num">10</span>
           </button>
         </div>
 
@@ -3752,12 +3749,11 @@
           <div class="ind-card" id="indCard">
             <div class="ind-card-strip" id="indCardStrip"></div>
             <div class="ind-card-body">
-              <span class="ind-card-outnum" id="indCardOutNum" aria-hidden="true">01</span>
               <div class="ind-card-content" id="indCardContent">
                 <div class="ind-card-icon-tile" id="indCardIconTile" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><path d="m9 10-2 2 2 2"/><path d="m15 10 2 2-2 2"/><path d="m13 9-2 6"/></svg>
                 </div>
-                <div class="ind-card-sector-label" id="indCardSectorLabel">SECTOR 01 OF 10</div>
+                <div class="ind-card-sector-label" id="indCardSectorLabel">PARTICIPATING SECTOR</div>
                 <h3 class="ind-card-title" id="indCardTitle">Information Technology (IT)</h3>
                 <hr class="ind-card-divider" />
                 <p class="ind-card-note">Companies from this sector are hiring at the JobUtsav Job Fair 2026.</p>
@@ -3959,7 +3955,7 @@
               <option value="">Select your city</option>
               <option value="Greater Noida">Greater Noida</option>
               <option value="Mumbai">Mumbai</option>
-              <option value="Bangalore">Bangalore</option>
+              <option value="Bengaluru">Bengaluru</option>
               <option value="Hyderabad">Hyderabad</option>
               <option value="Chennai">Chennai</option>
               <option value="Pune">Pune</option>
@@ -4128,8 +4124,8 @@
           cardContent.classList.add('animating');
         }
 
-        if (cardOutNum) cardOutNum.textContent = item.num;
-        if (cardSectorLabel) cardSectorLabel.textContent = `SECTOR ${item.num} OF 10`;
+        if (cardOutNum) cardOutNum.textContent = '';
+        if (cardSectorLabel) cardSectorLabel.textContent = 'PARTICIPATING SECTOR';
         if (cardTitle) cardTitle.textContent = item.name;
         if (cardIconTile) cardIconTile.innerHTML = item.iconSvg;
       }
@@ -4352,7 +4348,7 @@
       { name: 'Kolkata', x: 0.87, y: 0.37, side: 'right' },
       { name: 'Hyderabad', x: 0.915, y: 0.56, side: 'right' },
       { name: 'Chennai', x: 0.85, y: 0.74, side: 'right' },
-      { name: 'Bangalore', x: 0.80, y: 0.83, side: 'right' }
+      { name: 'Bengaluru', x: 0.80, y: 0.83, side: 'right' }
     ];
 
     function buildS2Routes() {
@@ -4388,8 +4384,8 @@
     </circle>`;
         html += `<circle cx="${x1.toFixed(1)}" cy="${y1.toFixed(1)}" r="7" fill="#ffffff" stroke="#0f1535" stroke-width="3" />`;
 
-        // 3. Labels (Bangalore label is placed on the right to prevent overlap with bottom pills)
-        const labelOnRight = (c.side === 'left') || (c.name === 'Bangalore');
+        // 3. Labels (Bengaluru label is placed on the right to prevent overlap with bottom pills)
+        const labelOnRight = (c.side === 'left') || (c.name === 'Bengaluru') || (c.name === 'Bangalore');
         if (labelOnRight) {
           html += `<text x="${(x1 + 18).toFixed(1)}" y="${(y1 - 3).toFixed(1)}" text-anchor="start" fill="#ffffff" font-family="Outfit, sans-serif" font-weight="800" font-size="15" letter-spacing="0.12em">${c.name.toUpperCase()}</text>`;
           html += `<text x="${(x1 + 18).toFixed(1)}" y="${(y1 + 13).toFixed(1)}" text-anchor="start" fill="#0f1535" font-family="Outfit, sans-serif" font-weight="600" font-size="10" letter-spacing="0.25em">COMING SOON</text>`;
@@ -4557,16 +4553,29 @@
       // 1. 3D Tilt on Headline & Extrusion vars (crisp, no blur)
       const h1 = $('heroHeadline');
       if (h1 && !prefersReducedMotion) {
-        const targetRotY = smoothedX * 8;
-        const targetRotX = -smoothedY * 6;
-        currentRotY += (targetRotY - currentRotY) * 0.08;
-        currentRotX += (targetRotX - currentRotX) * 0.08;
-        h1.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+        const isMobileOrTouch = window.innerWidth <= 800 || (('ontouchstart' in window) && !pointerActive);
+        if (isMobileOrTouch || globalHeroP > 0.05) {
+          currentRotY += (0 - currentRotY) * 0.12;
+          currentRotX += (0 - currentRotX) * 0.12;
+          if (Math.abs(currentRotX) < 0.05 && Math.abs(currentRotY) < 0.05) {
+            h1.style.transform = '';
+          } else {
+            h1.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+          }
+          h1.style.setProperty('--ex', '0px');
+          h1.style.setProperty('--ey', '0px');
+        } else {
+          const targetRotY = smoothedX * 8;
+          const targetRotX = -smoothedY * 6;
+          currentRotY += (targetRotY - currentRotY) * 0.08;
+          currentRotX += (targetRotX - currentRotX) * 0.08;
+          h1.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
 
-        const ex = (-smoothedX * 0.9).toFixed(2) + 'px';
-        const ey = (-smoothedY * 0.9).toFixed(2) + 'px';
-        h1.style.setProperty('--ex', ex);
-        h1.style.setProperty('--ey', ey);
+          const ex = (-smoothedX * 0.9).toFixed(2) + 'px';
+          const ey = (-smoothedY * 0.9).toFixed(2) + 'px';
+          h1.style.setProperty('--ex', ex);
+          h1.style.setProperty('--ey', ey);
+        }
       }
 
       // Scene 2: 3D Tilt on Greater Noida & Extrusion vars
@@ -4619,48 +4628,50 @@
         if (node3) node3.style.transform = `translate3d(calc(-50% + ${pxR.toFixed(1)}px), calc(-50% + ${(pyR + bob3).toFixed(1)}px), 0)`;
       }
 
-      // Scene 6: Connection lines easing & traveling dots
-      for (let i = 0; i < 4; i++) {
-        const targetAct = (prefersReducedMotion || s6KwLit[i]) ? 1 : 0;
-        s6Act[i] += (targetAct - s6Act[i]) * 0.06;
-        const bp = $('s6BrightPath' + i);
-        if (bp && s6PathLengths[i]) {
-          bp.style.strokeDashoffset = (s6PathLengths[i] * (1 - s6Act[i])).toFixed(1);
+      // Scene 6: Connection lines easing & traveling dots (desktop only; SVG empty on mobile)
+      if (window.innerWidth > 800) {
+        for (let i = 0; i < 4; i++) {
+          const targetAct = (prefersReducedMotion || s6KwLit[i]) ? 1 : 0;
+          s6Act[i] += (targetAct - s6Act[i]) * 0.06;
+          const bp = $('s6BrightPath' + i);
+          if (bp && s6PathLengths[i]) {
+            bp.style.strokeDashoffset = (s6PathLengths[i] * (1 - s6Act[i])).toFixed(1);
+          }
+          const dot = $('s6Dot' + i);
+          if (dot && bp && s6PathLengths[i]) {
+            if (s6Act[i] > 0.97 && !prefersReducedMotion) {
+              const u = (now * 0.00035 + i * 0.25) % 1;
+              const pt = bp.getPointAtLength(u * s6PathLengths[i]);
+              dot.setAttribute('cx', pt.x.toFixed(1));
+              dot.setAttribute('cy', pt.y.toFixed(1));
+              const dotAlpha = Math.sin(Math.PI * u) * cl((s6Act[i] - 0.97) / 0.03);
+              dot.setAttribute('opacity', dotAlpha.toFixed(3));
+            } else {
+              dot.setAttribute('opacity', '0');
+            }
+          }
         }
-        const dot = $('s6Dot' + i);
-        if (dot && bp && s6PathLengths[i]) {
-          if (s6Act[i] > 0.97 && !prefersReducedMotion) {
-            const u = (now * 0.00035 + i * 0.25) % 1;
-            const pt = bp.getPointAtLength(u * s6PathLengths[i]);
-            dot.setAttribute('cx', pt.x.toFixed(1));
-            dot.setAttribute('cy', pt.y.toFixed(1));
-            const dotAlpha = Math.sin(Math.PI * u) * cl((s6Act[i] - 0.97) / 0.03);
-            dot.setAttribute('opacity', dotAlpha.toFixed(3));
+
+        // Scene 6: Hub rings pulse when all four lines connected
+        const s6AllConnected = s6Act.every(a => a > 0.95);
+        const innerRing = $('s6HubInnerRing');
+        if (innerRing) {
+          const baseR = 0.13 * Math.min(window.innerWidth, window.innerHeight);
+          if (s6AllConnected && !prefersReducedMotion) {
+            const pulse = Math.sin(now * 0.003); // ~3 rad/s
+            const rP = baseR * (1 + pulse * 0.012); // radius +-1.2%
+            const op = 0.30 + Math.max(0, pulse) * 0.40; // stroke-opacity up to 0.7
+            innerRing.setAttribute('r', rP.toFixed(1));
+            innerRing.setAttribute('stroke-opacity', op.toFixed(2));
           } else {
-            dot.setAttribute('opacity', '0');
+            innerRing.setAttribute('r', baseR.toFixed(1));
+            innerRing.setAttribute('stroke-opacity', '0.30');
           }
         }
       }
 
-      // Scene 6: Hub rings pulse when all four lines connected
-      const s6AllConnected = s6Act.every(a => a > 0.95);
-      const innerRing = $('s6HubInnerRing');
-      if (innerRing) {
-        const baseR = 0.13 * Math.min(window.innerWidth, window.innerHeight);
-        if (s6AllConnected && !prefersReducedMotion) {
-          const pulse = Math.sin(now * 0.003); // ~3 rad/s
-          const rP = baseR * (1 + pulse * 0.012); // radius +-1.2%
-          const op = 0.30 + Math.max(0, pulse) * 0.40; // stroke-opacity up to 0.7
-          innerRing.setAttribute('r', rP.toFixed(1));
-          innerRing.setAttribute('stroke-opacity', op.toFixed(2));
-        } else {
-          innerRing.setAttribute('r', baseR.toFixed(1));
-          innerRing.setAttribute('stroke-opacity', '0.30');
-        }
-      }
-
-      // 2. Letter Proximity (active when scroll progress <= 0.03 and after letters land)
-      if (globalHeroP <= 0.03 && !prefersReducedMotion && heroLetters.length > 0 && pointerActive && performance.now() > 1200) {
+      // 2. Letter Proximity (active when scroll progress <= 0.03 and after letters land, desktop only)
+      if (globalHeroP <= 0.03 && !prefersReducedMotion && heroLetters.length > 0 && pointerActive && window.innerWidth > 800 && performance.now() > 1200) {
         for (let i = 0; i < heroLetters.length; i++) {
           const item = heroLetters[i];
           if (!item.cx && !item.cy) continue;
@@ -4682,8 +4693,8 @@
         }
       }
 
-      // 3. Tricolor Ribbon Trail Draw
-      if (rCtx && ribbonCanvas && !prefersReducedMotion) {
+      // 3. Tricolor Ribbon Trail Draw (skip on mobile or when scrolled past hero)
+      if (rCtx && ribbonCanvas && !prefersReducedMotion && window.innerWidth > 800 && globalHeroP <= 0.8) {
         rCtx.clearRect(0, 0, rW, rH);
         const trailAlpha = Math.max(0, 1 - globalHeroP * 2.5);
         if (trailAlpha > 0.005) {
@@ -4735,40 +4746,70 @@
       }
 
       // 4. Confetti Particles Update & Draw
-      if (cCtx && confettiCanvas && !prefersReducedMotion) {
+      if (cCtx && confettiCanvas && !prefersReducedMotion && confettiParticles.length > 0) {
         cCtx.clearRect(0, 0, cW, cH);
-        if (confettiParticles.length > 0) {
-          for (let i = confettiParticles.length - 1; i >= 0; i--) {
-            const p = confettiParticles[i];
-            p.vx *= 0.985;
-            p.vy = p.vy * 0.985 + 0.35;
-            p.x += p.vx;
-            p.y += p.vy;
-            p.rotX += p.dRotX;
-            p.rotY += p.dRotY;
-            p.rotZ += p.dRotZ;
-            p.alpha -= p.decay;
+        for (let i = confettiParticles.length - 1; i >= 0; i--) {
+          const p = confettiParticles[i];
+          p.vx *= 0.985;
+          p.vy = p.vy * 0.985 + 0.35;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rotX += p.dRotX;
+          p.rotY += p.dRotY;
+          p.rotZ += p.dRotZ;
+          p.alpha -= p.decay;
 
-            if (p.alpha <= 0 || p.y > cH + 60) {
-              confettiParticles.splice(i, 1);
-              continue;
-            }
-
-            cCtx.save();
-            cCtx.translate(p.x, p.y);
-            cCtx.rotate(p.rotZ);
-            cCtx.scale(Math.cos(p.rotX), Math.cos(p.rotY));
-            cCtx.globalAlpha = Math.max(0, p.alpha);
-            cCtx.fillStyle = p.color;
-            cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-            cCtx.restore();
+          if (p.alpha <= 0 || p.y > cH + 60) {
+            confettiParticles.splice(i, 1);
+            continue;
           }
+
+          cCtx.save();
+          cCtx.translate(p.x, p.y);
+          cCtx.rotate(p.rotZ);
+          cCtx.scale(Math.cos(p.rotX), Math.cos(p.rotY));
+          cCtx.globalAlpha = Math.max(0, p.alpha);
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          cCtx.restore();
+        }
+        if (confettiParticles.length === 0) {
+          cCtx.clearRect(0, 0, cW, cH);
         }
       }
 
       requestAnimationFrame(heroLoop);
     }
     requestAnimationFrame(heroLoop);
+
+    // Pre-cache elements for stutter-free 60fps/120fps mobile & desktop scrolling
+    const s1G = sc[1] ? Array.from(sc[1].querySelectorAll('[data-s]')) : [];
+    const s1Chars0 = s1G[0] ? chars(s1G[0]) : [];
+    const s1Chars1 = s1G[1] ? chars(s1G[1]) : [];
+    const s1GhostOdd = sc[1] ? Array.from(sc[1].querySelectorAll('.s2-ghost-odd')) : [];
+    const s1GhostEven = sc[1] ? Array.from(sc[1].querySelectorAll('.s2-ghost-even')) : [];
+    const s2Main = $('s2MainContent');
+    const s2Routes = $('s2RoutesSvg');
+    const s2Pills = $('s2PillsRow');
+    const dtElem = $('dt');
+    const vlElem = $('vl');
+    const vrElem = $('vr');
+    const vxElem = $('vx');
+    const sideElem = $('side');
+    const hintElem = $('hint');
+    const heroPillElem = $('heroPill');
+    const hpElem = $('hp');
+    const hbElem = $('hb');
+    const heroHintElem = $('heroHint');
+    const hudElements = Array.from(document.querySelectorAll('.track, .pg'));
+
+    const flipCachedChars = (charArr, a, ax) => {
+      for (let k = 0; k < charArr.length; k++) {
+        const l = cl(a * 1.7 - k * .07);
+        charArr[k].style.transform = `perspective(500px) rotate${ax}(${(1 - l) * -100}deg)`;
+        charArr[k].style.opacity = l;
+      }
+    };
 
     function tick() {
       const prog = t => cl(-t.getBoundingClientRect().top / (t.offsetHeight - innerHeight));
@@ -4777,62 +4818,64 @@
         if (i == 2) return;
         const cam = cams[i < 2 ? 0 : 1];
         const d = cam - i, e = out(cl((d + 1) / .75)), a = cl((d + .95) / .8), s = el.style;
-        s.visibility = (d > -1 && d < .95) || (i == 0 || i == 3) && d < .95 ? 'visible' : 'hidden';
-        s.pointerEvents = Math.abs(d) < .3 ? 'auto' : 'none'; s.zIndex = i;
-        if (E[i]) { s.clipPath = 'none'; s.transform = 'none'; E[i](e, s) }
+        const isVis = (d > -1 && d < .95) || ((i == 0 || i == 3) && d < .95);
+        s.visibility = isVis ? 'visible' : 'hidden';
+        s.pointerEvents = Math.abs(d) < .3 ? 'auto' : 'none';
+        s.zIndex = i;
+
+        // Skip heavy off-screen animations for butter-smooth mobile scrolling
+        if (!isVis && Math.abs(d) > 1.15 && i !== 0) return;
+
+        if (E[i]) { s.clipPath = 'none'; s.transform = 'none'; E[i](e, s); }
         if (i == 0) {
           const heroP = cl(d / 0.55);
           globalHeroP = heroP;
-          if (heroP > 0.03) {
+          if (heroP > 0.05) {
             const ease = heroP * heroP * (3 - 2 * heroP);
-            heroLetters.forEach(item => {
+            for (let k = 0; k < heroLetters.length; k++) {
+              const item = heroLetters[k];
               const curX = item.dx * ease;
               const curY = item.dy * ease;
               const curRot = item.rot * ease;
               const curAlpha = Math.max(0, 1 - heroP * 1.6);
               item.el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) rotate(${curRot.toFixed(1)}deg)`;
               item.el.style.opacity = curAlpha.toFixed(2);
-            });
+            }
             const slideY = heroP * 40;
             const elemAlpha = Math.max(0, 1 - heroP * 1.8).toFixed(2);
             const slideTr = `translate3d(0, ${slideY.toFixed(1)}px, 0)`;
-            if ($('heroPill')) { $('heroPill').style.transform = slideTr; $('heroPill').style.opacity = elemAlpha; }
-            if ($('hp')) { $('hp').style.transform = slideTr; $('hp').style.opacity = elemAlpha; }
-            if ($('hb')) { $('hb').style.transform = slideTr; $('hb').style.opacity = elemAlpha; }
-            if ($('heroHint')) { $('heroHint').style.transform = slideTr; $('heroHint').style.opacity = Math.max(0, 1 - heroP * 2).toFixed(2); }
+            if (heroPillElem) { heroPillElem.style.transform = slideTr; heroPillElem.style.opacity = elemAlpha; }
+            if (hpElem) { hpElem.style.transform = slideTr; hpElem.style.opacity = elemAlpha; }
+            if (hbElem) { hbElem.style.transform = slideTr; hbElem.style.opacity = elemAlpha; }
+            if (heroHintElem) { heroHintElem.style.transform = slideTr; heroHintElem.style.opacity = Math.max(0, 1 - heroP * 2).toFixed(2); }
           } else {
-            if ($('heroPill')) { $('heroPill').style.transform = ''; $('heroPill').style.opacity = '1'; }
-            if ($('hp')) { $('hp').style.transform = ''; $('hp').style.opacity = '1'; }
-            if ($('hb')) { $('hb').style.transform = ''; $('hb').style.opacity = '1'; }
-            if ($('heroHint')) { $('heroHint').style.transform = ''; $('heroHint').style.opacity = ''; }
-            // Ensure letters always reset cleanly on reload or when scrolled back to top
-            heroLetters.forEach(item => {
-              if (!item.active) {
-                item.el.style.transform = '';
-                item.el.style.opacity = '1';
-              }
-            });
+            if (heroPillElem) { heroPillElem.style.transform = ''; heroPillElem.style.opacity = '1'; }
+            if (hpElem) { hpElem.style.transform = ''; hpElem.style.opacity = '1'; }
+            if (hbElem) { hbElem.style.transform = ''; hbElem.style.opacity = '1'; }
+            if (heroHintElem) { heroHintElem.style.transform = ''; heroHintElem.style.opacity = ''; }
+            // Ensure every letter is guaranteed 100% visible and positioned correctly when scrolled back
+            for (let k = 0; k < heroLetters.length; k++) {
+              const item = heroLetters[k];
+              item.active = false;
+              item.el.style.transform = '';
+              item.el.style.opacity = '1';
+              if (item.inner) item.inner.style.opacity = '1';
+            }
           }
         }
         if (i == 1) {
-          const g = sc[1].querySelectorAll('[data-s]');
-          flipChars(g[0], a, 'X');
-          flipChars(g[1], cl(a * 1.1 - .15), 'X');
+          if (s1Chars0.length) flipCachedChars(s1Chars0, a, 'X');
+          if (s1Chars1.length) flipCachedChars(s1Chars1, cl(a * 1.1 - .15), 'X');
           const l = cl(a * 1.4 - .35);
-          $('dt').style.transform = `translateX(${(1 - out(l)) * -110}vw)`;
+          if (dtElem) dtElem.style.transform = `translateX(${(1 - out(l)) * -110}vw)`;
 
-          // Ghost rows horizontal slide on scroll (up to 30vw)
-          const ghostOdd = sc[1].querySelectorAll('.s2-ghost-odd');
-          const ghostEven = sc[1].querySelectorAll('.s2-ghost-even');
+          // Ghost rows horizontal slide on scroll
           const sShiftL = (-d * 30).toFixed(2);
           const sShiftR = (d * 30).toFixed(2);
-          ghostOdd.forEach(el => el.style.transform = `translateX(${sShiftL}vw)`);
-          ghostEven.forEach(el => el.style.transform = `translateX(${sShiftR}vw)`);
+          s1GhostOdd.forEach(el => el.style.transform = `translateX(${sShiftL}vw)`);
+          s1GhostEven.forEach(el => el.style.transform = `translateX(${sShiftR}vw)`);
 
           // Main text scale up to 1.4x and fade in last half; routes fade out first
-          const s2Main = $('s2MainContent');
-          const s2Routes = $('s2RoutesSvg');
-          const s2Pills = $('s2PillsRow');
           if (d > 0) {
             const exitP = cl(d / 0.75);
             const textScale = (1 + exitP * 0.4).toFixed(3);
@@ -4860,8 +4903,12 @@
             }
           }
         }
-        if (i == 2) { $('ra').style.transform = `translateX(${-d * 45}vw)`; $('rb').style.transform = `translateX(${d * 45 - 0}vw)` }
-        if (i == 4) { const l = out(a); $('vl').style.transform = `translateX(${(1 - l) * -90}vw)`; $('vr').style.transform = `translateX(${(1 - l) * 90}vw)`; $('vx').style.transform = `rotate(${(1 - l) * 720}deg) scale(${l})` }
+        if (i == 4) {
+          const l = out(a);
+          if (vlElem) vlElem.style.transform = `translateX(${(1 - l) * -90}vw)`;
+          if (vrElem) vrElem.style.transform = `translateX(${(1 - l) * 90}vw)`;
+          if (vxElem) vxElem.style.transform = `rotate(${(1 - l) * 720}deg) scale(${l})`;
+        }
         if (i == 5) {
           const pScene = cl((d + 0.85) / 0.95);
           const q = cl((pScene - 0.04) / 0.66);
@@ -4882,28 +4929,47 @@
             kwWordMap.forEach((kwWords, idx) => {
               const isLit = kwWords.length > 0 && kwWords.every(w => parseFloat(w.style.opacity) >= 0.95);
               s6KwLit[idx] = isLit;
-              kwEls[idx].classList.toggle('on', isLit);
+              if (kwEls[idx]) kwEls[idx].classList.toggle('on', isLit);
               const node = $('s6Node' + idx);
               if (node) node.classList.toggle('on', isLit);
             });
           }
         }
-        if (i == 6) { cities.forEach((c, k) => { const l = out(cl(a * 1.5 - k * .08)), an = k * 2.4, r = 70 * (1 - l); c.style.transform = `translate(${Math.cos(an) * r}vmax,${Math.sin(an) * r}vmax) rotate(${(1 - l) * 40}deg)`; c.style.opacity = l * (k ? .4 : 1) }) }
+        if (i == 6) {
+          cities.forEach((c, k) => {
+            const l = out(cl(a * 1.5 - k * .08)), an = k * 2.4, r = 70 * (1 - l);
+            c.style.transform = `translate(${Math.cos(an) * r}vmax,${Math.sin(an) * r}vmax) rotate(${(1 - l) * 40}deg)`;
+            c.style.opacity = l * (k ? .4 : 1);
+          });
+        }
       });
+
       const t2top = track2.getBoundingClientRect().top;
-      if (t2top < innerHeight * 0.7 && numState == 0) { numState = 1; numT0 = performance.now(); requestAnimationFrame(numsFrame) }
-      else if (t2top > innerHeight * 1.2 && numState == 2) { numState = 0; numsApply(0) }
+      if (t2top < innerHeight * 0.7 && numState == 0) { numState = 1; numT0 = performance.now(); requestAnimationFrame(numsFrame); }
+      else if (t2top > innerHeight * 1.2 && numState == 2) { numState = 0; numsApply(0); }
+
       let hudIdx = 1, hudLabel = sc[0].dataset.l;
-      document.querySelectorAll('.track, .pg').forEach(el => {
+      hudElements.forEach(el => {
         if (el.getBoundingClientRect().top > innerHeight * 0.5) return;
-        if (el.classList.contains('pg')) { hudIdx = +el.dataset.pg; hudLabel = el.dataset.l }
-        else { const r = Math.round(cams[el === track ? 0 : 1]); hudIdx = r + 1; hudLabel = sc[r].dataset.l }
+        if (el.classList.contains('pg')) { hudIdx = +el.dataset.pg; hudLabel = el.dataset.l; }
+        else { const r = Math.round(cams[el === track ? 0 : 1]); hudIdx = r + 1; hudLabel = sc[r].dataset.l; }
       });
-      $('side').textContent = String(hudIdx).padStart(2, '0') + ' / ' + TOTAL + '  ·  ' + hudLabel.toUpperCase();
-      $('hint').style.opacity = p < .02 ? 1 : 0;
+      if (sideElem) sideElem.textContent = String(hudIdx).padStart(2, '0') + ' / ' + TOTAL + '  ·  ' + hudLabel.toUpperCase();
+      if (hintElem) hintElem.style.opacity = p < .02 ? 1 : 0;
     }
-    addEventListener('scroll', tick, { passive: true });
-    addEventListener('resize', tick);
+
+    let isScrollTicking = false;
+    function requestScrollTick() {
+      if (!isScrollTicking) {
+        isScrollTicking = true;
+        requestAnimationFrame(() => {
+          tick();
+          isScrollTicking = false;
+        });
+      }
+    }
+    addEventListener('scroll', requestScrollTick, { passive: true });
+    addEventListener('resize', requestScrollTick);
     tick();
 
     // Modal logic for City Alerts & Yatra Cities
@@ -4924,7 +4990,13 @@
       const citySelect = $('alertCity');
 
       if (cityName) {
-        if (citySelect) citySelect.value = cityName;
+        if (citySelect) {
+          citySelect.value = cityName;
+          if (!citySelect.value) {
+            if (cityName === 'Bengaluru') citySelect.value = 'Bangalore';
+            else if (cityName === 'Bangalore') citySelect.value = 'Bengaluru';
+          }
+        }
         if (cityName === 'Greater Noida') {
           if (modalTitle) modalTitle.textContent = 'Register for Greater Noida';
           if (modalSubtitle) modalSubtitle.textContent = 'Our first event is on September 13-14, 2026';
@@ -5164,7 +5236,7 @@
       },
       {
         q: "Which cities come next?",
-        a: "After Greater Noida, JobUtsav is coming soon to Mumbai, Bangalore, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad."
+        a: "After Greater Noida, JobUtsav is coming soon to Mumbai, Bengaluru, Hyderabad, Chennai, Pune, Kolkata and Ahmedabad."
       }
     ];
 

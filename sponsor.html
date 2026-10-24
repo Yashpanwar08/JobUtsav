@@ -196,21 +196,45 @@
       background: var(--grad-hero);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       display: inline-block;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .grad-blue-text {
       background: var(--grad-blue);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       display: inline-block;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .grad-orange-text {
       background: var(--grad-orange);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       display: inline-block;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     /* Common Section Header */
@@ -314,8 +338,16 @@
     }
 
     /* =========================================================
-       1. SITE NAVBAR (EXACT HOMEPAGE CODE)
+       1. SITE NAVBAR (EXACT HOMEPAGE CODE & DIMENSIONS)
     ========================================================= */
+    nav.site-nav,
+    nav.site-nav *,
+    .mobile-nav,
+    .mobile-nav * {
+      font-family: "Outfit", "Segoe UI", system-ui, sans-serif !important;
+      box-sizing: border-box;
+    }
+
     nav.site-nav {
       position: fixed;
       top: 0;
@@ -364,7 +396,7 @@
     }
 
     .nav-links a {
-      color: var(--ink);
+      color: #0f1535;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
@@ -372,11 +404,12 @@
       padding: 0;
       border-radius: 0;
       background: none !important;
+      line-height: normal;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--warm);
+      color: #f26a1b;
     }
 
     .nav-right-actions {
@@ -413,7 +446,7 @@
       display: block;
       width: 20px;
       height: 2px;
-      background: var(--ink);
+      background: #0f1535;
       border-radius: 2px;
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
     }
@@ -470,7 +503,7 @@
       padding: 11px 16px;
       font-size: 15px;
       font-weight: 600;
-      color: var(--ink);
+      color: #0f1535;
       text-decoration: none;
       border-radius: 12px;
       transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
@@ -480,7 +513,7 @@
     .mobile-nav-link:active,
     .mobile-nav-link.active {
       background: rgba(242, 106, 27, 0.08);
-      color: var(--warm);
+      color: #f26a1b;
       transform: translateX(4px);
     }
 
@@ -520,7 +553,7 @@
     /* CTAs for Nav */
     .site-nav .cta,
     .mobile-nav .cta {
-      background: var(--grad-orange);
+      background: #f26a1b;
       color: #fff !important;
       border-radius: 99px;
       padding: 12px 26px;
@@ -528,26 +561,27 @@
       font-size: 15px;
       text-decoration: none;
       display: inline-block;
-      box-shadow: var(--shadow-orange);
+      box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
       transition: transform 0.15s ease, background-color 0.15s ease;
       line-height: normal;
     }
 
     .site-nav .cta:hover,
     .mobile-nav .cta:hover {
+      background: #db590f;
       transform: translateY(-2px);
-      box-shadow: var(--shadow-orange-hover);
+      box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
     }
 
     .mobile-nav .cta.o {
       background: transparent;
-      color: var(--ink) !important;
-      border: 2px solid var(--ink);
+      color: #0f1535 !important;
+      border: 2px solid #0f1535;
       box-shadow: none;
     }
 
     .mobile-nav .cta.o:hover {
-      background: var(--ink);
+      background: #0f1535;
       color: #fff !important;
       transform: translateY(-2px);
     }
@@ -557,7 +591,7 @@
      ========================================================= */
     .hero {
       position: relative;
-      padding: clamp(100px, 14vh, 130px) 0 110px;
+      padding: clamp(120px, 15vh, 145px) 0 110px;
       overflow: hidden;
       background:
         radial-gradient(circle at 12% 18%, rgba(242, 106, 27, 0.12) 0%, transparent 45%),
@@ -573,6 +607,13 @@
       align-items: center;
       position: relative;
       z-index: 2;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 3;
+      transform: none !important;
+      will-change: auto !important;
     }
 
     .hero-badge {
@@ -617,6 +658,13 @@
       font-size: clamp(38px, 4.8vw, 62px);
       line-height: 1.08;
       margin-bottom: 18px;
+      color: var(--ink);
+      transform: none !important;
+      will-change: auto !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     .hero-desc {
@@ -1829,7 +1877,8 @@
 
     html.js .reveal.revealed {
       opacity: 1;
-      transform: translateY(0);
+      transform: none !important;
+      will-change: auto !important;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1847,22 +1896,8 @@
        RESPONSIVE DESIGN (UNDER 900PX)
     ========================================================= */
     @media (max-width: 900px) {
-      .header-wrap {
-        padding: 0 12px;
-        top: 10px;
-      }
-
-      .nav-links,
-      .nav-actions {
-        display: none !important;
-      }
-
-      .menuBtn {
-        display: flex;
-      }
-
       .hero {
-        padding: 40px 0 80px;
+        padding: clamp(100px, 14vh, 125px) 0 80px;
       }
 
       .hero-grid {
@@ -2028,7 +2063,7 @@
       <div class="container">
         <div class="hero-grid">
           <!-- Left Column -->
-          <div class="hero-left reveal">
+          <div class="hero-left">
             <div class="hero-badge">
               <span class="hero-dot" aria-hidden="true"></span>
               JobUtsav &mdash; India's Hiring Festival
@@ -2056,7 +2091,7 @@
           </div>
 
           <!-- Right Column: Morphing Blob + Floating Chips -->
-          <div class="hero-showcase reveal">
+          <div class="hero-showcase">
             <div class="blob-wrap">
               <img src="images/sp.jpeg" alt="JobUtsav Sponsorship and Awards Showcase" />
             </div>
