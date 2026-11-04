@@ -256,255 +256,250 @@
         transition: width 0.08s ease-out;
       }
 
-      /* =========================================================
-         SITE NAVBAR (EXACT HOMEPAGE / CANDIDATE STYLES)
-      ========================================================= */
-      nav.site-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px clamp(16px, 4vw, 48px);
-        z-index: 100;
-        pointer-events: none;
-        transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
-      }
+      /* ==================== PRESERVED SITE NAVBAR ==================== */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px clamp(16px, 4vw, 48px);
+      z-index: 100;
+      pointer-events: none;
+    }
 
-      nav.site-nav.scrolled {
-        background: rgba(255, 248, 240, 0.95);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        padding-top: 10px;
-        padding-bottom: 10px;
-        box-shadow: 0 8px 30px rgba(15, 21, 53, 0.08);
-      }
+    nav.site-nav>* {
+      pointer-events: auto;
+    }
 
-      nav.site-nav > * {
-        pointer-events: auto;
-      }
+    .nav-logo-link {
+      display: flex;
+      align-items: center;
+    }
 
-      .nav-logo-link {
-        display: flex;
-        align-items: center;
-      }
+    .nav-logo {
+      height: clamp(52px, 5.8vw, 72px);
+      width: auto;
+      mix-blend-mode: difference;
+      filter: contrast(1.2);
+      transition: transform 0.2s ease;
+    }
 
-      .nav-logo {
-        height: clamp(52px, 5.8vw, 70px);
-        width: auto;
-        transition: transform 0.2s ease;
-      }
+    .nav-logo:hover {
+      transform: scale(1.04);
+    }
 
-      .nav-logo:hover {
-        transform: scale(1.04);
-      }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 21, 53, 0.08);
+      box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
+    }
 
+    .nav-links a {
+      color: var(--n);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--o);
+    }
+
+    .nav-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Hamburger Menu Button */
+    .nav-menu-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1.5px solid rgba(15, 21, 53, 0.12);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(15, 21, 53, 0.08);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      z-index: 101;
+    }
+
+    .nav-menu-btn:hover {
+      transform: scale(1.05);
+      background: #fff;
+    }
+
+    .nav-menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--n);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    }
+
+    .nav-menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Nav Drawer */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 99;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-nav.show {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-inner {
+      margin: clamp(76px, 12vh, 92px) 16px 16px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(15, 21, 53, 0.1);
+      box-shadow: 0 20px 50px rgba(15, 21, 53, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      padding: 11px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--n);
+      text-decoration: none;
+      border-radius: 12px;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link:active {
+      background: rgba(242, 106, 27, 0.08);
+      color: var(--o);
+      transform: translateX(4px);
+    }
+
+    .mobile-nav-actions {
+      margin-top: 10px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(15, 21, 53, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mobile-nav-actions .cta {
+      text-align: center;
+      width: 100%;
+      padding: 12px 20px;
+    }
+
+    @media (max-width: 860px) {
       .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 8px 22px;
-        border-radius: 999px;
-        border: 1px solid rgba(15, 21, 53, 0.08);
-        box-shadow: 0 4px 18px rgba(15, 21, 53, 0.06);
-      }
-
-      .nav-links a {
-        color: var(--n);
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: color 0.15s ease;
-      }
-
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--o);
-      }
-
-      .nav-right-actions {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .cta {
-        background: var(--o);
-        color: #fff !important;
-        border-radius: 99px;
-        padding: 11px 24px;
-        font-weight: 700;
-        font-size: 14px;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        border: none;
-        box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
-        transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-        cursor: pointer;
-      }
-
-      .cta:hover {
-        background: var(--o-hover);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba(242, 106, 27, 0.42);
-      }
-
-      .cta.o {
-        background: transparent;
-        color: var(--n) !important;
-        border: 2px solid var(--n);
-        box-shadow: none;
-      }
-
-      .cta.o:hover {
-        background: var(--n);
-        color: #fff !important;
-        transform: translateY(-2px);
+        display: none !important;
       }
 
       .nav-menu-btn {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        width: 44px;
-        height: 44px;
-        padding: 0;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1.5px solid rgba(15, 21, 53, 0.12);
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(15, 21, 53, 0.08);
-        transition: transform 0.2s ease, background-color 0.2s ease;
-        z-index: 101;
+        display: flex;
       }
 
-      .nav-menu-btn:hover {
-        transform: scale(1.05);
-        background: #fff;
-      }
-
-      .nav-menu-btn span {
-        display: block;
-        width: 20px;
-        height: 2px;
-        background: var(--n);
-        border-radius: 2px;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-      }
-
-      .nav-menu-btn.active span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-      }
-
-      .nav-menu-btn.active span:nth-child(2) {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-
-      .nav-menu-btn.active span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-      }
-
-      .mobile-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 99;
-        pointer-events: none;
-        opacity: 0;
-        transform: translateY(-12px);
-        transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .mobile-nav.show {
+      nav.site-nav {
+        background: rgba(255, 255, 255, 0.80);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 10px clamp(14px, 4vw, 24px);
+        box-shadow: 0 4px 18px rgba(15, 21, 53, 0.05);
+        border-bottom: 1px solid rgba(15, 21, 53, 0.06);
         pointer-events: auto;
-        opacity: 1;
-        transform: translateY(0);
       }
 
-      .mobile-nav-inner {
-        margin: clamp(76px, 12vh, 92px) 16px 16px;
-        padding: 20px 22px;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        border: 1px solid rgba(15, 21, 53, 0.1);
-        box-shadow: 0 20px 50px rgba(15, 21, 53, 0.18);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .nav-logo {
+        mix-blend-mode: normal !important;
+        filter: none !important;
+        height: clamp(42px, 11vw, 50px);
       }
+    }
 
-      .mobile-nav-link {
-        display: block;
-        padding: 12px 16px;
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--n);
-        text-decoration: none;
-        border-radius: 12px;
-        transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    @media (max-width: 520px) {
+      .nav-right-actions .nav-cta-desktop {
+        display: none;
       }
+    }
 
-      .mobile-nav-link:hover,
-      .mobile-nav-link.active {
-        background: rgba(242, 106, 27, 0.08);
-        color: var(--o);
-        transform: translateX(4px);
-      }
+    /* CTAs */
+    .cta {
+      background: var(--o);
+      color: #fff !important;
+      border-radius: 99px;
+      padding: 12px 26px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 20px rgba(242, 106, 27, 0.32);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
 
-      .mobile-nav-actions {
-        margin-top: 12px;
-        padding-top: 14px;
-        border-top: 1px solid rgba(15, 21, 53, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+    .cta:hover {
+      background: var(--o-hover, #e05b11);
+      transform: translateY(-2px);
+    }
 
-      .mobile-nav-actions .cta {
-        text-align: center;
-        justify-content: center;
-        width: 100%;
-        padding: 12px 20px;
-      }
+    .cta.o {
+      background: transparent;
+      color: var(--n) !important;
+      border: 2px solid var(--n);
+      box-shadow: none;
+    }
 
-      @media (max-width: 920px) {
-        .nav-links { display: none !important; }
-        .nav-menu-btn { display: flex; }
-        nav.site-nav {
-          background: rgba(255, 255, 255, 0.80);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          padding: 10px clamp(14px, 4vw, 24px);
-          box-shadow: 0 4px 18px rgba(15, 21, 53, 0.05);
-          border-bottom: 1px solid rgba(15, 21, 53, 0.06);
-          pointer-events: auto;
-        }
-        .nav-logo {
-          mix-blend-mode: normal !important;
-          filter: none !important;
-          height: clamp(42px, 11vw, 50px);
-        }
-      }
+    .cta.o:hover {
+      background: var(--n);
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
 
-      @media (max-width: 520px) {
-        .nav-right-actions .nav-cta-desktop { display: none; }
-      }
-
-      /* =========================================================
+    /* =========================================================
          HERO SECTION (MATCHING CANDIDATE AESTHETICS)
       ========================================================= */
       .hero-section {
@@ -1850,55 +1845,50 @@
   </head>
 
   <body>
-    <!-- SCROLL PROGRESS BAR (TOP) -->
-    <div class="scroll-progress-line" aria-hidden="true">
-      <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+    
+
+    <!-- PRESERVED SITE NAVBAR WITH LOGO, QUICK LINKS, AND GET HIRED CTA -->
+  <nav class="site-nav" role="navigation" aria-label="Main Navigation">
+    <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
+      <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="nav-logo" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about-us.html">About Us</a>
+      <a href="candidate.html">Candidates</a>
+      <a href="company.html">Companies</a>
+      <a href="college.html">Colleges</a>
+      <a href="sponsor.html">Sponsors</a>
+      <a href="aboutjobfair.html">Job Fair 2026</a>
     </div>
+    <div class="nav-right-actions">
+      <a class="cta nav-cta-desktop" href="candidate.html">Get Hired</a>
+      <button class="nav-menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
 
-    <!-- SITE NAVBAR (EXACT HOMEPAGE / CANDIDATE STYLES) -->
-    <nav class="site-nav" id="siteNav" role="navigation" aria-label="Main Navigation">
-      <a href="index.html" class="nav-logo-link" aria-label="JobUtsav Home">
-        <img src="jobutsav-logo-transparent.png" alt="JobUtsav Logo" class="nav-logo" />
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="candidate.html">Candidates</a>
-        <a href="company.html">Companies</a>
-        <a href="college.html">Colleges</a>
-        <a href="sponsor.html">Sponsors</a>
-        <a href="aboutjobfair.html">Job Fair 2026</a>
-        <a href="about-us.html">About Us</a>
-        <a href="contact.html" class="active">Contact Us</a>
-      </div>
-      <div class="nav-right-actions">
-        <a class="cta nav-cta-desktop" href="candidate.html">Get Hired</a>
-        <button class="nav-menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- MOBILE NAVIGATION DRAWER -->
-    <div class="mobile-nav" id="mobileNav">
-      <div class="mobile-nav-inner">
-        <a href="index.html" class="mobile-nav-link">Home</a>
-        <a href="candidate.html" class="mobile-nav-link">Candidates</a>
-        <a href="company.html" class="mobile-nav-link">Companies</a>
-        <a href="college.html" class="mobile-nav-link">Colleges</a>
-        <a href="sponsor.html" class="mobile-nav-link">Sponsors</a>
-        <a href="aboutjobfair.html" class="mobile-nav-link">Job Fair 2026</a>
-        <a href="about-us.html" class="mobile-nav-link">About Us</a>
-        <a href="contact.html" class="mobile-nav-link active">Contact Us</a>
-        <div class="mobile-nav-actions">
-          <a class="cta" href="candidate.html">Get Hired →</a>
-          <a class="cta o" href="company.html">Register Your Company</a>
-        </div>
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-inner">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about-us.html" class="mobile-nav-link">About Us</a>
+      <a href="candidate.html" class="mobile-nav-link">Candidates</a>
+      <a href="company.html" class="mobile-nav-link">Companies</a>
+      <a href="college.html" class="mobile-nav-link">Colleges</a>
+      <a href="sponsor.html" class="mobile-nav-link">Sponsors</a>
+      <a href="aboutjobfair.html" class="mobile-nav-link">Job Fair 2026</a>
+      <div class="mobile-nav-actions">
+        <a class="cta" href="candidate.html">Get Hired →</a>
+        <a class="cta o" href="company.html">Register Your Company</a>
       </div>
     </div>
+  </div>
 
-    <main>
+  <main>
       <!-- =========================================================
            HERO SECTION
       ========================================================= -->
@@ -2447,16 +2437,7 @@
           }
         }, { passive: true });
 
-        // Sticky Navbar on Scroll
-        const siteNav = document.getElementById('siteNav');
-        window.addEventListener('scroll', () => {
-          if (!siteNav) return;
-          if (window.scrollY > 40) {
-            siteNav.classList.add('scrolled');
-          } else {
-            siteNav.classList.remove('scrolled');
-          }
-        }, { passive: true });
+        
 
         // Mobile Menu Drawer
         const menuBtn = document.getElementById('menuBtn');
